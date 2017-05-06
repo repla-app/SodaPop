@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Roben Kleene. All rights reserved.
 //
 
+import StringPlusPath
 
 extension Plugin {
 

@@ -50,6 +50,8 @@
 		450CA0C11EBACDF000D08D2A /* XCTestCase+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */; };
 		4518471E1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4518471F1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m */; };
+		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
+		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDB1E9AF75B00823315 /* PlugPopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45753DDA1E9AF75B00823315 /* PlugPopTests.m */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,6 +115,8 @@
 		450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserDefaults.swift"; sourceTree = "<group>"; };
 		4518471C1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCLPluginsManager+UniquePluginName.h"; sourceTree = "<group>"; };
 		4518471D1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WCLPluginsManager+UniquePluginName.m"; sourceTree = "<group>"; };
+		451847211EBE8AC60004FCAE /* BubbleUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BubbleUp.framework; path = Carthage/Build/Mac/BubbleUp.framework; sourceTree = "<group>"; };
+		451847231EBE8AC80004FCAE /* StringPlusPath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StringPlusPath.framework; path = Carthage/Build/Mac/StringPlusPath.framework; sourceTree = "<group>"; };
 		45753DCC1E9AF75B00823315 /* PlugPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlugPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753DCF1E9AF75B00823315 /* PlugPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugPop.h; sourceTree = "<group>"; };
 		45753DD01E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */,
+				451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,12 +146,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		451847201EBE8AC50004FCAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				451847231EBE8AC80004FCAE /* StringPlusPath.framework */,
+				451847211EBE8AC60004FCAE /* BubbleUp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		45753DC21E9AF75B00823315 = {
 			isa = PBXGroup;
 			children = (
 				45753DCE1E9AF75B00823315 /* PlugPop */,
 				45753DD91E9AF75B00823315 /* PlugPopTests */,
 				45753DCD1E9AF75B00823315 /* Products */,
+				451847201EBE8AC50004FCAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -504,6 +520,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PlugPop/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -526,6 +546,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PlugPop/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

@@ -20,17 +20,17 @@ protocol FilesAndPluginsDirectoryManagerFileDelegate {
 class FilesAndPluginsDirectoryManager: PluginsDirectoryManager {
     var fileDelegate: FilesAndPluginsDirectoryManagerFileDelegate?
     
-    override func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
+    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, directoryWasCreatedOrModifiedAtPath: path)
         super.directoryWatcher(directoryWatcher, directoryWasCreatedOrModifiedAtPath: path)
     }
     
-    override func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
+    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, fileWasCreatedOrModifiedAtPath: path)
         super.directoryWatcher(directoryWatcher, fileWasCreatedOrModifiedAtPath: path)
     }
     
-    override func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, itemWasRemovedAtPath path: String) {
+    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, itemWasRemovedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, itemWasRemovedAtPath: path)
         super.directoryWatcher(directoryWatcher, itemWasRemovedAtPath: path)
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BubbleUp
 
 protocol PluginsDirectoryManagerDelegate {
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
@@ -98,17 +99,17 @@ class PluginsPathHelper {
     }
 }
 
-class PluginsDirectoryManager: NSObject, WCLDirectoryWatcherDelegate, PluginsDirectoryEventHandlerDelegate {
+class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDirectoryEventHandlerDelegate {
     struct ClassConstants {
         static let infoDictionaryPathComponent = "Contents/Info.plist"
     }
     var delegate: PluginsDirectoryManagerDelegate?
     let pluginsDirectoryEventHandler: PluginsDirectoryEventHandler
-    let directoryWatcher: WCLDirectoryWatcher
+    let directoryWatcher: BBUDirectoryWatcher
     let pluginsDirectoryURL: URL
     init(pluginsDirectoryURL: URL) {
         self.pluginsDirectoryURL = pluginsDirectoryURL
-        self.directoryWatcher = WCLDirectoryWatcher(url: pluginsDirectoryURL)
+        self.directoryWatcher = BBUDirectoryWatcher(url: pluginsDirectoryURL)
         self.pluginsDirectoryEventHandler = PluginsDirectoryEventHandler()
 
         super.init()
@@ -116,9 +117,9 @@ class PluginsDirectoryManager: NSObject, WCLDirectoryWatcherDelegate, PluginsDir
         self.pluginsDirectoryEventHandler.delegate = self
     }
 
-    // MARK: WCLDirectoryWatcherDelegate
+    // MARK: BBUDirectoryWatcherDelegate
     
-    func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
+    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
 
         if let pluginPath = pluginPath(fromPath: path) {
@@ -126,7 +127,7 @@ class PluginsDirectoryManager: NSObject, WCLDirectoryWatcherDelegate, PluginsDir
         }
     }
 
-    func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
+    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
     
         if let pluginPath = pluginPath(fromPath: path) {
@@ -134,7 +135,7 @@ class PluginsDirectoryManager: NSObject, WCLDirectoryWatcherDelegate, PluginsDir
         }
     }
 
-    func directoryWatcher(_ directoryWatcher: WCLDirectoryWatcher, itemWasRemovedAtPath path: String) {
+    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, itemWasRemovedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
         
         if let pluginPath = pluginPath(fromPath: path) {

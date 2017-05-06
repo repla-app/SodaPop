@@ -10,7 +10,7 @@ import Foundation
 
 extension Plugin {
     func renameWithUniqueName() {
-        let newName = type(of: self).uniquePluginName(fromName: name, for: self)
+        let newName = PluginsManager.sharedInstance.uniquePluginName(fromName: name, for: self)
         name = newName
     }
 }

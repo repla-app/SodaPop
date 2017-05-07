@@ -7,20 +7,11 @@
 //
 
 #import "WCLPluginsManager.h"
-#import "Web_Console-Swift.h"
+#import "PlugPop-Swift.h"
 
 @implementation WCLPluginsManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
-
-- (instancetype)initWithPlugins:(NSArray *)plugins
-{
-    self = [super init];
-    if (self) {
-        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins key:kPluginNameKey];
-    }
-    return self;
-}
 
 - (Plugin *)defaultNewPlugin
 {
@@ -82,34 +73,6 @@
 {
     NSAssert(NO, @"Implemented in superclass");
     return nil;
-}
-
-
-#pragma mark Required Key-Value Coding To-Many Relationship Compliance
-
-- (NSArray *)plugins
-{
-    return [self.multiCollectionController objects];
-}
-
-- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index
-{
-    [self.multiCollectionController insertObject:plugin inObjectsAtIndex:index];
-}
-
-- (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes
-{
-    [self.multiCollectionController insertObjects:pluginsArray atIndexes:indexes];
-}
-
-- (void)removeObjectFromPluginsAtIndex:(NSUInteger)index
-{
-    [self.multiCollectionController removeObjectFromObjectsAtIndex:index];
-}
-
-- (void)removePluginsAtIndexes:(NSIndexSet *)indexes
-{
-    [self.multiCollectionController removeObjectsAtIndexes:indexes];
 }
 
 @end

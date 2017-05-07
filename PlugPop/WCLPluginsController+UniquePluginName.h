@@ -8,7 +8,9 @@
 
 #import <PlugPop/PlugPop.h>
 
-@interface WCLPluginsManager (UniquePluginName)
+NS_ASSUME_NONNULL_BEGIN
+@interface WCLPluginsController (UniquePluginName)
 + (NSString *)uniquePluginNameFromName:(NSString *)name;
 + (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable WCLPlugin *)plugin;
 @end
+NS_ASSUME_NONNULL_END

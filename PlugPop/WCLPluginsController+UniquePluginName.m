@@ -8,7 +8,7 @@
 
 #import "WCLPluginsManager+UniquePluginName.h"
 
-@implementation WCLPluginsManager (UniquePluginName)
+@implementation WCLPluginsController (UniquePluginName)
 
 + (NSString *)uniquePluginNameFromName:(NSString *)name
 {

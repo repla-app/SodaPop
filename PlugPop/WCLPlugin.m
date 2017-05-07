@@ -16,7 +16,7 @@
 #import "WCLTaskRunner.h"
 
 #import "WCLPlugin+Validation.h"
-#import "Web_Console-Swift.h"
+#import "PlugPop-Swift.h"
 
 @implementation WCLPlugin
 

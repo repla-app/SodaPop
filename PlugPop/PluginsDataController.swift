@@ -36,7 +36,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         self.pluginPathToPluginDictionary = [String : Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
 
-        let pathsSet = Set(paths + [builtInPluginsPath + applicationSupportPluginsPath])
+        let pathsSet = Set(paths + [builtInPluginsPath, applicationSupportPluginsPath])
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {

@@ -11,7 +11,8 @@ import Cocoa
 class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
-
+    let ii: WCLPluginsController
+    
     // MARK: Init
     
     init(paths: [String],
@@ -23,14 +24,15 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
                                                            duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
                                                            builtInPluginsPath: builtInPluginsPath,
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
-        super.init(plugins: pluginsDataController.plugins())
+        self.pluginsController = WCLPLuginsController(plugins: pluginsDataController.plugins())
+        super.init()
         pluginsDataController.delegate = self
     }
     
     // MARK: Plugins
 
     func plugin(forName name: String) -> Plugin? {
-        return multiCollectionController.object(forKey: name) as? Plugin
+        return pluginsController.pluginWithName(name)
     }
     
     func plugin(withIdentifier identifier: String) -> Plugin? {
@@ -46,7 +48,6 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
         return nil
     }
 
-
     // MARK: Convenience
     
     func addUnwatched(_ plugin: Plugin) {
@@ -56,17 +57,13 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     }
     
     private func add(_ plugin: Plugin) {
-        insertObject(plugin, inPluginsAt: 0)
+        pluginsController.addPlugin(plugin)
     }
     
     private func remove(_ plugin: Plugin) {
-        let index = multiCollectionController.indexOfObject(plugin)
-        if index != NSNotFound {
-            removeObjectFromPlugins(at: UInt(index))
-        }
+        pluginsController.removePlugin(plugin)
     }
     
-
     // MARK: Adding and Removing Plugins
     
     func moveToTrash(_ plugin: Plugin) {

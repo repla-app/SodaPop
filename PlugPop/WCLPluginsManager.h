@@ -13,14 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsManager : NSObject
-- (instancetype)initWithPlugins:(NSArray *)plugins;
-@property (nonatomic, strong) MultiCollectionController *multiCollectionController;
 @property (nonatomic, strong, nullable) Plugin *defaultNewPlugin;
-#pragma mark Required Key-Value Coding To-Many Relationship Compliance
-- (NSArray *)plugins;
-- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index;
-- (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes;
-- (void)removeObjectFromPluginsAtIndex:(NSUInteger)index;
-- (void)removePluginsAtIndexes:(NSIndexSet *)indexes;
 @end
 NS_ASSUME_NONNULL_END

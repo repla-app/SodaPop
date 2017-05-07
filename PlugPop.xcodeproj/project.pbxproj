@@ -48,11 +48,13 @@
 		450CA0BF1EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */; };
 		450CA0C01EBACDF000D08D2A /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */; };
 		450CA0C11EBACDF000D08D2A /* XCTestCase+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */; };
-		4518471E1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4518471F1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m */; };
+		4518471E1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4518471F1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */; };
 		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
 		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
+		456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* WCLPluginsController.h */; };
+		456783041EBFDC7600C9EC4A /* WCLPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* WCLPluginsController.m */; };
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDB1E9AF75B00823315 /* PlugPopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45753DDA1E9AF75B00823315 /* PlugPopTests.m */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,11 +116,13 @@
 		450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLKeyValueObservingTestsHelper.m; sourceTree = "<group>"; };
 		450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserDefaults.swift"; sourceTree = "<group>"; };
-		4518471C1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCLPluginsManager+UniquePluginName.h"; sourceTree = "<group>"; };
-		4518471D1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WCLPluginsManager+UniquePluginName.m"; sourceTree = "<group>"; };
+		4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCLPluginsController+UniquePluginName.h"; sourceTree = "<group>"; };
+		4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WCLPluginsController+UniquePluginName.m"; sourceTree = "<group>"; };
 		451847211EBE8AC60004FCAE /* BubbleUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BubbleUp.framework; path = Carthage/Build/Mac/BubbleUp.framework; sourceTree = "<group>"; };
 		451847231EBE8AC80004FCAE /* StringPlusPath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StringPlusPath.framework; path = Carthage/Build/Mac/StringPlusPath.framework; sourceTree = "<group>"; };
 		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		456783011EBFDC7600C9EC4A /* WCLPluginsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLPluginsController.h; sourceTree = "<group>"; };
+		456783021EBFDC7600C9EC4A /* WCLPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLPluginsController.m; sourceTree = "<group>"; };
 		45753DCC1E9AF75B00823315 /* PlugPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlugPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753DCF1E9AF75B00823315 /* PlugPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugPop.h; sourceTree = "<group>"; };
 		45753DD01E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,8 +205,10 @@
 				450CA07E1EBACDAC00D08D2A /* WCLPluginsManager.m */,
 				45753DCF1E9AF75B00823315 /* PlugPop.h */,
 				45753DD01E9AF75B00823315 /* Info.plist */,
-				4518471C1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h */,
-				4518471D1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m */,
+				4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */,
+				4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */,
+				456783011EBFDC7600C9EC4A /* WCLPluginsController.h */,
+				456783021EBFDC7600C9EC4A /* WCLPluginsController.m */,
 			);
 			path = PlugPop;
 			sourceTree = "<group>";
@@ -249,9 +255,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */,
 				45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */,
 				450CA0901EBACDAC00D08D2A /* WCLPluginsManager.h in Headers */,
-				4518471E1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.h in Headers */,
+				4518471E1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h in Headers */,
 				450CA08D1EBACDAC00D08D2A /* WCLPlugin.h in Headers */,
 				450CA08B1EBACDAC00D08D2A /* WCLKeyToObjectController.h in Headers */,
 			);
@@ -359,7 +366,7 @@
 			files = (
 				450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */,
 				450CA0911EBACDAC00D08D2A /* WCLPluginsManager.m in Sources */,
-				4518471F1EBE851D0004FCAE /* WCLPluginsManager+UniquePluginName.m in Sources */,
+				4518471F1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m in Sources */,
 				450CA08C1EBACDAC00D08D2A /* WCLKeyToObjectController.m in Sources */,
 				450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */,
 				450CA0851EBACDAC00D08D2A /* Plugin+Validation.swift in Sources */,
@@ -374,6 +381,7 @@
 				450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */,
 				450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */,
 				450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */,
+				456783041EBFDC7600C9EC4A /* WCLPluginsController.m in Sources */,
 				456783001EBFD2B000C9EC4A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

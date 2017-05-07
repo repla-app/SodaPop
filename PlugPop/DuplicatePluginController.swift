@@ -11,15 +11,19 @@ import Foundation
 class DuplicatePluginController {
     lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
     let pluginsDataController: PluginsDataController
-
-    init(pluginsDataController: PluginsDataController) {
-        self.pluginsDatacontroller = pluginsDataController
-    }
+    let pluginsController: WCLPLuginsController
     
     enum ClassConstants {
         static let tempDirectoryName = "Duplicate Plugin"
     }
-
+    
+    init(pluginsController: WCLPluginsController,
+         pluginsDataController: PluginsDataController)
+    {
+        self.pluginsController = pluginsController
+        self.pluginsDatacontroller = pluginsDataController
+    }
+    
     class func pluginFilename(fromName name: String) -> String {
         return name.appendingPathExtension(pluginFileExtension)!
     }

@@ -11,41 +11,24 @@ import Cocoa
 class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
-    
-    // MARK: Singleton
-    
-    struct Singleton {
-        static let instance: PluginsManager = PluginsManager()
-        static var overrideSharedInstance: PluginsManager?
-    }
-
-    class var sharedInstance: PluginsManager {
-        if let overrideSharedInstance = Singleton.overrideSharedInstance {
-            return overrideSharedInstance
-        }
-        
-        return Singleton.instance
-    }
-
-    class func setOverrideSharedInstance(_ pluginsManager: PluginsManager?) {
-        Singleton.overrideSharedInstance = pluginsManager
-    }
 
     // MARK: Init
     
-    init(paths: [String], duplicatePluginDestinationDirectoryURL: URL) {
-        self.pluginsDataController = PluginsDataController(paths: paths, duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL)
+    init(paths: [String],
+         duplicatePluginDestinationDirectoryURL: URL,
+         builtInPluginsPath: String?,
+         applicationSupportPluginsPath: String?)
+    {
+        self.pluginsDataController = PluginsDataController(paths: paths,
+                                                           duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
+                                                           builtInPluginsPath: String?,
+                                                           applicationSupportPluginsPath: String?)
         super.init(plugins: pluginsDataController.plugins())
         pluginsDataController.delegate = self
     }
     
-    convenience override init() {
-        self.init(paths: [Directory.builtInPlugins.path(), Directory.applicationSupportPlugins.path()], duplicatePluginDestinationDirectoryURL: Directory.applicationSupportPlugins.URL())
-    }
+    // MARK: Plugins
 
-    
-    // MARK: Accessing Plugins
-    
     func plugin(forName name: String) -> Plugin? {
         return pluginsController.object(forKey: name) as? Plugin
     }

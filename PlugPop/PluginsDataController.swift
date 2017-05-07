@@ -20,13 +20,22 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     var pluginPathToPluginDictionary: [String : Plugin]!
     lazy var duplicatePluginController = DuplicatePluginController()
     let duplicatePluginDestinationDirectoryURL: URL
+    let builtInPluginsPath: String?
+    let applicationSupportPluginsPath: String?
     
-    init(paths: [String], duplicatePluginDestinationDirectoryURL: URL) {
+    init(paths: [String],
+         duplicatePluginDestinationDirectoryURL: URL,
+         builtInPluginsPath: String?,
+         applicationSupportPluginsPath: String?)
+    {
+        self.builtInPluginsPath = builtInPluginsPath
+        self.applicationSupportPluginsPath = applicationSupportPluginsPath
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()
         self.pluginPathToPluginDictionary = [String : Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
-        
-        for path in paths {
+
+        let pathsSet = Set(paths + [builtInPluginsPath + applicationSupportPluginsPath])
+        for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {
                 pluginPathToPluginDictionary[plugin.bundle.bundlePath] = plugin
@@ -38,14 +47,33 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         }
     }
 
-
     // MARK: Plugins
+
+    func makePlugin(path: String) -> Plugin? {
+        let pluginType = self.pluginType(for: path)
+        return self.makePlugin(path: path)
+    }
+    
+    func makePlugin(url: URL) -> Plugin? {
+        makePlugin(url: url.path)
+    }
     
     func plugins() -> [Plugin] {
         return Array(pluginPathToPluginDictionary.values)
     }
     
-
+    func pluginType(for path: String) -> PluginType {
+        let pluginContainerDirectory = path.deletingLastPathComponent
+        switch pluginContainerDirectory {
+        case applicationSupportPluginsPath:
+            return PluginType.user
+        case builtInPluginsPath:
+            return PluginType.builtIn
+        default:
+            return PluginType.other
+        }
+    }
+    
     // MARK: PluginsDirectoryManagerDelegate
 
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
@@ -74,7 +102,6 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
             remove(oldPlugin)
         }
     }
-
     
     // MARK: Add & Remove Helpers
     
@@ -93,7 +120,6 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     func plugin(atPluginPath pluginPath: String) -> Plugin? {
         return pluginPathToPluginDictionary[pluginPath]
     }
-
 
     // MARK: Duplicate and Remove
 

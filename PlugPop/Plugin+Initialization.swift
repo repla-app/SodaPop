@@ -46,13 +46,13 @@ extension Plugin {
         }
     }
 
-    class func makePlugin(url: URL) -> Plugin? {
-        return self.makePlugin(path: url.path)
+    class func makePlugin(url: URL, pluginType: PluginType? = .other) -> Plugin? {
+        return self.makePlugin(path: url.path, pluginType: pluginType)
     }
 
-    class func makePlugin(path: String) -> Plugin? {
+    class func makePlugin(path: String, pluginType: PluginType? = .other) -> Plugin? {
         do {
-            let plugin = try validPlugin(path: path)
+            let plugin = try validPlugin(path: path, pluginType: pluginType)
             return plugin
         } catch PluginLoadError.invalidBundleError(let path) {
             print("Bundle is invalid at path \(path).")
@@ -79,7 +79,7 @@ extension Plugin {
         return nil
     }
     
-    class func validPlugin(path: String) throws -> Plugin? {
+    class func validPlugin(path: String, pluginType: PluginType) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
                 let infoDictionary = try validInfoDictionary(bundle: bundle),
@@ -87,14 +87,12 @@ extension Plugin {
                 let name = try validName(infoDictionary: infoDictionary)
             {
                 // Optional Keys
-                let pluginType = validPluginType(path: path)
                 let command = try validCommand(infoDictionary: infoDictionary)
                 let suffixes = try validSuffixes(infoDictionary: infoDictionary)
                 let hidden = try validHidden(infoDictionary: infoDictionary)
                 let editable = try validEditable(infoDictionary: infoDictionary)
                 let debugModeEnabled = try validDebugModeEnabled(infoDictionary: infoDictionary)
                 
-
                 // Plugin
                 return Plugin(bundle: bundle,
                     infoDictionary: infoDictionary,
@@ -220,17 +218,5 @@ extension Plugin {
         }
         
         return nil
-    }
-    
-    class func validPluginType(path: String) -> PluginType {
-        let pluginContainerDirectory = path.deletingLastPathComponent
-        switch pluginContainerDirectory {
-        case Directory.applicationSupportPlugins.path():
-            return PluginType.user
-        case Directory.builtInPlugins.path():
-            return PluginType.builtIn
-        default:
-            return PluginType.other
-        }
     }
 }

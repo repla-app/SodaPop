@@ -18,20 +18,23 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]!
     var pluginPathToPluginDictionary: [String : Plugin]!
+    let pluginsController: WCLPluginsController
     lazy var duplicatePluginController: DuplicatePluginController = {
-        DuplicatePluginController(pluginsManager: self)
+        return DuplicatePluginController(pluginsController: pluginsController,
+                                         pluginMaker: pluginMaker)
     }
+    let pluginMaker: PluginMaker
     let duplicatePluginDestinationDirectoryURL: URL
-    let builtInPluginsPath: String?
-    let applicationSupportPluginsPath: String?
     
     init(paths: [String],
+         pluginsController: WCLPluginsController,
          duplicatePluginDestinationDirectoryURL: URL,
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {
-        self.builtInPluginsPath = builtInPluginsPath
-        self.applicationSupportPluginsPath = applicationSupportPluginsPath
+        self.pluginsController = pluginsController
+        self.pluginMaker = PluginMaker(builtInPluginsPath: builtInPluginsPath,
+                                       applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()
         self.pluginPathToPluginDictionary = [String : Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
@@ -51,33 +54,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
 
     // MARK: Plugins
 
-    func makePlugin(path: String) -> Plugin? {
-
-        func pluginType(for path: String) -> PluginType {
-            let pluginContainerDirectory = path.deletingLastPathComponent
-            switch pluginContainerDirectory {
-            case let path where path == applicationSupportPluginsPath:
-                return PluginType.user
-            case let path where path == builtInPluginsPath:
-                return PluginType.builtIn
-            default:
-                return PluginType.other
-            }
-        }
-        
-        let pluginType = self.pluginType(for: path)
-        return self.makePlugin(path: path)
-    }
-    
-    func makePlugin(url: URL) -> Plugin? {
-        makePlugin(url: url.path)
-    }
-    
     func plugins() -> [Plugin] {
         return Array(pluginPathToPluginDictionary.values)
     }
-    
-
     
     // MARK: PluginsDirectoryManagerDelegate
 

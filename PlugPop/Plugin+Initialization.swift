@@ -46,11 +46,11 @@ extension Plugin {
         }
     }
 
-    class func makePlugin(url: URL, pluginType: PluginType? = .other) -> Plugin? {
+    class func makePlugin(url: URL, pluginType: PluginType = .other) -> Plugin? {
         return self.makePlugin(path: url.path, pluginType: pluginType)
     }
 
-    class func makePlugin(path: String, pluginType: PluginType? = .other) -> Plugin? {
+    class func makePlugin(path: String, pluginType: PluginType = .other) -> Plugin? {
         do {
             let plugin = try validPlugin(path: path, pluginType: pluginType)
             return plugin

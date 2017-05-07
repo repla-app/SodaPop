@@ -6,7 +6,7 @@
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
-#import <PlugPop/PlugPop.h>
+#import "WCLPluginsController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsController (UniquePluginName)

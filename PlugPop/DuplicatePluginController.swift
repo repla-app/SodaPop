@@ -10,18 +10,18 @@ import Foundation
 
 class DuplicatePluginController {
     lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
-    let pluginsDataController: PluginsDataController
-    let pluginsController: WCLPLuginsController
+    let pluginMaker: PluginMaker
+    let pluginsController: WCLPluginsController
     
     enum ClassConstants {
         static let tempDirectoryName = "Duplicate Plugin"
     }
     
     init(pluginsController: WCLPluginsController,
-         pluginsDataController: PluginsDataController)
+         pluginMaker: PluginMaker)
     {
         self.pluginsController = pluginsController
-        self.pluginsDatacontroller = pluginsDataController
+        self.pluginMaker = pluginMaker
     }
     
     class func pluginFilename(fromName name: String) -> String {
@@ -50,9 +50,10 @@ class DuplicatePluginController {
                     return
                 }
                 
-                if let movedPlugin = pluginsManager.makePlugin(url: movedDestinationURL) {
+                if let movedPlugin = pluginMaker.makePlugin(url: movedDestinationURL) {
                     movedPlugin.editable = true
-                    movedPlugin.renameWithUniqueName()
+                    movedPlugin.name = pluginController.uniqueName(fromName: movedPlugin.name,
+                                                                   for: movedPlugin)                    
                     movedPlugin.identifier = UUID.uuidString
                     plugin = movedPlugin
                     
@@ -61,7 +62,7 @@ class DuplicatePluginController {
                     let renamedDestinationURL = movedDestinationURL.deletingLastPathComponent().appendingPathComponent(renamedPluginFilename)
                     do {
                         try FileManager.default.moveItem(at: movedDestinationURL, to: renamedDestinationURL)
-                        if let renamedPlugin = Plugin.makePlugin(url: renamedDestinationURL) {
+                        if let renamedPlugin = pluginMaker.makePlugin(url: renamedDestinationURL) {
                             plugin = renamedPlugin
                         }
                     } catch let error as NSError {

@@ -13,7 +13,6 @@
 		450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06F1EBACDAC00D08D2A /* Plugin.swift */; };
 		450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */; };
 		450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */; };
-		450CA0851EBACDAC00D08D2A /* Plugin+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0721EBACDAC00D08D2A /* Plugin+Validation.swift */; };
 		450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */; };
 		450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */; };
 		450CA0881EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */; };
@@ -23,7 +22,6 @@
 		450CA08C1EBACDAC00D08D2A /* WCLKeyToObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0791EBACDAC00D08D2A /* WCLKeyToObjectController.m */; };
 		450CA08D1EBACDAC00D08D2A /* WCLPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CA07A1EBACDAC00D08D2A /* WCLPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		450CA08E1EBACDAC00D08D2A /* WCLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA07B1EBACDAC00D08D2A /* WCLPlugin.m */; };
-		450CA08F1EBACDAC00D08D2A /* WCLPlugin+PluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA07C1EBACDAC00D08D2A /* WCLPlugin+PluginsManager.swift */; };
 		450CA0901EBACDAC00D08D2A /* WCLPluginsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CA07D1EBACDAC00D08D2A /* WCLPluginsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		450CA0911EBACDAC00D08D2A /* WCLPluginsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA07E1EBACDAC00D08D2A /* WCLPluginsManager.m */; };
 		450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */; };
@@ -53,8 +51,9 @@
 		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
 		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
-		456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* WCLPluginsController.h */; };
+		456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* WCLPluginsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		456783041EBFDC7600C9EC4A /* WCLPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* WCLPluginsController.m */; };
+		456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456783051EBFE5D100C9EC4A /* PluginMaker.swift */; };
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDB1E9AF75B00823315 /* PlugPopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45753DDA1E9AF75B00823315 /* PlugPopTests.m */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,7 +76,6 @@
 		450CA06F1EBACDAC00D08D2A /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Equality.swift"; sourceTree = "<group>"; };
 		450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Initialization.swift"; sourceTree = "<group>"; };
-		450CA0721EBACDAC00D08D2A /* Plugin+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Validation.swift"; sourceTree = "<group>"; };
 		450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataController.swift; sourceTree = "<group>"; };
 		450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsDataController+Paths.swift"; sourceTree = "<group>"; };
 		450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDirectoryEventHandler.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 		450CA0791EBACDAC00D08D2A /* WCLKeyToObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLKeyToObjectController.m; sourceTree = "<group>"; };
 		450CA07A1EBACDAC00D08D2A /* WCLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLPlugin.h; sourceTree = "<group>"; };
 		450CA07B1EBACDAC00D08D2A /* WCLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLPlugin.m; sourceTree = "<group>"; };
-		450CA07C1EBACDAC00D08D2A /* WCLPlugin+PluginsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WCLPlugin+PluginsManager.swift"; sourceTree = "<group>"; };
 		450CA07D1EBACDAC00D08D2A /* WCLPluginsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLPluginsManager.h; sourceTree = "<group>"; };
 		450CA07E1EBACDAC00D08D2A /* WCLPluginsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLPluginsManager.m; sourceTree = "<group>"; };
 		450CA0921EBACDF000D08D2A /* PlugPopTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlugPopTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -123,6 +120,7 @@
 		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		456783011EBFDC7600C9EC4A /* WCLPluginsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLPluginsController.h; sourceTree = "<group>"; };
 		456783021EBFDC7600C9EC4A /* WCLPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLPluginsController.m; sourceTree = "<group>"; };
+		456783051EBFE5D100C9EC4A /* PluginMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginMaker.swift; sourceTree = "<group>"; };
 		45753DCC1E9AF75B00823315 /* PlugPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlugPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753DCF1E9AF75B00823315 /* PlugPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugPop.h; sourceTree = "<group>"; };
 		45753DD01E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				450CA06F1EBACDAC00D08D2A /* Plugin.swift */,
 				450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */,
 				450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */,
-				450CA0721EBACDAC00D08D2A /* Plugin+Validation.swift */,
 				450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */,
 				450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */,
 				450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */,
@@ -200,11 +197,11 @@
 				450CA0791EBACDAC00D08D2A /* WCLKeyToObjectController.m */,
 				450CA07A1EBACDAC00D08D2A /* WCLPlugin.h */,
 				450CA07B1EBACDAC00D08D2A /* WCLPlugin.m */,
-				450CA07C1EBACDAC00D08D2A /* WCLPlugin+PluginsManager.swift */,
 				450CA07D1EBACDAC00D08D2A /* WCLPluginsManager.h */,
 				450CA07E1EBACDAC00D08D2A /* WCLPluginsManager.m */,
 				45753DCF1E9AF75B00823315 /* PlugPop.h */,
 				45753DD01E9AF75B00823315 /* Info.plist */,
+				456783051EBFE5D100C9EC4A /* PluginMaker.swift */,
 				4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */,
 				4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */,
 				456783011EBFDC7600C9EC4A /* WCLPluginsController.h */,
@@ -255,11 +252,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */,
 				45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */,
 				450CA0901EBACDAC00D08D2A /* WCLPluginsManager.h in Headers */,
 				4518471E1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h in Headers */,
 				450CA08D1EBACDAC00D08D2A /* WCLPlugin.h in Headers */,
+				456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */,
 				450CA08B1EBACDAC00D08D2A /* WCLKeyToObjectController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,8 +366,7 @@
 				4518471F1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m in Sources */,
 				450CA08C1EBACDAC00D08D2A /* WCLKeyToObjectController.m in Sources */,
 				450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */,
-				450CA0851EBACDAC00D08D2A /* Plugin+Validation.swift in Sources */,
-				450CA08F1EBACDAC00D08D2A /* WCLPlugin+PluginsManager.swift in Sources */,
+				456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */,
 				450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */,
 				450CA08E1EBACDAC00D08D2A /* WCLPlugin.m in Sources */,
 				450CA08A1EBACDAC00D08D2A /* PluginsManager.swift in Sources */,

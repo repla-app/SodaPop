@@ -18,5 +18,6 @@ FOUNDATION_EXPORT const unsigned char PlugPopVersionString[];
 
 #import <PlugPop/WCLPlugin.h>
 #import <PlugPop/WCLPluginsManager.h>
-#import <PlugPop/WCLPluginsManager+UniquePluginName.h>
+#import <PlugPop/WCLPluginsController+UniquePluginName.h>
+#import <PlugPop/WCLPluginsController.h>
 #import <PlugPop/WCLKeyToObjectController.h>

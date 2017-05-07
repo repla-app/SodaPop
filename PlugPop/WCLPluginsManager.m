@@ -17,7 +17,7 @@
 {
     self = [super init];
     if (self) {
-        _pluginsController = [[MultiCollectionController alloc] initWithObjects:plugins key:kPluginNameKey];
+        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins key:kPluginNameKey];
     }
     return self;
 }
@@ -89,27 +89,27 @@
 
 - (NSArray *)plugins
 {
-    return [self.pluginsController objects];
+    return [self.multiCollectionController objects];
 }
 
 - (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index
 {
-    [self.pluginsController insertObject:plugin inObjectsAtIndex:index];
+    [self.multiCollectionController insertObject:plugin inObjectsAtIndex:index];
 }
 
 - (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes
 {
-    [self.pluginsController insertObjects:pluginsArray atIndexes:indexes];
+    [self.multiCollectionController insertObjects:pluginsArray atIndexes:indexes];
 }
 
 - (void)removeObjectFromPluginsAtIndex:(NSUInteger)index
 {
-    [self.pluginsController removeObjectFromObjectsAtIndex:index];
+    [self.multiCollectionController removeObjectFromObjectsAtIndex:index];
 }
 
 - (void)removePluginsAtIndexes:(NSIndexSet *)indexes
 {
-    [self.pluginsController removeObjectsAtIndexes:indexes];
+    [self.multiCollectionController removeObjectsAtIndexes:indexes];
 }
 
 @end

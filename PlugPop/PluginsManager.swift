@@ -30,7 +30,7 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     // MARK: Plugins
 
     func plugin(forName name: String) -> Plugin? {
-        return pluginsController.object(forKey: name) as? Plugin
+        return multiCollectionController.object(forKey: name) as? Plugin
     }
     
     func plugin(withIdentifier identifier: String) -> Plugin? {
@@ -60,7 +60,7 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     }
     
     private func remove(_ plugin: Plugin) {
-        let index = pluginsController.indexOfObject(plugin)
+        let index = multiCollectionController.indexOfObject(plugin)
         if index != NSNotFound {
             removeObjectFromPlugins(at: UInt(index))
         }

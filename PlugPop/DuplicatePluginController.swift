@@ -10,13 +10,20 @@ import Foundation
 
 class DuplicatePluginController {
     lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
+    let pluginsDataController: PluginsDataController
 
-    struct ClassConstants {
+    init(pluginsDataController: PluginsDataController) {
+        self.pluginsDatacontroller = pluginsDataController
+    }
+    
+    enum ClassConstants {
         static let tempDirectoryName = "Duplicate Plugin"
     }
+
     class func pluginFilename(fromName name: String) -> String {
         return name.appendingPathExtension(pluginFileExtension)!
     }
+
     func duplicate(_ plugin: Plugin, to destinationDirectoryURL: URL, completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
         let pluginFileURL = plugin.bundle.bundleURL
         copyDirectoryController.copyItem(at: pluginFileURL, completionHandler: { (URL, error) -> Void in
@@ -39,7 +46,7 @@ class DuplicatePluginController {
                     return
                 }
                 
-                if let movedPlugin = Plugin.makePlugin(url: movedDestinationURL) {
+                if let movedPlugin = pluginsManager.makePlugin(url: movedDestinationURL) {
                     movedPlugin.editable = true
                     movedPlugin.renameWithUniqueName()
                     movedPlugin.identifier = UUID.uuidString

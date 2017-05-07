@@ -21,8 +21,8 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     {
         self.pluginsDataController = PluginsDataController(paths: paths,
                                                            duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
-                                                           builtInPluginsPath: String?,
-                                                           applicationSupportPluginsPath: String?)
+                                                           builtInPluginsPath: builtInPluginsPath,
+                                                           applicationSupportPluginsPath: applicationSupportPluginsPath)
         super.init(plugins: pluginsDataController.plugins())
         pluginsDataController.delegate = self
     }

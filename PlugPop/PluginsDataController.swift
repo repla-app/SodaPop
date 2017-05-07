@@ -18,7 +18,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]!
     var pluginPathToPluginDictionary: [String : Plugin]!
-    lazy var duplicatePluginController = DuplicatePluginController()
+    lazy var duplicatePluginController: DuplicatePluginController = {
+        DuplicatePluginController(pluginsManager: self)
+    }
     let duplicatePluginDestinationDirectoryURL: URL
     let builtInPluginsPath: String?
     let applicationSupportPluginsPath: String?

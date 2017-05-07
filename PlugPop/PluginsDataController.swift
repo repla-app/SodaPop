@@ -50,6 +50,19 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     // MARK: Plugins
 
     func makePlugin(path: String) -> Plugin? {
+
+        func pluginType(for path: String) -> PluginType {
+            let pluginContainerDirectory = path.deletingLastPathComponent
+            switch pluginContainerDirectory {
+            case applicationSupportPluginsPath:
+                return PluginType.user
+            case builtInPluginsPath:
+                return PluginType.builtIn
+            default:
+                return PluginType.other
+            }
+        }
+        
         let pluginType = self.pluginType(for: path)
         return self.makePlugin(path: path)
     }
@@ -62,17 +75,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         return Array(pluginPathToPluginDictionary.values)
     }
     
-    func pluginType(for path: String) -> PluginType {
-        let pluginContainerDirectory = path.deletingLastPathComponent
-        switch pluginContainerDirectory {
-        case applicationSupportPluginsPath:
-            return PluginType.user
-        case builtInPluginsPath:
-            return PluginType.builtIn
-        default:
-            return PluginType.other
-        }
-    }
+
     
     // MARK: PluginsDirectoryManagerDelegate
 

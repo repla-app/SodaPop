@@ -24,7 +24,7 @@ class PluginMaker {
         
         
         let pluginType = self.pluginType(for: path)
-        return Plugin.makePlugin(path: path)
+        return Plugin.makePlugin(path: path, pluginType: pluginType)
     }
     
     func makePlugin(url: URL) -> Plugin? {

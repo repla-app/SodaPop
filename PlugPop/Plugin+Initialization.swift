@@ -8,6 +8,20 @@
 
 import StringPlusPath
 
+enum PluginType {
+    case builtIn, user, other
+    func name() -> String {
+        switch self {
+        case .builtIn:
+            return "Built-In"
+        case .user:
+            return "User"
+        case .other:
+            return "Other"
+        }
+    }
+}
+
 extension Plugin {
 
     enum PluginLoadError: Error {
@@ -30,20 +44,6 @@ extension Plugin {
         static let hidden = "WCHidden"
         static let editable = "WCEditable"
         static let debugModeEnabled = "WCDebugModeEnabled"
-    }
-
-    enum PluginType {
-        case builtIn, user, other
-        func name() -> String {
-            switch self {
-            case .builtIn:
-                return "Built-In"
-            case .user:
-                return "User"
-            case .other:
-                return "Other"
-            }
-        }
     }
 
     class func makePlugin(url: URL, pluginType: PluginType = .other) -> Plugin? {

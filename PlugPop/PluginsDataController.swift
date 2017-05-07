@@ -54,9 +54,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         func pluginType(for path: String) -> PluginType {
             let pluginContainerDirectory = path.deletingLastPathComponent
             switch pluginContainerDirectory {
-            case applicationSupportPluginsPath:
+            case let path where path == applicationSupportPluginsPath:
                 return PluginType.user
-            case builtInPluginsPath:
+            case let path where path == builtInPluginsPath:
                 return PluginType.builtIn
             default:
                 return PluginType.other

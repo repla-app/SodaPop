@@ -13,6 +13,11 @@ protocol PluginsDataControllerDelegate {
     func pluginsDataController(_ pluginsDataController: PluginsDataController, didRemovePlugin plugin: Plugin)
 }
 
+// `PluginsDataController`: The `PluginsDataController` abstracts away the
+// file-system, it fires delegate messages when `Plugin` files are added to a
+// `Plugin` directory. It's also responsible for the performing file-system
+// level operations related to `Plugin`, such as duplicating `Plugin` files and
+// moving `Plugin` files to the trash.
 class PluginsDataController: PluginsDirectoryManagerDelegate {
 
     var delegate: PluginsDataControllerDelegate?

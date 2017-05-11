@@ -9,8 +9,13 @@
 import Cocoa
 
 protocol PluginsDataControllerDelegate {
-    func pluginsDataController(_ pluginsDataController: PluginsDataController, didAddPlugin plugin: Plugin)
-    func pluginsDataController(_ pluginsDataController: PluginsDataController, didRemovePlugin plugin: Plugin)
+    func pluginsDataController(_ pluginsDataController: PluginsDataController,
+                               didAddPlugin plugin: Plugin)
+    func pluginsDataController(_ pluginsDataController: PluginsDataController,
+                               didRemovePlugin plugin: Plugin)
+    func pluginsDataController(_  pluginsDataController: PluginsDataController,
+                               uniquePluginNameFromName name: String,
+                               for plugin: Plugin) -> String?
 }
 
 // `PluginsDataController`: The `PluginsDataController` abstracts away the
@@ -18,15 +23,17 @@ protocol PluginsDataControllerDelegate {
 // `Plugin` directory. It's also responsible for the performing file-system
 // level operations related to `Plugin`, such as duplicating `Plugin` files and
 // moving `Plugin` files to the trash.
-class PluginsDataController: PluginsDirectoryManagerDelegate {
+class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginControllerDelegate {
 
     var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]!
     var pluginPathToPluginDictionary: [String : Plugin]!
     let pluginsController: WCLPluginsController
     lazy var duplicatePluginController: DuplicatePluginController = {
-        return DuplicatePluginController(pluginsController: pluginsController,
-                                         pluginMaker: pluginMaker)
+        let duplicatePluginController = DuplicatePluginController(pluginsController: pluginsController,
+                                                                  pluginMaker: pluginMaker)
+        duplicatePluginController.delegate = self
+        return duplicatePluginController
     }
     let pluginMaker: PluginMaker
     let duplicatePluginDestinationDirectoryURL: URL
@@ -85,13 +92,23 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
     }
     
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
-        pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String)
+                                 pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String)
     {
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
             remove(oldPlugin)
         }
     }
-    
+    // MARK: DuplicatePluginControllerDelegate
+
+    func duplicatePluginController(_  duplicatePluginController: DuplicatePluginController,
+                                   uniquePluginNameFromName name: String,
+                                   for plugin: Plugin) -> String?
+    {
+        return self.delegate?.pluginsDataController(self,
+                                                    uniquePluginNameFromName: name,
+                                                    for: plugin)
+    }
+
     // MARK: Add & Remove Helpers
     
     func add(_ plugin: Plugin) {
@@ -127,8 +144,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         assert(!exists, "The file should not exist")
     }
     
-    func duplicate(_ plugin: Plugin, handler: ((_ plugin: Plugin?, _ error: NSError?) -> Void)?) {
-
+    func duplicate(_ plugin: Plugin,
+                   handler: ((_ plugin: Plugin?, _ error: NSError?) -> Void)?)
+    {
         do {
             try type(of: self).createDirectoryIfMissing(at: duplicatePluginDestinationDirectoryURL)
         } catch let error as NSError {
@@ -148,7 +166,8 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
 
     class func createDirectoryIfMissing(at directoryURL: URL) throws {
         var isDir: ObjCBool = false
-        let exists = FileManager.default.fileExists(atPath: directoryURL.path, isDirectory: &isDir)
+        let exists = FileManager.default.fileExists(atPath: directoryURL.path,
+                                                    isDirectory: &isDir)
         if (exists && isDir.boolValue) {
             return
         }
@@ -158,7 +177,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate {
         }
 
         do {
-            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: directoryURL,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
         } catch let error as NSError {
             throw error
         }

@@ -8,19 +8,23 @@
 
 import Foundation
 
+protocol DuplicatePluginControllerDelegate {
+    func duplicatePluginController(_  duplicatePluginController: DuplicatePluginController,
+                                   uniquePluginNameFromName name: String,
+                                   for plugin: Plugin) -> String?
+}
+
 class DuplicatePluginController {
     lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
     let pluginMaker: PluginMaker
-    let pluginsController: WCLPluginsController
+    var delegate: DuplicatePluginControllerDelegate?
     
     enum ClassConstants {
         static let tempDirectoryName = "Duplicate Plugin"
     }
     
-    init(pluginsController: WCLPluginsController,
-         pluginMaker: PluginMaker)
+    init(pluginMaker: PluginMaker)
     {
-        self.pluginsController = pluginsController
         self.pluginMaker = pluginMaker
     }
     
@@ -31,7 +35,8 @@ class DuplicatePluginController {
     func duplicate(_ plugin: Plugin, to destinationDirectoryURL: URL, completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
         let pluginFileURL = plugin.bundle.bundleURL
         copyDirectoryController.copyItem(at: pluginFileURL, completionHandler: { (URL, error) -> Void in
-            
+            guard let `self` = self else { return }
+
             guard error == nil else {
                 handler(nil, error)
                 return
@@ -52,9 +57,15 @@ class DuplicatePluginController {
                 
                 if let movedPlugin = pluginMaker.makePlugin(url: movedDestinationURL) {
                     movedPlugin.editable = true
-                    movedPlugin.name = pluginController.uniqueName(fromName: movedPlugin.name,
-                                                                   for: movedPlugin)                    
                     movedPlugin.identifier = UUID.uuidString
+                    if let uniqueName = self.delegate.duplicatePluginController(self, 
+                                                                                uniquePluginNameFromName: movedPlugin.name, 
+                                                                                for: movedPlugin)
+                    {
+                        movedPlugin.name = uniqueName
+                    } else {
+                        movedPlugin.name = movedPlugin.identifier
+                    }
                     plugin = movedPlugin
                     
                     // Attempt to move the plugin to a directory based on its name (this can safely fail)

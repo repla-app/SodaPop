@@ -28,10 +28,8 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]!
     var pluginPathToPluginDictionary: [String : Plugin]!
-    let pluginsController: WCLPluginsController
     lazy var duplicatePluginController: DuplicatePluginController = {
-        let duplicatePluginController = DuplicatePluginController(pluginsController: pluginsController,
-                                                                  pluginMaker: pluginMaker)
+        let duplicatePluginController = DuplicatePluginController(pluginMaker: pluginMaker)
         duplicatePluginController.delegate = self
         return duplicatePluginController
     }
@@ -39,12 +37,10 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     let duplicatePluginDestinationDirectoryURL: URL
     
     init(paths: [String],
-         pluginsController: WCLPluginsController,
          duplicatePluginDestinationDirectoryURL: URL,
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {
-        self.pluginsController = pluginsController
         self.pluginMaker = PluginMaker(builtInPluginsPath: builtInPluginsPath,
                                        applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()

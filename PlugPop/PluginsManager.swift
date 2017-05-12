@@ -13,7 +13,7 @@ import Cocoa
 class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
-    let ii: WCLPluginsController
+    let pluginsController: WCLPluginsController
     
     // MARK: Init
     
@@ -26,7 +26,7 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
                                                            duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
                                                            builtInPluginsPath: builtInPluginsPath,
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
-        self.pluginsController = WCLPLuginsController(plugins: pluginsDataController.plugins())
+        self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins())
         super.init()
         pluginsDataController.delegate = self
     }
@@ -34,11 +34,11 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     // MARK: Plugins
 
     func plugin(forName name: String) -> Plugin? {
-        return pluginsController.pluginWithName(name)
+        return pluginsController.plugin(forName: name)
     }
     
     func plugin(withIdentifier identifier: String) -> Plugin? {
-        guard let allPlugins = plugins() as? [Plugin] else {
+        guard let allPlugins = pluginsController.plugins() as? [Plugin] else {
             return nil
         }
         
@@ -86,12 +86,15 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
 
     // MARK: PluginsDataControllerDelegate
 
-    func pluginsDataController(_ pluginsDataController: PluginsDataController, didAddPlugin plugin: Plugin) {
+    func pluginsDataController(_ pluginsDataController: PluginsDataController, 
+                               didAddPlugin plugin: Plugin) 
+    {
         add(plugin)
     }
 
-
-    func pluginsDataController(_ pluginsDataController: PluginsDataController, didRemovePlugin plugin: Plugin) {
+    func pluginsDataController(_ pluginsDataController: PluginsDataController, 
+                               didRemovePlugin plugin: Plugin) 
+    {
         if let unwrappedDefaultNewPlugin = defaultNewPlugin {
             if unwrappedDefaultNewPlugin == plugin {
                 defaultNewPlugin = nil
@@ -100,6 +103,12 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
         remove(plugin)
     }
 
+    func pluginsDataController(_  pluginsDataController: PluginsDataController,
+                               uniquePluginNameFromName name: String,
+                               for plugin: Plugin) -> String?
+    {
+        return pluginsController.uniquePluginNameFromName(name, forPlugin: plugin)
+    }
 
     // MARK: Shared Resources
 

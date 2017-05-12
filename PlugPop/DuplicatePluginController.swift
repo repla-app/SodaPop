@@ -34,7 +34,7 @@ class DuplicatePluginController {
 
     func duplicate(_ plugin: Plugin, to destinationDirectoryURL: URL, completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
         let pluginFileURL = plugin.bundle.bundleURL
-        copyDirectoryController.copyItem(at: pluginFileURL, completionHandler: { (URL, error) -> Void in
+        copyDirectoryController.copyItem(at: pluginFileURL, completionHandler: { [weak self] (URL, error) -> Void in
             guard let `self` = self else { return }
 
             guard error == nil else {
@@ -55,7 +55,7 @@ class DuplicatePluginController {
                     return
                 }
                 
-                if let movedPlugin = pluginMaker.makePlugin(url: movedDestinationURL) {
+                if let movedPlugin = self.pluginMaker.makePlugin(url: movedDestinationURL) {
                     movedPlugin.editable = true
                     movedPlugin.identifier = UUID.uuidString
                     if let uniqueName = self.delegate.duplicatePluginController(self, 

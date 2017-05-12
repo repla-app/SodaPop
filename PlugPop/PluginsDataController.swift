@@ -30,8 +30,8 @@ protocol PluginsDataControllerDelegate {
 class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginControllerDelegate {
 
     var delegate: PluginsDataControllerDelegate?
-    var pluginDirectoryManagers: [PluginsDirectoryManager]!
-    var pluginPathToPluginDictionary: [String : Plugin]!
+    var pluginDirectoryManagers: [PluginsDirectoryManager]
+    var pluginPathToPluginDictionary: [String : Plugin]
     lazy var duplicatePluginController: DuplicatePluginController = {
         let duplicatePluginController = DuplicatePluginController(pluginMaker: self.pluginMaker,
                                                                   copyTempDirectoryURL: self.copyTempDirectoryURL)
@@ -53,7 +53,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()
         self.pluginPathToPluginDictionary = [String : Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
-
+        self.copyTempDirectoryURL = copyTempDirectoryURL
         let pathsSet = Set(paths + [builtInPluginsPath, applicationSupportPluginsPath].flatMap { $0 })
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)

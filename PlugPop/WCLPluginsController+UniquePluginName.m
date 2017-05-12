@@ -10,7 +10,7 @@
 
 @implementation WCLPluginsController (UniquePluginName)
 
-+ (NSString *)uniquePluginNameFromName:(NSString *)name
+- (NSString *)uniquePluginNameFromName:(NSString *)name
 {
     return [self uniquePluginNameFromName:name forPlugin:nil];
 }
@@ -33,9 +33,9 @@
 
 #pragma mark Name Private
 
-+ (BOOL)isUniqueName:(NSString *)name forPlugin:(WCLPlugin *)plugin
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(WCLPlugin *)plugin
 {
-    Plugin *existingPlugin = [self.pluginsManager pluginForName:name];
+    Plugin *existingPlugin = [self pluginForName:name];
     
     if (!existingPlugin) {
         return YES;
@@ -49,7 +49,7 @@
     return plugin == existingPlugin;
 }
 
-+ (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin index:(NSUInteger)index
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin index:(NSUInteger)index
 {
     if (index > 99) {
         return nil;

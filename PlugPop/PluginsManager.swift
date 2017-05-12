@@ -107,7 +107,7 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
                                uniquePluginNameFromName name: String,
                                for plugin: Plugin) -> String?
     {
-        return pluginsController.uniquePluginNameFromName(name, forPlugin: plugin)
+        return pluginsController.uniquePluginName(fromName: name, for: plugin)
     }
 
     // MARK: Shared Resources

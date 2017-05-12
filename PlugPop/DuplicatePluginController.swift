@@ -58,7 +58,7 @@ class DuplicatePluginController {
                 if let movedPlugin = self.pluginMaker.makePlugin(url: movedDestinationURL) {
                     movedPlugin.editable = true
                     movedPlugin.identifier = UUID.uuidString
-                    if let uniqueName = self.delegate.duplicatePluginController(self, 
+                    if let uniqueName = self.delegate?.duplicatePluginController(self, 
                                                                                 uniquePluginNameFromName: movedPlugin.name, 
                                                                                 for: movedPlugin)
                     {
@@ -73,7 +73,7 @@ class DuplicatePluginController {
                     let renamedDestinationURL = movedDestinationURL.deletingLastPathComponent().appendingPathComponent(renamedPluginFilename)
                     do {
                         try FileManager.default.moveItem(at: movedDestinationURL, to: renamedDestinationURL)
-                        if let renamedPlugin = pluginMaker.makePlugin(url: renamedDestinationURL) {
+                        if let renamedPlugin = self.pluginMaker.makePlugin(url: renamedDestinationURL) {
                             plugin = renamedPlugin
                         }
                     } catch let error as NSError {

@@ -19,6 +19,7 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     
     init(paths: [String],
          duplicatePluginDestinationDirectoryURL: URL,
+         copyTempDirectoryURL: URL,
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {

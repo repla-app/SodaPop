@@ -35,9 +35,11 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     }()
     let pluginMaker: PluginMaker
     let duplicatePluginDestinationDirectoryURL: URL
+    let copyTempDirectoryURL: URL
     
     init(paths: [String],
          duplicatePluginDestinationDirectoryURL: URL,
+         copyTempDirectoryURL: URL,
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {

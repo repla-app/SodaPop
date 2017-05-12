@@ -15,16 +15,19 @@ protocol DuplicatePluginControllerDelegate {
 }
 
 class DuplicatePluginController {
-    lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
+    lazy var copyDirectoryController = CopyDirectoryController(tempDirectoryURL: copyTempDirectoryURL.appendingPathComponent(ClassConstants.tempDirectoryName))
     let pluginMaker: PluginMaker
     var delegate: DuplicatePluginControllerDelegate?
+    let copyTempDirectoryURL: URL
     
     enum ClassConstants {
         static let tempDirectoryName = "Duplicate Plugin"
     }
     
-    init(pluginMaker: PluginMaker)
+    init(pluginMaker: PluginMaker, 
+         copyTempDirectoryURL: URL)
     {
+        self.copyTempDirectoryURL = copyTempDirectoryURL
         self.pluginMaker = pluginMaker
     }
     

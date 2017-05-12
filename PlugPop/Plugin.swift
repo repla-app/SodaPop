@@ -180,10 +180,4 @@ class Plugin: WCLPlugin {
         return "\(description), Plugin name = \(name),  identifier = \(identifier), defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))"
     }
     
-    // MARK: Windows
-
-    func orderedWindows() -> [AnyObject]! {
-        return WCLSplitWebWindowsController.shared().windows(for: self) as [AnyObject]!
-    }
-
 }

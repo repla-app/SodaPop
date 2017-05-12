@@ -7,3 +7,4 @@
 //
 
 let pluginFileExtension = "wcplugin"
+let sharedResourcesPluginName = "Shared Resources"

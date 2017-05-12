@@ -6,7 +6,8 @@
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
-#import "WCLPluginsManager+UniquePluginName.h"
+#import "WCLPluginsController+UniquePluginName.h"
+
 
 @implementation WCLPluginsController (UniquePluginName)
 
@@ -15,7 +16,7 @@
     return [self uniquePluginNameFromName:name forPlugin:nil];
 }
 
-+ (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin
 {
     if ([self isUniqueName:name forPlugin:plugin]) {
         return name;

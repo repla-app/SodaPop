@@ -64,7 +64,7 @@ class CopyDirectoryController {
               toDirectoryInTrashWithName trashDirectoryName: String) throws 
     {
         var validCachesURL = false
-        let hasPrefix = URL.path.hasPrefix(copyTempDirectoryURL.path())
+        let hasPrefix = URL.path.hasPrefix(copyTempDirectoryURL.path)
         validCachesURL = hasPrefix
 
         if !validCachesURL {

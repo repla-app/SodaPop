@@ -8,6 +8,10 @@
 
 import Cocoa
 
+enum FileSystemError: Error {
+    case fileExistsForDirectoryError
+}
+
 protocol PluginsDataControllerDelegate {
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
                                didAddPlugin plugin: Plugin)
@@ -50,7 +54,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         self.pluginPathToPluginDictionary = [String : Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
 
-        let pathsSet = Set(paths + [builtInPluginsPath, applicationSupportPluginsPath])
+        let pathsSet = Set(paths + [builtInPluginsPath, applicationSupportPluginsPath].flatMap { $0 })
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {

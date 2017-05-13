@@ -55,8 +55,10 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     // MARK: Convenience
     
     func addUnwatched(_ plugin: Plugin) {
-        // TODO: For now this is a big hack, this adds a plugin that isn't managed by the PluginDataManager.
-        // This means if the plugin moves on the file system for example, that the loaded plugin will be out-of-date.
+        // TODO: For now this is a big hack, this adds a plugin that isn't
+        // managed by the PluginDataManager. This means if the plugin moves on
+        // the file system for example, that the loaded plugin will be
+        // out-of-date.
         add(plugin)
     }
     
@@ -79,8 +81,9 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
     }
 
     func newPlugin(handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
-        // May need to handle the case when no default new plugin is define in the future, but for now the fallback to the initial plugin should always work
-
+        // May need to handle the case when no default new plugin is define in
+        // the future, but for now the fallback to the initial plugin should
+        // always work
         if let plugin = defaultNewPlugin {
             duplicate(plugin, handler: handler)
         }

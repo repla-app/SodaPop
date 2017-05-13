@@ -7,15 +7,6 @@
 //
 
 #import "WCLPlugin.h"
-
-#import "WCLSplitWebWindowsController.h"
-#import "WCLSplitWebWindowController.h"
-
-#import "NSApplication+AppleScript.h"
-
-#import "WCLTaskRunner.h"
-
-#import "WCLPlugin+Validation.h"
 #import "PlugPop-Swift.h"
 
 @implementation WCLPlugin

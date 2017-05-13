@@ -119,13 +119,12 @@ class CopyDirectoryController {
             return
         }
 
-        NSWorkspace.shared().performFileOperation(NSWorkspaceRecycleOperation,
-            source: URL.path,
-            destination: "",
-            files: [trashDirectoryName],
-            tag: nil)
-    }
-    
+        NSWorkspace.shared().performFileOperation(NSWorkspaceRecycleOperation, 
+                                                  source: URL.path,
+                                                  destination: "", 
+                                                  files: [trashDirectoryName], 
+                                                  tag: nil)
+      }
 
     // MARK: Private Duplicate Helpers
     

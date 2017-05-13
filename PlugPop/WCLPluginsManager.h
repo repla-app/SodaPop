@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsManager : NSObject
-- (instancetype)initWithDefaults:(id <DefaultsType> *)defaults;
+- (instancetype)initWithDefaults:(_Nonnull id <DefaultsType> * _Nonnull)defaults;
 @property (nonatomic, strong, nullable) Plugin *defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END

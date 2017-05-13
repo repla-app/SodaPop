@@ -10,7 +10,7 @@
 #import <PlugPop/PlugPop-Swift.h>
 
 @interface WCLPluginsManager ()
-@property (nonatomic, strong, nonnull) id <DefaultsType> *defaults;
+@property (nonatomic, strong) id <DefaultsType> *defaults;
 @end
 
 @implementation WCLPluginsManager

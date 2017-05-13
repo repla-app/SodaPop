@@ -139,10 +139,10 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         let pluginDirectoryPath = pluginPath.deletingLastPathComponent
         let pluginDirectoryName = pluginPath.lastPathComponent
         NSWorkspace.shared().performFileOperation(NSWorkspaceRecycleOperation,
-            source: pluginDirectoryPath,
-            destination: "",
-            files: [pluginDirectoryName],
-            tag: nil)
+                                                  source: pluginDirectoryPath,
+                                                  destination: "",
+                                                  files: [pluginDirectoryName],
+                                                  tag: nil)
         let exists = FileManager.default.fileExists(atPath: pluginPath)
         assert(!exists, "The file should not exist")
     }

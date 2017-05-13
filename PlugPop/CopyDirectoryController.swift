@@ -72,6 +72,8 @@ class CopyDirectoryController {
             return
         }
 
+        let trashDirectoryURL = URL.appendingPathComponent(trashDirectoryName)
+
         var foundFilesToRecover = false
         if let enumerator = FileManager.default.enumerator(at: URL,
             includingPropertiesForKeys: [URLResourceKey.nameKey],
@@ -80,37 +82,38 @@ class CopyDirectoryController {
         {
             while let fileURL = enumerator.nextObject() as? Foundation.URL {
                 
-                var filename: AnyObject?
+                var resourceName: AnyObject?
                 do {
-                    try (fileURL as NSURL).getResourceValue(&filename, forKey: URLResourceKey.nameKey)
+                    try (fileURL as NSURL).getResourceValue(&resourceName, forKey: URLResourceKey.nameKey)
                 } catch let error as NSError {
                     throw error
                 }
-                
-                if let filename = filename as? String {
-                    if filename == trashDirectoryName {
-                        continue
-                    }
 
-                    let trashDirectoryURL = URL.appendingPathComponent(trashDirectoryName)
-                    if !foundFilesToRecover {
-                        do {
-                            try type(of: self).createDirectoryIfMissing(at: trashDirectoryURL)
-                        } catch let error as NSError {
-                            throw error
-                        }
-                        
-                        foundFilesToRecover = true
-                    }
-                    
-                    let UUID = Foundation.UUID()
-                    let UUIDString = UUID.uuidString
-                    let destinationFileURL = trashDirectoryURL.appendingPathComponent(UUIDString)
+                guard let filename = resourceName as? String else {
+                    return
+                }
+
+                if filename == trashDirectoryName {
+                    continue
+                }
+
+                if !foundFilesToRecover {
                     do {
-                        try FileManager.default.moveItem(at: fileURL, to: destinationFileURL)
+                        try type(of: self).createDirectoryIfMissing(at: trashDirectoryURL)
                     } catch let error as NSError {
                         throw error
                     }
+                    
+                    foundFilesToRecover = true
+                }
+                
+                let UUID = Foundation.UUID()
+                let UUIDString = UUID.uuidString
+                let destinationFileURL = trashDirectoryURL.appendingPathComponent(UUIDString)
+                do {
+                    try FileManager.default.moveItem(at: fileURL, to: destinationFileURL)
+                } catch let error as NSError {
+                    throw error
                 }
             }
         }
@@ -119,12 +122,9 @@ class CopyDirectoryController {
             return
         }
 
-        NSWorkspace.shared().performFileOperation(NSWorkspaceRecycleOperation, 
-                                                  source: URL.path,
-                                                  destination: "", 
-                                                  files: [trashDirectoryName], 
-                                                  tag: nil)
-      }
+        NSWorkspace.shared().recycle([trashDirectoryURL],
+                                     completionHandler: nil)
+    }
 
     // MARK: Private Duplicate Helpers
     

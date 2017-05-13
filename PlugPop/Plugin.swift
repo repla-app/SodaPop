@@ -99,7 +99,7 @@ public class Plugin: WCLPlugin {
             save()
         }
     }
-    var identifier: String {
+    public var identifier: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }

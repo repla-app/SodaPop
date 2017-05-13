@@ -20,7 +20,7 @@ extension Plugin {
     }
 }
 
-class Plugin: WCLPlugin {
+public class Plugin: WCLPlugin {
     enum PluginWriteError: Error {
         case failToWriteDictionaryError(URL: URL)
     }
@@ -174,7 +174,7 @@ class Plugin: WCLPlugin {
 
     // MARK: Description
     
-    override var description: String {
+    override public var description: String {
         let description = super.description
         return "\(description), Plugin name = \(name),  identifier = \(identifier), defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))"
     }

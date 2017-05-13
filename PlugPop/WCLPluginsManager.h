@@ -10,9 +10,11 @@
 
 @class Plugin;
 @class MultiCollectionController;
+@protocol DefaultsType;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsManager : NSObject
+- (instancetype)initWithDefaults:(id <DefaultsType> *)defaults;
 @property (nonatomic, strong, nullable) Plugin *defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END

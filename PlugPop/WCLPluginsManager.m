@@ -9,9 +9,22 @@
 #import "WCLPluginsManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
+@interface WCLPluginsManager ()
+@property (nonatomic, strong, nonnull) id <DefaultsType> *defaults;
+@end
+
 @implementation WCLPluginsManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
+
+- (instancetype)initWithDefaults:(id <DefaultsType> *)defaults
+{
+    self = [super init];
+    if (self) {
+        _defaults = defaults;
+    }
+    return self;
+}
 
 - (Plugin *)defaultNewPlugin
 {
@@ -19,14 +32,14 @@
         return _defaultNewPlugin;
     }
     
-    NSString *identifier = [[UserDefaultsManager standardUserDefaults] stringForKey:kDefaultNewPluginIdentifierKey];
+    NSString *identifier = [self.defaults stringForKey:kDefaultNewPluginIdentifierKey];
     
     Plugin *plugin;
     
     if (identifier) {
         plugin = [self pluginWithIdentifier:identifier];
         if (!plugin) {
-            [[UserDefaultsManager standardUserDefaults] removeObjectForKey:kDefaultNewPluginIdentifierKey];
+            [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
         }
     }
 
@@ -47,7 +60,7 @@
     
     if (!defaultNewPlugin) {
         // Do this early so that the subsequent calls to the getter don't reset the default new plugin
-        [[UserDefaultsManager standardUserDefaults] removeObjectForKey:kDefaultNewPluginIdentifierKey];
+        [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
     }
     
     Plugin *oldDefaultNewPlugin = _defaultNewPlugin;
@@ -58,7 +71,7 @@
     _defaultNewPlugin.defaultNewPlugin = YES;
     
     if (_defaultNewPlugin) {
-        [[UserDefaultsManager standardUserDefaults] setObject:_defaultNewPlugin.identifier
+        [self.defaults setObject:_defaultNewPlugin.identifier
                                                   forKey:kDefaultNewPluginIdentifierKey];
     }
 }

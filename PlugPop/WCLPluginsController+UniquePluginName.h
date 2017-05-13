@@ -8,11 +8,11 @@
 
 #import "WCLPluginsController.h"
 
-@class WCLPlugin;
+@class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsController (UniquePluginName)
 - (NSString *)uniquePluginNameFromName:(NSString *)name;
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable WCLPlugin *)plugin;
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable Plugin *)plugin;
 @end
 NS_ASSUME_NONNULL_END

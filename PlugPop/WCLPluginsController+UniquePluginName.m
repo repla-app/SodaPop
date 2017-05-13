@@ -7,7 +7,7 @@
 //
 
 #import "WCLPluginsController+UniquePluginName.h"
-#import "PlugPop-Swift.h"
+#import <PlugPop/PlugPop-Swift.h>
 
 @implementation WCLPluginsController (UniquePluginName)
 
@@ -16,7 +16,7 @@
     return [self uniquePluginNameFromName:name forPlugin:nil];
 }
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin
 {
     if ([self isUniqueName:name forPlugin:plugin]) {
         return name;

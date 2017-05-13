@@ -20,7 +20,6 @@ extension Plugin {
     }
 }
 
-
 class Plugin: WCLPlugin {
     enum PluginWriteError: Error {
         case failToWriteDictionaryError(URL: URL)

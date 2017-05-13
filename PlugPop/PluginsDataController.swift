@@ -135,16 +135,8 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     func moveToTrash(_ plugin: Plugin) {
         assert(plugin.editable, "The plugin should be editable")
         remove(plugin)
-        let pluginPath = plugin.bundle.bundlePath
-        let pluginDirectoryPath = pluginPath.deletingLastPathComponent
-        let pluginDirectoryName = pluginPath.lastPathComponent
-        NSWorkspace.shared().performFileOperation(NSWorkspaceRecycleOperation,
-                                                  source: pluginDirectoryPath,
-                                                  destination: "",
-                                                  files: [pluginDirectoryName],
-                                                  tag: nil)
-        let exists = FileManager.default.fileExists(atPath: pluginPath)
-        assert(!exists, "The file should not exist")
+        NSWorkspace.shared().recycle([plugin.bundle.bundleURL],
+                                     completionHandler: nil)
     }
     
     func duplicate(_ plugin: Plugin,

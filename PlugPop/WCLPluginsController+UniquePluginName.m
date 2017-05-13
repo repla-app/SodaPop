@@ -7,6 +7,7 @@
 //
 
 #import "WCLPluginsController+UniquePluginName.h"
+#import "PlugPop-Swift.h"
 
 @implementation WCLPluginsController (UniquePluginName)
 

@@ -7,7 +7,7 @@
 //
 
 #import "WCLPlugin.h"
-#import "PlugPop-Swift.h"
+#import <PlugPop/PlugPop-Swift.h>
 
 @implementation WCLPlugin
 

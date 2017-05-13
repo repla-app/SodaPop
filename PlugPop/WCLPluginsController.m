@@ -7,7 +7,8 @@
 //
 
 #import "WCLPluginsController.h"
-#import "PlugPop-Swift.h"
+#import <PlugPop/PlugPop-Swift.h>
+
 
 @property (nonatomic, strong) MultiCollectionController *multiCollectionController;
 

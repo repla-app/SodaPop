@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol DefaultPluginDataSource <NSObject>
+@property (nonatomic) WCLPlugin *defaultNewPlugin;
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPlugin : NSObject
 @property (nonatomic, assign, getter = isDefaultNewPlugin) BOOL defaultNewPlugin;

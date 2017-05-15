@@ -9,6 +9,10 @@
 #import "WCLPlugin.h"
 #import <PlugPop/PlugPop-Swift.h>
 
+@interface WCLPlugin ()
+@property (nonatomic, assign) id <DefaultPluginDataSource> *dataSource;
+@end
+
 @implementation WCLPlugin
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;

@@ -1,19 +1,19 @@
 //
-//  PluginManager.m
-//  PluginTest
+//  WCLDefaultNewPluginManager.m
+//  PlugPop
 //
-//  Created by Roben Kleene on 7/3/13.
-//  Copyright (c) 2013 Roben Kleene. All rights reserved.
+//  Created by Roben Kleene on 5/14/17.
+//  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
-#import "WCLPluginsManager.h"
+#import "WCLDefaultNewPluginManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-@interface WCLPluginsManager ()
+@interface WCLDefaultNewPluginManager ()
 @property (nonatomic, strong) id <DefaultsType> *defaults;
 @end
 
-@implementation WCLPluginsManager
+@implementation WCLDefaultNewPluginManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 
@@ -59,7 +59,8 @@
     }
     
     if (!defaultNewPlugin) {
-        // Do this early so that the subsequent calls to the getter don't reset the default new plugin
+        // Do this early so that the subsequent calls to the getter don't reset
+        // the default new plugin
         [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
     }
     
@@ -74,18 +75,6 @@
         [self.defaults setObject:_defaultNewPlugin.identifier
                                                   forKey:kDefaultNewPluginIdentifierKey];
     }
-}
-
-- (Plugin *)pluginWithIdentifier:(NSString *)identifier
-{
-    NSAssert(NO, @"Implemented in superclass");
-    return nil;
-}
-
-- (Plugin *)pluginForName:(NSString *)name
-{
-    NSAssert(NO, @"Implemented in superclass");
-    return nil;
 }
 
 @end

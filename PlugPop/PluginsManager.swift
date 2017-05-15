@@ -10,7 +10,7 @@ import Cocoa
 
 // The `WCLPluginsController` manages the in memory `Plugin` objects. It
 // provides standard methods for operating on a collection of `Plugin` objects.
-class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
+class PluginsManager: PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
     let pluginsController: WCLPluginsController
@@ -29,7 +29,6 @@ class PluginsManager: WCLPluginsManager, PluginsDataControllerDelegate {
                                                            builtInPluginsPath: builtInPluginsPath,
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins())
-        super.init()
         pluginsDataController.delegate = self
     }
     

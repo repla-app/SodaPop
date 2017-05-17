@@ -26,7 +26,11 @@
 
 - (BOOL)isDefaultNewPlugin
 {
-    BOOL isDefaultNewPlugin = (self.pluginsManager.defaultNewPlugin == self);
+    if (!self.dataSource) {
+        return NO;
+    }
+
+    BOOL isDefaultNewPlugin = (self.dataSource.defaultNewPlugin == self);
     
     if (_defaultNewPlugin != isDefaultNewPlugin) {
         _defaultNewPlugin = isDefaultNewPlugin;

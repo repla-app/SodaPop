@@ -36,15 +36,19 @@
     
     Plugin *plugin;
     
-    if (identifier) {
-        plugin = [self pluginWithIdentifier:identifier];
+    if (identifier &&
+        [self.dataSource respondsToSelector:@selector(defaultNewPluginManager:pluginForIdentifier:)])
+    {
+        plugin = [self.dataSource defaultNewPluginManager:self pluginForIdentifier:identifier];
         if (!plugin) {
             [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
         }
     }
 
-    if (!plugin) {
-        plugin = [self pluginForName:kInitialDefaultNewPluginName];
+    if (!plugin &&
+        [self.dataSource respondsToSelector:@selector(defaultNewPluginManager:pluginForIdentifier:)])
+    {
+        plugin = [self.dataSource defaultNewPluginManager:self pluginForName:kInitialDefaultNewPluginName];
     }
     
     _defaultNewPlugin = plugin;

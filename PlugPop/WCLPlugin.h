@@ -14,6 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPlugin : NSObject
+@property (nonatomic, assign) id <DefaultPluginDataSource> *dataSource;
 @property (nonatomic, assign, getter = isDefaultNewPlugin) BOOL defaultNewPlugin;
 #pragma mark Validation
 - (BOOL)validateExtensions:(_Nullable id * _Nullable)ioValue error:(NSError * __autoreleasing *)outError;

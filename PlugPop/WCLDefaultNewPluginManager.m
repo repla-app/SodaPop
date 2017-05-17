@@ -73,7 +73,7 @@
     
     if (_defaultNewPlugin) {
         [self.defaults setObject:_defaultNewPlugin.identifier
-                                                  forKey:kDefaultNewPluginIdentifierKey];
+                          forKey:kDefaultNewPluginIdentifierKey];
     }
 }
 

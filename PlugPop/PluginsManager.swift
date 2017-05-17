@@ -38,7 +38,7 @@ class PluginsManager: PluginsDataControllerDelegate {
         return pluginsController.plugin(forName: name)
     }
     
-    func plugin(withIdentifier identifier: String) -> Plugin? {
+    func plugin(forIdentifier identifier: String) -> Plugin? {
         guard let allPlugins = pluginsController.plugins() as? [Plugin] else {
             return nil
         }

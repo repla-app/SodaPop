@@ -49,7 +49,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {
-        self.pluginMaker = PluginMaker(defaultNewPluginManager: WCLDefaultNewPluginManager,
+        self.pluginMaker = PluginMaker(defaultNewPluginManager: defaultNewPluginManager,
                                        builtInPluginsPath: builtInPluginsPath,
                                        applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()

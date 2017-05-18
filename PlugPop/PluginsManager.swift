@@ -28,8 +28,8 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
         self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
         self.pluginsDataController = PluginsDataController(paths: paths,
                                                            duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
-                                                           defaultNewPluginManager: defaultNewPluginManager,
                                                            copyTempDirectoryURL: copyTempDirectoryURL,
+                                                           defaultNewPluginManager: defaultNewPluginManager,
                                                            builtInPluginsPath: builtInPluginsPath,
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins())
@@ -88,7 +88,7 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
         // TODO: Handle when the `defaultNewPlugin` is nil. This isn't an issue
         // right now only because it's impossible to run the app that way
         // without tampering with the bundle contents.
-        if let plugin = self.defaultNewPluginManager.defaultNewPlugin as? Plugin {
+        if let plugin = defaultNewPluginManager.defaultNewPlugin as? Plugin {
             duplicate(plugin, handler: handler)
         }
     }
@@ -104,10 +104,11 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
     func pluginsDataController(_ pluginsDataController: PluginsDataController, 
                                didRemovePlugin plugin: Plugin) 
     {
-        if let unwrappedDefaultNewPlugin = defaultNewPlugin {
-            if unwrappedDefaultNewPlugin == plugin {
-                defaultNewPlugin = nil
-            }
+        if 
+           let defaultNewPlugin = defaultNewPluginManager.defaultNewPlugin as? Plugin,
+           defaultNewPlugin == plugin
+        {
+            defaultNewPluginManager.defaultNewPlugin = nil
         }
         remove(plugin)
     }

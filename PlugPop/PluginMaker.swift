@@ -25,7 +25,9 @@ class PluginMaker {
 
     func makePlugin(path: String) -> Plugin? {
         let pluginType = self.pluginType(for: path)
-        let plugin = Plugin.makePlugin(path: path, pluginType: pluginType)
+        guard let plugin = Plugin.makePlugin(path: path, pluginType: pluginType) else {
+            return nil
+        }
         plugin.dataSource = defaultNewPluginManager
         return plugin
     }

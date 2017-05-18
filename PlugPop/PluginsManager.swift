@@ -14,6 +14,7 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
     
     let pluginsDataController: PluginsDataController
     let pluginsController: WCLPluginsController
+    let defaultNewPluginManager: WCLDefaultNewPluginManager
     
     // MARK: Init
     
@@ -24,7 +25,7 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
          builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {
-        let defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
+        self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
         self.pluginsDataController = PluginsDataController(paths: paths,
                                                            duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
                                                            defaultNewPluginManager: defaultNewPluginManager,
@@ -84,10 +85,10 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
     }
 
     func newPlugin(handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
-        // May need to handle the case when no default new plugin is define in
-        // the future, but for now the fallback to the initial plugin should
-        // always work
-        if let plugin = defaultNewPlugin {
+        // TODO: Handle when the `defaultNewPlugin` is nil. This isn't an issue
+        // right now only because it's impossible to run the app that way
+        // without tampering with the bundle contents.
+        if let plugin = self.defaultNewPluginManager.defaultNewPlugin as? Plugin {
             duplicate(plugin, handler: handler)
         }
     }

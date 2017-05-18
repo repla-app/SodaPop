@@ -17,9 +17,10 @@ NS_ASSUME_NONNULL_END
 
 @class Plugin;
 @protocol DefaultsType;
+@protocol DefaultPluginDataSource;
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLDefaultNewPluginManager : NSObject
+@interface WCLDefaultNewPluginManager : NSObject <DefaultPluginDataSource>
 - (instancetype)initWithDefaults:(_Nonnull id <DefaultsType> * _Nonnull)defaults;
 @property (nonatomic, assign, nullable) id <WCLDefaultNewPluginManagerDataSource> *dataSource;
 @property (nonatomic, strong, nullable) Plugin *defaultNewPlugin;

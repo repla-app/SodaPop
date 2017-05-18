@@ -12,17 +12,22 @@ class PluginMaker {
 
     let builtInPluginsPath: String?
     let applicationSupportPluginsPath: String?
+    let defaultNewPluginManager: WCLDefaultNewPluginManager
     
-    init(builtInPluginsPath: String?,
+    init(defaultNewPluginManager: WCLDefaultNewPluginManager,
+         builtInPluginsPath: String?,
          applicationSupportPluginsPath: String?)
     {
+        self.defaultNewPluginManager = defaultNewPluginManager
         self.builtInPluginsPath = builtInPluginsPath
         self.applicationSupportPluginsPath = applicationSupportPluginsPath
     }
 
     func makePlugin(path: String) -> Plugin? {
         let pluginType = self.pluginType(for: path)
-        return Plugin.makePlugin(path: path, pluginType: pluginType)
+        let plugin = Plugin.makePlugin(path: path, pluginType: pluginType)
+        plugin.dataSource = defaultNewPluginManager
+        return plugin
     }
     
     func makePlugin(url: URL) -> Plugin? {

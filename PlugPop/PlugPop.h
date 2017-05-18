@@ -17,7 +17,6 @@ FOUNDATION_EXPORT const unsigned char PlugPopVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <PlugPop/PublicHeader.h>
 
 #import <PlugPop/WCLPlugin.h>
-#import <PlugPop/WCLPluginsManager.h>
 #import <PlugPop/WCLPluginsController+UniquePluginName.h>
 #import <PlugPop/WCLPluginsController.h>
 #import <PlugPop/WCLKeyToObjectController.h>

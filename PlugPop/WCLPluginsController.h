@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithPlugins:(NSArray *)plugins;
 - (void)addPlugin:(Plugin *)plugin;
 - (void)removePlugin:(Plugin *)plugin;
-- (Plugin *)pluginForName:(nullable NSString *)name;
+- (nullable Plugin *)pluginForName:(NSString *)name;
+- (nullable Plugin *)pluginForIdentifier:(NSString *)identifier;
 #pragma mark Required Key-Value Coding To-Many Relationship Compliance
 - (NSArray *)plugins;
 - (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index;

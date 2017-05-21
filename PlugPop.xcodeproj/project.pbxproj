@@ -58,6 +58,7 @@
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDB1E9AF75B00823315 /* PlugPopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45753DDA1E9AF75B00823315 /* PlugPopTests.m */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45FCF9EF1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		45753DD51E9AF75B00823315 /* PlugPopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlugPopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753DDA1E9AF75B00823315 /* PlugPopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlugPopTests.m; sourceTree = "<group>"; };
 		45753DDC1E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		45753DCE1E9AF75B00823315 /* PlugPop */ = {
 			isa = PBXGroup;
 			children = (
+				45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */,
 				453126901EC93BEA00248FA9 /* DefaultsType.swift */,
 				453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */,
 				453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */,
@@ -379,6 +382,7 @@
 				450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */,
 				450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */,
 				450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */,
+				45FCF9EF1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift in Sources */,
 				450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */,
 				450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */,
 				456783041EBFDC7600C9EC4A /* WCLPluginsController.m in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
+import BubbleUp
 
 protocol FilesAndPluginsDirectoryManagerFileDelegate {
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, fileWasCreatedOrModifiedAtPath path: String)

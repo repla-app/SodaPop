@@ -10,7 +10,7 @@ import Cocoa
 
 // The `WCLPluginsController` manages the in memory `Plugin` objects. It
 // provides standard methods for operating on a collection of `Plugin` objects.
-class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerDataSource {
+class PluginsManager: PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
     let pluginsController: WCLPluginsController
@@ -34,7 +34,7 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins())
         pluginsDataController.delegate = self
-        defaultNewPluginManager.dataSource = self
+        defaultNewPluginManager.dataSource = self.pluginsController
     }
     
     // MARK: Plugins
@@ -44,16 +44,7 @@ class PluginsManager: PluginsDataControllerDelegate, WCLDefaultNewPluginManagerD
     }
     
     func plugin(forIdentifier identifier: String) -> Plugin? {
-        guard let allPlugins = pluginsController.plugins() as? [Plugin] else {
-            return nil
-        }
-        
-        for plugin in allPlugins {
-            if plugin.identifier == identifier {
-                return plugin
-            }
-        }
-        return nil
+        return pluginsController.plugin(forIdentifier: identifier)
     }
 
     // MARK: Convenience

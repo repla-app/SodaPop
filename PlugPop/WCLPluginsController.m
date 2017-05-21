@@ -44,6 +44,19 @@
     }
 }
 
+- (Plugin *)pluginForIdentifier:(NSString *)identifier
+{
+    // TODO: This should obviously be optimized by creating a key value
+    // collection to retrieve `Plugin` by key.
+    NSArray *plugins = self.plugins;
+    for (Plugin *plugin in plugins) {
+        if ([plugin.identifier isEqualToString:identifier]) {
+            return plugin;
+        }
+    }
+    return nil;
+}
+
 #pragma mark Required Key-Value Coding To-Many Relationship Compliance
 
 - (NSArray *)plugins

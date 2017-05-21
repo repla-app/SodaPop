@@ -9,8 +9,7 @@
 import Foundation
 import XCTest
 
-@testable import Web_Console
-
+@testable import PlugPop
 class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
     var pluginsDirectoryURL: URL!
     var pluginsDirectoryPath: String! {

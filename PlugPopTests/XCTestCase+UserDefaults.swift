@@ -8,8 +8,7 @@
 
 import Foundation
 
-@testable import Web_Console
-
+@testable import PlugPop
 let testMockUserDefaultsSuiteName = "com.1percenter.WebConsoleTests"
 
 extension XCTestCase {

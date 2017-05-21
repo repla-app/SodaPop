@@ -9,8 +9,7 @@
 import Cocoa
 import XCTest
 
-@testable import Web_Console
-
+@testable import PlugPop
 class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     func areEqual(_ range: NSRange, _ comparisonRange: NSRange) -> Bool {
         return range.location == comparisonRange.location && range.length == comparisonRange.length

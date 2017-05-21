@@ -9,8 +9,7 @@
 import Cocoa
 import XCTest
 
-@testable import Web_Console
-
+@testable import PlugPop
 extension TemporaryPluginsTestCase {
     func urlByDuplicatingItem(at fileURL: URL, withFilenameForDuplicate filename: String) -> URL {
         let destinationFileURL = fileURL.deletingLastPathComponent().appendingPathComponent(filename)

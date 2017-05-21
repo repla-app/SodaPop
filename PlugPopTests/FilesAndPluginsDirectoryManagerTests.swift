@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-@testable import Web_Console
+@testable import PlugPop
 
 protocol FilesAndPluginsDirectoryManagerFileDelegate {
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, fileWasCreatedOrModifiedAtPath path: String)

@@ -9,8 +9,7 @@
 import Cocoa
 import XCTest
 
-@testable import Web_Console
-
+@testable import PlugPop
 let fileExtensionToPluginKey = "WCLFileExtensionToPlugin"
 
 class WCLFileExtensionTests: FileExtensionsTestCase {

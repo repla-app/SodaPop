@@ -9,8 +9,7 @@
 import Cocoa
 import XCTest
 
-@testable import Web_Console
-
+@testable import PlugPop
 class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
     override func setUp() {

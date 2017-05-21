@@ -8,8 +8,7 @@
 
 let defaultTimeout = 20.0
 
-@testable import Web_Console
-
+@testable import PlugPop
 // MARK: Plugin
 
 let testPluginsPaths = [Directory.builtInPlugins.path()]

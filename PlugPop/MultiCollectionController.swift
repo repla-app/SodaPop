@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-@objc class MultiCollectionController: NSObject {
+@objc public class MultiCollectionController: NSObject {
     private let nameToObjectController: WCLKeyToObjectController
     private var mutableObjects = NSMutableArray()
     

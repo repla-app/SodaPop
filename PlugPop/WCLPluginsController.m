@@ -26,7 +26,7 @@
 
 - (void)addPlugin:(Plugin *)plugin
 {
-    [self.insertObject:plugin inPluginsAtIndex:0];
+    [self insertObject:plugin inPluginsAtIndex:0];
 }
 
 - (void)removePlugin:(Plugin *)plugin

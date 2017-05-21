@@ -13,7 +13,7 @@ import Cocoa
     private let nameToObjectController: WCLKeyToObjectController
     private var mutableObjects = NSMutableArray()
     
-    init(objects: [AnyObject], key: String) {
+    public init(objects: [AnyObject], key: String) {
         self.nameToObjectController = WCLKeyToObjectController(key: key, objects: objects)
         self.mutableObjects.addObjects(from: self.nameToObjectController.allObjects())
         super.init()
@@ -21,40 +21,40 @@ import Cocoa
     
     // MARK: Accessing Plugins
     
-    func object(forKey key: String) -> AnyObject? {
+    public func object(forKey key: String) -> AnyObject? {
         return nameToObjectController.object(forKey: key) as AnyObject?
     }
 
     // MARK: Convenience
     
-    func addObject(_ object: AnyObject) {
+    public func addObject(_ object: AnyObject) {
         insertObject(object, inObjectsAtIndex: 0)
     }
     
-    func addObjects(_ objects: [AnyObject]) {
+    public func addObjects(_ objects: [AnyObject]) {
         let range = NSMakeRange(0, objects.count)
         let indexes = IndexSet(integersIn: range.toRange() ?? 0..<0)
         insertObjects(objects, atIndexes: indexes)
     }
     
-    func removeObject(_ object: AnyObject) {
+    public func removeObject(_ object: AnyObject) {
         let index = indexOfObject(object)
         if index != NSNotFound {
             removeObjectFromObjectsAtIndex(index)
         }
     }
     
-    func indexOfObject(_ object: AnyObject) -> Int {
+    public func indexOfObject(_ object: AnyObject) -> Int {
          return mutableObjects.index(of: object)
     }
     
     // MARK: Required Key-Value Coding To-Many Relationship Compliance
     
-    func objects() -> NSArray {
+    public func objects() -> NSArray {
         return NSArray(array: mutableObjects)
     }
     
-    func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
+    public func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
         let replacedObject: AnyObject? = nameToObjectController.add(object) as AnyObject?
         mutableObjects.insert(object, at: index)
         if let replacedObject: AnyObject = replacedObject {
@@ -65,7 +65,7 @@ import Cocoa
         }
     }
     
-    func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {
+    public func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {
 
         let replacedObjects = nameToObjectController.addObjects(from: objects)
         mutableObjects.insert(objects, at: indexes)
@@ -78,13 +78,13 @@ import Cocoa
         removeObjectsAtIndexes(indexes)
     }
 
-    func removeObjectFromObjectsAtIndex(_ index: Int) {
+    public func removeObjectFromObjectsAtIndex(_ index: Int) {
         let object: AnyObject = mutableObjects.object(at: index) as AnyObject
         nameToObjectController.remove(object)
         mutableObjects.removeObject(at: index)
     }
     
-    func removeObjectsAtIndexes(_ indexes: IndexSet) {
+    public func removeObjectsAtIndexes(_ indexes: IndexSet) {
         let objects = mutableObjects.objects(at: indexes)
         nameToObjectController.removeObjects(from: objects)
         mutableObjects.removeObjects(at: indexes)

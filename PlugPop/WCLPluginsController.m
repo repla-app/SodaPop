@@ -43,6 +43,7 @@
     if ([object isKindOfClass:[Plugin class]]) {
         return object;
     }
+    return nil;
 }
 
 - (Plugin *)pluginForIdentifier:(NSString *)identifier

@@ -51,6 +51,7 @@
 		453126931EC93BEA00248FA9 /* DefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453126901EC93BEA00248FA9 /* DefaultsType.swift */; };
 		453126941EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		453126951EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */; };
+		454D4C951ED1F6F7007ABBD7 /* WCLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
 		456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* WCLPluginsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		456783041EBFDC7600C9EC4A /* WCLPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* WCLPluginsController.m */; };
@@ -120,6 +121,7 @@
 		453126901EC93BEA00248FA9 /* DefaultsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsType.swift; sourceTree = "<group>"; };
 		453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLDefaultNewPluginManager.m; sourceTree = "<group>"; };
+		454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLConstants.h; sourceTree = "<group>"; };
 		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		456783011EBFDC7600C9EC4A /* WCLPluginsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLPluginsController.h; sourceTree = "<group>"; };
 		456783021EBFDC7600C9EC4A /* WCLPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLPluginsController.m; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		45753DCE1E9AF75B00823315 /* PlugPop */ = {
 			isa = PBXGroup;
 			children = (
+				454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */,
 				45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */,
 				453126901EC93BEA00248FA9 /* DefaultsType.swift */,
 				453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */,
@@ -263,6 +266,7 @@
 				450CA08D1EBACDAC00D08D2A /* WCLPlugin.h in Headers */,
 				453126941EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h in Headers */,
 				456783031EBFDC7600C9EC4A /* WCLPluginsController.h in Headers */,
+				454D4C951ED1F6F7007ABBD7 /* WCLConstants.h in Headers */,
 				450CA08B1EBACDAC00D08D2A /* WCLKeyToObjectController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

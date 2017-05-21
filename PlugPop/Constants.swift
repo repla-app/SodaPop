@@ -6,5 +6,7 @@
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
+public let pluginNameKey = kPluginNameKey
+
 let pluginFileExtension = "wcplugin"
 let sharedResourcesPluginName = "Shared Resources"

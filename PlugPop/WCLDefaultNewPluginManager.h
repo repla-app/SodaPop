@@ -10,6 +10,7 @@
 #import "WCLPlugin.h"
 
 @class WCLDefaultNewPluginManager;
+@class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol WCLDefaultNewPluginManagerDataSource

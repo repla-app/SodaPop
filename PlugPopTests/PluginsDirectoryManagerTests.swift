@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import OutOfTouch
 
 class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
     var pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers: Array<(_ path: String) -> Void>
@@ -74,7 +75,7 @@ extension PluginsDirectoryManagerTests {
             }
         })
         
-        SubprocessFileSystemModifier.moveItem(atPath: pluginPath, toPath: destinationPluginPath)
+        OutOfTouch.moveItem(atPath: pluginPath, toPath: destinationPluginPath)
         
         // Wait for expectations
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -89,7 +90,7 @@ extension PluginsDirectoryManagerTests {
         })
         
         let moveExpectation = expectation(description: "Move finished")
-        SubprocessFileSystemModifier.moveItem(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.moveItem(atPath: pluginPath, toPath: destinationPluginPath, handler: {
             moveExpectation.fulfill()
         })
         
@@ -110,14 +111,14 @@ extension PluginsDirectoryManagerTests {
         })
 
         let copyExpectation = expectation(description: "Copy finished")
-        SubprocessFileSystemModifier.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
             copyExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     func copyPlugin(atPluginPath pluginPath: String, toPluginPath destinationPluginPath: String) {
         let copyExpectation = expectation(description: "Copy finished")
-        SubprocessFileSystemModifier.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
             copyExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -137,7 +138,7 @@ extension PluginsDirectoryManagerTests {
         })
 
         let deleteExpectation = expectation(description: "Delete finished")
-        SubprocessFileSystemModifier.removeDirectory(atPath: pluginPath, handler: {
+        OutOfTouch.removeDirectory(atPath: pluginPath, handler: {
             deleteExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -232,7 +233,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.moveItem(atPath: pluginInfoDictionaryPath, toPath: renamedInfoDictionaryPath)
+        OutOfTouch.moveItem(atPath: pluginInfoDictionaryPath, toPath: renamedInfoDictionaryPath)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         
         // Move back
@@ -242,7 +243,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        SubprocessFileSystemModifier.moveItem(atPath: renamedInfoDictionaryPath, toPath: pluginInfoDictionaryPath)
+        OutOfTouch.moveItem(atPath: renamedInfoDictionaryPath, toPath: pluginInfoDictionaryPath)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -263,7 +264,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.removeFile(atPath: pluginInfoDictionaryPath)
+        OutOfTouch.removeFile(atPath: pluginInfoDictionaryPath)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Add back the info dictionary
@@ -273,7 +274,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        SubprocessFileSystemModifier.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -295,7 +296,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.writeToFile(atPath: pluginInfoDictionaryPath, contents: testFileContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: testFileContents)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         
         // Remove the info dictionary
@@ -305,7 +306,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        SubprocessFileSystemModifier.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 }

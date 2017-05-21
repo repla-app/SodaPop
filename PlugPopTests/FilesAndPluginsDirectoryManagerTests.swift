@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
+import OutOfTouch
 import BubbleUp
 
 protocol FilesAndPluginsDirectoryManagerFileDelegate {
@@ -122,7 +123,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasCreatedOrModifiedExpectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.createFile(atPath: path)
+        OutOfTouch.createFile(atPath: path)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -133,7 +134,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasCreatedOrModifiedExpectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.createDirectory(atPath: path)
+        OutOfTouch.createDirectory(atPath: path)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -147,7 +148,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasRemovedExpectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.removeFile(atPath: path)
+        OutOfTouch.removeFile(atPath: path)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -158,7 +159,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasRemovedExpectation.fulfill()
             }
         })
-        SubprocessFileSystemModifier.removeDirectory(atPath: path)
+        OutOfTouch.removeDirectory(atPath: path)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -181,7 +182,7 @@ extension FilesAndPluginsDirectoryManagerTests {
             }
         })
         // Move
-        SubprocessFileSystemModifier.moveItem(atPath: path, toPath: destinationPath)
+        OutOfTouch.moveItem(atPath: path, toPath: destinationPath)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -195,7 +196,7 @@ extension FilesAndPluginsDirectoryManagerTests {
         })
         // Move
         let moveExpectation = expectation(description: "Move finished")
-        SubprocessFileSystemModifier.moveItem(atPath: path, toPath: destinationPath, handler: {
+        OutOfTouch.moveItem(atPath: path, toPath: destinationPath, handler: {
             moveExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -211,7 +212,7 @@ extension FilesAndPluginsDirectoryManagerTests {
         })
         // Move
         let moveExpectation = expectation(description: "Move finished")
-        SubprocessFileSystemModifier.moveItem(atPath: path, toPath: destinationPath, handler: {
+        OutOfTouch.moveItem(atPath: path, toPath: destinationPath, handler: {
             moveExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)

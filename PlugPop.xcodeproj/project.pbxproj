@@ -50,6 +50,8 @@
 		453126931EC93BEA00248FA9 /* DefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453126901EC93BEA00248FA9 /* DefaultsType.swift */; };
 		453126941EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		453126951EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */; };
+		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
+		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		454D4C951ED1F6F7007ABBD7 /* WCLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -81,6 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */,
 				454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +136,7 @@
 		453126901EC93BEA00248FA9 /* DefaultsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsType.swift; sourceTree = "<group>"; };
 		453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLDefaultNewPluginManager.m; sourceTree = "<group>"; };
+		4536957F1ED259EB00BDA37F /* OutOfTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OutOfTouch.framework; path = Carthage/Build/Mac/OutOfTouch.framework; sourceTree = "<group>"; };
 		454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLConstants.h; sourceTree = "<group>"; };
 		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
 		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			files = (
 				45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */,
 				454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */,
+				453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +180,7 @@
 		451847201EBE8AC50004FCAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4536957F1ED259EB00BDA37F /* OutOfTouch.framework */,
 				454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */,
 				451847231EBE8AC80004FCAE /* StringPlusPath.framework */,
 				451847211EBE8AC60004FCAE /* BubbleUp.framework */,

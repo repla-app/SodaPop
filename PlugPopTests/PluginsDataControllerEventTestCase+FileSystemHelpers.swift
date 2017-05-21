@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
+import OutOfTouch
 
 extension PluginsDataControllerEventTestCase {
     // MARK: Move Helpers
@@ -34,7 +35,7 @@ extension PluginsDataControllerEventTestCase {
         })
         
         let pluginPath = plugin.bundle.bundlePath
-        SubprocessFileSystemModifier.moveItem(atPath: pluginPath, toPath: destinationPluginPath)
+        OutOfTouch.moveItem(atPath: pluginPath, toPath: destinationPluginPath)
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -57,7 +58,7 @@ extension PluginsDataControllerEventTestCase {
         
         let pluginPath = plugin.bundle.bundlePath
         let copyExpectation = expectation(description: "Copy finished")
-        SubprocessFileSystemModifier.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
             copyExpectation.fulfill()
         })
         
@@ -79,7 +80,7 @@ extension PluginsDataControllerEventTestCase {
         
         let pluginPath = plugin.bundle.bundlePath
         let deleteExpectation = expectation(description: "Remove finished")
-        SubprocessFileSystemModifier.removeDirectory(atPath: pluginPath, handler: {
+        OutOfTouch.removeDirectory(atPath: pluginPath, handler: {
             deleteExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -130,7 +131,7 @@ extension PluginsDataControllerEventTestCase {
             }
         })
         
-        SubprocessFileSystemModifier.writeToFile(atPath: infoDictionaryPath, contents: newInfoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: infoDictionaryPath, contents: newInfoDictionaryContents)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 }

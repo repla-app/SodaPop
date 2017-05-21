@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WCLPlugin.h"
 
 @class WCLDefaultNewPluginManager;
-@class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol WCLDefaultNewPluginManagerDataSource <NSObject>
+@protocol WCLDefaultNewPluginManagerDataSource
 - (nullable Plugin *)defaultNewPluginManager:(WCLDefaultNewPluginManager *)defaultNewPluginManager pluginForIdentifier:(NSString *)identifier;
 - (nullable Plugin *)defaultNewPluginManager:(WCLDefaultNewPluginManager *)defaultNewPluginManager pluginForName:(NSString *)name;
 @end

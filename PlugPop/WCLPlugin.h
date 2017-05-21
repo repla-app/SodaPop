@@ -11,7 +11,7 @@
 @class WCLPlugin;
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol DefaultPluginDataSource <NSObject>
+@protocol DefaultPluginDataSource
 @property (nonatomic, nullable) WCLPlugin *defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END

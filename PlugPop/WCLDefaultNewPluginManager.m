@@ -9,15 +9,18 @@
 #import "WCLDefaultNewPluginManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
+#define kDefaultNewPluginIdentifierKey @"WCLDefaultNewPluginIdentifier"
+#define kInitialDefaultNewPluginName @"HTML"
+
 @interface WCLDefaultNewPluginManager ()
-@property (nonatomic, strong) id <DefaultsType> *defaults;
+@property (nonatomic, strong) id <DefaultsType> defaults;
 @end
 
 @implementation WCLDefaultNewPluginManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 
-- (instancetype)initWithDefaults:(id <DefaultsType> *)defaults
+- (instancetype)initWithDefaults:(id <DefaultsType>)defaults
 {
     self = [super init];
     if (self) {
@@ -26,7 +29,7 @@
     return self;
 }
 
-- (Plugin *)defaultNewPlugin
+- (WCLPlugin *)defaultNewPlugin
 {
     if (_defaultNewPlugin) {
         return _defaultNewPlugin;
@@ -34,7 +37,7 @@
     
     NSString *identifier = [self.defaults stringForKey:kDefaultNewPluginIdentifierKey];
     
-    Plugin *plugin;
+    WCLPlugin *plugin;
     
     if (identifier && self.dataSource) {
         plugin = [self.dataSource defaultNewPluginManager:self pluginForIdentifier:identifier];
@@ -64,7 +67,7 @@
         [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
     }
     
-    Plugin *oldDefaultNewPlugin = _defaultNewPlugin;
+    WCLPlugin *oldDefaultNewPlugin = _defaultNewPlugin;
     _defaultNewPlugin = defaultNewPlugin;
     
     oldDefaultNewPlugin.defaultNewPlugin = NO;
@@ -72,8 +75,8 @@
     _defaultNewPlugin.defaultNewPlugin = YES;
     
     if (_defaultNewPlugin) {
-        [self.defaults setObject:_defaultNewPlugin.identifier
-                          forKey:kDefaultNewPluginIdentifierKey];
+        [self.defaults set:[(Plugin *)_defaultNewPlugin identifier]
+                    forKey:kDefaultNewPluginIdentifierKey];
     }
 }
 

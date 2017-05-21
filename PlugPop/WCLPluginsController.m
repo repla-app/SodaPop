@@ -9,8 +9,9 @@
 #import "WCLPluginsController.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-
+@interface WCLPluginsController ()
 @property (nonatomic, strong) MultiCollectionController *multiCollectionController;
+@end
 
 @implementation WCLPluginsController
 

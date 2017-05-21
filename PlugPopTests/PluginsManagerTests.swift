@@ -56,8 +56,8 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let pluginsManager = PluginsManager(paths: [Directory.builtInPlugins.path()],
-            duplicatePluginDestinationDirectoryURL: trashDirectoryPath)
+        let pluginsManager = PluginsManager(paths: testPluginsPaths,
+           duplicatePluginDestinationDirectoryURL: trashDirectoryPath)
         PluginsManager.setOverrideSharedInstance(pluginsManager)
     }
     
@@ -77,8 +77,7 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
         let count = PluginsManager.sharedInstance.plugins().count
         var pluginsPathsCount = 0
 
-        let pluginsPaths = [Directory.builtInPlugins.path()]
-        for pluginsPath in pluginsPaths {
+        for pluginsPath in testPluginsPaths {
 
             do {
                 let contents = try FileManager.default.contentsOfDirectory(atPath: pluginsPath)

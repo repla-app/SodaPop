@@ -62,14 +62,14 @@ extension PluginsDirectoryManagerTests {
     func movePluginWithConfirmation(atPluginPath pluginPath: String, destinationPluginPath: String) {
         let removeExpectation = expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == pluginPath) {
                 removeExpectation.fulfill()
             }
         })
         
         let createExpectation = expectation(description: "Info dictionary was created")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == destinationPluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == destinationPluginPath) {
                 createExpectation.fulfill()
             }
         })
@@ -83,7 +83,7 @@ extension PluginsDirectoryManagerTests {
     func movePluginWithConfirmation(atPluginPath pluginPath: String, toUnwatchedDestinationPluginPath destinationPluginPath: String) {
         let removeExpectation = expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == pluginPath) {
                 removeExpectation.fulfill()
             }
         })
@@ -104,7 +104,7 @@ extension PluginsDirectoryManagerTests {
     func copyPluginWithConfirmation(atPluginPath pluginPath: String, destinationPluginPath: String) {
         let createExpectation = expectation(description: "Info dictionary was created or modified")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == destinationPluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == destinationPluginPath) {
                 createExpectation.fulfill()
             }
         })
@@ -131,7 +131,7 @@ extension PluginsDirectoryManagerTests {
         let removeExpectation = expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
             self.pluginsDirectoryManager.delegate = nil // Ignore subsequent remove events
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == pluginPath) {
                 removeExpectation.fulfill()
             }
         })
@@ -228,7 +228,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Move
         let expectation = self.expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectation.fulfill()
             }
         })
@@ -238,7 +238,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Move back
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectationTwo.fulfill()
             }
         })
@@ -259,7 +259,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Remove the info dictionary
         let expectation = self.expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectation.fulfill()
             }
         })
@@ -269,7 +269,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Add back the info dictionary
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectationTwo.fulfill()
             }
         })
@@ -291,7 +291,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Remove the info dictionary
         let expectation = self.expectation(description: "Info dictionary was created or modified")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectation.fulfill()
             }
         })
@@ -301,7 +301,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Remove the info dictionary
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
-            if (type(of: self).resolve(temporaryDirectoryPath: path as NSString) == self.pluginPath) {
+            if (type(of: self).resolve(temporaryDirectoryPath: path) == self.pluginPath) {
                 expectationTwo.fulfill()
             }
         })

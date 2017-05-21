@@ -126,7 +126,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase {
         }
 
         // Clean Up
-        let recoveredFilesPath = Directory.trash.path().appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
+        let recoveredFilesPath = trashDirectoryPath.appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: recoveredFilesPath, isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")

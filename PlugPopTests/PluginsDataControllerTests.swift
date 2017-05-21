@@ -15,12 +15,11 @@ import XCTestTemp
 class PluginsDataControllerClassTests: XCTestCase {
     
     func testPluginPaths() {
-        let pluginsPath = Bundle.main.builtInPlugInsPath!
-        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: pluginsPath)
+        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: testPluginsPath)
 
         // Test plugin path counts
         do {
-            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: pluginsPath)
+            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: testPluginsPath)
             let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == kPlugInExtension }
             XCTAssert(!testPluginPaths.isEmpty, "The test plugin paths count should be greater than zero")
             XCTAssert(testPluginPaths.count == pluginPaths.count, "The plugin paths count should equal the test plugin paths count")
@@ -43,7 +42,7 @@ class PluginsDataControllerClassTests: XCTestCase {
     }
 
     func testExistingPlugins() {
-        let pluginsDataController = PluginsDataController(paths: testPluginsPaths, duplicatePluginDestinationDirectoryURL: Directory.trash.URL())
+        let pluginsDataController = PluginsDataController(paths: testPluginsPaths, duplicatePluginDestinationDirectoryURL: trashDirectoryPath)
         let plugins = pluginsDataController.plugins()
         
         var pluginPaths = [String]()

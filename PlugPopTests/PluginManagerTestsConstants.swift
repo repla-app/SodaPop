@@ -10,9 +10,14 @@ let defaultTimeout = 20.0
 
 @testable import PlugPop
 
+// MARK: Directories
+
+let testPluginsPath = Bundle.main.builtInPlugInsPath!
+let testPluginsPaths = [testPluginsPath]
+let testTrashDirectoryPath = NSSearchPathForDirectoriesInDomains(.trashDirectory, .userDomainMask, true)[0]
+
 // MARK: Plugin
 
-let testPluginsPaths = [Directory.builtInPlugins.path()]
 let testPluginName = "HTML"
 let testPluginNameTwo = "IRB"
 let testPluginNameNoPlugin = "Not a Plugin Name"
@@ -26,8 +31,6 @@ let testPluginSuffix = "html"
 let testPluginSuffixes: [String] = [testPluginSuffix]
 let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 let testPluginSuffixesEmpty = [String]()
-
-
 
 // MARK: KVO Keys
 
@@ -45,7 +48,6 @@ let testPluginInfoDictionaryPathComponent = testPluginContentsDirectoryName + te
 let testPluginContentsDirectoryName = "Contents"
 let testPluginResourcesDirectoryName = "Resources"
 let testPluginInfoDictionaryFilename = "Info.plist"
-
 
 // MARK: Directories & Files
 

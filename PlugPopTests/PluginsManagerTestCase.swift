@@ -68,7 +68,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
     func moveToTrashAndCleanUpWithConfirmation(_ plugin: Plugin) {
         // Confirm that a matching directory does not exist in the trash
         let trashedPluginDirectoryName = plugin.bundle.bundlePath.lastPathComponent
-        let trashedPluginPath = Directory.trash.path().appendingPathComponent(trashedPluginDirectoryName)
+        let trashedPluginPath = trashDirectoryPath.appendingPathComponent(trashedPluginDirectoryName)
         let beforeExists = FileManager.default.fileExists(atPath: trashedPluginPath)
         XCTAssertTrue(!beforeExists, "The item should exist")
         

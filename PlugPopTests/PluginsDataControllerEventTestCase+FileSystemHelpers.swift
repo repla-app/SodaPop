@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
+
 extension PluginsDataControllerEventTestCase {
     // MARK: Move Helpers
     

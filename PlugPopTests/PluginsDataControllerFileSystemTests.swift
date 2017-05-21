@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+
 class PluginsDataControllerFileSystemTests: PluginsDataControllerEventTestCase {
 
     // MARK: File System Tests

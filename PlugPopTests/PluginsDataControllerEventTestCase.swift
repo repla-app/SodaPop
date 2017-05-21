@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+
 class PluginDataEventManager: PluginsDataControllerDelegate {
     var pluginWasAddedHandlers: Array<(_ plugin: Plugin) -> Void>
     var pluginWasRemovedHandlers: Array<(_ plugin: Plugin) -> Void>

@@ -7,7 +7,9 @@
 //
 
 import XCTest
+
 @testable import PlugPop
+
 class PluginInitializationTests: WCLTestPluginManagerTestCase {
 
     func testHelloWorldPlugin() {

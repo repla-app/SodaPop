@@ -9,6 +9,7 @@
 import XCTest
 
 @testable import PlugPop
+
 class PluginTests: PluginsManagerTestCase {
 
     func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {

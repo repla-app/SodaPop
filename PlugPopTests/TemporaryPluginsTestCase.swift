@@ -10,6 +10,9 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
+
+import XCTestTemp
+
 class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
     var pluginsDirectoryURL: URL!
     var pluginsDirectoryPath: String! {

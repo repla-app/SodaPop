@@ -10,6 +10,8 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import XCTestTemp
+
 class PluginsDataControllerClassTests: XCTestCase {
     
     func testPluginPaths() {

@@ -26,7 +26,7 @@
 
 - (void)addPlugin:(Plugin *)plugin
 {
-    [self.insertObject:plugin inPluginsAt:0];
+    [self.insertObject:plugin inPluginsAtIndex:0];
 }
 
 - (void)removePlugin:(Plugin *)plugin
@@ -56,6 +56,11 @@
         }
     }
     return nil;
+}
+
+- (NSUInteger)indexOfObject:(Plugin *)plugin
+{
+    return [self.multiCollectionController indexOfObject:plugin];
 }
 
 #pragma mark Required Key-Value Coding To-Many Relationship Compliance

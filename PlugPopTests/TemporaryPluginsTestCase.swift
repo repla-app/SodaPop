@@ -44,14 +44,14 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
        
         // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL: URL! = url(forResource: testPluginName, withExtension:pluginFileExtension)
+        let bundleResourcesPluginURL: URL! = url(forResource: testPluginName, 
+                                                 withExtension: pluginFileExtension)
         let filename = testPluginName.appendingPathExtension(pluginFileExtension)!
         
         pluginURL = pluginsDirectoryURL.appendingPathComponent(filename)
         do {
-            try FileManager.default
-                .copyItem(at: bundleResourcesPluginURL,
-                    to: pluginURL)
+            try FileManager.default.copyItem(at: bundleResourcesPluginURL,
+                                             to: pluginURL)
         } catch let error as NSError {
             XCTAssertTrue(false, "Moving the directory should succeed \(error)")
         }

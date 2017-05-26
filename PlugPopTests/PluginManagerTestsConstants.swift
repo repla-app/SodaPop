@@ -16,15 +16,6 @@ let testPluginsPath = Bundle.main.builtInPlugInsPath!
 let testPluginsPaths = [testPluginsPath]
 let testTrashDirectoryPath = NSSearchPathForDirectoriesInDomains(.trashDirectory, .userDomainMask, true)[0]
 
-// MARK: Plugin
-
-let testPluginName = "HTML"
-let testPluginNameTwo = "IRB"
-let testPluginNameNoPlugin = "Not a Plugin Name"
-let testPluginCommand = "html.rb"
-let testPluginCommandTwo = "irb.rb"
-let testPluginPathComponent = "\(testPluginName).\(pluginFileExtension)"
-
 // MARK: Extensions
 
 let testPluginSuffix = "html"
@@ -35,10 +26,6 @@ let testPluginSuffixesEmpty = [String]()
 // MARK: KVO Keys
 
 let testPluginDefaultNewPluginKeyPath = "defaultNewPlugin"
-let testFileExtensionEnabledKeyPath = "enabled"
-let testFileExtensionSelectedPluginKeyPath = "selectedPlugin"
-let testFileExtensionPluginIdentifierKey = "pluginIdentifier"
-let testFileExtensionPluginsKey = "plugins"
 
 // MARK: Plugin Paths
 

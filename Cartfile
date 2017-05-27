@@ -1,2 +1,2 @@
-github "robenkleene/BubbleUp"
-github "robenkleene/StringPlusPath"
+github "robenkleene/BubbleUp" ~> 0.1
+github "robenkleene/StringPlusPath" ~> 0.1

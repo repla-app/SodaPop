@@ -63,6 +63,8 @@
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E3B2841ED2361400EF9344 /* WCLTestPluginManagerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B2821ED2361400EF9344 /* WCLTestPluginManagerTestCase.m */; };
 		45E3B2851ED2361400EF9344 /* WCLTestPluginsManagerPluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3B2831ED2361400EF9344 /* WCLTestPluginsManagerPluginTests.m */; };
+		45E5554F1ED9FF640093D234 /* PotionTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; };
+		45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FCF9EF1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */,
 				453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */,
 				454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */,
 			);
@@ -151,6 +154,7 @@
 		45E3B2811ED2361400EF9344 /* WCLTestPluginManagerTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLTestPluginManagerTestCase.h; sourceTree = "<group>"; };
 		45E3B2821ED2361400EF9344 /* WCLTestPluginManagerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLTestPluginManagerTestCase.m; sourceTree = "<group>"; };
 		45E3B2831ED2361400EF9344 /* WCLTestPluginsManagerPluginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLTestPluginsManagerPluginTests.m; sourceTree = "<group>"; };
+		45E5554E1ED9FF640093D234 /* PotionTaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PotionTaster.framework; path = Carthage/Build/Mac/PotionTaster.framework; sourceTree = "<group>"; };
 		45FCF9EE1ED1E6C00039B3A0 /* WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WCLPluginsController+WCLDefaultNewPluginManagerDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +175,7 @@
 				45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */,
 				454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */,
 				453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */,
+				45E5554F1ED9FF640093D234 /* PotionTaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +185,7 @@
 		451847201EBE8AC50004FCAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45E5554E1ED9FF640093D234 /* PotionTaster.framework */,
 				4536957F1ED259EB00BDA37F /* OutOfTouch.framework */,
 				454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */,
 				451847231EBE8AC80004FCAE /* StringPlusPath.framework */,

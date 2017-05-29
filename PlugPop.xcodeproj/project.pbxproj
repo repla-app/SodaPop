@@ -27,7 +27,7 @@
 		450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */; };
 		450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */; };
 		450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */; };
-		450CA0B11EBACDF000D08D2A /* PluginManagerTestsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0991EBACDF000D08D2A /* PluginManagerTestsConstants.swift */; };
+		450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0991EBACDF000D08D2A /* TestConstants.swift */; };
 		450CA0B21EBACDF000D08D2A /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09A1EBACDF000D08D2A /* PluginsDataControllerEventTestCase.swift */; };
 		450CA0B31EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */; };
 		450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */; };
@@ -115,7 +115,7 @@
 		450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesAndPluginsDirectoryManagerTests.swift; sourceTree = "<group>"; };
 		450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiCollectionControllerTests.swift; sourceTree = "<group>"; };
 		450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginInitializationTests.swift; sourceTree = "<group>"; };
-		450CA0991EBACDF000D08D2A /* PluginManagerTestsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginManagerTestsConstants.swift; sourceTree = "<group>"; };
+		450CA0991EBACDF000D08D2A /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		450CA09A1EBACDF000D08D2A /* PluginsDataControllerEventTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataControllerEventTestCase.swift; sourceTree = "<group>"; };
 		450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsDataControllerEventTestCase+FileSystemHelpers.swift"; sourceTree = "<group>"; };
 		450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataControllerFileSystemTests.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */,
 				450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */,
 				450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */,
-				450CA0991EBACDF000D08D2A /* PluginManagerTestsConstants.swift */,
+				450CA0991EBACDF000D08D2A /* TestConstants.swift */,
 				450CA09A1EBACDF000D08D2A /* PluginsDataControllerEventTestCase.swift */,
 				450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */,
 				450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */,
@@ -446,7 +446,7 @@
 				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
 				45E3B2851ED2361400EF9344 /* WCLTestPluginsManagerPluginTests.m in Sources */,
 				450CA0BF1EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m in Sources */,
-				450CA0B11EBACDF000D08D2A /* PluginManagerTestsConstants.swift in Sources */,
+				450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
 				450CA0C11EBACDF000D08D2A /* XCTestCase+UserDefaults.swift in Sources */,
 				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,

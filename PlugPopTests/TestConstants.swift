@@ -23,6 +23,10 @@ let testPluginSuffixes: [String] = [testPluginSuffix]
 let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 let testPluginSuffixesEmpty = [String]()
 
+// MARK: `UserDefaults`
+
+let testMockUserDefaultsSuiteName = "com.1percenter.PlugPopTests"
+
 // MARK: KVO Keys
 
 let testPluginDefaultNewPluginKeyPath = "defaultNewPlugin"

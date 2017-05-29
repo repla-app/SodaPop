@@ -42,7 +42,6 @@
 		450CA0BD1EBACDF000D08D2A /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A51EBACDF000D08D2A /* TemporaryPluginsTestCase.swift */; };
 		450CA0BF1EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */; };
 		450CA0C01EBACDF000D08D2A /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */; };
-		450CA0C11EBACDF000D08D2A /* XCTestCase+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */; };
 		4518471E1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4518471F1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */; };
 		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
@@ -131,7 +130,6 @@
 		450CA0A81EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLKeyValueObservingTestsHelper.h; sourceTree = "<group>"; };
 		450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLKeyValueObservingTestsHelper.m; sourceTree = "<group>"; };
 		450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
-		450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserDefaults.swift"; sourceTree = "<group>"; };
 		4518471C1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCLPluginsController+UniquePluginName.h"; sourceTree = "<group>"; };
 		4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WCLPluginsController+UniquePluginName.m"; sourceTree = "<group>"; };
 		451847211EBE8AC60004FCAE /* BubbleUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BubbleUp.framework; path = Carthage/Build/Mac/BubbleUp.framework; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				450CA0A81EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.h */,
 				450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */,
 				450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */,
-				450CA0AB1EBACDF000D08D2A /* XCTestCase+UserDefaults.swift */,
 				45753DDC1E9AF75B00823315 /* Info.plist */,
 				450CA0921EBACDF000D08D2A /* PlugPopTests-Bridging-Header.h */,
 			);
@@ -448,7 +445,6 @@
 				450CA0BF1EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m in Sources */,
 				450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
-				450CA0C11EBACDF000D08D2A /* XCTestCase+UserDefaults.swift in Sources */,
 				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

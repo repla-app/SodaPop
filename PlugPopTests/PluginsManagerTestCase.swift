@@ -41,12 +41,11 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)
         plugin.editable = true
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
-
-        pluginsManager.defaultNewPlugin = plugin
+        plugin.isDefaultNewPlugin = true
     }
     
     override func tearDown() {
-        PluginsManager.sharedInstance.defaultNewPlugin = nil
+        plugin.isDefaultNewPlugin = false
         plugin = nil
         PluginsManager.setOverrideSharedInstance(nil)
         super.tearDown()

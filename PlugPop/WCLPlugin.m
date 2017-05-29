@@ -15,13 +15,17 @@
 
 - (void)setDefaultNewPlugin:(BOOL)defaultNewPlugin
 {
-    // TODO: It's problematic that using this setter without going through the
-    // plugin manager, will set the flag to true without it actually being the
-    // default new plugin
-    
-    if (_defaultNewPlugin != defaultNewPlugin) {
-        _defaultNewPlugin = defaultNewPlugin;
+    if ([self isDefaultNewPlugin] == defaultNewPlugin) {
+        return;
     }
+
+    if (defaultNewPlugin) {
+        self.dataSource.defaultNewPlugin = self;
+    } else if (self.dataSource.defaultNewPlugin == self) {
+        self.dataSource.defaultNewPlugin = nil;
+    }
+
+    _defaultNewPlugin = (self.dataSource.defaultNewPlugin == self);
 }
 
 - (BOOL)isDefaultNewPlugin

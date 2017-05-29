@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PotionTaster
 
 class PluginsManagerTestCase: TemporaryPluginsTestCase {
     var plugin: Plugin!
@@ -37,7 +38,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
                                         applicationSupportPluginsPath: nil)
 
         // Set the plugin
-        plugin = pluginsManager.plugin(forName: testPluginName)
+        plugin = pluginsManager.plugin(forName: PotionTaster.testPluginName)
         plugin.editable = true
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
 

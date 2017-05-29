@@ -255,7 +255,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     }
     
     func testDuplicateAndTrashPlugin() {
-        XCTAssertEqual(PluginsManager.sharedInstance.pluginsDataController.plugins().count, 1, "The plugins count should be one")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins().count, 1, "The plugins count should be one")
         
         var newPlugin: Plugin!
         
@@ -265,7 +265,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         })
 
         let duplicateExpectation = expectation(description: "Plugin was duplicated")
-        PluginsManager.sharedInstance.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
+        pluginsManager.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
             newPlugin = duplicatePlugin
             duplicateExpectation.fulfill()
@@ -273,8 +273,8 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
 
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
-        XCTAssertEqual(PluginsManager.sharedInstance.pluginsDataController.plugins().count, 2, "The plugins count should be two")
-        XCTAssertTrue(PluginsManager.sharedInstance.pluginsDataController.plugins().contains(newPlugin!), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins().count, 2, "The plugins count should be two")
+        XCTAssertTrue(pluginsManager.pluginsDataController.plugins().contains(newPlugin!), "The plugins should contain the plugin")
         
         // Trash the duplicated plugin
         let removeExpectation = expectation(description: "Plugin was removed")
@@ -295,7 +295,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")
         
         let duplicateExpectation = expectation(description: "Plugin was duplicated")
-        PluginsManager.sharedInstance.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
+        pluginsManager.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
             XCTAssertNil(duplicatePlugin, "The duplicate plugin should be nil")
             XCTAssertNotNil(error, "The error should not be nil")
             duplicateExpectation.fulfill()
@@ -320,7 +320,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")
         
         let duplicateExpectation = expectation(description: "Plugin was duplicated")
-        PluginsManager.sharedInstance.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
+        pluginsManager.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
             XCTAssertNil(duplicatePlugin, "The duplicate plugin should be nil")
             XCTAssertNotNil(error, "The error should not be nil")
             duplicateExpectation.fulfill()

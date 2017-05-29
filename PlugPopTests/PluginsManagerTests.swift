@@ -14,7 +14,7 @@ import XCTest
 class PluginsManagerTests: PluginsManagerTestCase {
 
     func testTestPlugins() {
-        let plugins = PluginsManager.sharedInstance.plugins() as! [Plugin]
+        let plugins = pluginsManager.plugins() as! [Plugin]
         for plugin in plugins {
             XCTAssertEqual(plugin.pluginType, Plugin.PluginType.other, "The plugin type should be built-in")
             XCTAssertEqual(plugin.type, Plugin.PluginType.other.name(), "The type should equal the name")
@@ -24,8 +24,8 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testDuplicateAndTrashPlugin() {
         let newPlugin = newPluginWithConfirmation()
         
-        XCTAssertEqual(PluginsManager.sharedInstance.plugins().count, 2, "The plugins count should be two")
-        let plugins = PluginsManager.sharedInstance.plugins() as NSArray
+        XCTAssertEqual(pluginsManager.plugins().count, 2, "The plugins count should be two")
+        let plugins = pluginsManager.plugins() as NSArray
         XCTAssertTrue(plugins.contains(newPlugin), "The plugins should contain the plugin")
 
         // Edit the new plugin
@@ -47,8 +47,8 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testRenamePlugin() {
         let newPluginName = plugin.identifier
         plugin.name = newPluginName
-        XCTAssertNotNil(PluginsManager.sharedInstance.plugin(withName: newPluginName), "The plugin should not be nil")
-        XCTAssertNil(PluginsManager.sharedInstance.plugin(withName: testPluginName), "The plugin should be nil")
+        XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
+        XCTAssertNil(pluginsManager.plugin(withName: testPluginName), "The plugin should be nil")
     }
 }
 
@@ -67,14 +67,14 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
     }
     
     func testBuiltInPlugins() {
-        let plugins = PluginsManager.sharedInstance.plugins() as! [Plugin]
+        let plugins = pluginsManager.plugins() as! [Plugin]
 
         for plugin in plugins {
             XCTAssertEqual(plugin.pluginType, Plugin.PluginType.builtIn, "The plugin type should be built-in")
             XCTAssertEqual(plugin.type, Plugin.PluginType.builtIn.name(), "The type should equal the name")
         }
 
-        let count = PluginsManager.sharedInstance.plugins().count
+        let count = pluginsManager.plugins().count
         var pluginsPathsCount = 0
 
         for pluginsPath in testPluginsPaths {

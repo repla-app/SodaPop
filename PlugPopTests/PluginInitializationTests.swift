@@ -13,7 +13,7 @@ import XCTest
 class PluginInitializationTests: WCLTestPluginManagerTestCase {
 
     func testHelloWorldPlugin() {
-        guard let helloWorldPlugin = PluginsManager.sharedInstance.plugin(withName: testHelloWorldPluginName) else {
+        guard let helloWorldPlugin = pluginsManager.plugin(withName: testHelloWorldPluginName) else {
             XCTAssertTrue(false)
             return
         }
@@ -28,7 +28,7 @@ class PluginInitializationTests: WCLTestPluginManagerTestCase {
     }
 
     func testLogPlugin() {
-        guard let logPlugin = PluginsManager.sharedInstance.plugin(withName: testLogPluginName) else {
+        guard let logPlugin = pluginsManager.plugin(withName: testLogPluginName) else {
             XCTAssertTrue(false)
             return
         }
@@ -43,7 +43,7 @@ class PluginInitializationTests: WCLTestPluginManagerTestCase {
     }
 
     func testPrintPlugin() {
-        guard let logPlugin = PluginsManager.sharedInstance.plugin(withName: testPrintPluginName) else {
+        guard let logPlugin = pluginsManager.plugin(withName: testPrintPluginName) else {
             XCTAssertTrue(false)
             return
         }

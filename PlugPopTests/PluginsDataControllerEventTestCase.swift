@@ -64,12 +64,12 @@ class PluginsDataControllerEventTestCase: PluginsManagerTestCase {
     override func setUp() {
         super.setUp()
         pluginDataEventManager = PluginDataEventManager()
-        pluginDataEventManager.delegate = PluginsManager.sharedInstance
-        PluginsManager.sharedInstance.pluginsDataController.delegate = pluginDataEventManager
+        pluginDataEventManager.delegate = pluginsManager
+        pluginsManager.pluginsDataController.delegate = pluginDataEventManager
     }
     
     override func tearDown() {
-        PluginsManager.sharedInstance.pluginsDataController.delegate = PluginsManager.sharedInstance
+        pluginsManager.pluginsDataController.delegate = pluginsManager
         pluginDataEventManager.delegate = nil
         pluginDataEventManager = nil
         super.tearDown()

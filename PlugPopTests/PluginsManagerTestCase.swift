@@ -58,7 +58,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
     func newPluginWithConfirmation() -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
-        PluginsManager.sharedInstance.newPlugin { (newPlugin, error) -> Void in
+        pluginsManager.newPlugin { (newPlugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
             createdPlugin = newPlugin
             createdPluginExpectation.fulfill()
@@ -70,7 +70,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
     func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
-        PluginsManager.sharedInstance.duplicate(plugin) { (newPlugin, error) -> Void in
+        pluginsManager.duplicate(plugin) { (newPlugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
             createdPlugin = newPlugin
             createdPluginExpectation.fulfill()
@@ -87,7 +87,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         XCTAssertTrue(!beforeExists, "The item should exist")
         
         // Trash the plugin
-        PluginsManager.sharedInstance.moveToTrash(plugin)
+        pluginsManager.moveToTrash(plugin)
         
         // Confirm that the directory does exist in the trash now
         var isDir: ObjCBool = false

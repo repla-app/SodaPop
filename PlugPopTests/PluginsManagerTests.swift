@@ -57,7 +57,7 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let pluginsManager = PluginsManager(paths: testPluginsPaths,
-           duplicatePluginDestinationDirectoryURL: trashDirectoryPath)
+           duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
         PluginsManager.setOverrideSharedInstance(pluginsManager)
     }
     

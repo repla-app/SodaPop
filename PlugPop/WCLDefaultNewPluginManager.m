@@ -47,7 +47,7 @@
     }
 
     if (!plugin && self.dataSource) {
-        plugin = [self.dataSource defaultNewPluginManager:self pluginForName:kInitialDefaultNewPluginName];
+        plugin = [self.dataSource defaultNewPluginManager:self pluginWithName:kInitialDefaultNewPluginName];
     }
     
     _defaultNewPlugin = plugin;

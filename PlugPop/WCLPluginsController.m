@@ -37,7 +37,7 @@
     }
 }
 
-- (Plugin *)pluginForName:(NSString *)name
+- (Plugin *)pluginWithName:(NSString *)name
 {
     id object = [self.multiCollectionController objectForKey:name];
     if ([object isKindOfClass:[Plugin class]]) {

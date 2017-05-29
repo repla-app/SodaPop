@@ -23,7 +23,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         URL(fileURLWithPath: self.cachesPath)
     }()
     lazy var defaults: DefaultsType = {
-        let userDefaults = UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
+        UserDefaults(suiteName: testMockUserDefaultsSuiteName)
     }()
 
     override func setUp() {
@@ -47,7 +47,6 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
     override func tearDown() {
         plugin.isDefaultNewPlugin = false
         plugin = nil
-        PluginsManager.setOverrideSharedInstance(nil)
         super.tearDown()
     }
 

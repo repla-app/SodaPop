@@ -14,12 +14,15 @@ import XCTest
 class PluginsManagerTestCase: TemporaryPluginsTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
-    lazy var cachesPath = {
+    lazy var cachesPath: String = {
         let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
         return cachesDirectory.appendingPathComponent(String(describing: self))
     }()
-    lazy var cachesURL = {
-        URL(fileURLWithPath: self.cachesPath())
+    lazy var cachesURL: URL = {
+        URL(fileURLWithPath: self.cachesPath)
+    }()
+    lazy var defaults: DefaultsType = {
+        let userDefaults = UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
 
     override func setUp() {
@@ -29,8 +32,8 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         pluginsManager = PluginsManager(paths: [pluginsDirectoryPath],
                                         duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
                                         copyTempDirectoryURL: cachesURL,
-                                        defaults: DefaultsType,
-                                        builtInPluginsPath: String?,
+                                        defaults: defaults,
+                                        builtInPluginsPath: pluginsDirectoryPath,
                                         applicationSupportPluginsPath: nil)
 
         // Set the plugin

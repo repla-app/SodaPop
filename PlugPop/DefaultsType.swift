@@ -9,5 +9,6 @@
 @objc public protocol DefaultsType {
     func string(forKey defaultName: String) -> String?
     func removeObject(forKey defaultName: String)
+    @objc(setObject:forKey:)
     func set(_ value: Any?, forKey defaultName: String)
 }

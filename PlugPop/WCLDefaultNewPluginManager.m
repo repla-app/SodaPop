@@ -75,8 +75,8 @@
     _defaultNewPlugin.defaultNewPlugin = YES;
     
     if (_defaultNewPlugin) {
-        [self.defaults set:[(Plugin *)_defaultNewPlugin identifier]
-                    forKey:kDefaultNewPluginIdentifierKey];
+        [self.defaults setObject:[(Plugin *)_defaultNewPlugin identifier]
+                          forKey:kDefaultNewPluginIdentifierKey];
     }
 }
 

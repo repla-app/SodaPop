@@ -12,6 +12,8 @@ import XCTest
 @testable import PlugPop
 import PotionTaster
 
+extension UserDefaults: DefaultsType { }
+
 class PluginsManagerTestCase: TemporaryPluginsTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
@@ -23,7 +25,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         URL(fileURLWithPath: self.cachesPath)
     }()
     lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)
+        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
 
     override func setUp() {

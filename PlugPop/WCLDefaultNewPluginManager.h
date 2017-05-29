@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol WCLDefaultNewPluginManagerDataSource
-- (nullable Plugin *)defaultNewPluginManager:(WCLDefaultNewPluginManager *)defaultNewPluginManager pluginForIdentifier:(NSString *)identifier;
+- (nullable Plugin *)defaultNewPluginManager:(WCLDefaultNewPluginManager *)defaultNewPluginManager pluginWithIdentifier:(NSString *)identifier;
 - (nullable Plugin *)defaultNewPluginManager:(WCLDefaultNewPluginManager *)defaultNewPluginManager pluginWithName:(NSString *)name;
 @end
 NS_ASSUME_NONNULL_END

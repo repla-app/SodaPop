@@ -40,7 +40,7 @@
     WCLPlugin *plugin;
     
     if (identifier && self.dataSource) {
-        plugin = [self.dataSource defaultNewPluginManager:self pluginForIdentifier:identifier];
+        plugin = [self.dataSource defaultNewPluginManager:self pluginWithIdentifier:identifier];
         if (!plugin) {
             [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
         }

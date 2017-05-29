@@ -46,7 +46,7 @@
     return nil;
 }
 
-- (Plugin *)pluginForIdentifier:(NSString *)identifier
+- (Plugin *)pluginWithIdentifier:(NSString *)identifier
 {
     // TODO: This should obviously be optimized by creating a key value
     // collection to retrieve `Plugin` by key.

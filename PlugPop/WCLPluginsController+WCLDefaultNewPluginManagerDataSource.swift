@@ -11,7 +11,7 @@ extension WCLPluginsController: WCLDefaultNewPluginManagerDataSource {
         return plugin(withName: name)
     }
 
-    public func defaultNewPluginManager(_ defaultNewPluginManager: WCLDefaultNewPluginManager, pluginForIdentifier identifier: String) -> Plugin? {
+    public func defaultNewPluginManager(_ defaultNewPluginManager: WCLDefaultNewPluginManager, pluginWithIdentifier identifier: String) -> Plugin? {
         return plugin(withIdentifier: identifier)
     }
 }

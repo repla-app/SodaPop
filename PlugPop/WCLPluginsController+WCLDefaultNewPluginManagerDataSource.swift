@@ -8,7 +8,7 @@
 
 extension WCLPluginsController: WCLDefaultNewPluginManagerDataSource {
     public func defaultNewPluginManager(_ defaultNewPluginManager: WCLDefaultNewPluginManager, pluginForName name: String) -> Plugin? {
-        return plugin(forName: name)
+        return plugin(withName: name)
     }
 
     public func defaultNewPluginManager(_ defaultNewPluginManager: WCLDefaultNewPluginManager, pluginForIdentifier identifier: String) -> Plugin? {

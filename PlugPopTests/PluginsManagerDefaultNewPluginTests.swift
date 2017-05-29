@@ -30,7 +30,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         UserDefaultsManager.standardUserDefaults().set(UUIDString, forKey: defaultNewPluginIdentifierKey)
 
         let defaultNewPlugin = PluginsManager.sharedInstance.defaultNewPlugin
-        let initialDefaultNewPlugin: Plugin! = PluginsManager.sharedInstance.plugin(forName: initialDefaultNewPluginName)
+        let initialDefaultNewPlugin: Plugin! = PluginsManager.sharedInstance.plugin(withName: initialDefaultNewPluginName)
         XCTAssertEqual(defaultNewPlugin, initialDefaultNewPlugin, "The plugins should be equal")
         
         let identifier = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
@@ -55,7 +55,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         moveToTrashAndCleanUpWithConfirmation(createdPlugin)
         
         let defaultNewPluginTwo = PluginsManager.sharedInstance.defaultNewPlugin
-        let initialDefaultNewPlugin: Plugin! = PluginsManager.sharedInstance.plugin(forName: initialDefaultNewPluginName)
+        let initialDefaultNewPlugin: Plugin! = PluginsManager.sharedInstance.plugin(withName: initialDefaultNewPluginName)
         XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin, "The plugins should be equal")
 
         let defaultNewPluginIdentifierTwo = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)

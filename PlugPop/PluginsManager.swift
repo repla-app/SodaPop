@@ -39,8 +39,8 @@ class PluginsManager: PluginsDataControllerDelegate {
     
     // MARK: Plugins
 
-    func plugin(forName name: String) -> Plugin? {
-        return pluginsController.plugin(forName: name)
+    func plugin(withName name: String) -> Plugin? {
+        return pluginsController.plugin(withName: name)
     }
     
     func plugin(forIdentifier identifier: String) -> Plugin? {
@@ -114,12 +114,12 @@ class PluginsManager: PluginsDataControllerDelegate {
     // MARK: Shared Resources
 
     func sharedResourcesPath() -> String? {
-        let plugin = self.plugin(forName: sharedResourcesPluginName)
+        let plugin = self.plugin(withName: sharedResourcesPluginName)
         return plugin?.resourcePath
     }
 
     func sharedResourcesURL() -> URL? {
-        let plugin = self.plugin(forName: sharedResourcesPluginName)
+        let plugin = self.plugin(withName: sharedResourcesPluginName)
         return plugin?.resourceURL as URL?
     }
 }

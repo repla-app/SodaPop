@@ -38,7 +38,7 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
                                         applicationSupportPluginsPath: nil)
 
         // Set the plugin
-        plugin = pluginsManager.plugin(forName: PotionTaster.testPluginName)
+        plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)
         plugin.editable = true
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
 

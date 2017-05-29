@@ -47,8 +47,8 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testRenamePlugin() {
         let newPluginName = plugin.identifier
         plugin.name = newPluginName
-        XCTAssertNotNil(PluginsManager.sharedInstance.plugin(forName: newPluginName), "The plugin should not be nil")
-        XCTAssertNil(PluginsManager.sharedInstance.plugin(forName: testPluginName), "The plugin should be nil")
+        XCTAssertNotNil(PluginsManager.sharedInstance.plugin(withName: newPluginName), "The plugin should not be nil")
+        XCTAssertNil(PluginsManager.sharedInstance.plugin(withName: testPluginName), "The plugin should be nil")
     }
 }
 

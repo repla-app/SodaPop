@@ -225,9 +225,9 @@ class DuplicatePluginNameValidationTests: XCTestCase {
     class PluginNameMockPluginsManager: PluginsManager {
         var pluginNames = [testPluginName]
         
-        override func plugin(forName name: String) -> Plugin? {
+        override func plugin(withName name: String) -> Plugin? {
             if pluginNames.contains(name) {
-                let plugin = super.plugin(forName: testPluginName)
+                let plugin = super.plugin(withName: testPluginName)
                 assert(plugin != nil, "The plugin should not be nil")
                 return plugin
             }
@@ -235,7 +235,7 @@ class DuplicatePluginNameValidationTests: XCTestCase {
         }
 
         func pluginWithTestPluginNameTwo() -> Plugin {
-            return super.plugin(forName: testPluginNameTwo)!
+            return super.plugin(withName: testPluginNameTwo)!
         }
     }
     

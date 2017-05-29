@@ -43,8 +43,8 @@ class PluginsManager: PluginsDataControllerDelegate {
         return pluginsController.plugin(withName: name)
     }
     
-    func plugin(forIdentifier identifier: String) -> Plugin? {
-        return pluginsController.plugin(forIdentifier: identifier)
+    func plugin(withIdentifier identifier: String) -> Plugin? {
+        return pluginsController.plugin(withIdentifier: identifier)
     }
 
     // MARK: Convenience

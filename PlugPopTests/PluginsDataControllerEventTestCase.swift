@@ -20,9 +20,8 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
         self.pluginWasAddedHandlers = Array<(_ plugin: Plugin) -> Void>()
         self.pluginWasRemovedHandlers = Array<(_ plugin: Plugin) -> Void>()
     }
-    
-    
-    // MARK: PluginsDataControllerDelegate
+
+    // MARK: `PluginsDataControllerDelegate`
     
     func pluginsDataController(_ pluginsDataController: PluginsDataController, didAddPlugin plugin: Plugin) {
         delegate?.pluginsDataController(pluginsDataController, didAddPlugin: plugin)

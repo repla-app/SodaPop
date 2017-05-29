@@ -14,7 +14,7 @@ import XCTest
 class PluginsManagerTests: PluginsManagerTestCase {
 
     func testTestPlugins() {
-        let plugins = pluginsManager.plugins() as! [Plugin]
+        let plugins = pluginsManager.plugins
         for plugin in plugins {
             XCTAssertEqual(plugin.pluginType, Plugin.PluginType.other, "The plugin type should be built-in")
             XCTAssertEqual(plugin.type, Plugin.PluginType.other.name(), "The type should equal the name")

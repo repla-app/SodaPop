@@ -32,7 +32,7 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         
         // Create the plugins directory
         pluginsDirectoryURL = temporaryDirectoryURL
-            .appendingPathComponent(pluginsDirectoryPathComponent)
+            .appendingPathComponent(testPluginsDirectoryPathComponent)
 
         do {
             try FileManager.default
@@ -44,8 +44,8 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
        
         // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginName)
-        let filename = PotionTaster.testPluginName.appendingPathExtension(PotionTaster.pluginFileExtension)!
+        let bundleResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginName)!
+        let filename = PotionTaster.testPluginName.appendingPathExtension(PotionTaster.testPluginFileExtension)!
         
         pluginURL = pluginsDirectoryURL.appendingPathComponent(filename)
         do {
@@ -62,7 +62,7 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         
         // Remove the plugins directory (containing the plugin)
         do {
-            try removeTemporaryItem(atPathComponent: pluginsDirectoryPathComponent)
+            try removeTemporaryItem(atPathComponent: testPluginsDirectoryPathComponent)
         } catch let error as NSError {
             XCTAssertTrue(false, "Removing the plugins directory should have succeeded \(error)")
         }

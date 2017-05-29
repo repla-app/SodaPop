@@ -15,7 +15,9 @@ class PluginsManager: PluginsDataControllerDelegate {
     let pluginsDataController: PluginsDataController
     let pluginsController: WCLPluginsController
     let defaultNewPluginManager: WCLDefaultNewPluginManager
-    
+    var plugins: [Plugin] {
+        return pluginsController.plugins()
+    }
     // MARK: Init
     
     init(paths: [String],

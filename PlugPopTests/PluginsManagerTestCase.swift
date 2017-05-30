@@ -17,6 +17,12 @@ extension UserDefaults: DefaultsType { }
 class PluginsManagerTestCase: TemporaryPluginsTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
+    var pluginsDirectoryPaths: [String] {
+        return [pluginsDirectoryPath]
+    }
+    var builtInPluginsPath: String {
+        return pluginsDirectoryPath
+    }
     lazy var cachesPath: String = {
         let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
         return cachesDirectory.appendingPathComponent(String(describing: self))
@@ -32,11 +38,11 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase {
         super.setUp()
 
         // Create the plugin manager
-        pluginsManager = PluginsManager(paths: [pluginsDirectoryPath],
+        pluginsManager = PluginsManager(paths: pluginsDirectoryPaths,
                                         duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
                                         copyTempDirectoryURL: cachesURL,
                                         defaults: defaults,
-                                        builtInPluginsPath: pluginsDirectoryPath,
+                                        builtInPluginsPath: builtInPluginsPath,
                                         applicationSupportPluginsPath: nil)
 
         // Set the plugin

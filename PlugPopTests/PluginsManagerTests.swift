@@ -51,48 +51,29 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
         XCTAssertNil(pluginsManager.plugin(withName: PotionTaster.testPluginName), "The plugin should be nil")
     }
-}
 
-class PluginsManagerBuiltInPluginsTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        let pluginsManager = PluginsManager(paths: testPluginsPaths,
-                                            duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
-        PluginsManager.setOverrideSharedInstance(pluginsManager)
-    }
-    
-    override func tearDown() {
-        PluginsManager.setOverrideSharedInstance(nil)
-        super.tearDown()
-    }
-    
     func testBuiltInPlugins() {
-        let plugins = pluginsManager.plugins as! [Plugin]
+        let plugins = pluginsManager.plugins
 
         for plugin in plugins {
             XCTAssertEqual(plugin.pluginType, PluginType.builtIn, "The plugin type should be built-in")
-            CTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
+            XCTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
         }
 
         let count = pluginsManager.plugins.count
         var pluginsPathsCount = 0
 
-        for pluginsPath in testPluginsPaths {
-
-            do {
-                let contents = try FileManager.default.contentsOfDirectory(atPath: pluginsPath)
-                let paths = contents
-                let pluginFileExtensionMatch = ".\(pluginFileExtension)"
-                let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
-                let pluginPaths = paths.filter {
-                    pluginFileExtensionPredicate.evaluate(with: $0)
-
-                }
-                pluginsPathsCount += pluginPaths.count
-            } catch {
-                XCTAssertTrue(false, "Getting the contents should succeed")
+        do {
+            let contents = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
+            let paths = contents
+            let pluginFileExtensionMatch = ".\(PotionTaster.testPluginFileExtension)"
+            let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
+            let pluginPaths = paths.filter {
+                pluginFileExtensionPredicate.evaluate(with: $0)
             }
+            pluginsPathsCount += pluginPaths.count
+        } catch {
+            XCTAssertTrue(false, "Getting the contents should succeed")
         }
         XCTAssert(count == pluginsPathsCount, "The counts should be equal")
     }

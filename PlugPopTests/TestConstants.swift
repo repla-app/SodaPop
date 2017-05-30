@@ -12,8 +12,6 @@ let defaultTimeout = 20.0
 
 // MARK: Directories
 
-let testPluginsPath = Bundle.main.builtInPlugInsPath!
-let testPluginsPaths = [testPluginsPath]
 let testTrashDirectoryPath = NSSearchPathForDirectoriesInDomains(.trashDirectory, .userDomainMask, true)[0]
 let testPluginsDirectoryPathComponent = "PlugIns"
 

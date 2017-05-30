@@ -49,7 +49,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         let newPluginName = plugin.identifier
         plugin.name = newPluginName
         XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
-        XCTAssertNil(pluginsManager.plugin(withName: testPluginName), "The plugin should be nil")
+        XCTAssertNil(pluginsManager.plugin(withName: PotionTaster.testPluginName), "The plugin should be nil")
     }
 }
 

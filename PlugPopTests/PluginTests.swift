@@ -54,10 +54,10 @@ class PluginTests: PluginsManagerTestCase {
     }
 
     func testNameValidation() {
-        plugin.name = testPluginName
+        plugin.name = PotionTaster.testPluginName
         
         // Test that the name is valid for this plugin
-        var name: AnyObject? = testPluginName as AnyObject?
+        var name: AnyObject? = PotionTaster.testPluginName as AnyObject?
         do {
             try plugin.validateName(&name)
         } catch {
@@ -79,7 +79,7 @@ class PluginTests: PluginsManagerTestCase {
 
         // Test that the name is not valid for another plugin
         error = nil
-        name = testPluginName as AnyObject?
+        name = PotionTaster.testPluginName as AnyObject?
         do {
             try createdPlugin.validateName(&name)
         } catch let nameError as NSError {
@@ -224,11 +224,11 @@ class DuplicatePluginNameValidationTests: XCTestCase {
     var plugin: Plugin!
     
     class PluginNameMockPluginsManager: PluginsManager {
-        var pluginNames = [testPluginName]
+        var pluginNames = [PotionTaster.testPluginName]
         
         override func plugin(withName name: String) -> Plugin? {
             if pluginNames.contains(name) {
-                let plugin = super.plugin(withName: testPluginName)
+                let plugin = super.plugin(withName: PotionTaster.testPluginName)
                 assert(plugin != nil, "The plugin should not be nil")
                 return plugin
             }

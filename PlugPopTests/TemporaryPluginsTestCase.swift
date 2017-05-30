@@ -62,7 +62,7 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         
         // Remove the plugins directory (containing the plugin)
         do {
-            try removeTemporaryItem(atPathComponent: testPluginsDirectoryPathComponent)
+            try removeTemporaryItem(withPathComponent: testPluginsDirectoryPathComponent)
         } catch let error as NSError {
             XCTAssertTrue(false, "Removing the plugins directory should have succeeded \(error)")
         }

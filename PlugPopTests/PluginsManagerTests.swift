@@ -16,8 +16,8 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testTestPlugins() {
         let plugins = pluginsManager.plugins
         for plugin in plugins {
-            XCTAssertEqual(plugin.pluginType, Plugin.PluginType.other, "The plugin type should be built-in")
-            XCTAssertEqual(plugin.type, Plugin.PluginType.other.name(), "The type should equal the name")
+            XCTAssertEqual(plugin.pluginType, PluginType.other, "The plugin type should be built-in")
+            XCTAssertEqual(plugin.type, PluginType.other.name(), "The type should equal the name")
         }
     }
     
@@ -70,8 +70,8 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
         let plugins = pluginsManager.plugins() as! [Plugin]
 
         for plugin in plugins {
-            XCTAssertEqual(plugin.pluginType, Plugin.PluginType.builtIn, "The plugin type should be built-in")
-            XCTAssertEqual(plugin.type, Plugin.PluginType.builtIn.name(), "The type should equal the name")
+            XCTAssertEqual(plugin.pluginType, PluginType.builtIn, "The plugin type should be built-in")
+            XCTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
         }
 
         let count = pluginsManager.plugins().count

@@ -18,7 +18,7 @@ class PluginInitializationTests: WCLTestPluginManagerTestCase {
             return
         }
         
-        XCTAssertEqual(helloWorldPlugin.pluginType, Plugin.PluginType.other)
+        XCTAssertEqual(helloWorldPlugin.pluginType, PluginType.other)
         XCTAssertEqual(helloWorldPlugin.identifier, "9DF1F4D6-16BA-4D18-88D2-155CF262035F")
         XCTAssertEqual(helloWorldPlugin.name, "HelloWorld")
         XCTAssertEqual(helloWorldPlugin.command, "hello_world.rb")
@@ -33,7 +33,7 @@ class PluginInitializationTests: WCLTestPluginManagerTestCase {
             return
         }
         
-        XCTAssertEqual(logPlugin.pluginType, Plugin.PluginType.other)
+        XCTAssertEqual(logPlugin.pluginType, PluginType.other)
         XCTAssertEqual(logPlugin.identifier, "7A95638E-798D-437C-9404-08E7DC68655B")
         XCTAssertEqual(logPlugin.name, "TestLog")
         XCTAssertEqual(logPlugin.command, "test_log.rb")

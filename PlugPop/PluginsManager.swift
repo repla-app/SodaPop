@@ -18,6 +18,16 @@ class PluginsManager: PluginsDataControllerDelegate {
     var plugins: [Plugin] {
         return pluginsController.plugins()
     }
+    var defaultNewPlugin: Plugin? {
+        set {
+            defaultNewPluginManager.defaultNewPlugin = newValue
+        }
+        get {
+            return defaultNewPluginManager.defaultNewPlugin as? Plugin
+        }
+    }
+
+
     // MARK: Init
     
     init(paths: [String],

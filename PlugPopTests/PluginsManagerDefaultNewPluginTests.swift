@@ -14,16 +14,6 @@ import PotionTaster
 
 class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
-    override func setUp() {
-        mockUserDefaultsSetUp()
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        mockUserDefaultsTearDown()
-        super.tearDown()
-    }
-    
     func testInvalidDefaultNewPluginIdentifier() {
         pluginsManager.defaultNewPlugin = nil
         let UUID = Foundation.UUID()

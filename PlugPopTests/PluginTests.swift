@@ -9,6 +9,7 @@
 import XCTest
 
 @testable import PlugPop
+import PotionTaster
 
 class PluginTests: PluginsManagerTestCase {
 
@@ -31,7 +32,7 @@ class PluginTests: PluginsManagerTestCase {
         let contentsTwo = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
 
-        plugin.command = testPluginCommandTwo
+        plugin.command = PotionTaster.testPluginCommandTwo
         let contentsThree = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
 

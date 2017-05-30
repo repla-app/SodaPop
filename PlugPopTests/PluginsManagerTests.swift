@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PotionTaster
 
 class PluginsManagerTests: PluginsManagerTestCase {
 
@@ -29,7 +30,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertTrue(plugins.contains(newPlugin), "The plugins should contain the plugin")
 
         // Edit the new plugin
-        newPlugin.command = testPluginCommandTwo
+        newPlugin.command = PotionTaster.testPluginCommandTwo
 
         // Create another plugin from this plugin
         let newPluginTwo = duplicateWithConfirmation(newPlugin)

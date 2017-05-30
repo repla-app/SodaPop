@@ -24,8 +24,8 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testDuplicateAndTrashPlugin() {
         let newPlugin = newPluginWithConfirmation()
         
-        XCTAssertEqual(pluginsManager.plugins().count, 2, "The plugins count should be two")
-        let plugins = pluginsManager.plugins() as NSArray
+        XCTAssertEqual(pluginsManager.plugins.count, 2, "The plugins count should be two")
+        let plugins = pluginsManager.plugins as NSArray
         XCTAssertTrue(plugins.contains(newPlugin), "The plugins should contain the plugin")
 
         // Edit the new plugin
@@ -67,14 +67,14 @@ class PluginsManagerBuiltInPluginsTests: XCTestCase {
     }
     
     func testBuiltInPlugins() {
-        let plugins = pluginsManager.plugins() as! [Plugin]
+        let plugins = pluginsManager.plugins as! [Plugin]
 
         for plugin in plugins {
             XCTAssertEqual(plugin.pluginType, PluginType.builtIn, "The plugin type should be built-in")
-            XCTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
+            CTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
         }
 
-        let count = pluginsManager.plugins().count
+        let count = pluginsManager.plugins.count
         var pluginsPathsCount = 0
 
         for pluginsPath in testPluginsPaths {

@@ -34,7 +34,7 @@ class PluginsManager: PluginsDataControllerDelegate {
                                                            defaultNewPluginManager: defaultNewPluginManager,
                                                            builtInPluginsPath: builtInPluginsPath,
                                                            applicationSupportPluginsPath: applicationSupportPluginsPath)
-        self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins())
+        self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins)
         pluginsDataController.delegate = self
         defaultNewPluginManager.dataSource = self.pluginsController
     }

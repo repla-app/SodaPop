@@ -41,6 +41,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     let pluginMaker: PluginMaker
     let duplicatePluginDestinationDirectoryURL: URL
     let copyTempDirectoryURL: URL
+    var plugins: [Plugin] {
+        return Array(self.pluginPathToPluginDictionary.values)
+    }
     
     init(paths: [String],
          duplicatePluginDestinationDirectoryURL: URL,
@@ -70,12 +73,6 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         }
     }
 
-    // MARK: Plugins
-
-    func plugins() -> [Plugin] {
-        return Array(pluginPathToPluginDictionary.values)
-    }
-    
     // MARK: PluginsDirectoryManagerDelegate
 
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,

@@ -43,7 +43,7 @@ class PluginsDataControllerClassTests: XCTestCase {
 
     func testExistingPlugins() {
         let pluginsDataController = PluginsDataController(paths: testPluginsPaths, duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
-        let plugins = pluginsDataController.plugins()
+        let plugins = pluginsDataController.plugins
         
         var pluginPaths = [String]()
         for pluginsPath in testPluginsPaths {
@@ -255,7 +255,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     }
     
     func testDuplicateAndTrashPlugin() {
-        XCTAssertEqual(pluginsManager.pluginsDataController.plugins().count, 1, "The plugins count should be one")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, 1, "The plugins count should be one")
         
         var newPlugin: Plugin!
         
@@ -273,8 +273,8 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
 
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
-        XCTAssertEqual(pluginsManager.pluginsDataController.plugins().count, 2, "The plugins count should be two")
-        XCTAssertTrue(pluginsManager.pluginsDataController.plugins().contains(newPlugin!), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, 2, "The plugins count should be two")
+        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin!), "The plugins should contain the plugin")
         
         // Trash the duplicated plugin
         let removeExpectation = expectation(description: "Plugin was removed")

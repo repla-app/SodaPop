@@ -18,7 +18,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         pluginsManager.defaultNewPlugin = nil
         let UUID = Foundation.UUID()
         let UUIDString = UUID.uuidString
-        UserDefaultsManager.standardUserDefaults().set(UUIDString, forKey: defaultNewPluginIdentifierKey)
+        defaults.set(UUIDString, forKey: defaultNewPluginIdentifierKey)
 
         let defaultNewPlugin = pluginsManager.defaultNewPlugin
         let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)

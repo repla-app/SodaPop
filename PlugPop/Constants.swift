@@ -8,5 +8,6 @@
 
 public let pluginNameKey = kPluginNameKey
 
+let defaultNewPluginIdentifierKey = kDefaultNewPluginIdentifierKey
 let pluginFileExtension = "wcplugin"
 let sharedResourcesPluginName = "Shared Resources"

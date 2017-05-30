@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WCLPlugin.h"
 
+#define kDefaultNewPluginIdentifierKey @"WCLDefaultNewPluginIdentifier"
+
 @class WCLDefaultNewPluginManager;
 @class Plugin;
 

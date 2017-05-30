@@ -9,7 +9,6 @@
 #import "WCLDefaultNewPluginManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-#define kDefaultNewPluginIdentifierKey @"WCLDefaultNewPluginIdentifier"
 #define kInitialDefaultNewPluginName @"HTML"
 
 @interface WCLDefaultNewPluginManager ()

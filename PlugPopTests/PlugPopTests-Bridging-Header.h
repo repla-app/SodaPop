@@ -3,3 +3,4 @@
 //
 
 #import "WCLTestPluginManagerTestCase.h"
+#import "WCLKeyValueObservingTestsHelper.h"

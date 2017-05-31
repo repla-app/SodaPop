@@ -24,7 +24,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)
         XCTAssertEqual(defaultNewPlugin, initialDefaultNewPlugin, "The plugins should be equal")
         
-        let identifier = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
+        let identifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(identifier, "The default new WCLPlugin identifier should be nil.")
     }
     
@@ -36,7 +36,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         XCTAssertTrue(createdPlugin.isDefaultNewPlugin, "The WCLPlugin should be the default new WCLPlugin.")
         
         // Assert the default new plugin identifier in NSUserDefaults
-        let defaultNewPluginIdentifier: String! = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
+        let defaultNewPluginIdentifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertEqual(createdPlugin.identifier, defaultNewPluginIdentifier, "The default WCLPlugin's identifier should equal the WCLPlugin's identifier.")
         
         // Assert the default new plugin is returned from the WCLPluginManager
@@ -49,7 +49,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)
         XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin, "The plugins should be equal")
 
-        let defaultNewPluginIdentifierTwo = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
+        let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(defaultNewPluginIdentifierTwo, "The default new WCLPlugin identifier should be nil.")
     }
     
@@ -59,7 +59,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         pluginsManager.defaultNewPlugin = createdPlugin
         
-        createdPlugin.name = testPluginNameTwo
+        createdPlugin.name = PotionTaster.testPluginNameTwo
         createdPlugin.command = PotionTaster.testPluginCommandTwo
         createdPlugin.suffixes = testPluginSuffixesTwo
         
@@ -83,12 +83,12 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let createdPlugin = newPluginWithConfirmation()
         pluginsManager.defaultNewPlugin = createdPlugin
         
-        let defaultNewPluginIdentifier: String? = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
+        let defaultNewPluginIdentifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNotNil(defaultNewPluginIdentifier, "The identifier should not be nil")
 
         pluginsManager.defaultNewPlugin = nil
 
-        let defaultNewPluginIdentifierTwo: String? = UserDefaultsManager.standardUserDefaults().string(forKey: defaultNewPluginIdentifierKey)
+        let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(defaultNewPluginIdentifierTwo, "The identifier should be nil")
     }
 
@@ -98,10 +98,9 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         var isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         WCLKeyValueObservingTestsHelper.observe(createdPlugin,
-            forKeyPath: testPluginDefaultNewPluginKeyPath,
-            options: NSKeyValueObservingOptions.new )
-        {
-            (change: [AnyHashable: Any]?) -> Void in
+                                                forKeyPath: testPluginDefaultNewPluginKeyPath,
+                                                options: NSKeyValueObservingOptions.new)
+        { (change: [AnyHashable: Any]?) -> Void in
             isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPlugin
@@ -114,19 +113,17 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         XCTAssertFalse(createdPluginTwo.isDefaultNewPlugin, "The WCLPlugin should not be the default new WCLPlugin.")
         
         WCLKeyValueObservingTestsHelper.observe(createdPlugin,
-            forKeyPath: testPluginDefaultNewPluginKeyPath,
-            options: NSKeyValueObservingOptions.new )
-            {
-                (change: [AnyHashable: Any]?) -> Void in
+                                                forKeyPath: testPluginDefaultNewPluginKeyPath,
+                                                options: NSKeyValueObservingOptions.new)
+        { (change: [AnyHashable: Any]?) -> Void in
                 isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         var isDefaultNewPluginTwo = createdPlugin.isDefaultNewPlugin
         WCLKeyValueObservingTestsHelper.observe(createdPluginTwo,
-            forKeyPath: testPluginDefaultNewPluginKeyPath,
-            options: NSKeyValueObservingOptions.new )
-            {
-                (change: [AnyHashable: Any]?) -> Void in
-                isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
+                                                forKeyPath: testPluginDefaultNewPluginKeyPath,
+                                                options: NSKeyValueObservingOptions.new)
+        { (change: [AnyHashable: Any]?) -> Void in
+            isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPluginTwo
         XCTAssertTrue(isDefaultNewPluginTwo, "The key-value observing change notification for the WCLPlugin's default new WCLPlugin property should have occurred.")
@@ -136,11 +133,10 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // Test that key-value observing notifications occur when the default new plugin is set to nil
         WCLKeyValueObservingTestsHelper.observe(createdPluginTwo,
-            forKeyPath: testPluginDefaultNewPluginKeyPath,
-            options: NSKeyValueObservingOptions.new )
-            {
-                (change: [AnyHashable: Any]?) -> Void in
-                isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
+                                                forKeyPath: testPluginDefaultNewPluginKeyPath,
+                                                options: NSKeyValueObservingOptions.new)
+        { (change: [AnyHashable: Any]?) -> Void in
+            isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = nil
         XCTAssertFalse(isDefaultNewPluginTwo, "The key-value observing change notification for the second WCLPlugin's default new WCLPlugin property should have occurred.")

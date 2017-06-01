@@ -10,8 +10,9 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import XCTestTemp
 
-class CopyDirectoryControllerTests: TemporaryCachesTestCase {
+class CopyDirectoryControllerTests: TemporaryDirectoryTestCase, CachesTestCase {
     var copyDirectoryController: CopyDirectoryController!
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"

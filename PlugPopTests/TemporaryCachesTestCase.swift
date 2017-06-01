@@ -9,12 +9,18 @@
 import Foundation
 import XCTestTemp
 
-class TemporaryCachesTestCase: TemporaryDirectoryTestCase {
-    lazy var cachesPath: String = {
+
+protocol CachesTestCase {
+    var cachesPath: String { get }
+    var cachesURL: URL { get }
+}
+
+extension CachesTestCase {
+    var cachesPath: String {
         let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
         return cachesDirectory.appendingPathComponent(String(describing: self))
-    }()
-    lazy var cachesURL: URL = {
+    }
+    var cachesURL: URL {
         URL(fileURLWithPath: self.cachesPath)
-    }()
+    }
 }

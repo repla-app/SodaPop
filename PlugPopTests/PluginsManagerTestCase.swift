@@ -14,14 +14,14 @@ import PotionTaster
 
 extension UserDefaults: DefaultsType { }
 
-class PluginsManagerTestCase: TemporaryCachesTestCase {
+class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
     var pluginsDirectoryPaths: [String] {
         return [builtInPluginsPath]
     }
     var builtInPluginsPath: String {
-        return pluginsDirectoryPath
+        return PotionTaster.pluginsDirectoryPath
     }
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
@@ -52,7 +52,7 @@ class PluginsManagerTestCase: TemporaryCachesTestCase {
     }
 
     var duplicatePluginDestinationDirectoryURL: URL {
-        return pluginsDirectoryURL as URL
+        return pluginsDirectoryURL
     }
     
     func newPluginWithConfirmation() -> Plugin {

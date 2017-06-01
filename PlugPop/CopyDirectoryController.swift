@@ -12,15 +12,15 @@ import Cocoa
 
 class CopyDirectoryController {
     let copyTempDirectoryURL: URL
-    var tempDirectoryName: String {
-        return copyTempDirectoryURL.lastPathComponent
-    }
+    var tempDirectoryName: String
     var trashDirectoryName: String {
         return tempDirectoryName + " Recovered"
     }
     
-    init(tempDirectoryURL: URL) {
-        self.copyTempDirectoryURL = tempDirectoryURL
+    // Creates a directory with `tempDirectoryName` in `tempDirectoryURL`
+    init(tempDirectoryURL: URL, tempDirectoryName: String) {
+        self.tempDirectoryName = tempDirectoryName
+        self.copyTempDirectoryURL = tempDirectoryURL.appendingPathComponent(tempDirectoryName)
         do {
             try self.cleanUp()
         } catch let error as NSError {

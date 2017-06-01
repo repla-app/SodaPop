@@ -23,7 +23,6 @@ extension TemporaryPluginsTestCase {
     }
 }
 
-
 class MultiCollectionControllerInitTests: PluginsManagerTestCase {
 
     func testInitPlugins() {

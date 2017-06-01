@@ -46,6 +46,7 @@
 		4518471F1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */; };
 		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
 		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
+		452EE2011EDFB296009701DF /* TemporaryCachesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452EE2001EDFB296009701DF /* TemporaryCachesTestCase.swift */; };
 		453126931EC93BEA00248FA9 /* DefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453126901EC93BEA00248FA9 /* DefaultsType.swift */; };
 		453126941EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		453126951EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */; };
@@ -134,6 +135,7 @@
 		4518471D1EBE851D0004FCAE /* WCLPluginsController+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WCLPluginsController+UniquePluginName.m"; sourceTree = "<group>"; };
 		451847211EBE8AC60004FCAE /* BubbleUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BubbleUp.framework; path = Carthage/Build/Mac/BubbleUp.framework; sourceTree = "<group>"; };
 		451847231EBE8AC80004FCAE /* StringPlusPath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StringPlusPath.framework; path = Carthage/Build/Mac/StringPlusPath.framework; sourceTree = "<group>"; };
+		452EE2001EDFB296009701DF /* TemporaryCachesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryCachesTestCase.swift; sourceTree = "<group>"; };
 		453126901EC93BEA00248FA9 /* DefaultsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsType.swift; sourceTree = "<group>"; };
 		453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLDefaultNewPluginManager.m; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */,
 				450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */,
 				450CA0A41EBACDF000D08D2A /* PluginTests.swift */,
+				452EE2001EDFB296009701DF /* TemporaryCachesTestCase.swift */,
 				450CA0A51EBACDF000D08D2A /* TemporaryPluginsTestCase.swift */,
 				450CA0A81EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.h */,
 				450CA0A91EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m */,
@@ -443,6 +446,7 @@
 				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
 				45E3B2851ED2361400EF9344 /* WCLTestPluginsManagerPluginTests.m in Sources */,
 				450CA0BF1EBACDF000D08D2A /* WCLKeyValueObservingTestsHelper.m in Sources */,
+				452EE2011EDFB296009701DF /* TemporaryCachesTestCase.swift in Sources */,
 				450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
 				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,

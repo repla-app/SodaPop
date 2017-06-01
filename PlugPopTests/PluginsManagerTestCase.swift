@@ -14,22 +14,15 @@ import PotionTaster
 
 extension UserDefaults: DefaultsType { }
 
-class PluginsManagerTestCase: TemporaryPluginsTestCase {
+class PluginsManagerTestCase: TemporaryCachesTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
     var pluginsDirectoryPaths: [String] {
-        return [pluginsDirectoryPath]
+        return [builtInPluginsPath]
     }
     var builtInPluginsPath: String {
         return pluginsDirectoryPath
     }
-    lazy var cachesPath: String = {
-        let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
-        return cachesDirectory.appendingPathComponent(String(describing: self))
-    }()
-    lazy var cachesURL: URL = {
-        URL(fileURLWithPath: self.cachesPath)
-    }()
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()

@@ -16,7 +16,8 @@ protocol DuplicatePluginControllerDelegate {
 
 class DuplicatePluginController {
     lazy var copyDirectoryController: CopyDirectoryController = {
-        return CopyDirectoryController(tempDirectoryURL: self.copyTempDirectoryURL.appendingPathComponent(ClassConstants.tempDirectoryName))
+        return CopyDirectoryController(tempDirectoryURL: self.copyTempDirectoryURL, 
+                                       tempDirectoryName: ClassConstants.tempDirectoryName)
     }()
     let pluginMaker: PluginMaker
     var delegate: DuplicatePluginControllerDelegate?

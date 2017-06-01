@@ -11,15 +11,16 @@ import XCTest
 
 @testable import PlugPop
 
-class CopyDirectoryControllerTests: TemporaryPluginsTestCase {
+class CopyDirectoryControllerTests: TemporaryCachesTestCase {
     var copyDirectoryController: CopyDirectoryController!
-    struct ClassConstants {
+    enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
     }
     
     override func setUp() {
         super.setUp()
-        copyDirectoryController = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
+        copyDirectoryController = CopyDirectoryController(tempDirectoryURL: cachesURL,
+                                                          tempDirectoryName: ClassConstants.tempDirectoryName)
     }
     
     override func tearDown() {

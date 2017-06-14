@@ -16,7 +16,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     
     override func setUp() {
         super.setUp()
-        duplicatePluginController = DuplicatePluginController()
+        duplicatePluginController = pluginsManager.pluginsDataController.duplicatePluginController
         plugin.editable = false
     }
 

@@ -11,15 +11,16 @@ import XCTest
 
 @testable import PlugPop
 import XCTestTemp
+import PotionTaster
 
 class PluginsDataControllerClassTests: XCTestCase {
     
     func testPluginPaths() {
-        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: testPluginsPath)
+        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: PotionTaster.pluginsDirectoryPath)
 
         // Test plugin path counts
         do {
-            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: testPluginsPath)
+            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: PotionTaster.pluginsDirectoryPath)
             let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == kPlugInExtension }
             XCTAssert(!testPluginPaths.isEmpty, "The test plugin paths count should be greater than zero")
             XCTAssert(testPluginPaths.count == pluginPaths.count, "The plugin paths count should equal the test plugin paths count")

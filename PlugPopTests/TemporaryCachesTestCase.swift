@@ -21,6 +21,6 @@ extension CachesTestCase {
         return cachesDirectory.appendingPathComponent(String(describing: self))
     }
     var cachesURL: URL {
-        URL(fileURLWithPath: self.cachesPath)
+        return URL(fileURLWithPath: self.cachesPath)
     }
 }

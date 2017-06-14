@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import XCTestTemp
 
-class CopyDirectoryControllerTests: TemporaryDirectoryTestCase, CachesTestCase {
+class CopyDirectoryControllerTests: TemporaryPluginsTestCase, CachesTestCase {
     var copyDirectoryController: CopyDirectoryController!
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
@@ -114,7 +114,8 @@ class CopyDirectoryControllerTests: TemporaryDirectoryTestCase, CachesTestCase {
         }
 
         // Init a new CopyDirectoryController
-        let copyDirectoryControllerTwo = CopyDirectoryController(tempDirectoryName: ClassConstants.tempDirectoryName)
+        let copyDirectoryControllerTwo = CopyDirectoryController(tempDirectoryURL: cachesURL,
+                                                                 tempDirectoryName: ClassConstants.tempDirectoryName)
         
         // Assert directory is empty
 

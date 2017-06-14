@@ -243,7 +243,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     override var duplicatePluginDestinationDirectoryURL: URL {
         return duplicatePluginRootDirectoryURL
             .appendingPathComponent(className)
-            .appendingPathComponent(pluginsDirectoryPathComponent)
+            .appendingPathComponent(testPluginsDirectoryPathComponent)
     }
 
     func cleanUpDuplicatedPlugins() {

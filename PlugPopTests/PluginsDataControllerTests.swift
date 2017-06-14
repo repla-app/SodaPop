@@ -239,10 +239,10 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         return temporaryDirectoryURL
                 .appendingPathComponent(testApplicationSupportDirectoryName)
     }
-    
+
     override var duplicatePluginDestinationDirectoryURL: URL {
         return duplicatePluginRootDirectoryURL
-            .appendingPathComponent(applicationName)
+            .appendingPathComponent(className)
             .appendingPathComponent(pluginsDirectoryPathComponent)
     }
 

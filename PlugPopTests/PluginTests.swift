@@ -115,7 +115,8 @@ class DuplicatePluginNameValidationTests: XCTestCase {
         let fromName = testPluginNameTwo
         
         for pluginNamesCount in 0...105 {
-            let name = WCLPlugin.uniquePluginName(fromName: fromName, for: plugin)
+            let name = pluginsManager.pluginsController.uniquePluginName(fromName: fromName,
+                                                                         for: plugin)
             let suffix = pluginNamesCount + 1
             
             var testName: String!

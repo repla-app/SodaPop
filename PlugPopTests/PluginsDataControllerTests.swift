@@ -21,7 +21,7 @@ class PluginsDataControllerClassTests: XCTestCase {
         // Test plugin path counts
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(atPath: PotionTaster.pluginsDirectoryPath)
-            let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == kPlugInExtension }
+            let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == pluginFileExtension }
             XCTAssert(!testPluginPaths.isEmpty, "The test plugin paths count should be greater than zero")
             XCTAssert(testPluginPaths.count == pluginPaths.count, "The plugin paths count should equal the test plugin paths count")
         } catch {

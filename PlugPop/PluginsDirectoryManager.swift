@@ -19,8 +19,6 @@ class PluginsPathHelper {
     class func subpathRange(inPath path: String, untilSubpath subpath: String) -> NSRange {
         // Normalize the subpath so the same range is always returned regardless of the format of the subpath (e.g., number of slashes)
         let normalizedSubpath = subpath.standardizingPath
-        
-
         let pathAsNSString: NSString = path as NSString
         let subpathRange = pathAsNSString.range(of: normalizedSubpath)
         if subpathRange.location == NSNotFound {
@@ -111,8 +109,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         self.pluginsDirectoryURL = pluginsDirectoryURL
         self.directoryWatcher = BBUDirectoryWatcher(url: pluginsDirectoryURL)
         self.pluginsDirectoryEventHandler = PluginsDirectoryEventHandler()
-
         super.init()
+
         self.directoryWatcher.delegate = self
         self.pluginsDirectoryEventHandler.delegate = self
     }
@@ -142,7 +140,6 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
             pluginsDirectoryEventHandler.addItemWasRemovedEvent(atPluginPath: pluginPath, path: path)
         }
     }
-
     
     // MARK: PluginsDirectoryEventHandlerDelegate
 
@@ -191,7 +188,6 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
             }
         }
     }
-
     
     // MARK: Evaluating Events
 
@@ -227,7 +223,6 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         }
         return false
     }
-
     
     // MARK: Helpers
 

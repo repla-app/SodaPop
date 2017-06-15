@@ -56,7 +56,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
                                        builtInPluginsPath: builtInPluginsPath,
                                        applicationSupportPluginsPath: applicationSupportPluginsPath)
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()
-        self.pluginPathToPluginDictionary = [String : Plugin]()
+        self.pluginPathToPluginDictionary = [String: Plugin]()
         self.duplicatePluginDestinationDirectoryURL = duplicatePluginDestinationDirectoryURL
         self.copyTempDirectoryURL = copyTempDirectoryURL
         let paths = paths + [builtInPluginsPath, applicationSupportPluginsPath].flatMap { $0 }
@@ -76,7 +76,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     // MARK: PluginsDirectoryManagerDelegate
 
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
-        pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
+                                 pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
     {
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
             if let newPlugin = Plugin.makePlugin(path: pluginPath) {

@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import XCTestTemp
-
 
 protocol CachesTestCase {
     var cachesPath: String { get }

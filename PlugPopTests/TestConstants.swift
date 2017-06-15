@@ -13,6 +13,7 @@ let defaultTimeout = 20.0
 // MARK: Directories
 
 let testTrashDirectoryPath = NSSearchPathForDirectoriesInDomains(.trashDirectory, .userDomainMask, true)[0]
+let testTrashDirectoryURL = URL(fileURLWithPath: testTrashDirectoryPath)
 let testPluginsDirectoryPathComponent = "PlugIns"
 
 // MARK: Extensions

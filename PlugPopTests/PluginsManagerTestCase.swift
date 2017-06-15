@@ -14,7 +14,7 @@ import PotionTaster
 
 extension UserDefaults: DefaultsType { }
 
-class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase {
+class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase, DefaultsTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
     var pluginsDirectoryPaths: [String] {

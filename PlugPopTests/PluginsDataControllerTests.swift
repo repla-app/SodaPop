@@ -13,13 +13,16 @@ import XCTest
 import XCTestTemp
 import PotionTaster
 
-class PluginsDataControllerClassTests: XCTestCase {
+class PluginsDataControllerClassTests: XCTestCase, CachesTestCase, DefaultsTestCase {
     var builtInPluginsPath: String {
         return PotionTaster.pluginsDirectoryPath
     }
     var builtInPluginsPaths: [String] {
         return [builtInPluginsPath]
     }
+    lazy var defaults: DefaultsType = {
+        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
+    }()
     
     func testPluginPaths() {
         let pluginPaths = PluginsDataController.pathsForPlugins(atPath: builtInPluginsPath)
@@ -50,7 +53,11 @@ class PluginsDataControllerClassTests: XCTestCase {
 
     func testExistingPlugins() {
         let pluginsDataController = PluginsDataController(paths: builtInPluginsPaths,
-                                                          duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
+                                                          duplicatePluginDestinationDirectoryURL: testTrashDirectoryURL,
+                                                          copyTempDirectoryURL: cachesURL,
+                                                          defaultNewPluginManager: WCLDefaultNewPluginManager(defaults: defaults),
+                                                          builtInPluginsPath: builtInPluginsPath,
+                                                          applicationSupportPluginsPath: nil)
         let plugins = pluginsDataController.plugins
         
         var pluginPaths = [String]()

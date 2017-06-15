@@ -14,13 +14,19 @@ import XCTestTemp
 import PotionTaster
 
 class PluginsDataControllerClassTests: XCTestCase {
+    var builtInPluginsPath: String {
+        return PotionTaster.pluginsDirectoryPath
+    }
+    var builtInPluginsPaths: [String] {
+        return [builtInPluginsPath]
+    }
     
     func testPluginPaths() {
-        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: PotionTaster.pluginsDirectoryPath)
+        let pluginPaths = PluginsDataController.pathsForPlugins(atPath: builtInPluginsPath)
 
         // Test plugin path counts
         do {
-            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: PotionTaster.pluginsDirectoryPath)
+            let directoryContents = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
             let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == pluginFileExtension }
             XCTAssert(!testPluginPaths.isEmpty, "The test plugin paths count should be greater than zero")
             XCTAssert(testPluginPaths.count == pluginPaths.count, "The plugin paths count should equal the test plugin paths count")
@@ -43,11 +49,12 @@ class PluginsDataControllerClassTests: XCTestCase {
     }
 
     func testExistingPlugins() {
-        let pluginsDataController = PluginsDataController(paths: testPluginsPaths, duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
+        let pluginsDataController = PluginsDataController(paths: builtInPluginsPaths,
+                                                          duplicatePluginDestinationDirectoryURL: testTrashDirectoryPath)
         let plugins = pluginsDataController.plugins
         
         var pluginPaths = [String]()
-        for pluginsPath in testPluginsPaths {
+        for pluginsPath in builtInPluginsPaths {
             let paths = PluginsDataController.pathsForPlugins(atPath: pluginsPath)
             pluginPaths += paths
         }

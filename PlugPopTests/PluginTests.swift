@@ -101,13 +101,11 @@ class DuplicatePluginNameValidationTests: XCTestCase {
         super.setUp()
         mockPluginsManager = PluginNameMockPluginsManager()
         plugin = mockPluginsManager.pluginWithTestPluginNameTwo()
-        PluginsManager.setOverrideSharedInstance(mockPluginsManager)
     }
 
     override func tearDown() {
         mockPluginsManager = nil
         plugin = nil
-        PluginsManager.setOverrideSharedInstance(nil)
         super.tearDown()
     }
 
@@ -115,7 +113,7 @@ class DuplicatePluginNameValidationTests: XCTestCase {
         let fromName = testPluginNameTwo
         
         for pluginNamesCount in 0...105 {
-            let name = pluginsManager.pluginsController.uniquePluginName(fromName: fromName,
+            let name = mockPluginsManager.pluginsController.uniquePluginName(fromName: fromName,
                                                                          for: plugin)
             let suffix = pluginNamesCount + 1
             

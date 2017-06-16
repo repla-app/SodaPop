@@ -18,7 +18,14 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase, Defaults
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
     var pluginsDirectoryPaths: [String] {
-        return [builtInPluginsPath]
+        return [builtInPluginsPath, sharedTestResourcesPluginsPath]
+    }
+    var sharedTestResourcesPluginsPath: String {
+        let sharedTestResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginNameSharedTestResources)!
+        return sharedTestResourcesPluginURL
+            .appendingPathComponent(pluginResourcesPathComponent)
+            .appendingPathComponent(sharedTestResourcesPluginDirectory)
+            .path
     }
     var builtInPluginsPath: String {
         return PotionTaster.pluginsDirectoryPath

@@ -10,7 +10,7 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginInitializationTests: WCLTestPluginManagerTestCase {
+class PluginInitializationTests: PluginsManagerTestCase {
 
     func testHelloWorldPlugin() {
         guard let helloWorldPlugin = pluginsManager.plugin(withName: testHelloWorldPluginName) else {

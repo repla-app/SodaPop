@@ -12,20 +12,20 @@
 #import "WCLTestPluginManagerTestCase.h"
 #import "Web_Console-Swift.h"
 
-@interface WCLTestPluginsManagerPluginTests : WCLTestPluginManagerTestCase
+@interface WCLTestPluginsManagerPluginTests : PluginsManagerTestCase
 @end
 
 @implementation WCLTestPluginsManagerPluginTests
 
 - (void)testSharedResources
 {
-    NSString *testSharedResourcePath = [[[PluginsManager sharedInstance] sharedResourcesPath] stringByAppendingPathComponent:kTestSharedResourcePathComponent];
+    NSString *testSharedResourcePath = [self.pluginsManager.sharedResourcesPath stringByAppendingPathComponent:kTestSharedResourcePathComponent]
     BOOL isDir;
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:testSharedResourcePath isDirectory:&isDir];
     XCTAssertTrue(fileExists, @"A file should exist at the test shared resource's path.");
     XCTAssertFalse(isDir, @"The test shared resource should not be a directory.");
     
-    NSURL *testSharedResourceURL = [[[PluginsManager sharedInstance] sharedResourcesURL] URLByAppendingPathComponent:kTestSharedResourcePathComponent];
+    NSURL *testSharedResourceURL = [self.pluginsManager.sharedResourcesURL URLByAppendingPathComponent:kTestSharedResourcePathComponent];
     fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[testSharedResourceURL path] isDirectory:&isDir];
     XCTAssertTrue(fileExists, @"A file should exist at the test shared resource's URL.");
     XCTAssertFalse(isDir, @"The test shared resource should not be a directory.");
@@ -33,7 +33,7 @@
 
 - (void)testPlugin
 {
-    Plugin *plugin = [[PluginsManager sharedInstance] pluginWithName:kTestPrintPluginName];
+    Plugin *plugin = [self.pluginsManager pluginWithName:kTestPrintPluginName];
     
     XCTAssertNotNil(plugin, @"The WCLPlugin should not be nil.");
     

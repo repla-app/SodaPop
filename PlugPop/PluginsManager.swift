@@ -26,7 +26,18 @@ class PluginsManager: PluginsDataControllerDelegate {
             return defaultNewPluginManager.defaultNewPlugin as? Plugin
         }
     }
-
+    var sharedResourcesPath: String? {
+        guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
+            return nil
+        }
+        return plugin.resourcePath
+    }
+    var sharedResourcesURL: URL? {
+        guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
+            return nil
+        }
+        return plugin.resourceURL
+    }
 
     // MARK: Init
     
@@ -123,15 +134,4 @@ class PluginsManager: PluginsDataControllerDelegate {
         return pluginsController.uniquePluginName(fromName: name, for: plugin)
     }
 
-    // MARK: Shared Resources
-
-    func sharedResourcesPath() -> String? {
-        let plugin = self.plugin(withName: sharedResourcesPluginName)
-        return plugin?.resourcePath
-    }
-
-    func sharedResourcesURL() -> URL? {
-        let plugin = self.plugin(withName: sharedResourcesPluginName)
-        return plugin?.resourceURL as URL?
-    }
 }

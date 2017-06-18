@@ -21,14 +21,10 @@ class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase, Defaults
         return [builtInPluginsPath, sharedTestResourcesPluginsPath]
     }
     var sharedTestResourcesPluginsPath: String {
-        let sharedTestResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginNameSharedTestResources)!
-        return sharedTestResourcesPluginURL
-            .appendingPathComponent(pluginResourcesPathComponent)
-            .appendingPathComponent(sharedTestResourcesPluginDirectory)
-            .path
+	return PotionTaster.sharedTestResourcesPluginsDirectoryPath
     }
     var builtInPluginsPath: String {
-        return PotionTaster.pluginsDirectoryPath
+        return PotionTaster.rootPluginsDirectoryPath
     }
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!

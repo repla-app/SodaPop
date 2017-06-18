@@ -15,7 +15,7 @@ import PotionTaster
 
 class PluginsDataControllerClassTests: XCTestCase, CachesTestCase, DefaultsTestCase {
     var builtInPluginsPath: String {
-        return PotionTaster.pluginsDirectoryPath
+        return PotionTaster.rootPluginsDirectoryPath
     }
     var builtInPluginsPaths: [String] {
         return [builtInPluginsPath]

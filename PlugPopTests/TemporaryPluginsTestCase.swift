@@ -14,16 +14,16 @@ import PotionTaster
 import XCTestTemp
 
 class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
-    var pluginsDirectoryURL: URL!
-    var pluginsDirectoryPath: String! {
+    var tempPluginsDirectoryURL: URL!
+    var tempPluginsDirectoryPath: String! {
         get {
-            return pluginsDirectoryURL.path
+            return tempPluginsDirectoryURL.path
         }
     }
-    var pluginURL: URL!
-    var pluginPath: String! {
+    var tempPluginURL: URL!
+    var tempPluginPath: String! {
         get {
-            return pluginURL.path
+            return tempPluginURL.path
         }
     }
     
@@ -31,12 +31,12 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         super.setUp()
         
         // Create the plugins directory
-        pluginsDirectoryURL = temporaryDirectoryURL
+        tempPluginsDirectoryURL = temporaryDirectoryURL
             .appendingPathComponent(testPluginsDirectoryPathComponent)
 
         do {
             try FileManager.default
-                .createDirectory(at: pluginsDirectoryURL,
+                .createDirectory(at: tempPluginsDirectoryURL,
                     withIntermediateDirectories: false,
                     attributes: nil)
         } catch let error as NSError {
@@ -47,18 +47,18 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         let bundleResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginName)!
         let filename = PotionTaster.testPluginName.appendingPathExtension(PotionTaster.testPluginFileExtension)!
         
-        pluginURL = pluginsDirectoryURL.appendingPathComponent(filename)
+        tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)
         do {
             try FileManager.default.copyItem(at: bundleResourcesPluginURL,
-                                             to: pluginURL)
+                                             to: tempPluginURL)
         } catch let error as NSError {
             XCTAssertTrue(false, "Moving the directory should succeed \(error)")
         }
     }
     
     override func tearDown() {
-        pluginsDirectoryURL = nil
-        pluginURL = nil
+        tempPluginsDirectoryURL = nil
+        tempPluginURL = nil
         
         // Remove the plugins directory (containing the plugin)
         do {

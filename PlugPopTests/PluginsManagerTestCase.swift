@@ -12,43 +12,22 @@ import XCTest
 @testable import PlugPop
 import PotionTaster
 
-extension UserDefaults: DefaultsType { }
-
-class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase {
-    var plugin: Plugin!
+class PluginsManagerTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     var pluginsManager: PluginsManager!
-    var pluginsManagerFactory: PluginsManagerFactory!
-    var builtInPluginsPath: String {
-        return pluginsManagerFactory.builtInPluginsPath
-    }
-    var defaults: DefaultsType {
-        return pluginsManagerFactory.defaults
-    }
+    lazy var defaults: DefaultsType = {
+        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
+    }()
 
     override func setUp() {
         super.setUp()
-
-        // Create the plugin manager
-        pluginsManagerFactory = PluginsManagerFactory()
-        pluginsManager = pluginsManagerFactory.makePluginsManager()    
-
-        // Set the plugin
-        plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)
-        plugin.editable = true
-        XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
-        plugin.isDefaultNewPlugin = true
+        pluginsManager = makePluginsManager(duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL)
     }
     
     override func tearDown() {
-        plugin.isDefaultNewPlugin = false
-        plugin = nil
+        pluginsManager = nil
         super.tearDown()
     }
 
-    var duplicatePluginDestinationDirectoryURL: URL {
-        return pluginsDirectoryURL
-    }
-    
     func newPluginWithConfirmation() -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")

@@ -41,20 +41,18 @@ class PluginsManager: PluginsDataControllerDelegate {
 
     // MARK: Init
     
-    init(paths: [String],
-         duplicatePluginDestinationDirectoryURL: URL,
+    init(pluginsPaths: [String],
          copyTempDirectoryURL: URL,
          defaults: DefaultsType,
-         builtInPluginsPath: String?,
-         applicationSupportPluginsPath: String?)
+         userPluginsPath: String,
+         builtInPluginsPath: String?)
     {
         self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
-        self.pluginsDataController = PluginsDataController(paths: paths,
-                                                           duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
+        self.pluginsDataController = PluginsDataController(pluginsPaths: paths,
                                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                                            defaultNewPluginManager: defaultNewPluginManager,
-                                                           builtInPluginsPath: builtInPluginsPath,
-                                                           applicationSupportPluginsPath: applicationSupportPluginsPath)
+                                                           userPluginsPath: userPluginsPath,
+                                                           builtInPluginsPath: builtInPluginsPath)
         self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins)
         pluginsDataController.delegate = self
         defaultNewPluginManager.dataSource = self.pluginsController

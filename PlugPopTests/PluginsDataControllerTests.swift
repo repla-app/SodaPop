@@ -249,21 +249,13 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 }
 
 class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
-
-    var duplicatePluginRootDirectoryURL: URL {
-        return temporaryDirectoryURL
-                .appendingPathComponent(testApplicationSupportDirectoryName)
-    }
-
-    override var duplicatePluginDestinationDirectoryURL: URL {
-        return duplicatePluginRootDirectoryURL
-            .appendingPathComponent(className)
-            .appendingPathComponent(testPluginsDirectoryPathComponent)
+    var applicationSupportDirectoryURL: URL {
+        return 
     }
 
     func cleanUpDuplicatedPlugins() {
         do {
-            try removeTemporaryItem(at: duplicatePluginRootDirectoryURL)
+            try removeTemporaryItem(at: applicationSupportDirectoryURL)
         } catch {
             XCTAssertTrue(false, "The remove should succeed")
         }        
@@ -304,7 +296,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     }
 
     func testDuplicatePluginWithBlockingFile() {
-        let createSuccess = FileManager.default.createFile(atPath: duplicatePluginRootDirectoryURL.path,
+        let createSuccess = FileManager.default.createFile(atPath: applicationSupportDirectoryURL.path,
             contents: nil,
             attributes: nil)
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")
@@ -322,14 +314,14 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
 
     func testDuplicatePluginWithEarlyBlockingFile() {
         do {
-            try PluginsDataController.createDirectoryIfMissing(at: duplicatePluginRootDirectoryURL.deletingLastPathComponent())
+            try PluginsDataController.createDirectoryIfMissing(at: applicationSupportDirectoryURL.deletingLastPathComponent())
 
         } catch {
             XCTAssertTrue(false, "Creating the directory should succeed")
         }
 
         // Block the destination directory with a file
-        let createSuccess = FileManager.default.createFile(atPath: duplicatePluginRootDirectoryURL.path,
+        let createSuccess = FileManager.default.createFile(atPath: applicationSupportDirectoryURL.path,
             contents: nil,
             attributes: nil)
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")

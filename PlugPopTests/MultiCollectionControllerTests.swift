@@ -23,7 +23,7 @@ extension TemporaryPluginsTestCase {
     }
 }
 
-class MultiCollectionControllerInitTests: PluginsManagerTestCase {
+class MultiCollectionControllerInitTests: TemporaryPluginsTestCase {
 
     func testInitPlugins() {
         let newPluginFilename = testDirectoryName

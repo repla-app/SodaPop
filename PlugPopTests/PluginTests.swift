@@ -77,9 +77,7 @@ class PluginTests: PluginsManagerTestCase {
 }
 
 class DuplicatePluginNameValidationTests: XCTestCase {
-    var mockPluginsManager: PluginNameMockPluginsManager!
-    var plugin: Plugin!
-    
+
     class PluginNameMockPluginsManager: PluginsManager {
         var pluginNames = [PotionTaster.testPluginName]
         
@@ -96,10 +94,17 @@ class DuplicatePluginNameValidationTests: XCTestCase {
             return super.plugin(withName: PotionTaster.testPluginNameTwo)!
         }
     }
-    
+
+    var mockPluginsManager: PluginNameMockPluginsManager!
+    var plugin: Plugin!
+    lazy var pluginsManagerFactory = {
+        let pluginsManagerFactory = PluginsManagerFactory()
+        pluginsManagerFactory.pluginsManagerType = PluginNameMockPluginsManager.self
+    }()
+
     override func setUp() {
         super.setUp()
-        mockPluginsManager = PluginNameMockPluginsManager()
+        mockPluginsManager = pluginsManagerFactory.makePluginsManager()
         plugin = mockPluginsManager.pluginWithTestPluginNameTwo()
     }
 

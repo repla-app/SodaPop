@@ -13,7 +13,7 @@ import XCTest
 import XCTestTemp
 import PotionTaster
 
-class PluginsDataControllerClassTests: XCTestCase, CachesTestCase, DefaultsTestCase {
+class PluginsDataControllerClassTests: XCTestCase, CachesTestCase {
     var builtInPluginsPath: String {
         return PotionTaster.rootPluginsDirectoryPath
     }

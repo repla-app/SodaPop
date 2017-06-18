@@ -14,32 +14,23 @@ import PotionTaster
 
 extension UserDefaults: DefaultsType { }
 
-class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase, DefaultsTestCase {
+class PluginsManagerTestCase: TemporaryPluginsTestCase, CachesTestCase {
     var plugin: Plugin!
     var pluginsManager: PluginsManager!
-    var pluginsDirectoryPaths: [String] {
-        return [builtInPluginsPath, sharedTestResourcesPluginsPath]
-    }
-    var sharedTestResourcesPluginsPath: String {
-	return PotionTaster.sharedTestResourcesPluginsDirectoryPath
-    }
+    var pluginsManagerFactory: PluginsManagerFactory!
     var builtInPluginsPath: String {
-        return PotionTaster.rootPluginsDirectoryPath
+        return pluginsManagerFactory.builtInPluginsPath
     }
-    lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
-    }()
+    var defaults: DefaultsType {
+        return pluginsManagerFactory.defaults
+    }
 
     override func setUp() {
         super.setUp()
 
         // Create the plugin manager
-        pluginsManager = PluginsManager(paths: pluginsDirectoryPaths,
-                                        duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL,
-                                        copyTempDirectoryURL: cachesURL,
-                                        defaults: defaults,
-                                        builtInPluginsPath: builtInPluginsPath,
-                                        applicationSupportPluginsPath: nil)
+        pluginsManagerFactory = PluginsManagerFactory()
+        pluginsManager = pluginsManagerFactory.makePluginsManager()    
 
         // Set the plugin
         plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)

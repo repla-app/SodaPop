@@ -28,7 +28,7 @@ class PluginTests: PluginsManagerTestCase {
     func testEditPluginProperties() {
         let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
 
-        plugin.name = testPluginNameTwo
+        plugin.name = PotionTaster.testPluginNameTwo
         let contentsTwo = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
 
@@ -93,7 +93,7 @@ class DuplicatePluginNameValidationTests: XCTestCase {
         }
 
         func pluginWithTestPluginNameTwo() -> Plugin {
-            return super.plugin(withName: testPluginNameTwo)!
+            return super.plugin(withName: PotionTaster.testPluginNameTwo)!
         }
     }
     
@@ -110,7 +110,7 @@ class DuplicatePluginNameValidationTests: XCTestCase {
     }
 
     func testPluginNames() {
-        let fromName = testPluginNameTwo
+        let fromName = PotionTaster.testPluginNameTwo
         
         for pluginNamesCount in 0...105 {
             let name = mockPluginsManager.pluginsController.uniquePluginName(fromName: fromName,

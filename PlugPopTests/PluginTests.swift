@@ -10,6 +10,7 @@ import XCTest
 
 @testable import PlugPop
 import PotionTaster
+import XCTestTemp
 
 class PluginTests: PluginsManagerTestCase {
 

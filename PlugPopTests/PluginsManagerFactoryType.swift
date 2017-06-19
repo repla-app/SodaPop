@@ -36,7 +36,7 @@ extension TempUserPluginsDirectoryType {
     }
 
     var temporaryUserPluginsDirectoryURL: URL {
-        return applicationSupportDirectoryURL
+        return temporaryApplicationSupportDirectoryURL
             .appendingPathComponent(testAppName)
             .appendingPathComponent(testPluginsDirectoryPathComponent)
     }
@@ -83,12 +83,14 @@ extension PluginsManagerDependenciesType {
 }
 
 protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
-    var pluginsManagerType: PluginsManager.Type { get set }
+    var pluginsManagerType: PluginsManager.Type { get }
     func makePluginsManager() -> PluginsManager
 }
 
 extension PluginsManagerFactoryType {
-    var pluginsManagerType = PluginsManager.self
+    var pluginsManagerType: PluginsManager.Type {
+        PluginsManager.self
+    }
 
     func makePluginsManager() -> PluginsManager {
         return pluginsManagerType(pluginsPaths: pluginsDirectoryPaths,

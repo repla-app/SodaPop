@@ -11,6 +11,7 @@ import XCTest
 
 @testable import PlugPop
 import PotionTaster
+import XCTestTemp
 
 class PluginsManagerTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     var pluginsManager: PluginsManager!
@@ -20,7 +21,7 @@ class PluginsManagerTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryT
 
     override func setUp() {
         super.setUp()
-        pluginsManager = makePluginsManager(duplicatePluginDestinationDirectoryURL: duplicatePluginDestinationDirectoryURL)
+        pluginsManager = makePluginsManager()
     }
     
     override func tearDown() {

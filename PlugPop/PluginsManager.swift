@@ -48,7 +48,7 @@ class PluginsManager: PluginsDataControllerDelegate {
          builtInPluginsPath: String?)
     {
         self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
-        self.pluginsDataController = PluginsDataController(pluginsPaths: paths,
+        self.pluginsDataController = PluginsDataController(pluginsPaths: pluginsPaths,
                                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                                            defaultNewPluginManager: defaultNewPluginManager,
                                                            userPluginsPath: userPluginsPath,

@@ -48,17 +48,17 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     init(pluginsPaths: [String],
          copyTempDirectoryURL: URL,
          defaultNewPluginManager: WCLDefaultNewPluginManager,
-         builtInPluginsPath: String?,
-         applicationSupportPluginsPath: String?)
+         userPluginsPath: String?,
+         builtInPluginsPath: String?)
     {
         self.pluginMaker = PluginMaker(defaultNewPluginManager: defaultNewPluginManager,
-                                       builtInPluginsPath: builtInPluginsPath,
-                                       applicationSupportPluginsPath: applicationSupportPluginsPath)
+                                       userPluginsPath: userPluginsPath,
+                                       builtInPluginsPath: builtInPluginsPath)
         self.pluginDirectoryManagers = [PluginsDirectoryManager]()
         self.pluginPathToPluginDictionary = [String: Plugin]()
-        self.duplicatePluginDestinationDirectoryURL = applicationSupportPluginsPath
+        self.duplicatePluginDestinationDirectoryURL = userPluginsPath
         self.copyTempDirectoryURL = copyTempDirectoryURL
-        let paths = pluginsPaths + [builtInPluginsPath, applicationSupportPluginsPath].flatMap { $0 }
+        let paths = pluginsPaths + [builtInPluginsPath, userPluginsPath].flatMap { $0 }
         let pathsSet = Set(paths)
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)

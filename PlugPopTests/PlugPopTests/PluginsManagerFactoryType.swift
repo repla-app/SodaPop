@@ -18,7 +18,7 @@ protocol TemporaryDirectoryType {
     var temporaryDirectoryPath: String { get }
 }
 
-protocol TempUserPluginsDirectoryType: TempoararyDirectoryType {
+protocol TempUserPluginsDirectoryType: TemporaryDirectoryType {
     var temporaryApplicationSupportDirectoryURL: URL { get }
     var temporaryApplicationSupportDirectoryPath: String { get }
     var temporaryUserPluginsDirectoryURL: URL { get }
@@ -46,7 +46,7 @@ extension TempUserPluginsDirectoryType {
     }
 }
 
-protocol TempCopyTempURLType: TempoararyDirectoryType {
+protocol TempCopyTempURLType: TemporaryDirectoryType {
     var tempCopyTempDirectoryURL: URL { get }
 }
 

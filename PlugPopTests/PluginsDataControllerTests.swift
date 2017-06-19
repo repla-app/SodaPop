@@ -13,13 +13,7 @@ import XCTest
 import XCTestTemp
 import PotionTaster
 
-class PluginsDataControllerClassTests: XCTestCase, CachesTestCase {
-    var builtInPluginsPath: String {
-        return PotionTaster.rootPluginsDirectoryPath
-    }
-    var builtInPluginsPaths: [String] {
-        return [builtInPluginsPath]
-    }
+class PluginsDataControllerClassTests: TemporaryDirectoryTestCase, PluginsManagerDependenciesType {
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
@@ -52,16 +46,15 @@ class PluginsDataControllerClassTests: XCTestCase, CachesTestCase {
     }
 
     func testExistingPlugins() {
-        let pluginsDataController = PluginsDataController(paths: builtInPluginsPaths,
-                                                          duplicatePluginDestinationDirectoryURL: testTrashDirectoryURL,
-                                                          copyTempDirectoryURL: cachesURL,
+        let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
+                                                          copyTempDirectoryURL: tempCopyTempDirectoryURL,
                                                           defaultNewPluginManager: WCLDefaultNewPluginManager(defaults: defaults),
-                                                          builtInPluginsPath: builtInPluginsPath,
-                                                          applicationSupportPluginsPath: nil)
+                                                          userPluginsPath: userPluginsPath,
+                                                          builtInPluginsPath: builtInPluginsPath)
         let plugins = pluginsDataController.plugins
         
         var pluginPaths = [String]()
-        for pluginsPath in builtInPluginsPaths {
+        for pluginsPath in pluginsDirectoryPaths {
             let paths = PluginsDataController.pathsForPlugins(atPath: pluginsPath)
             pluginPaths += paths
         }
@@ -249,9 +242,6 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 }
 
 class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
-    var applicationSupportDirectoryURL: URL {
-        return 
-    }
 
     func cleanUpDuplicatedPlugins() {
         do {

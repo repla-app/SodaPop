@@ -11,16 +11,16 @@ import Foundation
 class PluginMaker {
 
     let builtInPluginsPath: String?
-    let applicationSupportPluginsPath: String?
+    let userPluginsPath: String?
     let defaultNewPluginManager: WCLDefaultNewPluginManager
     
     init(defaultNewPluginManager: WCLDefaultNewPluginManager,
-         builtInPluginsPath: String?,
-         applicationSupportPluginsPath: String?)
+         userPluginsPath: String?,
+         builtInPluginsPath: String?)
     {
         self.defaultNewPluginManager = defaultNewPluginManager
         self.builtInPluginsPath = builtInPluginsPath
-        self.applicationSupportPluginsPath = applicationSupportPluginsPath
+        self.userPluginsPath = userPluginsPath
     }
 
     func makePlugin(path: String) -> Plugin? {
@@ -41,7 +41,7 @@ class PluginMaker {
     private func pluginType(for path: String) -> PluginType {
         let pluginContainerDirectory = path.deletingLastPathComponent
         switch pluginContainerDirectory {
-        case let path where path == applicationSupportPluginsPath:
+        case let path where path == userPluginsPath:
             return PluginType.user
         case let path where path == builtInPluginsPath:
             return PluginType.builtIn

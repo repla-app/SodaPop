@@ -14,8 +14,8 @@ extension TemporaryDirectoryTestCase: TemporaryDirectoryType { }
 extension UserDefaults: DefaultsType { }
 
 protocol TemporaryDirectoryType {
-    var temporaryDirectoryURL: URL { get }
-    var temporaryDirectoryPath: String { get }
+    var temporaryDirectoryURL: URL! { get }
+    var temporaryDirectoryPath: String! { get }
 }
 
 protocol TempUserPluginsDirectoryType: TemporaryDirectoryType {

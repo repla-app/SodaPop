@@ -6,8 +6,12 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
+@testable import PlugPop
+import PotionTaster
+import XCTest
+
 class TemporaryPluginsManagerTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
-    var builtInPluginsPath: String = nil 
+    var builtInPluginsPath: String? = nil 
     var userPluginsPath: String {
         return tempPluginsDirectoryPath
     }

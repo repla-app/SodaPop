@@ -41,11 +41,11 @@ class PluginsManager: PluginsDataControllerDelegate {
 
     // MARK: Init
     
-    init(pluginsPaths: [String],
-         copyTempDirectoryURL: URL,
-         defaults: DefaultsType,
-         userPluginsPath: String,
-         builtInPluginsPath: String?)
+    required init(pluginsPaths: [String],
+                  copyTempDirectoryURL: URL,
+                  defaults: DefaultsType,
+                  userPluginsPath: String,
+                  builtInPluginsPath: String?)
     {
         self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
         self.pluginsDataController = PluginsDataController(pluginsPaths: pluginsPaths,

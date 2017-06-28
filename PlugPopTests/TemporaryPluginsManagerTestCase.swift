@@ -18,7 +18,6 @@ class TemporaryPluginsManagerTestCase: TemporaryPluginsTestCase, PluginsManagerF
     var pluginsDirectoryPaths: [String] {
         return [userPluginsPath]
     }
-    var plugin: Plugin!
     var pluginsManager: PluginsManager!
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
@@ -26,20 +25,6 @@ class TemporaryPluginsManagerTestCase: TemporaryPluginsTestCase, PluginsManagerF
 
     override func setUp() {
         super.setUp()
-
-        // Create the plugin manager
         pluginsManager = makePluginsManager()
-        // Set the plugin
-        plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)
-        plugin.editable = true
-        XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
-        plugin.isDefaultNewPlugin = true
     }
-    
-    override func tearDown() {
-        plugin.isDefaultNewPlugin = false
-        plugin = nil
-        super.tearDown()
-    }
-
 }

@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import PotionTaster
 
-class PluginsManagerTests: PluginsManagerTestCase {
+class PluginsManagerTests: TemporaryPluginTestCase {
 
     func testTestPlugins() {
         let plugins = pluginsManager.plugins

@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import XCTestTemp
 
-class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TemporaryDirectoryType {
+class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLType {
     var copyDirectoryController: CopyDirectoryController!
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
@@ -34,7 +34,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TemporaryDirectory
         let copyExpectation = expectation(description: "Copy")
         
         var copiedPluginURL: URL!
-        copyDirectoryController.copyItem(at: pluginURL, completionHandler: { (URL, error) -> Void in
+        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
             XCTAssertNotNil(URL, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
             
@@ -61,7 +61,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TemporaryDirectory
         XCTAssertTrue(exists, "The item should exist")
         XCTAssertTrue(isDir.boolValue, "The item should be a directory")
 
-        let pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: pluginURL)
+        let pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: tempPluginURL)
         let copiedPluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: copiedPluginURL)
         
         do {
@@ -82,7 +82,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TemporaryDirectory
 
     func testCleanUpOnInit() {
         let copyExpectation = expectation(description: "Copy")
-        copyDirectoryController.copyItem(at: pluginURL, completionHandler: { (URL, error) -> Void in
+        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
             XCTAssertNotNil(URL, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
 

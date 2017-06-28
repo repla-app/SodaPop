@@ -13,6 +13,9 @@ import XCTest
 
 class DuplicatePluginControllerTests: PluginsManagerTestCase {
     var duplicatePluginController: DuplicatePluginController!
+    lazy var plugin: Plugin = {
+        return self.pluginsManager.defaultNewPlugin!
+    }()
     
     override func setUp() {
         super.setUp()
@@ -29,7 +32,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Test that the plugin starts not editable
         XCTAssertFalse(plugin.editable, "The plugin should not be editable")
 
-        var pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: pluginURL)
+        var pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(for: plugin)
         var pluginInfoDictionaryContents: String!
         do {
             pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL, encoding: String.Encoding.utf8)
@@ -44,7 +47,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Duplicate the plugin
         var duplicatePlugin: Plugin!
         let duplicateExpectation = expectation(description: "Duplicate")
-        duplicatePluginController.duplicate(plugin, to: pluginsDirectoryURL) { (plugin, error) -> Void in
+        duplicatePluginController.duplicate(plugin, to: temporaryUserPluginsDirectoryURL) { (plugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
             XCTAssertNotNil(plugin, "The plugin should not be nil")
             duplicatePlugin = plugin
@@ -101,7 +104,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         let destinationName = DuplicatePluginController.pluginFilename(fromName: uniqueName)
         
         // Create a folder at the destination URL
-        let destinationFolderURL = pluginsDirectoryURL.appendingPathComponent(destinationName)
+        let destinationFolderURL = temporaryUserPluginsDirectoryURL.appendingPathComponent(destinationName)
 
         do {
             try FileManager.default
@@ -121,7 +124,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Duplicate the plugin
         var duplicatePlugin: Plugin!
         let duplicateExpectation = expectation(description: "Duplicate")
-        duplicatePluginController.duplicate(plugin, to: pluginsDirectoryURL) { (plugin, error) -> Void in
+        duplicatePluginController.duplicate(plugin, to: temporaryUserPluginsDirectoryURL) { (plugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
             XCTAssertNotNil(plugin, "The plugin should not be nil")
             duplicatePlugin = plugin

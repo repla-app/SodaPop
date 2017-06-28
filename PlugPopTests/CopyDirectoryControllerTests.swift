@@ -40,7 +40,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
             
             if let URL = URL {
                 let movedFilename = testDirectoryName
-                let movedDestinationURL = self.pluginsDirectoryURL.appendingPathComponent(movedFilename)
+                let movedDestinationURL = self.tempPluginsDirectoryURL.appendingPathComponent(movedFilename)
 
                 do {
                     try FileManager.default.moveItem(at: URL,

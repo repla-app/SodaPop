@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import PotionTaster
 
-class PluginsManagerTests: TemporaryPluginTestCase {
+class PluginsManagerTests: PluginsManagerTestCase {
 
     func testTestPlugins() {
         let plugins = pluginsManager.plugins
@@ -38,7 +38,7 @@ class PluginsManagerTests: TemporaryPluginTestCase {
         // Test Properties
 
         XCTAssertEqual(newPluginTwo.command!, newPlugin.command!, "The commands should be equal")
-        XCTAssertNotEqual(plugin.command!, newPlugin.command!, "The names should not be equal")
+        XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!, "The commands should not be equal")
         
         // Trash the duplicated plugin
         moveToTrashAndCleanUpWithConfirmation(newPlugin)
@@ -46,8 +46,9 @@ class PluginsManagerTests: TemporaryPluginTestCase {
     }
 
     func testRenamePlugin() {
-        let newPluginName = plugin.identifier
-        plugin.name = newPluginName
+        let newPlugin = newPluginWithConfirmation()
+        let newPluginName = pluginsManager.defaultNewPlugin!.identifier
+        newPlugin.name = newPluginName
         XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
         XCTAssertNil(pluginsManager.plugin(withName: PotionTaster.testPluginName), "The plugin should be nil")
     }

@@ -173,7 +173,7 @@ class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     }
     
     func testPrivateAliasPluginPathComponent() {
-        let testPath = ("/private/" as NSString).appendingPathComponent(pluginPath)
+        let testPath = ("/private/" as NSString).appendingPathComponent(tempPluginPath)
         let pathComponents = PluginsPathHelper.pathComponents(ofPath: testPath, afterSubpath: tempPluginsDirectoryPath)!
         let pathComponent = NSString.path(withComponents: pathComponents)
         let testPluginLastPathComponent = (tempPluginPath as NSString).lastPathComponent

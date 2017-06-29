@@ -52,6 +52,7 @@
 		453126951EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */; };
 		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
 		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4546770D1F04A1CE00BAB5F9 /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */; };
 		454D4C951ED1F6F7007ABBD7 /* WCLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -141,6 +142,7 @@
 		453126911EC93BEA00248FA9 /* WCLDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* WCLDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLDefaultNewPluginManager.m; sourceTree = "<group>"; };
 		4536957F1ED259EB00BDA37F /* OutOfTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OutOfTouch.framework; path = Carthage/Build/Mac/OutOfTouch.framework; sourceTree = "<group>"; };
+		4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTestCase.swift; sourceTree = "<group>"; };
 		454D4C941ED1F6F7007ABBD7 /* WCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLConstants.h; sourceTree = "<group>"; };
 		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
 		45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsManagerTestCase.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		45753DD91E9AF75B00823315 /* PlugPopTests */ = {
 			isa = PBXGroup;
 			children = (
+				4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */,
 				45AABB3D1F0342FB00A3D189 /* TemporaryPluginTestCase.swift */,
 				452DA12F1EF7673F0005B549 /* PluginsManagerFactoryType.swift */,
 				45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */,
@@ -432,6 +435,7 @@
 				450CA0B91EBACDF000D08D2A /* PluginsManagerTestCase.swift in Sources */,
 				450CA0B21EBACDF000D08D2A /* PluginsDataControllerEventTestCase.swift in Sources */,
 				450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */,
+				4546770D1F04A1CE00BAB5F9 /* PluginTestCase.swift in Sources */,
 				452DA1301EF7673F0005B549 /* PluginsManagerFactoryType.swift in Sources */,
 				450CA0C01EBACDF000D08D2A /* XCTestCase+BundleResources.swift in Sources */,
 				450CA0BD1EBACDF000D08D2A /* TemporaryPluginsTestCase.swift in Sources */,

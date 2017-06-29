@@ -60,7 +60,7 @@ extension TempCopyTempURLType {
 protocol PluginsManagerDependenciesType: TempCopyTempURLType, TempUserPluginsDirectoryType {
     var pluginsDirectoryPaths: [String] { get }
     var copyTempDirectoryURL: URL { get }
-    var defaults: DefaultsType { get }
+    var defaults: DefaultsType { get } // Must be supplied by the `superclass`
     var userPluginsPath: String { get }
     var builtInPluginsPath: String { get }
 }

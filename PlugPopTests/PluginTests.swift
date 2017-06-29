@@ -78,6 +78,10 @@ class PluginTests: PluginTestCase {
 }
 
 class DuplicatePluginNameValidationTests: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
+    
+    lazy var defaults: DefaultsType = {
+        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
+    }()
 
     class PluginNameMockPluginsManager: PluginsManager {
         var pluginNames = [PotionTaster.testPluginName]

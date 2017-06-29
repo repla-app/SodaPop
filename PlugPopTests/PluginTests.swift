@@ -12,7 +12,7 @@ import XCTest
 import PotionTaster
 import XCTestTemp
 
-class PluginTests: PluginsManagerTestCase {
+class PluginTests: PluginTestCase {
 
     func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
         let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path

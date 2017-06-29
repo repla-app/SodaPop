@@ -11,7 +11,11 @@ import XCTest
 
 @testable import PlugPop
 
-extension TemporaryPluginsTestCase {
+protocol EasyDuplicateType {
+    func urlByDuplicatingItem(at fileURL: URL, withFilenameForDuplicate filename: String) -> URL
+}
+
+extension EasyDuplicateType {
     func urlByDuplicatingItem(at fileURL: URL, withFilenameForDuplicate filename: String) -> URL {
         let destinationFileURL = fileURL.deletingLastPathComponent().appendingPathComponent(filename)
         do {
@@ -23,12 +27,10 @@ extension TemporaryPluginsTestCase {
     }
 }
 
-class MultiCollectionControllerInitTests: TemporaryPluginsTestCase {
+class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicateType {
 
     func testInitPlugins() {
-        let pluginFilename = tempPluginURL.lastPathComponent
-        let pluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: pluginFilename)
-        let plugin = Plugin.makePlugin(url: newPluginURL)!
+        let plugin = Plugin.makePlugin(url: tempPluginURL)!
         
         let newPluginFilename = testDirectoryName
         let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
@@ -49,7 +51,7 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase {
         let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedNameTwo.name = changedName
         
-        let plugins = [plugin!, newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
+        let plugins = [plugin, newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
         let newPluginURLs = [newPluginURL, newPluginTwoURL, newPluginChangedNameURL, newPluginChangedNameTwoURL]
         
         let multiCollectionController = MultiCollectionController(objects: plugins, key: pluginNameKey)
@@ -79,12 +81,14 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase {
 
 }
 
+class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateType {
 
-class MultiCollectionControllerTests: PluginsManagerTestCase {
     var multiCollectionController: MultiCollectionController!
-    
+    var plugin: Plugin!
+
     override func setUp() {
         super.setUp()
+        plugin = Plugin.makePlugin(url: tempPluginURL)!
         multiCollectionController = MultiCollectionController(objects: [plugin], key: pluginNameKey)
     }
     

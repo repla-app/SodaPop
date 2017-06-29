@@ -242,10 +242,14 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 }
 
 class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
+    
+    lazy var plugin: Plugin = {
+        return self.pluginsManager.defaultNewPlugin!
+    }()
 
     func cleanUpDuplicatedPlugins() {
         do {
-            try removeTemporaryItem(at: applicationSupportDirectoryURL)
+            try removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
         } catch {
             XCTAssertTrue(false, "The remove should succeed")
         }        
@@ -286,7 +290,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     }
 
     func testDuplicatePluginWithBlockingFile() {
-        let createSuccess = FileManager.default.createFile(atPath: applicationSupportDirectoryURL.path,
+        let createSuccess = FileManager.default.createFile(atPath: temporaryUserPluginsDirectoryPath,
             contents: nil,
             attributes: nil)
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")
@@ -304,14 +308,14 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
 
     func testDuplicatePluginWithEarlyBlockingFile() {
         do {
-            try PluginsDataController.createDirectoryIfMissing(at: applicationSupportDirectoryURL.deletingLastPathComponent())
+            try PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
 
         } catch {
             XCTAssertTrue(false, "Creating the directory should succeed")
         }
 
         // Block the destination directory with a file
-        let createSuccess = FileManager.default.createFile(atPath: applicationSupportDirectoryURL.path,
+        let createSuccess = FileManager.default.createFile(atPath: temporaryUserPluginsDirectoryPath,
             contents: nil,
             attributes: nil)
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")

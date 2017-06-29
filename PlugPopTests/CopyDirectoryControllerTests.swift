@@ -14,9 +14,7 @@ import XCTestTemp
 
 class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLType {
     var copyDirectoryController: CopyDirectoryController!
-    lazy var plugin: Plugin = {
-        return self.pluginsManager.defaultNewPlugin!
-    }()
+
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
     }

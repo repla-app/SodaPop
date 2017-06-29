@@ -13,6 +13,14 @@ import XCTest
 
 class PluginsDataControllerFileSystemTests: PluginsDataControllerEventTestCase {
 
+    lazy var plugin: Plugin = {
+        return self.pluginsManager.defaultNewPlugin!
+    }()
+
+    lazy var pluginPath: String = {
+        return self.plugin.bundle.bundlePath
+    }()
+
     // MARK: File System Tests
 
     func testAddAndDeletePlugin() {

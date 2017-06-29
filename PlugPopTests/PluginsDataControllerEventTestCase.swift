@@ -71,7 +71,6 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
     
 }
 
-
 class PluginsDataControllerEventTestCase: PluginsManagerTestCase {
     var pluginDataEventManager: PluginDataEventManager!
     

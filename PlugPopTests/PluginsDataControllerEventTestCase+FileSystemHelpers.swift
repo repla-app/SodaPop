@@ -13,6 +13,7 @@ import XCTest
 import OutOfTouch
 
 extension PluginsDataControllerEventTestCase {
+
     // MARK: Move Helpers
     
     func moveWithConfirmation(_ plugin: Plugin, destinationPluginPath: String, handler: @escaping (_ plugin: Plugin?) -> Void) {
@@ -39,7 +40,6 @@ extension PluginsDataControllerEventTestCase {
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
-    
     
     // MARK: Copy Helpers
     
@@ -85,7 +85,6 @@ extension PluginsDataControllerEventTestCase {
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
-    
     
     // MARK: Modify Helpers
     

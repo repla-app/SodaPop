@@ -6,7 +6,10 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
+import XCTest
+
 @testable import PlugPop
+import PotionTaster
 
 class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase {
     var plugin: Plugin!

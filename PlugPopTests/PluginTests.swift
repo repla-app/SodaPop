@@ -106,7 +106,7 @@ class DuplicatePluginNameValidationTests: TemporaryDirectoryTestCase, PluginsMan
 
     override func setUp() {
         super.setUp()
-        mockPluginsManager = pluginsManagerFactory.makePluginsManager()
+        mockPluginsManager = makePluginsManager()
         plugin = mockPluginsManager.pluginWithTestPluginNameTwo()
     }
 

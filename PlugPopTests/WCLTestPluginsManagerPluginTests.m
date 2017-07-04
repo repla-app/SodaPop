@@ -8,9 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "Web_ConsoleTestsConstants.h"
-#import "WCLTestPluginManagerTestCase.h"
-#import "Web_Console-Swift.h"
+#import "PlugPopTests-Swift.h"
 
 @interface WCLTestPluginsManagerPluginTests : PluginsManagerTestCase
 @end

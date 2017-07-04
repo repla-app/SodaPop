@@ -14,18 +14,31 @@ import XCTestTemp
 
 class PluginTests: PluginTestCase {
 
-    func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
-        var infoDictionaryContents: String!
-        do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath, encoding: String.Encoding.utf8)
-        } catch {
-            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
-        }
-        
-        return infoDictionaryContents
+    func testSharedResources() {
+        let testSharedResourcesPath = pluginsManager.sharedResourcesPath!.appendingPathComponent(testSharedResourcePathComponent)
+        var isDir: ObjCBool = false
+        var fileExists = FileManager.default.fileExists(atPath: testSharedResourcesPath, isDirectory: &isDir)
+        XCTAssertTrue(fileExists)
+        XCTAssertFalse(isDir.boolValue)
+
+        let testSharedResourcesURL = pluginsManager.sharedResourcesURL!.appendingPathComponent(testSharedResourcePathComponent)
+        fileExists = FileManager.default.fileExists(atPath: testSharedResourcesURL.path, isDirectory: &isDir)
+        XCTAssertTrue(fileExists)
+        XCTAssertFalse(isDir.boolValue)
     }
-    
+
+    func testPlugin() {
+        guard let plugin = pluginsManager.plugin(withName: PotionTaster.testPluginNamePrint) else {
+            XCTFail()
+            return
+        }
+        var isDir: ObjCBool = false
+        let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)
+        XCTAssertTrue(fileExists)
+        XCTAssertTrue(isDir.boolValue)
+        XCTAssertEqual(plugin.resourcePath, plugin.resourceURL!.path)
+    }
+
     func testEditPluginProperties() {
         let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
 
@@ -74,6 +87,20 @@ class PluginTests: PluginTestCase {
         XCTAssertFalse(plugin.isEqual(to: newPlugin), "The plugins should be equal")
 
         // TODO: It would be nice to test modifying properties, but there isn't a way to do that because with two separate plugin directories the command paths and info dictionary URLs will be different
+    }
+
+    // MARK: Helper
+
+    func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
+        let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
+        var infoDictionaryContents: String!
+        do {
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath, encoding: String.Encoding.utf8)
+        } catch {
+            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
+        }
+        
+        return infoDictionaryContents
     }
 }
 

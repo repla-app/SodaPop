@@ -55,3 +55,7 @@ let testApplicationSupportDirectoryName = "Application Support"
 let testAppName = "PlugPop"
 let testCopyTempDirectoryName = "Duplicate Plugin"
 let testHiddenDirectoryName = ".DS_Store"
+
+// Miscellaneous 
+
+let testSharedResourcePathComponent = "js/zepto.js"

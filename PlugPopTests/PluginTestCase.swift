@@ -6,10 +6,19 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
+import XCTest
+
 @testable import PlugPop
+import PotionTaster
 
 class PluginTestCase: PluginsManagerTestCase {
     var plugin: Plugin!
+    var pluginURL: URL {
+        return plugin.bundle.bundleURL
+    }
+    var pluginPath: String {
+        return pluginURL.path
+    }
 
     override func setUp() {
         super.setUp()

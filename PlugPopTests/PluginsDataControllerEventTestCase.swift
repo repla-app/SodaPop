@@ -71,7 +71,7 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
     
 }
 
-class PluginsDataControllerEventTestCase: PluginsManagerTestCase {
+class PluginsDataControllerEventTestCase: PluginTestCase {
     var pluginDataEventManager: PluginDataEventManager!
     
     override func setUp() {

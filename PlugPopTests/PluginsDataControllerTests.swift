@@ -243,10 +243,6 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 
 class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     
-    lazy var plugin: Plugin = {
-        return self.pluginsManager.defaultNewPlugin!
-    }()
-
     func cleanUpDuplicatedPlugins() {
         do {
             try removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)

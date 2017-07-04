@@ -8,6 +8,8 @@
 
 import Cocoa
 
+// TODO: `open()` probably shouldn't be on a model object, since it's entirely
+// related to the UI.
 extension Plugin {
     func open() {
         assert(editable, "The plugin should be editable")

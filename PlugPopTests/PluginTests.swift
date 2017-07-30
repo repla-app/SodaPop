@@ -11,6 +11,7 @@ import XCTest
 @testable import PlugPop
 import PotionTaster
 import XCTestTemp
+import StringPlusPath
 
 class PluginTests: PluginTestCase {
 

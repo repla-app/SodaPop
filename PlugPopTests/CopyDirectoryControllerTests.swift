@@ -30,7 +30,24 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         super.tearDown()
     }
 
-    
+    // MARK: Helper
+
+    func cleanUpCopyDirectoryControllerDirectoriesWithConfirmation() {
+        let tempURL = tempCopyTempDirectoryURL.appendingPathComponent(ClassConstants.tempDirectoryName)
+        // The order of these is important the inner URL must be deleted first.
+        let directoryURLs = [tempURL, tempCopyTempDirectoryURL]
+        for directoryURL in directoryURLs {
+            var isDir: ObjCBool = false
+            let exists = FileManager.default.fileExists(atPath: directoryURL.path,
+                                                        isDirectory: &isDir)
+            XCTAssertTrue(exists, "The item should exist")
+            XCTAssertTrue(isDir.boolValue, "The item should be a directory")
+            try! removeTemporaryItem(at: directoryURL)
+        }
+    }
+
+    // MARK: Tests
+
     func testCopy() {
         let copyExpectation = expectation(description: "Copy")
         
@@ -79,6 +96,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         } catch {
             XCTAssertTrue(false, "The remove should succeed")
         }
+        cleanUpCopyDirectoryControllerDirectoriesWithConfirmation()
     }
 
     func testCleanUpOnInit() {

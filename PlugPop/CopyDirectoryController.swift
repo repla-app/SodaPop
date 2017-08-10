@@ -32,7 +32,8 @@ class CopyDirectoryController {
     
     func cleanUp() throws {
         do {
-            try move(contentsOf: copyTempDirectoryURL, toDirectoryInTrashWithName: trashDirectoryName)
+            try move(contentsOf: copyTempDirectoryURL,
+                     toDirectoryInTrashWithName: trashDirectoryName)
         } catch let error as NSError {
             throw error
         }

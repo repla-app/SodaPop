@@ -62,7 +62,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
                 do {
                     try FileManager.default.moveItem(at: URL,
-                        to: movedDestinationURL)
+                                                     to: movedDestinationURL)
                 } catch {
                     XCTAssertTrue(false, "The move should succeed")
                 }
@@ -75,7 +75,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: copiedPluginURL.path,
-            isDirectory: &isDir)
+                                                    isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")
         XCTAssertTrue(isDir.boolValue, "The item should be a directory")
 
@@ -83,8 +83,10 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         let copiedPluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: copiedPluginURL)
         
         do {
-            let pluginInfoDictionaryContents: String! = try String(contentsOf: pluginInfoDictionaryURL, encoding: String.Encoding.utf8)
-            let copiedPluginInfoDictionaryContents: String! = try String(contentsOf: copiedPluginInfoDictionaryURL, encoding: String.Encoding.utf8)
+            let pluginInfoDictionaryContents: String! = try String(contentsOf: pluginInfoDictionaryURL,
+                                                                   encoding: String.Encoding.utf8)
+            let copiedPluginInfoDictionaryContents: String! = try String(contentsOf: copiedPluginInfoDictionaryURL,
+                                                                         encoding: String.Encoding.utf8)
             XCTAssertEqual(copiedPluginInfoDictionaryContents, pluginInfoDictionaryContents, "The contents should be equal")
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
@@ -125,8 +127,8 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         // Assert the contents is empty
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                includingPropertiesForKeys: [URLResourceKey.nameKey],
-                options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+                                                                       includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                                                       options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             XCTAssertFalse(contents.isEmpty, "The contents should not be empty")
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")
@@ -135,13 +137,12 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         // Init a new CopyDirectoryController
         let copyDirectoryControllerTwo = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                                  tempDirectoryName: ClassConstants.tempDirectoryName)
-        
-        // Assert directory is empty
 
+        // Assert the directory is empty
         do {
             let contentsTwo = try FileManager.default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                includingPropertiesForKeys: [URLResourceKey.nameKey],
-                options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+                                                                          includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                                                          options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             XCTAssertTrue(contentsTwo.isEmpty, "The contents should be empty")
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")

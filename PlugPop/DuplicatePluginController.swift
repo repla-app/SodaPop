@@ -16,8 +16,12 @@ protocol DuplicatePluginControllerDelegate {
 
 class DuplicatePluginController {
     lazy var copyDirectoryController: CopyDirectoryController = {
-        return CopyDirectoryController(tempDirectoryURL: self.copyTempDirectoryURL, 
-                                       tempDirectoryName: ClassConstants.tempDirectoryName)
+        let copyDirectoryController = CopyDirectoryController(tempDirectoryURL: self.copyTempDirectoryURL, 
+                                                              tempDirectoryName: ClassConstants.tempDirectoryName)
+        copyDirectoryController.cleanUp() { error in
+            assert(error == nil)
+        }
+        return copyDirectoryController
     }()
     let pluginMaker: PluginMaker
     var delegate: DuplicatePluginControllerDelegate?

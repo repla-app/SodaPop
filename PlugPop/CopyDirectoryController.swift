@@ -11,6 +11,7 @@ import Foundation
 import Cocoa
 
 class CopyDirectoryController {
+    typealias CleanUpCompletion = ((Error?) -> ())?
     let copyTempDirectoryURL: URL
     var tempDirectoryName: String
     var trashDirectoryName: String {
@@ -18,28 +19,24 @@ class CopyDirectoryController {
     }
     
     // Creates a directory with `tempDirectoryName` in `tempDirectoryURL`
-    init(tempDirectoryURL: URL, tempDirectoryName: String) {
+    init(tempDirectoryURL: URL,
+         tempDirectoryName: String)
+    {
         self.tempDirectoryName = tempDirectoryName
         self.copyTempDirectoryURL = tempDirectoryURL.appendingPathComponent(tempDirectoryName)
-        do {
-            try self.cleanUp()
-        } catch let error as NSError {
-            assert(false, "Failed to clean up \(error)")
-        }
     }
 
     // MARK: Public
     
-    func cleanUp() throws {
-        do {
-            try move(contentsOf: copyTempDirectoryURL,
-                     toDirectoryInTrashWithName: trashDirectoryName)
-        } catch let error as NSError {
-            throw error
-        }
+    func cleanUp(completion: CleanUpCompletion) {
+            move(contentsOf: copyTempDirectoryURL,
+                 toDirectoryInTrashWithName: trashDirectoryName,
+                 completion: completion)
     }
     
-    func copyItem(at URL: Foundation.URL, completionHandler handler: @escaping (_ URL: Foundation.URL?, _ error: NSError?) -> Void) {
+    func copyItem(at URL: URL,
+                  completionHandler handler: @escaping (_ URL: Foundation.URL?, _ error: NSError?) -> Void)
+    {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             do {
                 let copiedURL = try type(of: self).copyItem(at: URL, to: self.copyTempDirectoryURL)
@@ -61,8 +58,9 @@ class CopyDirectoryController {
 
     // MARK: Private Clean Up Helpers
 
-    func move(contentsOf URL: Foundation.URL, 
-              toDirectoryInTrashWithName trashDirectoryName: String) throws 
+    func move(contentsOf URL: URL,
+              toDirectoryInTrashWithName directoryInTrashName: String,
+              completion: CleanUpCompletion)
     {
         var validCachesURL = false
         let hasPrefix = URL.path.hasPrefix(copyTempDirectoryURL.path)
@@ -73,36 +71,36 @@ class CopyDirectoryController {
             return
         }
 
-        let trashDirectoryURL = URL.appendingPathComponent(trashDirectoryName)
+        let directoryToTrashURL = URL.appendingPathComponent(directoryInTrashName)
+
 
         var foundFilesToRecover = false
         if let enumerator = FileManager.default.enumerator(at: URL,
-            includingPropertiesForKeys: [URLResourceKey.nameKey],
-            options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants],
-            errorHandler: nil)
+                                                           includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                                           options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants],
+                                                           errorHandler: nil)
         {
-            while let fileURL = enumerator.nextObject() as? Foundation.URL {
-                
+            while let fileURL = enumerator.nextObject() as? URL {
                 var resourceName: AnyObject?
                 do {
-                    try (fileURL as NSURL).getResourceValue(&resourceName, forKey: URLResourceKey.nameKey)
+                    try (fileURL as NSURL).getResourceValue(&resourceName, forKey: .nameKey)
                 } catch let error as NSError {
-                    throw error
+                    completion?(error)
                 }
 
                 guard let filename = resourceName as? String else {
                     return
                 }
 
-                if filename == trashDirectoryName {
+                if filename == directoryInTrashName {
                     continue
                 }
 
                 if !foundFilesToRecover {
                     do {
-                        try type(of: self).createDirectoryIfMissing(at: trashDirectoryURL)
+                        try type(of: self).createDirectoryIfMissing(at: directoryToTrashURL)
                     } catch let error as NSError {
-                        throw error
+                        completion?(error)
                     }
                     
                     foundFilesToRecover = true
@@ -110,21 +108,26 @@ class CopyDirectoryController {
                 
                 let UUID = Foundation.UUID()
                 let UUIDString = UUID.uuidString
-                let destinationFileURL = trashDirectoryURL.appendingPathComponent(UUIDString)
+                let destinationFileURL = directoryToTrashURL.appendingPathComponent(UUIDString)
+
+
                 do {
-                    try FileManager.default.moveItem(at: fileURL, to: destinationFileURL)
+                    try FileManager.default.moveItem(at: fileURL,
+                                                     to: destinationFileURL)
                 } catch let error as NSError {
-                    throw error
+                    completion?(error)
                 }
             }
         }
 
         if !foundFilesToRecover {
-            return
+            completion?(nil)
         }
 
-        NSWorkspace.shared().recycle([trashDirectoryURL],
-                                     completionHandler: nil)
+
+        NSWorkspace.shared().recycle([directoryToTrashURL]) { (_, error) in
+            completion?(error)
+        }
     }
 
     // MARK: Private Duplicate Helpers

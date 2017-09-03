@@ -114,7 +114,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
             if let URL = URL {
                 let movedFilename = testDirectoryName
-                let movedDirectoryURL: Foundation.URL! = URL.deletingLastPathComponent()
+                let movedDirectoryURL = URL.deletingLastPathComponent()
                 let movedDestinationURL = movedDirectoryURL.appendingPathComponent(movedFilename)
 
                 do {
@@ -143,6 +143,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         let copyDirectoryControllerTwo = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                                  tempDirectoryName: ClassConstants.tempDirectoryName)
+
         let cleanUpExpectation = expectation(description: "Cleanup")
         copyDirectoryController.cleanUp() { error in
             XCTAssertNil(error)
@@ -171,6 +172,14 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         // Clean up trash
         do {
             try FileManager.default.removeItem(atPath: recoveredFilesPath)
+        } catch {
+            XCTAssertTrue(false, "The remove should succeed")
+        }
+
+        // Clean up `CopyDirectoryController` temporary directories
+        do {
+            try FileManager.default.removeItem(at: copyDirectoryController.copyTempDirectoryURL)
+            try FileManager.default.removeItem(at: tempCopyTempDirectoryURL)
         } catch {
             XCTAssertTrue(false, "The remove should succeed")
         }

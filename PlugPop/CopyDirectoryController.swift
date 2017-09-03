@@ -68,6 +68,7 @@ class CopyDirectoryController {
 
         if !validCachesURL {
             assert(false, "The URL should be a valid caches URL")
+            completion?(nil)
             return
         }
 
@@ -86,10 +87,12 @@ class CopyDirectoryController {
                     try (fileURL as NSURL).getResourceValue(&resourceName, forKey: .nameKey)
                 } catch let error as NSError {
                     completion?(error)
+                    return
                 }
 
                 guard let filename = resourceName as? String else {
-                    return
+                    assert(false)
+                    continue
                 }
 
                 if filename == directoryInTrashName {
@@ -101,6 +104,7 @@ class CopyDirectoryController {
                         try type(of: self).createDirectoryIfMissing(at: directoryToTrashURL)
                     } catch let error as NSError {
                         completion?(error)
+                        return
                     }
                     
                     foundFilesToRecover = true
@@ -116,17 +120,19 @@ class CopyDirectoryController {
                                                      to: destinationFileURL)
                 } catch let error as NSError {
                     completion?(error)
+                    return
                 }
             }
         }
 
         if !foundFilesToRecover {
             completion?(nil)
+            return
         }
 
 
         NSWorkspace.shared().recycle([directoryToTrashURL]) { (_, error) in
-            completion?(error)
+            return completion?(error)
         }
     }
 

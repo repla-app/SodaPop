@@ -23,6 +23,11 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         super.setUp()
         copyDirectoryController = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                           tempDirectoryName: ClassConstants.tempDirectoryName)
+        let cleanUpExpectation = expectation(description: "Cleanup")
+        copyDirectoryController.cleanUp() { error in
+            XCTAssertNil(error)
+            cleanUpExpectation.fulfill()
+        }
     }
     
     override func tearDown() {
@@ -135,18 +140,26 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         }
 
         // Init a new CopyDirectoryController
+
         let copyDirectoryControllerTwo = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                                  tempDirectoryName: ClassConstants.tempDirectoryName)
+        let cleanUpExpectation = expectation(description: "Cleanup")
+        copyDirectoryController.cleanUp() { error in
+            XCTAssertNil(error)
 
-        // Assert the directory is empty
-        do {
-            let contentsTwo = try FileManager.default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                                                                          includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                                                          options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
-            XCTAssertTrue(contentsTwo.isEmpty, "The contents should be empty")
-        } catch {
-            XCTAssertTrue(false, "Getting the contents should succeed")
+            // Assert the directory is empty
+            do {
+                let contentsTwo = try FileManager.default.contentsOfDirectory(at: self.copyDirectoryController.copyTempDirectoryURL,
+                                                                              includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                                                              options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+                XCTAssertTrue(contentsTwo.isEmpty, "The contents should be empty")
+            } catch {
+                XCTAssertTrue(false, "Getting the contents should succeed")
+            }
+
+            cleanUpExpectation.fulfill()
         }
+        waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Clean Up
         let recoveredFilesPath = testTrashDirectoryPath.appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)

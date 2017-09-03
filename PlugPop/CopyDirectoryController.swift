@@ -74,7 +74,6 @@ class CopyDirectoryController {
 
         let directoryToTrashURL = URL.appendingPathComponent(directoryInTrashName)
 
-
         var foundFilesToRecover = false
         if let enumerator = FileManager.default.enumerator(at: URL,
                                                            includingPropertiesForKeys: [URLResourceKey.nameKey],
@@ -114,7 +113,6 @@ class CopyDirectoryController {
                 let UUIDString = UUID.uuidString
                 let destinationFileURL = directoryToTrashURL.appendingPathComponent(UUIDString)
 
-
                 do {
                     try FileManager.default.moveItem(at: fileURL,
                                                      to: destinationFileURL)
@@ -129,7 +127,6 @@ class CopyDirectoryController {
             completion?(nil)
             return
         }
-
 
         NSWorkspace.shared().recycle([directoryToTrashURL]) { (_, error) in
             return completion?(error)

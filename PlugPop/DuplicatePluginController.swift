@@ -91,8 +91,12 @@ class DuplicatePluginController {
                         if let renamedPlugin = self.pluginMaker.makePlugin(url: renamedDestinationURL) {
                             plugin = renamedPlugin
                         }
-                    } catch let error as NSError {
-                        print("Failed to move a plugin directory to \(renamedDestinationURL) \(error)")
+                    } catch {
+//                    } catch let error as NSError {
+                        // TODO: This is a useful log message, but it's confusing
+                        // for tests. Eventually a better solution for this type
+                        // of log message would be useful.
+//                        print("Failed to move a plugin directory to \(renamedDestinationURL) \(error)")
                     }
                 }
             }

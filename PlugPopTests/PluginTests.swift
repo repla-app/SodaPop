@@ -128,7 +128,10 @@ class DuplicatePluginNameValidationTests: TemporaryDirectoryTestCase, PluginsMan
         }
     }
 
-    var pluginsManagerType = PluginNameMockPluginsManager.self
+    var pluginsManagerType: PluginsManager.Type {
+        return PluginNameMockPluginsManager.self
+    }
+
     var mockPluginsManager: PluginNameMockPluginsManager!
     var plugin: Plugin!
 

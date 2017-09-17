@@ -178,8 +178,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         // Clean up `CopyDirectoryController` temporary directories
         do {
-            try FileManager.default.removeItem(at: copyDirectoryController.copyTempDirectoryURL)
-            try FileManager.default.removeItem(at: tempCopyTempDirectoryURL)
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
         } catch {
             XCTAssertTrue(false, "The remove should succeed")
         }

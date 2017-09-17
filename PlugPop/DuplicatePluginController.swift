@@ -42,9 +42,13 @@ class DuplicatePluginController {
         return name.appendingPathExtension(pluginFileExtension)!
     }
 
-    func duplicate(_ plugin: Plugin, to destinationDirectoryURL: URL, completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
+    func duplicate(_ plugin: Plugin,
+                   to destinationDirectoryURL: URL,
+                   completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void)
+    {
         let pluginFileURL = plugin.bundle.bundleURL
-        copyDirectoryController.copyItem(at: pluginFileURL, completionHandler: { [weak self] (URL, error) -> Void in
+        copyDirectoryController.copyItem(at: pluginFileURL,
+                                         completionHandler: { [weak self] (URL, error) -> Void in
             guard let `self` = self else { return }
 
             guard error == nil else {
@@ -59,6 +63,7 @@ class DuplicatePluginController {
                 let movedDestinationURL = destinationDirectoryURL.appendingPathComponent(movedFilename)
 
                 do {
+                    try FileManagerHelper.createDirectoryIfMissing(at: destinationDirectoryURL)
                     try FileManager.default.moveItem(at: URL, to: movedDestinationURL)
                 } catch let error as NSError {
                     handler(nil, error)

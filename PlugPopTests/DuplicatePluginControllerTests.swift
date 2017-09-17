@@ -90,39 +90,44 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertEqual(DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.name), duplicatePluginFolderName, "The folder name should equal the plugin's name")
         
         // Clean Up
-        do {
-            try removeTemporaryItem(at: duplicatePluginURL)
-            try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
-            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
-        } catch {
-            XCTAssertTrue(false, "The remove should suceed")
-        }
+        try! removeTemporaryItem(at: duplicatePluginURL)
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
     
     func testDuplicatePluginWithFolderNameBlocked() {
-        // Get the destination plugin name
-        let uniqueName = pluginsManager.pluginsController.uniquePluginName(fromName: plugin.name,
-                                                                           for: plugin)
-        let destinationName = DuplicatePluginController.pluginFilename(fromName: uniqueName)
-        
-        // Create a folder at the destination URL
-        let destinationFolderURL = temporaryUserPluginsDirectoryURL.appendingPathComponent(destinationName)
+        try! FileManager.default.createDirectory(at: temporaryUserPluginsDirectoryURL,
+                                                 withIntermediateDirectories: true,
+                                                 attributes: nil)
 
-        do {
-            try FileManager.default.createDirectory(at: destinationFolderURL,
-                                                    withIntermediateDirectories: true,
-                                                    attributes: nil)
-        } catch {
-            XCTAssertTrue(false, "The create should succeed")
+        // Function to create a blocking folder for a plugin with the provided name
+        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> ()) = { name, plugin, pluginsManager, destinationDirectoryURL in
+            let uniqueName = pluginsManager.pluginsController.uniquePluginName(fromName: name,
+                                                                               for: plugin)
+            let destinationName = DuplicatePluginController.pluginFilename(fromName: uniqueName)
+
+            // Create a folder at the destination URL
+            let destinationFolderURL = destinationDirectoryURL.appendingPathComponent(destinationName)
+
+            try! FileManager.default.createDirectory(at: destinationFolderURL,
+                                                     withIntermediateDirectories: false,
+                                                     attributes: nil)
+
+            // Test that the folder exists
+            var isDir: ObjCBool = false
+            let exists = FileManager.default.fileExists(atPath: destinationFolderURL.path, isDirectory: &isDir)
+            XCTAssertTrue(exists, "The file should exist")
+            XCTAssertTrue(isDir.boolValue, "The file should be a directory")
         }
 
-        // Test that the folder exists
-        var isDir: ObjCBool = false
-        var exists = FileManager.default.fileExists(atPath: destinationFolderURL.path, isDirectory: &isDir)
-        XCTAssertTrue(exists, "The file should exist")
-        XCTAssertTrue(isDir.boolValue, "The file should be a directory")
-    
-        // Duplicate the plugin
+        // Block the original name, and all incremented names up to `duplicatePluginsWithCounterMax`
+        // This will force a fallback to a name based on the plugin's identifier
+        makeBlockingFolderWithName(plugin.name, plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
+        for index in 2..<duplicatePluginsWithCounterMax {
+            makeBlockingFolderWithName("\(plugin.name) \(index)", plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
+        }
+
+        // Perform the duplicate
         var duplicatePlugin: Plugin!
         let duplicateExpectation = expectation(description: "Duplicate")
         duplicatePluginController.duplicate(plugin, to: temporaryUserPluginsDirectoryURL) { (plugin, error) -> Void in
@@ -137,11 +142,9 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
         XCTAssertEqual(duplicatePluginFolderName, DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.identifier), "The folder name should equal the identifier")
 
-        // Test that the folder exists
-        isDir = false
-        exists = FileManager.default.fileExists(atPath: destinationFolderURL.path, isDirectory: &isDir)
-        XCTAssertTrue(exists, "The file should exist")
-        XCTAssertTrue(isDir.boolValue, "The file should be a directory")
+        // Clean Up
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 
 }

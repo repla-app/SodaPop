@@ -52,7 +52,7 @@
 
 - (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin index:(NSUInteger)index
 {
-    if (index > 99) {
+    if (index > kDuplicatePluginsWithCounterMax) {
         return nil;
     }
     

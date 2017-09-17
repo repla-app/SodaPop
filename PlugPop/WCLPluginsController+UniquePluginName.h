@@ -8,6 +8,8 @@
 
 #import "WCLPluginsController.h"
 
+#define kDuplicatePluginsWithCounterMax 99
+
 @class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN

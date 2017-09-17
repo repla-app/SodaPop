@@ -109,10 +109,9 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         let destinationFolderURL = temporaryUserPluginsDirectoryURL.appendingPathComponent(destinationName)
 
         do {
-            try FileManager.default
-                .createDirectory(at: destinationFolderURL,
-                    withIntermediateDirectories: false,
-                    attributes: nil)
+            try FileManager.default.createDirectory(at: destinationFolderURL,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
         } catch {
             XCTAssertTrue(false, "The create should succeed")
         }

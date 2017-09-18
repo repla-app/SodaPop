@@ -152,29 +152,32 @@ class DuplicatePluginNameValidationTests: TemporaryDirectoryTestCase, PluginsMan
     }
 
     func testPluginNames() {
-        let fromName = PotionTaster.testPluginNameTwo
-        
-        for pluginNamesCount in 0...105 {
+        let fromName = PotionTaster.testPluginName
+
+        XCTAssert(fromName != plugin.name)
+
+        for index in 0...105 {
             let name = mockPluginsManager.pluginsController.uniquePluginName(fromName: fromName,
-                                                                         for: plugin)
-            let suffix = pluginNamesCount + 1
-            
+                                                                             for: plugin)
+            let suffix = index + 1
+            let suffixedName = "\(fromName) \(suffix)"
+            if index == 0 {
+                mockPluginsManager.pluginNames.append(fromName)
+            } else {
+                mockPluginsManager.pluginNames.append(suffixedName)
+            }
+
             var testName: String!
-            switch pluginNamesCount {
+
+            switch index {
             case 0:
                 testName = name
             case let x where x > 98:
                 testName = plugin.identifier
             default:
-                testName = "\(fromName) \(suffix)"
+                testName = suffixedName
             }
-            XCTAssertEqual(name, testName, "The name should equal the identifier")
-            
-            var nameToAdd = "\(fromName) \(suffix)"
-            if pluginNamesCount == 0 {
-                nameToAdd = fromName
-            }
-            mockPluginsManager.pluginNames.append(nameToAdd)
+            XCTAssertEqual(name, testName)
         }
 
     }

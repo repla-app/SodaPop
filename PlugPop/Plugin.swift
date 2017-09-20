@@ -101,7 +101,7 @@ public class Plugin: WCLPlugin {
             save()
         }
     }
-    public var identifier: String {
+    @objc public var identifier: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }

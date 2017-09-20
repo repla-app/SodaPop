@@ -108,7 +108,7 @@ class PluginTests: PluginTestCase {
 class DuplicatePluginNameValidationTests: PluginTestCase {
     
     func testPluginNames() {
-        let fromName = PotionTaster.testPluginNameInvalid
+        let fromName = PotionTaster.testPluginNameNonexistent
 
         XCTAssert(fromName != plugin.name)
 

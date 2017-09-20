@@ -17,7 +17,7 @@ extension Plugin {
             return
         }
         if let resourcePath = resourcePath {
-            NSWorkspace.shared().openFile(resourcePath)
+            NSWorkspace.shared.openFile(resourcePath)
         }
     }
 }
@@ -77,7 +77,7 @@ public class Plugin: WCLPlugin {
     internal var infoDictionary: [AnyHashable: Any]
     internal var infoDictionaryURL: URL {
         get {
-            return type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
+            return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
         }
     }
 
@@ -92,7 +92,7 @@ public class Plugin: WCLPlugin {
     
     // MARK: Properties
     
-    dynamic var name: String {
+    @objc dynamic var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -110,7 +110,7 @@ public class Plugin: WCLPlugin {
             save()
         }
     }
-    dynamic var command: String? {
+    @objc dynamic var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -129,7 +129,7 @@ public class Plugin: WCLPlugin {
             return nil
         }
     }
-    dynamic var suffixes: [String] {
+    @objc dynamic var suffixes: [String] {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -138,10 +138,10 @@ public class Plugin: WCLPlugin {
             save()
         }
     }
-    dynamic var type: String {
+    @objc dynamic var type: String {
         return pluginType.name()
     }
-    dynamic var editable: Bool {
+    @objc dynamic var editable: Bool {
         didSet {
             if (!editable) {
                 infoDictionary[InfoDictionaryKeys.editable] = editable
@@ -157,7 +157,7 @@ public class Plugin: WCLPlugin {
     private func save() {
         let infoDictionaryURL = self.infoDictionaryURL
         do {
-            try type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
+            try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
         } catch PluginWriteError.failToWriteDictionaryError(let URL) {
             print("Failed to write an info dictionary at URL \(URL)")
         } catch let error as NSError {

@@ -9,17 +9,14 @@
 #import "WCLPluginsController.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-@interface WCLPluginsController ()
-@property (nonatomic, strong) MultiCollectionController *multiCollectionController;
-@end
-
 @implementation WCLPluginsController
 
 - (instancetype)initWithPlugins:(NSArray *)plugins
 {
     self = [super init];
     if (self) {
-        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins key:kPluginNameKey];
+        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins
+                                                                                    key:kPluginNameKey];
     }
     return self;
 }

@@ -105,78 +105,43 @@ class PluginTests: PluginTestCase {
     }
 }
 
-class DuplicatePluginNameValidationTests: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
+class DuplicatePluginNameValidationTests: PluginTestCase {
     
-    lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
-    }()
-
-    class PluginNameMockPluginsManager: PluginsManager {
-        var pluginNames = [PotionTaster.testPluginName]
-        
-        override func plugin(withName name: String) -> Plugin? {
-            if pluginNames.contains(name) {
-                let plugin = super.plugin(withName: PotionTaster.testPluginName)
-                assert(plugin != nil, "The plugin should not be nil")
-                return plugin
-            }
-            return nil
-        }
-
-        func pluginWithTestPluginNameTwo() -> Plugin {
-            return super.plugin(withName: PotionTaster.testPluginNameTwo)!
-        }
-    }
-
-    var pluginsManagerType: PluginsManager.Type {
-        return PluginNameMockPluginsManager.self
-    }
-
-    var mockPluginsManager: PluginNameMockPluginsManager!
-    var plugin: Plugin!
-
-    override func setUp() {
-        super.setUp()
-        guard let pluginsManager = makePluginsManager() as? PluginNameMockPluginsManager else {
-            XCTFail()
-            return
-        }
-        mockPluginsManager = pluginsManager
-        plugin = mockPluginsManager.pluginWithTestPluginNameTwo()
-    }
-
-    override func tearDown() {
-        mockPluginsManager = nil
-        plugin = nil
-        super.tearDown()
-    }
-
     func testPluginNames() {
-        let fromName = PotionTaster.testPluginName
+        let fromName = PotionTaster.testPluginNameInvalid
 
         XCTAssert(fromName != plugin.name)
 
+        class NameBlocker: NSObject {
+            @objc let name: String
+            init(name: String) {
+                self.name = name
+            }
+        }
+
         for index in 0...105 {
-            let name = mockPluginsManager.pluginsController.uniquePluginName(fromName: fromName,
-                                                                             for: plugin)
+            let name = pluginsManager.pluginsController.uniquePluginName(fromName: fromName,
+                                                                         for: plugin)
+
             let suffix = index + 1
             let suffixedName = "\(fromName) \(suffix)"
             if index == 0 {
-                mockPluginsManager.pluginNames.append(fromName)
+                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: fromName))
             } else {
-                mockPluginsManager.pluginNames.append(suffixedName)
+                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: suffixedName))
             }
 
             var testName: String!
 
             switch index {
             case 0:
-                testName = name
+                testName = fromName
             case let x where x > 98:
                 testName = plugin.identifier
             default:
                 testName = suffixedName
             }
+
             XCTAssertEqual(name, testName)
         }
 

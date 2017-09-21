@@ -14,8 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface WCLPluginsController : NSObject
 - (instancetype)initWithPlugins:(NSArray *)plugins;
-// TODO: `multiCollectionController` is only public for tests
-@property (nonatomic, strong) MultiCollectionController *multiCollectionController;
 - (void)addPlugin:(Plugin *)plugin;
 - (void)removePlugin:(Plugin *)plugin;
 - (nullable Plugin *)pluginWithName:(NSString *)name;

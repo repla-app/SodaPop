@@ -93,10 +93,11 @@ extension PluginsManagerFactoryType {
     }
 
     func makePluginsManager() -> PluginsManager {
-        return pluginsManagerType.init(pluginsPaths: pluginsDirectoryPaths,
-                                       copyTempDirectoryURL: copyTempDirectoryURL,
-                                       defaults: defaults,
-                                       userPluginsPath: userPluginsPath,
-                                       builtInPluginsPath: builtInPluginsPath)
+        let configuration = MockPluginsManagerConfiguration(pluginsPaths: pluginsDirectoryPaths,
+                                                            copyTempDirectoryURL: copyTempDirectoryURL,
+                                                            defaults: defaults,
+                                                            userPluginsPath: userPluginsPath,
+                                                            builtInPluginsPath: builtInPluginsPath)
+        return pluginsManagerType.init(configuration: configuration)
     }
 }

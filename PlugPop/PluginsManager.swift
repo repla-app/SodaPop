@@ -40,24 +40,15 @@ class PluginsManager: PluginsDataControllerDelegate {
     }
 
     // MARK: Init
-    
-    required init(pluginsPaths: [String],
-                  copyTempDirectoryURL: URL,
-                  defaults: DefaultsType,
-                  userPluginsPath: String,
-                  builtInPluginsPath: String?)
-    {
-        self.defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
-        self.pluginsDataController = PluginsDataController(pluginsPaths: pluginsPaths,
-                                                           copyTempDirectoryURL: copyTempDirectoryURL,
-                                                           defaultNewPluginManager: defaultNewPluginManager,
-                                                           userPluginsPath: userPluginsPath,
-                                                           builtInPluginsPath: builtInPluginsPath)
-        self.pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins)
+
+    required init(configuration: PluginsManagerConfiguration) {
+        self.defaultNewPluginManager = configuration.defaultNewPluginManager
+        self.pluginsDataController = configuration.pluginsDataController
+        self.pluginsController = configuration.pluginsController
         pluginsDataController.delegate = self
         defaultNewPluginManager.dataSource = self.pluginsController
     }
-    
+
     // MARK: Plugins
 
     func plugin(withName name: String) -> Plugin? {

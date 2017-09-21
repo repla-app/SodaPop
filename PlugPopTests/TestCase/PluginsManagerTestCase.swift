@@ -23,7 +23,7 @@ class PluginsManagerTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryT
         super.setUp()
         pluginsManager = makePluginsManager()
     }
-    
+
     override func tearDown() {
         pluginsManager = nil
         super.tearDown()

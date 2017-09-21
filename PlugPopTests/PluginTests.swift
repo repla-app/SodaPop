@@ -107,32 +107,25 @@ class PluginTests: PluginTestCase {
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
     
-    func testPluginNames() {
-        let fromName = PotionTaster.testPluginNameNonexistent
+    class NameBlocker: NSObject {
+        @objc let name: String
+        init(name: String) {
+            self.name = name
+        }
+    }
 
+    func testPluginNames() {
+
+        // Setup
+        let fromName = PotionTaster.testPluginNameNonexistent
         XCTAssert(fromName != plugin.name)
 
-        class NameBlocker: NSObject {
-            @objc let name: String
-            init(name: String) {
-                self.name = name
-            }
-        }
-
         for index in 0...105 {
-            let name = pluginsManager.pluginsController.uniquePluginName(fromName: fromName,
-                                                                         for: plugin)
 
+            // Calculate the current suffixed name
             let suffix = index + 1
             let suffixedName = "\(fromName) \(suffix)"
-            if index == 0 {
-                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: fromName))
-            } else {
-                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: suffixedName))
-            }
-
             var testName: String!
-
             switch index {
             case 0:
                 testName = fromName
@@ -142,7 +135,16 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
                 testName = suffixedName
             }
 
+            let name = pluginsManager.pluginsController.uniquePluginName(fromName: fromName,
+                                                                         for: plugin)
             XCTAssertEqual(name, testName)
+
+            // Block more names for the next iteration
+            if index == 0 {
+                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: fromName))
+            } else {
+                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: suffixedName))
+            }
         }
 
     }

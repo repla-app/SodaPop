@@ -13,16 +13,19 @@
 
 - (NSString *)uniquePluginNameFromName:(NSString *)name
 {
-    return [self uniquePluginNameFromName:name forPlugin:nil];
+    return [self uniquePluginNameFromName:name
+                                forPlugin:nil];
 }
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin
+- (NSString *)uniquePluginNameFromName:(NSString *)name
+                             forPlugin:(Plugin *)plugin
 {
     if ([self isUniqueName:name forPlugin:plugin]) {
         return name;
     }
     
-    NSString *newName = [self uniquePluginNameFromName:name forPlugin:plugin index:2];
+    NSString *newName = [self uniquePluginNameFromName:name forPlugin:plugin
+                                                 index:2];
     
     if (!newName && plugin) {
         newName = plugin.identifier;
@@ -31,10 +34,9 @@
     return newName;
 }
 
-
 #pragma mark Name Private
 
-- (BOOL)isUniqueName:(NSString *)name forPlugin:(WCLPlugin *)plugin
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin
 {
     Plugin *existingPlugin = [self pluginWithName:name];
     
@@ -42,15 +44,19 @@
         return YES;
     }
     
-    // Once we've determined there is an existing plugin, the name is only valid if the existing plugin is this plugin
+    // if there is an `existingPlugin`, then the name is only valid if the
+    // `existingPlugin` is the `plugin`. So first confirm that the `plugin`
+    // is not nil.
     if (!plugin) {
         return NO;
     }
-    
+
     return plugin == existingPlugin;
 }
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(WCLPlugin *)plugin index:(NSUInteger)index
+- (NSString *)uniquePluginNameFromName:(NSString *)name
+                             forPlugin:(Plugin *)plugin
+                                 index:(NSUInteger)index
 {
     if (index > kDuplicatePluginsWithCounterMax) {
         return nil;

@@ -9,7 +9,7 @@
 import Foundation
 @testable import PlugPop
 
-class MockPluginsManger: PluginsManager {
+class MockPluginsManager: PluginsManager {
     var mockPluginsController: MockPluginsController {
         return pluginsController as! MockPluginsController
     }

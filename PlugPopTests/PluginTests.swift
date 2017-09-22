@@ -106,7 +106,15 @@ class PluginTests: PluginTestCase {
 }
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
-    
+
+    var pluginsManagerType: PluginsManager.Type {
+        return MockPluginsManager.self
+    }
+
+    var mockPluginsManager: MockPluginsManager {
+        return pluginsManager as! MockPluginsManager
+    }
+
     class NameBlocker: NSObject {
         @objc let name: String
         init(name: String) {

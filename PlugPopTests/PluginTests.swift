@@ -149,9 +149,9 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
 
             // Block more names for the next iteration
             if index == 0 {
-//                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: fromName))
+                mockPluginsManager.mockPluginsController.override(name: fromName, with: plugin)
             } else {
-//                pluginsManager.pluginsController.multiCollectionController.addObject(NameBlocker(name: suffixedName))
+                mockPluginsManager.mockPluginsController.override(name: suffixedName, with: plugin)
             }
         }
 

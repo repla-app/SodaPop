@@ -83,6 +83,7 @@ extension PluginsManagerDependenciesType {
 }
 
 protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
+    var pluginsManagerType: PluginsManager.Type { get }
     func makePluginsManager() -> PluginsManager
 }
 

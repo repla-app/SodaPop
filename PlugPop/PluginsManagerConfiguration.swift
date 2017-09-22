@@ -8,33 +8,50 @@
 
 import Foundation
 
+struct PluginsManagerConfigurationTypes {
+    let defaultNewPluginManagerType: WCLDefaultNewPluginManager.Type
+    let pluginsDataControllerType: PluginsDataController.Type
+    let pluginsControllerType: WCLPluginsController.Type
+    static func makeDefault() -> PluginsManagerConfigurationTypes {
+        return self.init(defaultNewPluginManagerType: WCLDefaultNewPluginManager.self,
+                         pluginsDataControllerType: PluginsDataController.self,
+                         pluginsControllerType: WCLPluginsController.self)
+    }
+}
+
 class PluginsManagerConfiguration {
     let defaultNewPluginManager: WCLDefaultNewPluginManager
     let pluginsDataController: PluginsDataController
     let pluginsController: WCLPluginsController
 
     convenience init(pluginsPaths: [String],
-         copyTempDirectoryURL: URL,
-         defaults: DefaultsType,
-         userPluginsPath: String,
-         builtInPluginsPath: String?)
+                     copyTempDirectoryURL: URL,
+                     defaults: DefaultsType,
+                     userPluginsPath: String,
+                     builtInPluginsPath: String?)
     {
-        let defaultNewPluginManager = WCLDefaultNewPluginManager(defaults: defaults)
-        let pluginsDataController = PluginsDataController(pluginsPaths: pluginsPaths,
-                                                           copyTempDirectoryURL: copyTempDirectoryURL,
-                                                           defaultNewPluginManager: defaultNewPluginManager,
-                                                           userPluginsPath: userPluginsPath,
-                                                           builtInPluginsPath: builtInPluginsPath)
-        let pluginsController = WCLPluginsController(plugins: pluginsDataController.plugins)
-        self.init(defaultNewPluginManager: defaultNewPluginManager,
-                  pluginsDataController: pluginsDataController,
-                  pluginsController: pluginsController)
+        self.init(types: PluginsManagerConfigurationTypes.makeDefault(),
+                  pluginsPaths: pluginsPaths,
+                  copyTempDirectoryURL: copyTempDirectoryURL,
+                  defaults: defaults,
+                  userPluginsPath: userPluginsPath,
+                  builtInPluginsPath: builtInPluginsPath)
     }
 
-    required init(defaultNewPluginManager: WCLDefaultNewPluginManager,
-                  pluginsDataController: PluginsDataController,
-                  pluginsController: WCLPluginsController)
+    required init(types: PluginsManagerConfigurationTypes,
+                  pluginsPaths: [String],
+                  copyTempDirectoryURL: URL,
+                  defaults: DefaultsType,
+                  userPluginsPath: String,
+                  builtInPluginsPath: String?)
     {
+        let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults)
+        let pluginsDataController = types.pluginsDataControllerType.init(pluginsPaths: pluginsPaths,
+                                                                        copyTempDirectoryURL: copyTempDirectoryURL,
+                                                                        defaultNewPluginManager: defaultNewPluginManager,
+                                                                        userPluginsPath: userPluginsPath,
+                                                                        builtInPluginsPath: builtInPluginsPath)
+        let pluginsController = types.pluginsControllerType.init(plugins: pluginsDataController.plugins)
         self.defaultNewPluginManager = defaultNewPluginManager
         self.pluginsDataController = pluginsDataController
         self.pluginsController = pluginsController

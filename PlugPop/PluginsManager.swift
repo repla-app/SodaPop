@@ -41,6 +41,20 @@ class PluginsManager: PluginsDataControllerDelegate {
 
     // MARK: Init
 
+    convenience init(pluginsPaths: [String],
+                     copyTempDirectoryURL: URL,
+                     defaults: DefaultsType,
+                     userPluginsPath: String,
+                     builtInPluginsPath: String?)
+    {
+        let configuration = PluginsManagerConfiguration(pluginsPaths: pluginsPaths,
+                                                        copyTempDirectoryURL: copyTempDirectoryURL,
+                                                        defaults: defaults,
+                                                        userPluginsPath: userPluginsPath,
+                                                        builtInPluginsPath: builtInPluginsPath)
+        self.init(configuration: configuration)
+    }
+
     required init(configuration: PluginsManagerConfiguration) {
         self.defaultNewPluginManager = configuration.defaultNewPluginManager
         self.pluginsDataController = configuration.pluginsDataController

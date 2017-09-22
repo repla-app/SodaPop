@@ -45,11 +45,11 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         return Array(self.pluginPathToPluginDictionary.values)
     }
 
-    init(pluginsPaths: [String],
-         copyTempDirectoryURL: URL,
-         defaultNewPluginManager: WCLDefaultNewPluginManager,
-         userPluginsPath: String,
-         builtInPluginsPath: String?)
+    required init(pluginsPaths: [String],
+                  copyTempDirectoryURL: URL,
+                  defaultNewPluginManager: WCLDefaultNewPluginManager,
+                  userPluginsPath: String,
+                  builtInPluginsPath: String?)
     {
         self.pluginMaker = PluginMaker(defaultNewPluginManager: defaultNewPluginManager,
                                        userPluginsPath: userPluginsPath,

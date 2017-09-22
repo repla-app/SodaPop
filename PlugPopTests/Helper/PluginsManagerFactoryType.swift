@@ -83,7 +83,6 @@ extension PluginsManagerDependenciesType {
 }
 
 protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
-    var pluginsManagerType: PluginsManager.Type { get }
     func makePluginsManager() -> PluginsManager
 }
 
@@ -93,11 +92,11 @@ extension PluginsManagerFactoryType {
     }
 
     func makePluginsManager() -> PluginsManager {
-        let configuration = MockPluginsManagerConfiguration(pluginsPaths: pluginsDirectoryPaths,
-                                                            copyTempDirectoryURL: copyTempDirectoryURL,
-                                                            defaults: defaults,
-                                                            userPluginsPath: userPluginsPath,
-                                                            builtInPluginsPath: builtInPluginsPath)
+        let configuration = PluginsManagerConfiguration.init(pluginsPaths: pluginsDirectoryPaths,
+                                                             copyTempDirectoryURL: copyTempDirectoryURL,
+                                                             defaults: defaults,
+                                                             userPluginsPath: userPluginsPath,
+                                                             builtInPluginsPath: builtInPluginsPath)
         return pluginsManagerType.init(configuration: configuration)
     }
 }

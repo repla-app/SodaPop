@@ -11,7 +11,7 @@ import PotionTaster
 import XCTest
 
 class TemporaryPluginsManagerTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
-    var builtInPluginsPath: String? = nil 
+    var builtInPluginsPath: String? = nil
     var userPluginsPath: String {
         return tempPluginsDirectoryPath
     }

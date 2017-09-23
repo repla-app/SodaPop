@@ -88,16 +88,12 @@ protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
 }
 
 extension PluginsManagerFactoryType {
-    var pluginsManagerType: PluginsManager.Type {
-        return PluginsManager.self
-    }
-
     func makePluginsManager() -> PluginsManager {
-        let configuration = PluginsManagerConfiguration.init(pluginsPaths: pluginsDirectoryPaths,
-                                                             copyTempDirectoryURL: copyTempDirectoryURL,
-                                                             defaults: defaults,
-                                                             userPluginsPath: userPluginsPath,
-                                                             builtInPluginsPath: builtInPluginsPath)
+        let configuration = PluginsManagerConfiguration(pluginsPaths: pluginsDirectoryPaths,
+                                                        copyTempDirectoryURL: copyTempDirectoryURL,
+                                                        defaults: defaults,
+                                                        userPluginsPath: userPluginsPath,
+                                                        builtInPluginsPath: builtInPluginsPath)
         return pluginsManagerType.init(configuration: configuration)
     }
 }

@@ -107,10 +107,6 @@ class PluginTests: PluginTestCase {
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
 
-    var pluginsManagerType: PluginsManager.Type {
-        return MockPluginsManager.self
-    }
-
     var mockPluginsManager: MockPluginsManager {
         return pluginsManager as! MockPluginsManager
     }
@@ -120,6 +116,11 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
         init(name: String) {
             self.name = name
         }
+    }
+
+    override func setUp() {
+        pluginsManagerType = MockPluginsManager.self
+        super.setUp()
     }
 
     func testPluginNames() {

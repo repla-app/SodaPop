@@ -127,7 +127,9 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
 
         // Setup
         let fromName = PotionTaster.testPluginNameNonexistent
-        XCTAssert(fromName != plugin.name)
+        let blockingPlugin = pluginsManager.plugin(withName: PotionTaster.testPluginNameTwo)!
+        XCTAssertNotEqual(fromName, plugin.name)
+        XCTAssertNotEqual(plugin, blockingPlugin)
 
         for index in 0...105 {
 
@@ -150,9 +152,9 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
 
             // Block more names for the next iteration
             if index == 0 {
-                mockPluginsManager.mockPluginsController.override(name: fromName, with: plugin)
+                mockPluginsManager.mockPluginsController.override(name: fromName, with: blockingPlugin)
             } else {
-                mockPluginsManager.mockPluginsController.override(name: suffixedName, with: plugin)
+                mockPluginsManager.mockPluginsController.override(name: suffixedName, with: blockingPlugin)
             }
         }
 

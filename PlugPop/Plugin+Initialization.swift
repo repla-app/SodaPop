@@ -95,16 +95,15 @@ extension Plugin {
                 
                 // Plugin
                 return Plugin(bundle: bundle,
-                    infoDictionary: infoDictionary,
-                    pluginType: pluginType,
-                    identifier: identifier,
-                    name: name,
-                    command: command,
-                    suffixes: suffixes,
-                    hidden: hidden,
-                    editable: editable,
-                    debugModeEnabled: debugModeEnabled)
-
+                              infoDictionary: infoDictionary,
+                              pluginType: pluginType,
+                              identifier: identifier,
+                              name: name,
+                              command: command,
+                              suffixes: suffixes,
+                              hidden: hidden,
+                              editable: editable,
+                              debugModeEnabled: debugModeEnabled)
             }
         } catch let error as NSError {
             throw error

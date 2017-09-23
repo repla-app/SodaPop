@@ -36,15 +36,15 @@ public class Plugin: WCLPlugin {
     let pluginType: PluginType
     
     init(bundle: Bundle,
-        infoDictionary: [AnyHashable: Any],
-        pluginType: PluginType,
-        identifier: String,
-        name: String,
-        command: String?,
-        suffixes: [String]?,
-        hidden: Bool,
-        editable: Bool,
-        debugModeEnabled: Bool?)
+         infoDictionary: [AnyHashable: Any],
+         pluginType: PluginType,
+         identifier: String,
+         name: String,
+         command: String?,
+         suffixes: [String]?,
+         hidden: Bool,
+         editable: Bool,
+         debugModeEnabled: Bool?)
     {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType

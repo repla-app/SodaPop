@@ -41,18 +41,17 @@ class PluginsManager: PluginsDataControllerDelegate {
 
     // MARK: Init
 
-    convenience init(pluginsPaths: [String],
-                     copyTempDirectoryURL: URL,
-                     defaults: DefaultsType,
-                     userPluginsPath: String,
-                     builtInPluginsPath: String?)
+    class func makeConfiguration(pluginsPaths: [String],
+                                 copyTempDirectoryURL: URL,
+                                 defaults: DefaultsType,
+                                 userPluginsPath: String,
+                                 builtInPluginsPath: String?) -> PluginsManagerConfiguration
     {
-        let configuration = PluginsManagerConfiguration(pluginsPaths: pluginsPaths,
-                                                        copyTempDirectoryURL: copyTempDirectoryURL,
-                                                        defaults: defaults,
-                                                        userPluginsPath: userPluginsPath,
-                                                        builtInPluginsPath: builtInPluginsPath)
-        self.init(configuration: configuration)
+        return PluginsManagerConfiguration(pluginsPaths: pluginsPaths,
+                                           copyTempDirectoryURL: copyTempDirectoryURL,
+                                           defaults: defaults,
+                                           userPluginsPath: userPluginsPath,
+                                           builtInPluginsPath: builtInPluginsPath)
     }
 
     required init(configuration: PluginsManagerConfiguration) {

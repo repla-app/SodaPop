@@ -14,21 +14,20 @@ class MockPluginsManager: PluginsManager {
         return pluginsController as! MockPluginsController
     }
 
-    convenience init(pluginsPaths: [String],
-                     copyTempDirectoryURL: URL,
-                     defaults: DefaultsType,
-                     userPluginsPath: String,
-                     builtInPluginsPath: String?)
+    override class func makeConfiguration(pluginsPaths: [String],
+                                          copyTempDirectoryURL: URL,
+                                          defaults: DefaultsType,
+                                          userPluginsPath: String,
+                                          builtInPluginsPath: String?) -> PluginsManagerConfiguration
     {
         let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: WCLDefaultNewPluginManager.self,
                                                      pluginsDataControllerType: PluginsDataController.self,
                                                      pluginsControllerType: MockPluginsController.self)
-        let configuration = PluginsManagerConfiguration(types: types,
-                                                        pluginsPaths: pluginsPaths,
-                                                        copyTempDirectoryURL: copyTempDirectoryURL,
-                                                        defaults: defaults,
-                                                        userPluginsPath: userPluginsPath,
-                                                        builtInPluginsPath: builtInPluginsPath)
-        self.init(configuration: configuration)
+        return PluginsManagerConfiguration(types: types,
+                                           pluginsPaths: pluginsPaths,
+                                           copyTempDirectoryURL: copyTempDirectoryURL,
+                                           defaults: defaults,
+                                           userPluginsPath: userPluginsPath,
+                                           builtInPluginsPath: builtInPluginsPath)
     }
 }

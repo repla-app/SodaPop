@@ -11,14 +11,9 @@ import XCTest
 
 @testable import PlugPop
 import PotionTaster
-import XCTestTemp
 
-class PluginsManagerTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
-    var pluginsManagerType = PluginsManager.self
+class PluginsManagerTestCase: PluginsManagerDependenciesTestCase {
     var pluginsManager: PluginsManager!
-    lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
-    }()
 
     override func setUp() {
         super.setUp()

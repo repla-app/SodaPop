@@ -25,7 +25,6 @@ class PluginTestCase: PluginsManagerTestCase {
 
         // Set the plugin
         plugin = pluginsManager.plugin(withName: PotionTaster.testPluginName)
-        plugin.editable = true
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
         plugin.isDefaultNewPlugin = true
     }

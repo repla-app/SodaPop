@@ -31,7 +31,8 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
 
     func testInitPlugins() {
         let plugin = Plugin.makePlugin(url: tempPluginURL)!
-        
+        plugin.editable = true
+
         let newPluginFilename = testDirectoryName
         let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
         let newPlugin = Plugin.makePlugin(url: newPluginURL)!
@@ -127,6 +128,7 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         let newPluginChangedNameFilename = testDirectoryNameThree
         let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginChangedNameFilename)
         let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
+        newPluginChangedName.editable = true
         let changedName = testDirectoryName
         newPluginChangedName.name = changedName
 

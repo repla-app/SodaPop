@@ -10,22 +10,12 @@
 import PotionTaster
 import XCTest
 
-class TemporaryPluginsManagerTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
-    var pluginsManagerType = PluginsManager.self
-    var builtInPluginsPath: String? = nil
-    var userPluginsPath: String {
-        return tempPluginsDirectoryPath
-    }
-    var pluginsDirectoryPaths: [String] {
-        return [userPluginsPath]
-    }
-    var pluginsManager: PluginsManager!
-    lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
-    }()
+class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase {
+
+    var tempPluginsManager: PluginsManager!
 
     override func setUp() {
         super.setUp()
-        pluginsManager = makePluginsManager()
+        tempPluginsManager = makePluginsManager()
     }
 }

@@ -7,7 +7,6 @@
 //
 
 @testable import PlugPop
-import PotionTaster
 import XCTestTemp
 
 extension TemporaryDirectoryTestCase: TemporaryDirectoryType { }
@@ -66,17 +65,6 @@ protocol PluginsManagerDependenciesType: TempCopyTempURLType, TempUserPluginsDir
 }
 
 extension PluginsManagerDependenciesType {
-    var pluginsDirectoryPaths: [String] {
-        return [builtInPluginsPath, 
-                PotionTaster.sharedTestResourcesPluginsDirectoryPath, 
-                userPluginsPath]
-    }
-    var builtInPluginsPath: String {
-        return PotionTaster.rootPluginsDirectoryPath
-    }
-    var userPluginsPath: String {
-        return temporaryUserPluginsDirectoryPath
-    }
     var copyTempDirectoryURL: URL {
         return tempCopyTempDirectoryURL
     }
@@ -94,6 +82,8 @@ extension PluginsManagerFactoryType {
                                                                       defaults: defaults,
                                                                       userPluginsPath: userPluginsPath,
                                                                       builtInPluginsPath: builtInPluginsPath)
-        return pluginsManagerType.init(configuration: configuration)
+        let pluginsManager = pluginsManagerType.init(configuration: configuration)
+
+        return pluginsManager
     }
 }

@@ -24,7 +24,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.name, "HelloWorld")
         XCTAssertEqual(helloWorldPlugin.command, "hello_world.rb")
         XCTAssertEqual(helloWorldPlugin.hidden, false)
-        XCTAssertEqual(helloWorldPlugin.editable, true)
+        XCTAssertEqual(helloWorldPlugin.editable, false)
         XCTAssertNil(helloWorldPlugin.debugModeEnabled)
     }
 
@@ -39,7 +39,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.name, "TestLog")
         XCTAssertEqual(logPlugin.command, "test_log.rb")
         XCTAssertEqual(logPlugin.hidden, false)
-        XCTAssertEqual(logPlugin.editable, true)
+        XCTAssertEqual(logPlugin.editable, false)
         XCTAssertEqual(logPlugin.debugModeEnabled, true)
     }
 

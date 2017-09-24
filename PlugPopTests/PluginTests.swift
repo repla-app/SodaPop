@@ -13,8 +13,8 @@ import PotionTaster
 import XCTestTemp
 import StringPlusPath
 
-class PluginTests: PluginTestCase {
 
+class PluginTests: PluginTestCase {
     func testSharedResources() {
         let testSharedResourcesPath = pluginsManager.sharedResourcesPath!.appendingPathComponent(testSharedResourcePathComponent)
         var isDir: ObjCBool = false
@@ -29,16 +29,15 @@ class PluginTests: PluginTestCase {
     }
 
     func testPlugin() {
-        guard let plugin = pluginsManager.plugin(withName: PotionTaster.testPluginNamePrint) else {
-            XCTFail()
-            return
-        }
         var isDir: ObjCBool = false
         let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertTrue(isDir.boolValue)
         XCTAssertEqual(plugin.resourcePath, plugin.resourceURL!.path)
     }
+}
+
+class TemporaryPluginTests: TemporaryPluginTestCase {
 
     func testEditPluginProperties() {
         let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
@@ -60,7 +59,7 @@ class PluginTests: PluginTestCase {
         plugin.suffixes = testPluginSuffixesTwo
         let contentsFive = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
-        let newPlugin: Plugin! = Plugin.makePlugin(url: pluginURL)
+        let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
 
         XCTAssertEqual(plugin.name, newPlugin.name, "The names should be equal")
         XCTAssertEqual(plugin.command!, newPlugin.command!, "The commands should be equal")
@@ -69,15 +68,15 @@ class PluginTests: PluginTestCase {
     }
 
     func testEquality() {
-        let samePlugin: Plugin = Plugin.makePlugin(url: pluginURL)!
+        let samePlugin: Plugin = Plugin.makePlugin(url: tempPluginURL)!
         XCTAssertNotEqual(plugin, samePlugin, "The plugins should not be equal")
         XCTAssertTrue(plugin.isEqual(toOther: samePlugin), "The plugins should be equal")
         
         // Duplicate the plugins folder, this should not cause a second plugin to be added to the plugin manager since the copy originated from the same process
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
-        let destinationPluginURL: URL! = pluginURL.deletingLastPathComponent().appendingPathComponent(destinationPluginFilename)
+        let destinationPluginURL: URL! = tempPluginURL.deletingLastPathComponent().appendingPathComponent(destinationPluginFilename)
         do {
-            try FileManager.default.copyItem(at: pluginURL as URL, to: destinationPluginURL)
+            try FileManager.default.copyItem(at: tempPluginURL as URL, to: destinationPluginURL)
         } catch {
             XCTAssertTrue(false, "The copy should succeed")
         }

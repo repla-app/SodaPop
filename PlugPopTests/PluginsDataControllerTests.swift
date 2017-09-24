@@ -13,11 +13,8 @@ import XCTest
 import XCTestTemp
 import PotionTaster
 
-class PluginsDataControllerClassTests: TemporaryDirectoryTestCase, PluginsManagerDependenciesType {
-    lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
-    }()
-    
+class PluginsDataControllerClassTests: PluginsManagerDependenciesTestCase {
+
     func testPluginPaths() {
         let pluginPaths = PluginsDataController.pathsForPlugins(atPath: builtInPluginsPath)
 

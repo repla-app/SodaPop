@@ -63,7 +63,8 @@ extension PluginsDataControllerEventTestCase {
         })
         
         // TODO: Once the requirement that no two plugins have the same
-        // identifier is enforced, we'll also have to change the new plugins identifier here
+        // identifier is enforced, we'll also have to change the new plugin's
+        // identifier here.
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }

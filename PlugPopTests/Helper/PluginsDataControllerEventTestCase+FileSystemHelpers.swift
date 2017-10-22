@@ -62,7 +62,8 @@ extension PluginsDataControllerEventTestCase {
             copyExpectation.fulfill()
         })
         
-        // TODO: Once the requirement that no two plugins have the same identifier is enforced, we'll also have to change the new plugins identifier here
+        // TODO: Once the requirement that no two plugins have the same
+        // identifier is enforced, we'll also have to change the new plugins identifier here
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }

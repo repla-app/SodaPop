@@ -146,7 +146,7 @@ extension Plugin {
 
     class func validCommand(infoDictionary: [AnyHashable: Any]) throws -> String? {
         if let command = infoDictionary[InfoDictionaryKeys.command] as? String {
-            if command.characters.count > 0 {
+            if command.count > 0 {
                 return command
             }
         }
@@ -161,7 +161,7 @@ extension Plugin {
     
     class func validName(infoDictionary: [AnyHashable: Any]) throws -> String? {
         if let name = infoDictionary[InfoDictionaryKeys.name] as? String {
-            if name.characters.count > 0 {
+            if name.count > 0 {
                 return name
             }
         }

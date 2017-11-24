@@ -12,7 +12,8 @@ class FileManagerHelper {
     class func createDirectoryIfMissing(atPath path: String) throws {
         // TODO: Should set error instead of assert
         var isDir: ObjCBool = false
-        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDir)
+        let exists = FileManager.default.fileExists(atPath: path,
+                                                    isDirectory: &isDir)
 
         if exists {
             if !isDir.boolValue {
@@ -22,7 +23,9 @@ class FileManagerHelper {
         }
 
         do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: path,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
         } catch let error as NSError {
             throw error
         }

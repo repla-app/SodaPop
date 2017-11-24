@@ -68,6 +68,12 @@ extension PluginsManagerDependenciesType {
     var copyTempDirectoryURL: URL {
         return tempCopyTempDirectoryURL
     }
+    var userPluginsURL: URL {
+        return URL(fileURLWithPath: userPluginsPath)
+    }
+    var builtInPluginsURL: URL {
+        return URL(fileURLWithPath: builtInPluginsPath)
+    }
 }
 
 protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {

@@ -21,14 +21,13 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
     // MARK: File System Tests
     
     func testAddAndDeletePlugin() {
-        let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
-        let destinationPluginParentPath = pluginPath
-        let destinationPluginPath = destinationPluginParentPath.deletingLastPathComponent.appendingPathComponent(destinationPluginFilename)
-        
+        try! FileManagerHelper.createDirectoryIfMissing(at: userPluginsURL)
         var newPlugin: Plugin!
-        copyWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
+        copyWithConfirmation(plugin,
+                             destinationPluginPath: userPluginsPath)
+        { plugin in
             newPlugin = plugin
-        })
+        }
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
 
         XCTAssertTrue(plugins().contains(newPlugin!), "The plugins should contain the plugin")

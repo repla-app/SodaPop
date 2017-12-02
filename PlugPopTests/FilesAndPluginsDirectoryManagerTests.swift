@@ -123,7 +123,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasCreatedOrModifiedExpectation.fulfill()
             }
         })
-        OutOfTouch.createFile(atPath: path)
+        OutOfTouch.createFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -134,7 +134,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasCreatedOrModifiedExpectation.fulfill()
             }
         })
-        OutOfTouch.createDirectory(atPath: path)
+        OutOfTouch.createDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -148,7 +148,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasRemovedExpectation.fulfill()
             }
         })
-        OutOfTouch.removeFile(atPath: path)
+        OutOfTouch.removeFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -159,7 +159,7 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasRemovedExpectation.fulfill()
             }
         })
-        OutOfTouch.removeDirectory(atPath: path)
+        OutOfTouch.removeDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -182,7 +182,9 @@ extension FilesAndPluginsDirectoryManagerTests {
             }
         })
         // Move
-        OutOfTouch.moveItem(atPath: path, toPath: destinationPath)
+        OutOfTouch.moveItem(atPath: path,
+                            toPath: destinationPath,
+                            handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -196,9 +198,14 @@ extension FilesAndPluginsDirectoryManagerTests {
         })
         // Move
         let moveExpectation = expectation(description: "Move finished")
-        OutOfTouch.moveItem(atPath: path, toPath: destinationPath, handler: {
+        OutOfTouch.moveItem(atPath: path,
+                            toPath: destinationPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             moveExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -212,9 +219,14 @@ extension FilesAndPluginsDirectoryManagerTests {
         })
         // Move
         let moveExpectation = expectation(description: "Move finished")
-        OutOfTouch.moveItem(atPath: path, toPath: destinationPath, handler: {
+        OutOfTouch.moveItem(atPath: path,
+                            toPath: destinationPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             moveExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 

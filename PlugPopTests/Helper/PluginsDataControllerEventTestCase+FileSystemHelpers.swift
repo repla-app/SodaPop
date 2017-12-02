@@ -36,7 +36,9 @@ extension PluginsDataControllerEventTestCase {
         })
         
         let pluginPath = plugin.bundle.bundlePath
-        OutOfTouch.moveItem(atPath: pluginPath, toPath: destinationPluginPath)
+        OutOfTouch.moveItem(atPath: pluginPath,
+                            toPath: destinationPluginPath,
+                            handler: nil)
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -61,9 +63,14 @@ extension PluginsDataControllerEventTestCase {
         
         let pluginPath = plugin.bundle.bundlePath
         let copyExpectation = expectation(description: "Copy finished")
-        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath,
+                                 toPath: destinationPluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             copyExpectation.fulfill()
-        })
+        }
         
         // TODO: Once the requirement that no two plugins have the same
         // identifier is enforced, we'll also have to change the new plugin's
@@ -85,9 +92,12 @@ extension PluginsDataControllerEventTestCase {
         
         let pluginPath = plugin.bundle.bundlePath
         let deleteExpectation = expectation(description: "Remove finished")
-        OutOfTouch.removeDirectory(atPath: pluginPath, handler: {
+        OutOfTouch.removeDirectory(atPath: pluginPath) { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             deleteExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -135,7 +145,9 @@ extension PluginsDataControllerEventTestCase {
             }
         })
         
-        OutOfTouch.writeToFile(atPath: infoDictionaryPath, contents: newInfoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: infoDictionaryPath,
+                               contents: newInfoDictionaryContents,
+                               handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 }

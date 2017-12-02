@@ -75,7 +75,9 @@ extension PluginsDirectoryManagerTests {
             }
         })
         
-        OutOfTouch.moveItem(atPath: tempPluginPath, toPath: destinationPluginPath)
+        OutOfTouch.moveItem(atPath: tempPluginPath,
+                            toPath: destinationPluginPath,
+                            handler: nil)
         
         // Wait for expectations
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -90,9 +92,14 @@ extension PluginsDirectoryManagerTests {
         })
         
         let moveExpectation = expectation(description: "Move finished")
-        OutOfTouch.moveItem(atPath: tempPluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.moveItem(atPath: tempPluginPath,
+                            toPath: destinationPluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             moveExpectation.fulfill()
-        })
+        }
         
         // Wait for expectations
         waitForExpectations(timeout: defaultTimeout, handler: nil)
@@ -111,16 +118,25 @@ extension PluginsDirectoryManagerTests {
         })
 
         let copyExpectation = expectation(description: "Copy finished")
-        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             copyExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     func copyPlugin(atPluginPath pluginPath: String, toPluginPath destinationPluginPath: String) {
         let copyExpectation = expectation(description: "Copy finished")
-        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath, handler: {
+        OutOfTouch.copyDirectory(atPath: pluginPath,
+                                 toPath: destinationPluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             copyExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -138,9 +154,13 @@ extension PluginsDirectoryManagerTests {
         })
 
         let deleteExpectation = expectation(description: "Delete finished")
-        OutOfTouch.removeDirectory(atPath: pluginPath, handler: {
+        OutOfTouch.removeDirectory(atPath: pluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
             deleteExpectation.fulfill()
-        })
+        }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 }
@@ -233,7 +253,9 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        OutOfTouch.moveItem(atPath: pluginInfoDictionaryPath, toPath: renamedInfoDictionaryPath)
+        OutOfTouch.moveItem(atPath: pluginInfoDictionaryPath,
+                            toPath: renamedInfoDictionaryPath,
+                            handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         
         // Move back
@@ -243,7 +265,9 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        OutOfTouch.moveItem(atPath: renamedInfoDictionaryPath, toPath: pluginInfoDictionaryPath)
+        OutOfTouch.moveItem(atPath: renamedInfoDictionaryPath,
+                            toPath: pluginInfoDictionaryPath,
+                            handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     
@@ -264,7 +288,8 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        OutOfTouch.removeFile(atPath: pluginInfoDictionaryPath)
+        OutOfTouch.removeFile(atPath: pluginInfoDictionaryPath,
+                              handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Add back the info dictionary
@@ -274,7 +299,9 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath,
+                               contents: infoDictionaryContents,
+                               handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
@@ -296,7 +323,9 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectation.fulfill()
             }
         })
-        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: testFileContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath,
+                               contents: testFileContents,
+                               handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         
         // Remove the info dictionary
@@ -306,7 +335,9 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
                 expectationTwo.fulfill()
             }
         })
-        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath, contents: infoDictionaryContents)
+        OutOfTouch.writeToFile(atPath: pluginInfoDictionaryPath,
+                               contents: infoDictionaryContents,
+                               handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 }

@@ -11,7 +11,6 @@ import XCTest
 
 @testable import PlugPop
 import XCTestTemp
-import PotionTaster
 
 class PluginsDataControllerClassTests: PluginsManagerDependenciesTestCase {
 
@@ -58,6 +57,12 @@ class PluginsDataControllerClassTests: PluginsManagerDependenciesTestCase {
         
         XCTAssert(!plugins.isEmpty, "The plugins should not be empty")
         XCTAssert(plugins.count == pluginPaths.count, "The plugins count should match the plugin paths count")
+
+        // # Clean Up
+
+        // Creating a `PluginsDataController` implicitly creates the
+        // `userPluginsPath` (which starts from "Application Support").
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
     }
 
 }
@@ -249,8 +254,8 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     }
     
     func testDuplicateAndTrashPlugin() {
-        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, 1, "The plugins count should be one")
-        
+        let startingPluginsCount = pluginsManager.plugins.count
+
         var newPlugin: Plugin!
         
         let addedExpectation = expectation(description: "Plugin was added")
@@ -267,7 +272,7 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
 
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
-        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, 2, "The plugins count should be two")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, startingPluginsCount + 1, "The plugins count should be two")
         XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin!), "The plugins should contain the plugin")
         
         // Trash the duplicated plugin

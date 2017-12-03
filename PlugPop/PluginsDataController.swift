@@ -158,7 +158,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         assert(plugin.editable, "The plugin should be editable")
         remove(plugin)
         NSWorkspace.shared.recycle([plugin.bundle.bundleURL],
-                                     completionHandler: nil)
+                                   completionHandler: nil)
     }
     
     func duplicate(_ plugin: Plugin,

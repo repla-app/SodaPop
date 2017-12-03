@@ -10,7 +10,6 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginsManagerTestCase: PluginsManagerDependenciesTestCase {
     var pluginsManager: PluginsManager!
@@ -22,6 +21,9 @@ class PluginsManagerTestCase: PluginsManagerDependenciesTestCase {
 
     override func tearDown() {
         pluginsManager = nil
+        // Making a `pluginsManager` will implicitely create the
+        // `userPluginsURL`. So that needs to be cleaned up here.
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
         super.tearDown()
     }
 

@@ -10,8 +10,8 @@ import Foundation
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 import XCTestTemp
+import PotionTaster
 
 class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
     var tempPluginsDirectoryURL: URL!
@@ -44,8 +44,8 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
        
         // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL = PotionTaster.urlForPlugin(withName: PotionTaster.testPluginName)!
-        let filename = PotionTaster.testPluginName.appendingPathExtension(PotionTaster.testPluginFileExtension)!
+        let bundleResourcesPluginURL = PotionTaster.urlForPlugin(withName: testPluginName)!
+        let filename = testPluginName.appendingPathExtension(testPluginExtension)!
         
         tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)
         do {

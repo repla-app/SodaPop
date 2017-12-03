@@ -7,7 +7,6 @@
 //
 
 @testable import PlugPop
-import PotionTaster
 import XCTest
 
 class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase {

@@ -10,7 +10,6 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
@@ -59,8 +58,8 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         pluginsManager.defaultNewPlugin = createdPlugin
         
-        createdPlugin.name = PotionTaster.testPluginNameTwo
-        createdPlugin.command = PotionTaster.testPluginCommandTwo
+        createdPlugin.name = testPluginNameTwo
+        createdPlugin.command = testPluginCommand
         createdPlugin.suffixes = testPluginSuffixesTwo
         
         let createdPluginTwo = newPluginWithConfirmation()

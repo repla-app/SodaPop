@@ -9,7 +9,6 @@
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginTestCase: PluginsManagerTestCase {
     var plugin: Plugin!
@@ -24,7 +23,7 @@ class PluginTestCase: PluginsManagerTestCase {
         super.setUp()
 
         // Set the plugin
-        plugin = pluginsManager.plugin(withName: PotionTaster.testPluginNameTwo) // `testPluginNameTwo` is `IRB` it's significantly smaller than `HTML`, some of tests copy the plugin, so smaller is better.
+        plugin = pluginsManager.plugin(withName: testPluginName)
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
         plugin.isDefaultNewPlugin = true
     }

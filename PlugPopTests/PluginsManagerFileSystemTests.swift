@@ -10,7 +10,6 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
 
@@ -50,10 +49,6 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
         XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
         XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, originalPlugin, "The plugins should be equal")
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
-
-        // # Clean Up Creating Directories
-
-        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
     }
     
     func testMovePlugin() {
@@ -69,7 +64,7 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
         })
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
         XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: PotionTaster.testPluginName)!, newPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, newPlugin, "The plugins should be equal")
         XCTAssertEqual(pluginsManager.plugins.count, 1, "The plugins count should be one")
         
         // Move the plugin back
@@ -79,7 +74,7 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
         })
         XCTAssertNotNil(originalPlugin, "The plugin should not be nil")
         XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: PotionTaster.testPluginName)!, originalPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, originalPlugin, "The plugins should be equal")
         XCTAssertEqual(pluginsManager.plugins.count, 1, "The plugins count should be one")
     }
     

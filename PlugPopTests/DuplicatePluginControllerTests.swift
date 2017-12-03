@@ -91,7 +91,6 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         
         // Clean Up
         try! removeTemporaryItem(at: duplicatePluginURL)
-        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
     
@@ -143,7 +142,6 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertEqual(duplicatePluginFolderName, DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.identifier), "The folder name should equal the identifier")
 
         // Clean Up
-        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 

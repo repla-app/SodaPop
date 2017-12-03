@@ -9,10 +9,9 @@
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 import XCTestTemp
 import StringPlusPath
-
+import PotionTaster
 
 class PluginTests: PluginTestCase {
     func testSharedResources() {
@@ -42,11 +41,11 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
     func testEditPluginProperties() {
         let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
 
-        plugin.name = PotionTaster.testPluginNameTwo
+        plugin.name = testPluginNameTwo
         let contentsTwo = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
 
-        plugin.command = PotionTaster.testPluginCommandTwo
+        plugin.command = testPluginCommandTwo
         let contentsThree = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
 
@@ -126,7 +125,7 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
 
         // Setup
         let fromName = PotionTaster.testPluginNameNonexistent
-        let blockingPlugin = pluginsManager.plugin(withName: PotionTaster.testPluginNameTwo)!
+        let blockingPlugin = pluginsManager.plugin(withName: testPluginNameTwo)!
         XCTAssertNotEqual(fromName, plugin.name)
         XCTAssertNotEqual(plugin, blockingPlugin)
 

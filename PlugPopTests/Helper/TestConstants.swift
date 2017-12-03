@@ -9,6 +9,7 @@
 let defaultTimeout = 20.0
 
 @testable import PlugPop
+import PotionTaster
 
 // MARK: Directories
 
@@ -22,6 +23,17 @@ let testPluginSuffix = "html"
 let testPluginSuffixes: [String] = [testPluginSuffix]
 let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 let testPluginSuffixesEmpty = [String]()
+
+// MARK: `PotionTaster`
+
+// `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
+// so smaller is better.
+let testPluginName = PotionTaster.testPluginNameIRB
+let testPluginNameTwo = PotionTaster.testPluginNameHTML
+let testPluginExtension = PotionTaster.testPluginFileExtension
+let testPluginCommand = PotionTaster.testPluginCommandIRB
+let testPluginCommandTwo = PotionTaster.testPluginCommandHTML
+
 
 // MARK: `UserDefaults`
 

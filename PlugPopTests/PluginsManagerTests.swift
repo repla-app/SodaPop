@@ -10,7 +10,6 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginsManagerTests: PluginsManagerTestCase {
 
@@ -30,7 +29,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertTrue(plugins.contains(newPlugin), "The plugins should contain the plugin")
 
         // Edit the new plugin
-        newPlugin.command = PotionTaster.testPluginCommandTwo
+        newPlugin.command = testPluginCommandTwo
 
         // Create another plugin from this plugin
         let newPluginTwo = duplicateWithConfirmation(newPlugin)
@@ -50,7 +49,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         let newPluginName = pluginsManager.defaultNewPlugin!.identifier
         newPlugin.name = newPluginName
         XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
-        XCTAssertNil(pluginsManager.plugin(withName: PotionTaster.testPluginName), "The plugin should be nil")
+        XCTAssertNil(pluginsManager.plugin(withName: testPluginName), "The plugin should be nil")
     }
 
     func testBuiltInPlugins() {
@@ -67,7 +66,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         do {
             let contents = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
             let paths = contents
-            let pluginFileExtensionMatch = ".\(PotionTaster.testPluginFileExtension)"
+            let pluginFileExtensionMatch = ".\(testPluginExtension)"
             let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
             let pluginPaths = paths.filter {
                 pluginFileExtensionPredicate.evaluate(with: $0)

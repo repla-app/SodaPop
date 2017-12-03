@@ -9,7 +9,6 @@
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase {
     var plugin: Plugin!
@@ -18,7 +17,7 @@ class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase {
         super.setUp()
 
         // Set the plugin
-        plugin = tempPluginsManager.plugin(withName: PotionTaster.testPluginName)
+        plugin = tempPluginsManager.plugin(withName: testPluginName)
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
         XCTAssertTrue(isTemporaryItem(at: plugin.resourceURL!))
         plugin.editable = true

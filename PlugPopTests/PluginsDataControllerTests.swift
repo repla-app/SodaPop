@@ -313,26 +313,43 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         cleanUpDuplicatedPlugins()
     }
 
+    // This tests that an error is generated if the entire
+    // `temporaryUserPluginsDirectoryURL` is blocked.
+    // TODO: This test test that if the `temporaryUserPluginsDirectoryURL`
+    // (e.g., the "Application Support" directory) is blocked by a file, that
+    // an error is returned. But we don't current support that configuration
+    // in the app (the app will fail during this case). Long term, an
+    // alternative solution will be found and this test should be re-enabled at
+    // that time.
     func testDuplicatePluginWithEarlyBlockingFile() {
-        do {
-            try PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
-        } catch {
-            XCTAssertTrue(false, "Creating the directory should succeed")
+        // This snippet should disable this test, while indicating it can be
+        // re-enabled when the `temporaryUserPluginsDirectoryURL` is no longer
+        // automatically created by the `PluginsDataController`
+        var isDir: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: temporaryUserPluginsDirectoryURL.path,
+                                                    isDirectory: &isDir)
+        XCTAssertTrue(exists)
+        guard !exists else {
+            return
         }
+
+        // # Real Tests Follow
+
+        try! PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
 
         // Block the destination directory with a file
         let createSuccess = FileManager.default.createFile(atPath: temporaryUserPluginsDirectoryPath,
             contents: nil,
             attributes: nil)
         XCTAssertTrue(createSuccess, "Creating the file should succeed.")
-        
+
         let duplicateExpectation = expectation(description: "Plugin was duplicated")
         pluginsManager.pluginsDataController.duplicate(plugin, handler: { (duplicatePlugin, error) -> Void in
             XCTAssertNil(duplicatePlugin, "The duplicate plugin should be nil")
             XCTAssertNotNil(error, "The error should not be nil")
             duplicateExpectation.fulfill()
         })
-        
+
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         cleanUpDuplicatedPlugins()
     }

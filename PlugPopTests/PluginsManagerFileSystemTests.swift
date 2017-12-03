@@ -23,6 +23,7 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
     func testAddAndDeletePlugin() {
         try! FileManagerHelper.createDirectoryIfMissing(at: userPluginsURL)
         var newPlugin: Plugin!
+
         copyWithConfirmation(plugin,
                              destinationPluginPath: userPluginsPath)
         { plugin in
@@ -31,7 +32,7 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
 
         XCTAssertTrue(plugins().contains(newPlugin!), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: PotionTaster.testPluginName)!, newPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, newPlugin, "The plugins should be equal")
         // Since both plugins have the same name, the new plugin should have replaced the original plugin
         // So the plugin count should still be one
         XCTAssertEqual(pluginsManager.plugins.count, 1, "The plugins count should be one")

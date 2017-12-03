@@ -53,14 +53,12 @@ extension PluginsDataControllerEventTestCase {
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
             let path = addedPlugin.bundle.bundlePath
-            if (path == destinationPluginPath) {
+            if (path.hasPrefix(destinationPluginPath)) {
                 newPlugin = addedPlugin
-                handler(newPlugin)
                 createExpectation.fulfill()
             }
         })
-        
-        
+
         let pluginPath = plugin.bundle.bundlePath
         let copyExpectation = expectation(description: "Copy finished")
         OutOfTouch.copyDirectory(atPath: pluginPath,
@@ -77,6 +75,7 @@ extension PluginsDataControllerEventTestCase {
         // identifier here.
         
         waitForExpectations(timeout: defaultTimeout, handler: nil)
+        handler(newPlugin)
     }
     
     

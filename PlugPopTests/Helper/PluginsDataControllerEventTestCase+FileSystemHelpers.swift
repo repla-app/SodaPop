@@ -36,10 +36,16 @@ extension PluginsDataControllerEventTestCase {
         })
         
         let pluginPath = plugin.bundle.bundlePath
+        let moveExpectation = expectation(description: "Move finished")
         OutOfTouch.moveItem(atPath: pluginPath,
-                            toPath: destinationPluginPath,
-                            handler: nil)
-        
+                            toPath: destinationPluginPath)
+        { standardOutput, standardError, exitStatus in
+            XCTAssertNil(standardOutput)
+            XCTAssertNil(standardError)
+            XCTAssert(exitStatus == 0)
+            moveExpectation.fulfill()
+        }
+
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
     

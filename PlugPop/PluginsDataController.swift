@@ -61,6 +61,24 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         let paths = pluginsPaths + [builtInPluginsPath, userPluginsPath].flatMap { $0 }
         let pathsSet = Set(paths)
         for path in pathsSet {
+
+            // TODO: This is a hack that assures the `userPluginsPath` exsits
+            // and is a directory. Really this should work like this: 
+            //
+            // 1. If the directory does not exist, then it is ignored here 
+            //
+            // 2. When trying to create a new plugin in the `userPluginsPath`,
+            // we should first confirm that it exists, create it if it doesn't
+            // and throw an error if it's not a directory. Then we'd create the
+            // watcher at that time as well.
+            //
+            // That would also obviously need tests.
+            do {
+                try FileManagerHelper.createDirectoryIfMissing(atPath: userPluginsPath)
+            } catch {
+                assert(false)
+            }
+
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {
                 pluginPathToPluginDictionary[plugin.bundle.bundlePath] = plugin
@@ -72,7 +90,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         }
     }
 
-    // MARK: PluginsDirectoryManagerDelegate
+    // MARK: `PluginsDirectoryManagerDelegate`
 
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
@@ -150,7 +168,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         }
 
         duplicatePluginController.duplicate(plugin,
-            to: duplicatePluginDestinationDirectoryURL)
+                                            to: duplicatePluginDestinationDirectoryURL)
         { (plugin, error) -> Void in
             if let plugin = plugin {
                 self.add(plugin)

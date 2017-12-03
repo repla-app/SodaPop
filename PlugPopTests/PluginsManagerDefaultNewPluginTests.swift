@@ -58,29 +58,35 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
     
 
     func testDefaultNewPlugin() {
+        XCTAssertNotEqual(testPluginNameNotDefault, initialDefaultNewPluginName)
+
         let createdPlugin = newPluginWithConfirmation()
 
         pluginsManager.defaultNewPlugin = createdPlugin
         
-        createdPlugin.name = testPluginNameTwo
+        // Seems that the problem with this test is here, renaming a plugin should move it?
+        createdPlugin.name = testPluginNameNotDefault
         createdPlugin.command = testPluginCommandTwo
         createdPlugin.suffixes = testPluginSuffixesTwo
         
         let createdPluginTwo = newPluginWithConfirmation()
         
-        XCTAssertEqual(createdPlugin.suffixes, createdPluginTwo.suffixes, "The new WCLPlugin's file extensions should equal the WCLPlugin's file extensions.")
+        XCTAssertEqual(createdPlugin.suffixes, createdPluginTwo.suffixes)
 
         let bundlePath = createdPluginTwo.bundle.bundlePath
         let pluginFolderName = bundlePath.lastPathComponent
         let createdPluginTwoName = DuplicatePluginController.pluginFilename(fromName: createdPluginTwo.name)
+
+        XCTAssertNotEqual(createdPlugin.name, createdPluginTwo.name)
+        XCTAssertTrue(createdPluginTwo.name.hasPrefix(createdPlugin.name))
         XCTAssertEqual(createdPluginTwoName, pluginFolderName, "The folder name should equal the plugin's name")
-        
-        let longName: String = createdPlugin.name
-        XCTAssertTrue(longName.hasPrefix(createdPlugin.name), "The new WCLPlugin's name should start with the WCLPlugin's name.")
-        XCTAssertNotEqual(createdPlugin.name, createdPluginTwo.name, "The new WCLPlugin's name should not equal the WCLPlugin's name.")
 
         XCTAssertEqual(createdPlugin.command!, createdPluginTwo.command!, "The new WCLPlugin's command should equal the WCLPlugin's command.")
         XCTAssertNotEqual(createdPlugin.identifier, createdPluginTwo.identifier, "The identifiers should not be equal")
+
+        // # Clean Up
+
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
     
     func testSettingDefaultNewPluginToNil() {

@@ -102,8 +102,12 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         pluginsManager.defaultNewPlugin = nil
 
+        let defaultNewPluginTwo = pluginsManager.defaultNewPlugin!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin)
+
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
-        XCTAssertNil(defaultNewPluginIdentifierTwo, "The identifier should be nil")
+        XCTAssertEqual(defaultNewPluginIdentifierTwo, defaultNewPluginTwo.identifier)
 
         // # Clean Up
 

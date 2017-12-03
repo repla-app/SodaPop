@@ -54,6 +54,10 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(defaultNewPluginIdentifierTwo, "The default new WCLPlugin identifier should be nil.")
+
+        // # Clean Up
+
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
     
 
@@ -100,6 +104,10 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(defaultNewPluginIdentifierTwo, "The identifier should be nil")
+
+        // # Clean Up
+
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 
     func testDefaultNewPluginKeyValueObserving() {
@@ -151,6 +159,10 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         pluginsManager.defaultNewPlugin = nil
         XCTAssertFalse(isDefaultNewPluginTwo, "The key-value observing change notification for the second WCLPlugin's default new WCLPlugin property should have occurred.")
         XCTAssertFalse(createdPluginTwo.isDefaultNewPlugin, "The second WCLPlugin should not be the default new WCLPlugin.")
+
+        // # Clean Up
+
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
     
 }

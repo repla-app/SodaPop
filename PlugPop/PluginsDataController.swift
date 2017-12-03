@@ -73,6 +73,10 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
             // watcher at that time as well.
             //
             // That would also obviously need tests.
+            //
+            // Actually, the above has problems to. If the user then creates
+            // the directory themselves it won't be watched, e.g., it won't
+            // register if they create a plugin in the directory for example.
             do {
                 try FileManagerHelper.createDirectoryIfMissing(atPath: userPluginsPath)
             } catch {

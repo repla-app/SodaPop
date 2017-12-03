@@ -17,6 +17,12 @@ extension PluginsDataControllerEventTestCase {
     // MARK: Move Helpers
     
     func moveWithConfirmation(_ plugin: Plugin, destinationPluginPath: String, handler: @escaping (_ plugin: Plugin?) -> Void) {
+        let pluginPath = plugin.bundle.bundlePath
+        guard isTemporaryItem(atPath: pluginPath) else {
+            XCTFail("Tried to move a plugin that is not in a temporary directory.")
+            return
+        }
+
         let removeExpectation = expectation(description: "Plugin was removed")
         pluginDataEventManager.add(pluginWasRemovedHandler: { (removedPlugin) -> Void in
             if (plugin == removedPlugin) {
@@ -35,7 +41,6 @@ extension PluginsDataControllerEventTestCase {
             }
         })
         
-        let pluginPath = plugin.bundle.bundlePath
         let moveExpectation = expectation(description: "Move finished")
         OutOfTouch.moveItem(atPath: pluginPath,
                             toPath: destinationPluginPath)

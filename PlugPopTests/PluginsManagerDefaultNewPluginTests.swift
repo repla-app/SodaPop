@@ -32,28 +32,28 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         pluginsManager.defaultNewPlugin = createdPlugin
         
         // Assert the WCLPlugin's isDefaultNewPlugin property
-        XCTAssertTrue(createdPlugin.isDefaultNewPlugin, "The WCLPlugin should be the default new WCLPlugin.")
+        XCTAssertTrue(createdPlugin.isDefaultNewPlugin)
         
         // Assert the default new plugin identifier in NSUserDefaults
         let defaultNewPluginIdentifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
-        XCTAssertEqual(createdPlugin.identifier, defaultNewPluginIdentifier, "The default WCLPlugin's identifier should equal the WCLPlugin's identifier.")
+        XCTAssertEqual(createdPlugin.identifier, defaultNewPluginIdentifier)
         
         // Assert the default new plugin is returned from the WCLPluginManager
         let defaultNewPlugin = pluginsManager.defaultNewPlugin
-        XCTAssertEqual(defaultNewPlugin, createdPlugin, "The default new WCLPlugin should be the WCLPlugin.")
+        XCTAssertEqual(defaultNewPlugin, createdPlugin)
         
         let trashExpectation = expectation(description: "Move to trash")
         moveToTrashAndCleanUpWithConfirmation(createdPlugin) {
             trashExpectation.fulfill()
         }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
-        
-        let defaultNewPluginTwo = pluginsManager.defaultNewPlugin
-        let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)
-        XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin, "The plugins should be equal")
+
+        let defaultNewPluginTwo = pluginsManager.defaultNewPlugin!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin)
 
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
-        XCTAssertNil(defaultNewPluginIdentifierTwo, "The default new WCLPlugin identifier should be nil.")
+        XCTAssertEqual(defaultNewPluginIdentifierTwo, defaultNewPluginTwo.identifier)
 
         // # Clean Up
 

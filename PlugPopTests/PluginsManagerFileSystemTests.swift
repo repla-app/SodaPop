@@ -21,29 +21,25 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
     // MARK: File System Tests
     
     func testAddAndDeletePlugin() {
-        try! FileManagerHelper.createDirectoryIfMissing(at: userPluginsURL)
+        let startingPluginsCount = pluginsManager.plugins.count
         var newPlugin: Plugin!
-
         copyWithConfirmation(plugin,
                              destinationPluginPath: userPluginsPath)
         { plugin in
             newPlugin = plugin
         }
-        XCTAssertNotNil(newPlugin, "The plugin should not be nil")
+        XCTAssertNotNil(newPlugin)
 
-        XCTAssertTrue(plugins().contains(newPlugin!), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, newPlugin, "The plugins should be equal")
-        // Since both plugins have the same name, the new plugin should have replaced the original plugin
-        // So the plugin count should still be one
-        XCTAssertEqual(pluginsManager.plugins.count, 1, "The plugins count should be one")
+        XCTAssertTrue(plugins().contains(newPlugin!))
+        XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, newPlugin)
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount, "The plugins count should match the `startingPluginsCount`, because the `newPlugin` has the same name as an existing plugin, so it should have replaced that plugin.")
         
-        // Clean Up
+        // # Clean Up
+
+        // Remove the `newPlugin`
         removeWithConfirmation(newPlugin)
-        XCTAssertFalse(plugins().contains(newPlugin), "The plugins should not contain the plugin")
-        XCTAssertEqual(pluginsManager.plugins.count, 0, "The plugins count should be zero")
-        
-        // Interesting here is that the plugin manager has no plugins loaded, even though the original plugin is still there.
-        // This is because when multiple plugins are loaded with the same name, only the most recent plugin with the name is loaded.
+        XCTAssertFalse(plugins().contains(newPlugin))
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount - 1, "Interesting here is that the plugin manager has no plugins loaded, even though the original plugin is still there. This is because when multiple plugins are loaded with the same name, only the most recent plugin with the name is loaded. So the count is `- 1` from the `startingPluginsCount` even though the original plugin is still there.")
         
         // Test that the original plugin can be reloaded by modifying it
         var originalPlugin: Plugin!
@@ -52,8 +48,12 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
         })
         XCTAssertNotNil(originalPlugin, "The plugin should not be nil")
         XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: PotionTaster.testPluginName)!, originalPlugin, "The plugins should be equal")
-        XCTAssertEqual(pluginsManager.plugins.count, 1, "The plugins count should be one")
+        XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, originalPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
+
+        // # Clean Up Creating Directories
+
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
     }
     
     func testMovePlugin() {

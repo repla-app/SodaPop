@@ -54,21 +54,23 @@ class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
     func testMovePlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 
+        // # Move One
+        // Move the plugin to a filename based on its identifier
+
         let pluginPath = plugin.bundle.bundlePath
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let pluginParentDirectory = pluginPath.deletingLastPathComponent
         let destinationPluginPath =  pluginParentDirectory.appendingPathComponent(destinationPluginFilename)
-        
-        // Move the plugin
         var newPlugin: Plugin!
+
         moveWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
             newPlugin = plugin
         })
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
         XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")
         XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, newPlugin, "The plugins should be equal")
-        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount, "The plugins count should be one")
-        
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
+
         // Move the plugin back
         var originalPlugin: Plugin!
         moveWithConfirmation(newPlugin, destinationPluginPath: pluginPath, handler: { (plugin) -> Void in

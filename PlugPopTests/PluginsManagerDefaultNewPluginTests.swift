@@ -42,7 +42,11 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let defaultNewPlugin = pluginsManager.defaultNewPlugin
         XCTAssertEqual(defaultNewPlugin, createdPlugin, "The default new WCLPlugin should be the WCLPlugin.")
         
-        moveToTrashAndCleanUpWithConfirmation(createdPlugin)
+        let trashExpectation = expectation(description: "Move to trash")
+        moveToTrashAndCleanUpWithConfirmation(createdPlugin) {
+            trashExpectation.fulfill()
+        }
+        waitForExpectations(timeout: defaultTimeout, handler: nil)
         
         let defaultNewPluginTwo = pluginsManager.defaultNewPlugin
         let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)

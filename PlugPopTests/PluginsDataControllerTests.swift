@@ -282,9 +282,18 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
             removeExpectation.fulfill()
         })
 
-        moveToTrashAndCleanUpWithConfirmation(newPlugin!)
+        let trashExpectation = expectation(description: "Move to trash")
+        moveToTrashAndCleanUpWithConfirmation(newPlugin!) {
+            trashExpectation.fulfill()
+        }
+
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         cleanUpDuplicatedPlugins()
+
+        // # Clean Up
+
+        let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
+        try! removeTemporaryItem(at: duplicatePluginURL)
     }
 
     func testDuplicatePluginWithBlockingFile() {
@@ -307,7 +316,6 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     func testDuplicatePluginWithEarlyBlockingFile() {
         do {
             try PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
-
         } catch {
             XCTAssertTrue(false, "Creating the directory should succeed")
         }

@@ -40,8 +40,15 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!, "The commands should not be equal")
         
         // Trash the duplicated plugin
-        moveToTrashAndCleanUpWithConfirmation(newPlugin)
-        moveToTrashAndCleanUpWithConfirmation(newPluginTwo)
+        let trashExpectation = expectation(description: "Move to trash")
+        moveToTrashAndCleanUpWithConfirmation(newPlugin) {
+            trashExpectation.fulfill()
+        }
+        let trashExpectationTwo = expectation(description: "Move to trash")
+        moveToTrashAndCleanUpWithConfirmation(newPluginTwo) {
+            trashExpectationTwo.fulfill()
+        }
+        waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
     func testRenamePlugin() {

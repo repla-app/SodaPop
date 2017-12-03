@@ -92,8 +92,8 @@ class PluginsManager: PluginsDataControllerDelegate {
     
     // MARK: Adding and Removing Plugins
     
-    func moveToTrash(_ plugin: Plugin) {
-        pluginsDataController.moveToTrash(plugin)
+    func moveToTrash(_ plugin: Plugin, handler: ((_ error: Error?) -> Void)?) {
+        pluginsDataController.moveToTrash(plugin, handler: handler)
     }
     
     func duplicate(_ plugin: Plugin, handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {

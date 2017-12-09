@@ -35,7 +35,6 @@
     }
     
     NSString *identifier = [self.defaults stringForKey:kDefaultNewPluginIdentifierKey];
-    
     WCLPlugin *plugin;
     
     if (identifier && self.dataSource) {

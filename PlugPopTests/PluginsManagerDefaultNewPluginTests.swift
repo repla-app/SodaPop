@@ -14,17 +14,17 @@ import XCTest
 class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
     func testInvalidDefaultNewPluginIdentifier() {
-        pluginsManager.defaultNewPlugin = nil
+        // # Set a bad identifier
         let UUID = Foundation.UUID()
         let UUIDString = UUID.uuidString
         defaults.set(UUIDString, forKey: defaultNewPluginIdentifierKey)
 
-        let defaultNewPlugin = pluginsManager.defaultNewPlugin
-        let initialDefaultNewPlugin: Plugin! = pluginsManager.plugin(withName: initialDefaultNewPluginName)
-        XCTAssertEqual(defaultNewPlugin, initialDefaultNewPlugin, "The plugins should be equal")
-        
+        let defaultNewPlugin = pluginsManager.defaultNewPlugin!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        XCTAssertEqual(defaultNewPlugin, initialDefaultNewPlugin)
+
         let identifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
-        XCTAssertNil(identifier, "The default new WCLPlugin identifier should be nil.")
+        XCTAssertNil(identifier)
     }
     
     func testSettingAndDeletingDefaultNewPlugin() {

@@ -15,10 +15,10 @@ class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, Plu
         return [userPluginsPath, builtInPluginsPath]
     }
     var builtInPluginsPath: String {
-        return temporaryUserPluginsDirectoryPath
+        return tempPluginsDirectoryPath
     }
     var userPluginsPath: String {
-        return tempPluginsDirectoryPath
+        return temporaryUserPluginsDirectoryPath
     }
     lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!

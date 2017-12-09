@@ -20,4 +20,13 @@ class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCa
         super.setUp()
         tempPluginsManager = makePluginsManager()
     }
+
+    override func tearDown() {
+        tempPluginsManager = nil
+        // Making a `pluginsManager` will implicitly create the
+        // `userPluginsURL`. So that needs to be cleaned up here.
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        super.tearDown()
+    }
+
 }

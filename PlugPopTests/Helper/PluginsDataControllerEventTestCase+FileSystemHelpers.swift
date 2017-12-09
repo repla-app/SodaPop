@@ -60,33 +60,41 @@ extension TemporaryPluginsDataControllerEventTestCase {
                               destinationPluginPath: String,
                               handler: @escaping (_ plugin: Plugin?) -> Void)
     {
+        var pluginWasAdded = false
+        var pluginWasCopied = false
+
         var newPlugin: Plugin?
-        let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
             let path = addedPlugin.bundle.bundlePath
             if (path.hasPrefix(destinationPluginPath)) {
                 newPlugin = addedPlugin
-                createExpectation.fulfill()
+                pluginWasAdded = true
+                guard pluginWasAdded && pluginWasCopied else {
+                    return
+                }
+
+                // TODO: Once the requirement that no two plugins have the same
+                // identifier is enforced, we'll also have to change the new plugin's
+                // identifier here.
+                handler(newPlugin)
             }
         })
 
         let pluginPath = plugin.bundle.bundlePath
-        let copyExpectation = expectation(description: "Copy finished")
         OutOfTouch.copyDirectory(atPath: pluginPath,
                                  toPath: destinationPluginPath)
         { standardOutput, standardError, exitStatus in
             XCTAssertNil(standardOutput)
             XCTAssertNil(standardError)
             XCTAssert(exitStatus == 0)
-            copyExpectation.fulfill()
+            pluginWasCopied = true
+            guard pluginWasAdded && pluginWasCopied else {
+                return
+            }
+            XCTAssertNotNil(newPlugin)
+            handler(newPlugin)
         }
         
-        // TODO: Once the requirement that no two plugins have the same
-        // identifier is enforced, we'll also have to change the new plugin's
-        // identifier here.
-        
-        waitForExpectations(timeout: defaultTimeout, handler: nil)
-        handler(newPlugin)
     }
     
     

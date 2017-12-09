@@ -22,11 +22,14 @@ class PluginsManagerFileSystemTests: TemporaryPluginsDataControllerEventTestCase
     func testAddAndDeletePlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
         var newPlugin: Plugin!
+        let copyExpectation = expectation(description: "Copy")
         copyWithConfirmation(plugin,
                              destinationPluginPath: userPluginsPath)
         { plugin in
             newPlugin = plugin
+            copyExpectation.fulfill()
         }
+        waitForExpectations(timeout: defaultTimeout, handler: nil)
         XCTAssertNotNil(newPlugin)
 
         XCTAssertTrue(plugins().contains(newPlugin!))
@@ -42,9 +45,9 @@ class PluginsManagerFileSystemTests: TemporaryPluginsDataControllerEventTestCase
         
         // Test that the original plugin can be reloaded by modifying it
         var originalPlugin: Plugin!
-        modifyWithConfirmation(plugin, handler: { (plugin) -> Void in
+        modifyWithConfirmation(plugin) { (plugin) -> Void in
             originalPlugin = plugin
-        })
+        }
         XCTAssertNotNil(originalPlugin, "The plugin should not be nil")
         XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
         XCTAssertEqual(pluginsManager.plugin(withName: plugin.name)!, originalPlugin, "The plugins should be equal")
@@ -85,9 +88,9 @@ class PluginsManagerFileSystemTests: TemporaryPluginsDataControllerEventTestCase
     func testEditPlugin() {        
         // Move the plugin
         var newPlugin: Plugin!
-        modifyWithConfirmation(plugin, handler: { (plugin) -> Void in
+        modifyWithConfirmation(plugin) { (plugin) -> Void in
             newPlugin = plugin
-        })
+        }
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
         XCTAssertFalse(plugins().contains(plugin), "The plugins should not contain the plugin")
         XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")

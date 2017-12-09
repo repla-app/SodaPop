@@ -22,14 +22,16 @@ class PluginsManagerTests: PluginsManagerTestCase {
     }
     
     func testDuplicateAndTrashPlugin() {
+        let startingPluginsCount = pluginsManager.plugins.count
+
         let newPlugin = newPluginWithConfirmation()
         
-        XCTAssertEqual(pluginsManager.plugins.count, 2, "The plugins count should be two")
-        let plugins = pluginsManager.plugins as NSArray
-        XCTAssertTrue(plugins.contains(newPlugin), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount + 1)
+        let plugins = pluginsManager.plugins
+        XCTAssertTrue(plugins.contains(newPlugin))
 
         // Edit the new plugin
-        newPlugin.command = testPluginCommandTwo
+        newPlugin.command = testPluginCommandNotDefault
 
         // Create another plugin from this plugin
         let newPluginTwo = duplicateWithConfirmation(newPlugin)
@@ -49,6 +51,9 @@ class PluginsManagerTests: PluginsManagerTestCase {
             trashExpectationTwo.fulfill()
         }
         waitForExpectations(timeout: defaultTimeout, handler: nil)
+
+        // # Clean Up
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 
     func testRenamePlugin() {

@@ -34,6 +34,7 @@ let testPluginExtension = PotionTaster.testPluginFileExtension
 let testPluginCommand = PotionTaster.testPluginCommandIRB
 let testPluginCommandTwo = PotionTaster.testPluginCommandHTML
 let testPluginNameNotDefault = PotionTaster.testPluginNameIRB
+let testPluginCommandNotDefault = PotionTaster.testPluginCommandIRB
 
 
 // MARK: `UserDefaults`

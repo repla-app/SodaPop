@@ -61,27 +61,31 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
     func testBuiltInPlugins() {
         let plugins = pluginsManager.plugins
+        var builtInPluginsTested = 0
 
         for plugin in plugins {
-            XCTAssertEqual(plugin.pluginType, PluginType.builtIn, "The plugin type should be built-in")
-            XCTAssertEqual(plugin.type, PluginType.builtIn.name(), "The type should equal the name")
+            let testPluginPath = builtInPluginsPath.appendingPathComponent(plugin.bundle.bundlePath.lastPathComponent)
+            guard plugin.bundle.bundlePath == testPluginPath else {
+                continue
+            }
+
+            XCTAssertEqual(plugin.pluginType, PluginType.builtIn)
+            XCTAssertEqual(plugin.type, PluginType.builtIn.name())
+            builtInPluginsTested += 1
         }
 
-        let count = pluginsManager.plugins.count
+        XCTAssert(builtInPluginsTested > 0)
+
         var pluginsPathsCount = 0
 
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
-            let paths = contents
-            let pluginFileExtensionMatch = ".\(testPluginExtension)"
-            let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
-            let pluginPaths = paths.filter {
-                pluginFileExtensionPredicate.evaluate(with: $0)
-            }
-            pluginsPathsCount += pluginPaths.count
-        } catch {
-            XCTAssertTrue(false, "Getting the contents should succeed")
+        let contents = try! FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
+        let paths = contents
+        let pluginFileExtensionMatch = ".\(testPluginExtension)"
+        let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
+        let pluginPaths = paths.filter {
+            pluginFileExtensionPredicate.evaluate(with: $0)
         }
-        XCTAssert(count == pluginsPathsCount, "The counts should be equal")
+        pluginsPathsCount += pluginPaths.count
+        XCTAssert(builtInPluginsTested == pluginsPathsCount)
     }
 }

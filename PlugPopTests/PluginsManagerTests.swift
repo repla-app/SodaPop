@@ -68,7 +68,6 @@ class PluginsManagerTests: PluginsManagerTestCase {
             guard plugin.bundle.bundlePath == testPluginPath else {
                 continue
             }
-
             XCTAssertEqual(plugin.pluginType, PluginType.builtIn)
             XCTAssertEqual(plugin.type, PluginType.builtIn.name())
             builtInPluginsTested += 1

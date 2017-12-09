@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import XCTestTemp
 
-class PluginsDataControllerClassTests: PluginsManagerDependenciesTestCase {
+class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
     func testPluginPaths() {
         let pluginPaths = PluginsDataController.pathsForPlugins(atPath: builtInPluginsPath)
@@ -37,8 +37,19 @@ class PluginsDataControllerClassTests: PluginsManagerDependenciesTestCase {
             }
         }
 
-        let testPluginsCount = PluginsDataController.plugins(atPluginPaths: pluginPaths).count
+        let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
+                                                          copyTempDirectoryURL: tempCopyTempDirectoryURL,
+                                                          defaultNewPluginManager: WCLDefaultNewPluginManager(defaults: defaults),
+                                                          userPluginsPath: userPluginsPath,
+                                                          builtInPluginsPath: builtInPluginsPath)
+        let testPluginsCount = pluginsDataController.plugins(atPluginPaths: pluginPaths).count
         XCTAssert(plugins.count == testPluginsCount, "The plugins count should equal the test plugins count")
+
+        // # Clean Up
+
+        // Creating a `PluginsDataController` implicitly creates the
+        // `userPluginsPath` (which starts from "Application Support").
+        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
     }
 
     func testExistingPlugins() {
@@ -243,7 +254,7 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 
 }
 
-class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
+class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
     
     func cleanUpDuplicatedPlugins() {
         try! removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)

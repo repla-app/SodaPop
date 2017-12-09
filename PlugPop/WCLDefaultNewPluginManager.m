@@ -69,11 +69,12 @@
     WCLPlugin *oldDefaultNewPlugin = _defaultNewPlugin;
     _defaultNewPlugin = defaultNewPlugin;
     
-    oldDefaultNewPlugin.defaultNewPlugin = NO;
-    
-    _defaultNewPlugin.defaultNewPlugin = YES;
-    
+    if (self.defaultNewPlugin != oldDefaultNewPlugin) {
+        oldDefaultNewPlugin.defaultNewPlugin = NO;
+    }
+
     if (_defaultNewPlugin) {
+        _defaultNewPlugin.defaultNewPlugin = YES;
         [self.defaults setObject:[(Plugin *)_defaultNewPlugin identifier]
                           forKey:kDefaultNewPluginIdentifierKey];
     }

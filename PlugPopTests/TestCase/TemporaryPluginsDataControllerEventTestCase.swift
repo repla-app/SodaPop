@@ -11,18 +11,18 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginsDataControllerEventTestCase: PluginTestCase {
+class TemporaryPluginsDataControllerEventTestCase: TemporaryPluginTestCase {
     var pluginDataEventManager: PluginDataEventManager!
-
+    
     override func setUp() {
         super.setUp()
         pluginDataEventManager = PluginDataEventManager()
-        pluginDataEventManager.delegate = pluginsManager
-        pluginsManager.pluginsDataController.delegate = pluginDataEventManager
+        pluginDataEventManager.delegate = tempPluginsManager
+        tempPluginsManager.pluginsDataController.delegate = pluginDataEventManager
     }
-
+    
     override func tearDown() {
-        pluginsManager.pluginsDataController.delegate = pluginsManager
+        tempPluginsManager.pluginsDataController.delegate = tempPluginsManager
         pluginDataEventManager.delegate = nil
         pluginDataEventManager = nil
         super.tearDown()

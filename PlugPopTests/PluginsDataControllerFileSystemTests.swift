@@ -11,7 +11,7 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginsDataControllerFileSystemTests: PluginsDataControllerEventTestCase {
+class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: File System Tests
 

@@ -9,9 +9,12 @@
 @testable import PlugPop
 import XCTest
 
-class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase {
+class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
 
     var tempPluginsManager: PluginsManager!
+    var pluginsManager: PluginsManager {
+        return tempPluginsManager
+    }
 
     override func setUp() {
         super.setUp()

@@ -59,7 +59,6 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
-    
 
     func testDefaultNewPlugin() {
         XCTAssertNotEqual(testPluginNameNotDefault, initialDefaultNewPluginName)

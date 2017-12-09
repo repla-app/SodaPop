@@ -12,7 +12,7 @@ import XCTest
 @testable import PlugPop
 import OutOfTouch
 
-extension PluginsDataControllerEventTestCase {
+extension TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: Move Helpers
     

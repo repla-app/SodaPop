@@ -11,7 +11,7 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginsManagerFileSystemTests: PluginsDataControllerEventTestCase {
+class PluginsManagerFileSystemTests: TemporaryPluginsDataControllerEventTestCase {
 
     func plugins() -> NSArray {
         return pluginsManager.plugins as NSArray

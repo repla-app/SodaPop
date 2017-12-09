@@ -246,11 +246,7 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
     
     func cleanUpDuplicatedPlugins() {
-        do {
-            try removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
-        } catch {
-            XCTAssertTrue(false, "The remove should succeed")
-        }        
+        try! removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
     }
     
     func testDuplicateAndTrashPlugin() {
@@ -288,10 +284,10 @@ class PluginsDataControllerTests: PluginsDataControllerEventTestCase {
         }
 
         waitForExpectations(timeout: defaultTimeout, handler: nil)
-        cleanUpDuplicatedPlugins()
 
         // # Clean Up
 
+        cleanUpDuplicatedPlugins()
         let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
         try! removeTemporaryItem(at: duplicatePluginURL)
     }

@@ -10,8 +10,11 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginTestCase: PluginsManagerTestCase {
-    var plugin: Plugin!
+class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
+    private var privatePlugin: Plugin!
+    var plugin: Plugin {
+        return privatePlugin
+    }
     var pluginURL: URL {
         return plugin.bundle.bundleURL
     }
@@ -23,14 +26,14 @@ class PluginTestCase: PluginsManagerTestCase {
         super.setUp()
 
         // Set the plugin
-        plugin = pluginsManager.plugin(withName: testPluginName)
+        privatePlugin = pluginsManager.plugin(withName: testPluginName)
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
-        plugin.isDefaultNewPlugin = true
+        privatePlugin.isDefaultNewPlugin = true
     }
     
     override func tearDown() {
-        plugin.isDefaultNewPlugin = false
-        plugin = nil
+        privatePlugin.isDefaultNewPlugin = false
+        privatePlugin = nil
         super.tearDown()
     }
 

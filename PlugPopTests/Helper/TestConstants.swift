@@ -35,6 +35,8 @@ let testPluginCommand = PotionTaster.testPluginCommandIRB
 let testPluginCommandTwo = PotionTaster.testPluginCommandHTML
 let testPluginNameNotDefault = PotionTaster.testPluginNameIRB
 let testPluginCommandNotDefault = PotionTaster.testPluginCommandIRB
+let testPluginDirectoryName = DuplicatePluginController.pluginFilename(fromName: testPluginName)
+let testPluginDirectoryNameTwo = DuplicatePluginController.pluginFilename(fromName: testPluginNameTwo)
 
 
 // MARK: `UserDefaults`
@@ -56,8 +58,6 @@ let testPluginInfoDictionaryFilename = "Info.plist"
 
 // MARK: Directories & Files
 
-let testPluginDirectoryName = DuplicatePluginController.pluginFilename(fromName: testDirectoryName)
-let testPluginDirectoryNameTwo = DuplicatePluginController.pluginFilename(fromName: testDirectoryNameTwo)
 let testDirectoryName = "test"
 let testDirectoryNameTwo = "test2"
 let testDirectoryNameThree = "test3"

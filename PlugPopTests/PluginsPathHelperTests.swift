@@ -143,7 +143,6 @@ class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     }
     
     func testEmptySubpathComponent() {
-        
         let testPath = tempPluginPath!
         let testSubpath = tempPluginsDirectoryPath.appendingPathComponent(testPluginDirectoryName)
         let pathComponents = PluginsPathHelper.pathComponents(ofPath: testPath, afterSubpath: testSubpath)!
@@ -153,7 +152,6 @@ class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     }
     
     func testFailingFullSubpathComponent() {
-        
         let testPath = (tempPluginPath as NSString).appendingPathComponent("Contents/Resources")
         let testSubpath = tempPluginsDirectoryPath.appendingPathComponent(testPluginDirectoryName)
         let pathComponents = PluginsPathHelper.pathComponents(ofPath: testPath, afterSubpath: testSubpath)!
@@ -163,7 +161,6 @@ class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     }
     
     func testFailingPartialSubpathComponent() {
-        
         let testPath = (tempPluginPath as NSString).appendingPathComponent("Resources")
         let testSubpath = tempPluginsDirectoryPath.appendingPathComponent(testPluginDirectoryName)
         let pathComponents = PluginsPathHelper.pathComponents(ofPath: testPath, afterSubpath: testSubpath)!

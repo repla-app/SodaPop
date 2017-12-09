@@ -13,14 +13,6 @@ import XCTest
 
 class PluginsManagerTests: PluginsManagerTestCase {
 
-    func testTestPlugins() {
-        let plugins = pluginsManager.plugins
-        for plugin in plugins {
-            XCTAssertEqual(plugin.pluginType, PluginType.other, "The plugin type should be built-in")
-            XCTAssertEqual(plugin.type, PluginType.other.name(), "The type should equal the name")
-        }
-    }
-    
     func testDuplicateAndTrashPlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 
@@ -59,9 +51,13 @@ class PluginsManagerTests: PluginsManagerTestCase {
     func testRenamePlugin() {
         let newPlugin = newPluginWithConfirmation()
         let newPluginName = pluginsManager.defaultNewPlugin!.identifier
+        let oldPluginName = newPlugin.name
         newPlugin.name = newPluginName
-        XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName), "The plugin should not be nil")
-        XCTAssertNil(pluginsManager.plugin(withName: testPluginName), "The plugin should be nil")
+        XCTAssertNotNil(pluginsManager.plugin(withName: newPluginName))
+        XCTAssertNil(pluginsManager.plugin(withName: oldPluginName))
+
+        // # Clean Up
+        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 
     func testBuiltInPlugins() {
@@ -71,9 +67,10 @@ class PluginsManagerTests: PluginsManagerTestCase {
         for plugin in plugins {
             let testPluginPath = builtInPluginsPath.appendingPathComponent(plugin.bundle.bundlePath.lastPathComponent)
             guard plugin.bundle.bundlePath == testPluginPath else {
+                XCTAssertEqual(plugin.pluginType, .other)
                 continue
             }
-            XCTAssertEqual(plugin.pluginType, PluginType.builtIn)
+            XCTAssertEqual(plugin.pluginType, .builtIn)
             XCTAssertEqual(plugin.type, PluginType.builtIn.name())
             builtInPluginsTested += 1
         }

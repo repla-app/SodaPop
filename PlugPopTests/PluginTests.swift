@@ -67,7 +67,8 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
     }
 
     func testEquality() {
-        let samePlugin: Plugin = Plugin.makePlugin(url: tempPluginURL)!
+        let pluginMaker = pluginsManager.pluginsDataController.pluginMaker
+        let samePlugin = pluginMaker.makePlugin(url: tempPluginURL)!
         XCTAssertNotEqual(plugin, samePlugin, "The plugins should not be equal")
         XCTAssertTrue(plugin.isEqual(toOther: samePlugin), "The plugins should be equal")
         
@@ -80,7 +81,7 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
             XCTAssertTrue(false, "The copy should succeed")
         }
 
-        let newPlugin: Plugin! = Plugin.makePlugin(url: destinationPluginURL)
+        let newPlugin = pluginMaker.makePlugin(url: destinationPluginURL)
         XCTAssertNotEqual(plugin, newPlugin, "The plugins should not be equal")
         // This fails because the bundle URL and commandPath are different
         XCTAssertFalse(plugin.isEqual(to: newPlugin), "The plugins should be equal")

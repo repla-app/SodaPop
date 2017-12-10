@@ -190,7 +190,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
     
     func testMovePlugin() {
         // Move the plugin
-        let movedPluginFilename = testPluginDirectoryName
+        let movedPluginFilename = testPluginDirectoryNoPluginName
         let movedPluginPath = tempPluginPath.deletingLastPathComponent.appendingPathComponent(movedPluginFilename)
         movePluginWithConfirmation(atPluginPath: tempPluginPath, destinationPluginPath: movedPluginPath)
         
@@ -200,7 +200,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
     }
     
     func testCopyAndRemovePlugin() {
-        let copiedPluginFilename = testPluginDirectoryName
+        let copiedPluginFilename = testPluginDirectoryNoPluginName
         let copiedPluginPath = tempPluginPath.deletingLastPathComponent.appendingPathComponent(copiedPluginFilename)
         copyPluginWithConfirmation(atPluginPath: tempPluginPath, destinationPluginPath: copiedPluginPath)
         

@@ -37,6 +37,7 @@ let testPluginNameNotDefault = PotionTaster.testPluginNameIRB
 let testPluginCommandNotDefault = PotionTaster.testPluginCommandIRB
 let testPluginDirectoryName = DuplicatePluginController.pluginFilename(fromName: testPluginName)
 let testPluginDirectoryNameTwo = DuplicatePluginController.pluginFilename(fromName: testPluginNameTwo)
+let testPluginDirectoryNoPluginName = DuplicatePluginController.pluginFilename(fromName: "No Plugin")
 
 
 // MARK: `UserDefaults`

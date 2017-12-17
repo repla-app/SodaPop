@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Roben Kleene. All rights reserved.
 //
 
-#import "WCLPlugin.h"
+#import "POPPlugin.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-@implementation WCLPlugin
+@implementation POPPlugin
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 

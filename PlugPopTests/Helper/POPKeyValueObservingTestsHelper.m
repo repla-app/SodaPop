@@ -1,18 +1,18 @@
 //
-//  WCLKeyValueObservingTestsHelper.m
+//  POPKeyValueObservingTestsHelper.m
 //  PluginEditorPrototype
 //
 //  Created by Roben Kleene on 3/17/14.
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-#import "WCLKeyValueObservingTestsHelper.h"
+#import "POPKeyValueObservingTestsHelper.h"
 
-@interface WCLKeyValueObserver : NSObject
+@interface POPKeyValueObserver : NSObject
 @property (nonatomic, copy) void (^completionBlock)(NSDictionary *change);
 @end
 
-@implementation WCLKeyValueObserver
+@implementation POPKeyValueObserver
 
 - (id)initWithObject:(id)object
              keyPath:(NSString *)keyPath
@@ -39,18 +39,18 @@
 @end
 
 
-@interface WCLKeyValueObservingTestsHelper ()
+@interface POPKeyValueObservingTestsHelper ()
 @property (nonatomic, strong) NSMutableArray *observers;
 @end
 
-@implementation WCLKeyValueObservingTestsHelper
+@implementation POPKeyValueObservingTestsHelper
 
 + (void)observeObject:(id)object
            forKeyPath:(NSString *)keyPath
               options:(NSKeyValueObservingOptions)options
       completionBlock:(void (^)(NSDictionary *change))completionBlock
 {
-    [[WCLKeyValueObservingTestsHelper shareKeyValueObservingTestsHelper] observeObject:object
+    [[POPKeyValueObservingTestsHelper shareKeyValueObservingTestsHelper] observeObject:object
                                                                             forKeyPath:keyPath
                                                                                options:options
                                                                        completionBlock:completionBlock];
@@ -61,7 +61,7 @@
 + (instancetype)shareKeyValueObservingTestsHelper
 {
     static dispatch_once_t pred;
-    static WCLKeyValueObservingTestsHelper *keyValueObservingTestsHelper = nil;
+    static POPKeyValueObservingTestsHelper *keyValueObservingTestsHelper = nil;
     
     dispatch_once(&pred, ^{
         keyValueObservingTestsHelper = [[self alloc] init];
@@ -86,8 +86,8 @@
               options:(NSKeyValueObservingOptions)options
       completionBlock:(void (^)(NSDictionary *change))completionBlock
 {
-    __block WCLKeyValueObserver *observer;
-    observer = [[WCLKeyValueObserver alloc] initWithObject:object
+    __block POPKeyValueObserver *observer;
+    observer = [[POPKeyValueObserver alloc] initWithObject:object
                                                    keyPath:keyPath
                                                    options:options
                                            completionBlock:^void (NSDictionary *change) {

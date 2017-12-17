@@ -1,19 +1,19 @@
 //
-//  WCLPluginsController.m
+//  POPPluginsController.m
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/7/17.
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
-#import "WCLPluginsController.h"
+#import "POPPluginsController.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-@interface WCLPluginsController ()
+@interface POPPluginsController ()
 @property (nonatomic, strong) MultiCollectionController *multiCollectionController;
 @end
 
-@implementation WCLPluginsController
+@implementation POPPluginsController
 
 - (instancetype)initWithPlugins:(NSArray *)plugins
 {

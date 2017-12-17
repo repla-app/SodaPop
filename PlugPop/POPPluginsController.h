@@ -1,5 +1,5 @@
 //
-//  WCLPluginsController.h
+//  POPPluginsController.h
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/7/17.
@@ -12,7 +12,7 @@
 @class MultiCollectionController;
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLPluginsController : NSObject
+@interface POPPluginsController : NSObject
 - (instancetype)initWithPlugins:(NSArray *)plugins;
 - (void)addPlugin:(Plugin *)plugin;
 - (void)removePlugin:(Plugin *)plugin;

@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class WCLPlugin;
+@class POPPlugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol DefaultPluginDataSource
-@property (nonatomic, nullable) WCLPlugin *defaultNewPlugin;
+@property (nonatomic, nullable) POPPlugin *defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLPlugin : NSObject
+@interface POPPlugin : NSObject
 @property (nonatomic, weak, nullable) id <DefaultPluginDataSource> dataSource;
 @property (nonatomic, assign, getter = isDefaultNewPlugin) BOOL defaultNewPlugin;
 @end

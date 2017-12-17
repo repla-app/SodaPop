@@ -47,7 +47,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
 
     required init(pluginsPaths: [String],
                   copyTempDirectoryURL: URL,
-                  defaultNewPluginManager: WCLDefaultNewPluginManager,
+                  defaultNewPluginManager: POPDefaultNewPluginManager,
                   userPluginsPath: String,
                   builtInPluginsPath: String?)
     {

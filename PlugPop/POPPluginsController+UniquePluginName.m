@@ -1,15 +1,15 @@
 //
-//  WCLPluginsManager+UniquePluginName.m
+//  POPPluginsManager+UniquePluginName.m
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/6/17.
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
-#import "WCLPluginsController+UniquePluginName.h"
+#import "POPPluginsController+UniquePluginName.h"
 #import <PlugPop/PlugPop-Swift.h>
 
-@implementation WCLPluginsController (UniquePluginName)
+@implementation POPPluginsController (UniquePluginName)
 
 - (NSString *)uniquePluginNameFromName:(NSString *)name
 {

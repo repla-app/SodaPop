@@ -12,9 +12,9 @@ class PluginMaker {
 
     let builtInPluginsPath: String?
     let userPluginsPath: String?
-    let defaultNewPluginManager: WCLDefaultNewPluginManager
+    let defaultNewPluginManager: POPDefaultNewPluginManager
     
-    init(defaultNewPluginManager: WCLDefaultNewPluginManager,
+    init(defaultNewPluginManager: POPDefaultNewPluginManager,
          userPluginsPath: String?,
          builtInPluginsPath: String?)
     {

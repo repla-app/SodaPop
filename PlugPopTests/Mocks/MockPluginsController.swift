@@ -9,7 +9,7 @@
 import Foundation
 @testable import PlugPop
 
-class MockPluginsController: WCLPluginsController {
+class MockPluginsController: POPPluginsController {
     var overrideNameToPlugin = [String: Plugin]()
 
     func override(name: String, with plugin: Plugin) {

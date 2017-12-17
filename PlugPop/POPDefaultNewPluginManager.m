@@ -1,21 +1,21 @@
 //
-//  WCLDefaultNewPluginManager.m
+//  POPDefaultNewPluginManager.m
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/14/17.
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
-#import "WCLDefaultNewPluginManager.h"
+#import "POPDefaultNewPluginManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
 #define kInitialDefaultNewPluginName @"HTML"
 
-@interface WCLDefaultNewPluginManager ()
+@interface POPDefaultNewPluginManager ()
 @property (nonatomic, strong) id <DefaultsType> defaults;
 @end
 
-@implementation WCLDefaultNewPluginManager
+@implementation POPDefaultNewPluginManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 
@@ -28,14 +28,14 @@
     return self;
 }
 
-- (WCLPlugin *)defaultNewPlugin
+- (POPPlugin *)defaultNewPlugin
 {
     if (_defaultNewPlugin) {
         return _defaultNewPlugin;
     }
     
     NSString *identifier = [self.defaults stringForKey:kDefaultNewPluginIdentifierKey];
-    WCLPlugin *plugin;
+    POPPlugin *plugin;
     
     if (identifier && self.dataSource) {
         plugin = [self.dataSource defaultNewPluginManager:self pluginWithIdentifier:identifier];
@@ -65,7 +65,7 @@
         [self.defaults removeObjectForKey:kDefaultNewPluginIdentifierKey];
     }
     
-    WCLPlugin *oldDefaultNewPlugin = _defaultNewPlugin;
+    POPPlugin *oldDefaultNewPlugin = _defaultNewPlugin;
     _defaultNewPlugin = defaultNewPlugin;
     
     if (self.defaultNewPlugin != oldDefaultNewPlugin) {

@@ -1,5 +1,5 @@
 //
-//  WCLNameToPluginController.h
+//  POPNameToPluginController.h
 //  PluginEditorPrototype
 //
 //  Created by Roben Kleene on 3/12/14.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLKeyToObjectController : NSObject
+@interface POPKeyToObjectController : NSObject
 - (instancetype)initWithKey:(NSString *)key;
 - (instancetype)initWithKey:(NSString *)key objects:(NSArray *)objects;
 - (id)addObject:(id)object;

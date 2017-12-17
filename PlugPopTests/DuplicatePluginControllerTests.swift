@@ -83,7 +83,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertNotEqual(plugin.name, duplicatePlugin.name, "The names should not be equal")
         XCTAssertEqual(plugin.hidden, duplicatePlugin.hidden, "The hidden should equal the plugin's hidden")
         let longName: String = duplicatePlugin.name
-        XCTAssertTrue(longName.hasPrefix(plugin.name), "The new WCLPlugin's name should start with the WCLPlugin's name.")
+        XCTAssertTrue(longName.hasPrefix(plugin.name), "The new POPPlugin's name should start with the POPPlugin's name.")
         XCTAssertNotEqual(plugin.commandPath!, duplicatePlugin.commandPath!, "The command paths should not be equal")
         XCTAssertEqual(plugin.command!, duplicatePlugin.command!, "The commands should be equal")
         let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent

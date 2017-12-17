@@ -1,21 +1,21 @@
 //
-//  WCLNameToPluginController.m
+//  POPNameToPluginController.m
 //  PluginEditorPrototype
 //
 //  Created by Roben Kleene on 3/12/14.
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-#import "WCLKeyToObjectController.h"
+#import "POPKeyToObjectController.h"
 
-@interface WCLKeyToObjectController ()
+@interface POPKeyToObjectController ()
 @property (nonatomic, strong, readonly) NSMutableDictionary *keyToObjectDictionary;
 @property (nonatomic, strong, readonly) NSString *key;
 @end
 
-@implementation WCLKeyToObjectController
+@implementation POPKeyToObjectController
 
-static void *WCLKeyToObjectControllerContext;
+static void *POPKeyToObjectControllerContext;
 
 @synthesize keyToObjectDictionary = _keyToObjectDictionary;
 
@@ -51,7 +51,7 @@ static void *WCLKeyToObjectControllerContext;
     [object addObserver:self
              forKeyPath:self.key
                 options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
-                context:&WCLKeyToObjectControllerContext];
+                context:&POPKeyToObjectControllerContext];
 
     return existingObject;
 }
@@ -64,7 +64,7 @@ static void *WCLKeyToObjectControllerContext;
         [self.keyToObjectDictionary removeObjectForKey:key];
         [object removeObserver:self
                     forKeyPath:self.key
-                       context:&WCLKeyToObjectControllerContext];
+                       context:&POPKeyToObjectControllerContext];
     }
 }
 
@@ -81,7 +81,7 @@ static void *WCLKeyToObjectControllerContext;
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    if (context != &WCLKeyToObjectControllerContext) {
+    if (context != &POPKeyToObjectControllerContext) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         return;
     }

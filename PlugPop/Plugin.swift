@@ -22,7 +22,7 @@ extension Plugin {
     }
 }
 
-public class Plugin: WCLPlugin {
+public class Plugin: POPPlugin {
     enum PluginWriteError: Error {
         case failToWriteDictionaryError(URL: URL)
     }

@@ -9,20 +9,20 @@
 import Foundation
 
 struct PluginsManagerConfigurationTypes {
-    let defaultNewPluginManagerType: WCLDefaultNewPluginManager.Type
+    let defaultNewPluginManagerType: POPDefaultNewPluginManager.Type
     let pluginsDataControllerType: PluginsDataController.Type
-    let pluginsControllerType: WCLPluginsController.Type
+    let pluginsControllerType: POPPluginsController.Type
     static func makeDefault() -> PluginsManagerConfigurationTypes {
-        return self.init(defaultNewPluginManagerType: WCLDefaultNewPluginManager.self,
+        return self.init(defaultNewPluginManagerType: POPDefaultNewPluginManager.self,
                          pluginsDataControllerType: PluginsDataController.self,
-                         pluginsControllerType: WCLPluginsController.self)
+                         pluginsControllerType: POPPluginsController.self)
     }
 }
 
 class PluginsManagerConfiguration {
-    let defaultNewPluginManager: WCLDefaultNewPluginManager
+    let defaultNewPluginManager: POPDefaultNewPluginManager
     let pluginsDataController: PluginsDataController
-    let pluginsController: WCLPluginsController
+    let pluginsController: POPPluginsController
 
     convenience init(pluginsPaths: [String],
                      copyTempDirectoryURL: URL,

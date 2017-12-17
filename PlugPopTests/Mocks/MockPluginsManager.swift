@@ -20,7 +20,7 @@ class MockPluginsManager: PluginsManager {
                                           userPluginsPath: String,
                                           builtInPluginsPath: String?) -> PluginsManagerConfiguration
     {
-        let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: WCLDefaultNewPluginManager.self,
+        let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: POPDefaultNewPluginManager.self,
                                                      pluginsDataControllerType: PluginsDataController.self,
                                                      pluginsControllerType: MockPluginsController.self)
         return PluginsManagerConfiguration(types: types,

@@ -39,7 +39,7 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
-                                                          defaultNewPluginManager: WCLDefaultNewPluginManager(defaults: defaults),
+                                                          defaultNewPluginManager: POPDefaultNewPluginManager(defaults: defaults),
                                                           userPluginsPath: userPluginsPath,
                                                           builtInPluginsPath: builtInPluginsPath)
         let testPluginsCount = pluginsDataController.plugins(atPluginPaths: pluginPaths).count
@@ -55,7 +55,7 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
     func testExistingPlugins() {
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
-                                                          defaultNewPluginManager: WCLDefaultNewPluginManager(defaults: defaults),
+                                                          defaultNewPluginManager: POPDefaultNewPluginManager(defaults: defaults),
                                                           userPluginsPath: userPluginsPath,
                                                           builtInPluginsPath: builtInPluginsPath)
         let plugins = pluginsDataController.plugins

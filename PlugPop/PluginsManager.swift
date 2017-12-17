@@ -8,13 +8,13 @@
 
 import Cocoa
 
-// The `WCLPluginsController` manages the in memory `Plugin` objects. It
+// The `POPPluginsController` manages the in memory `Plugin` objects. It
 // provides standard methods for operating on a collection of `Plugin` objects.
 class PluginsManager: PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
-    let pluginsController: WCLPluginsController
-    let defaultNewPluginManager: WCLDefaultNewPluginManager
+    let pluginsController: POPPluginsController
+    let defaultNewPluginManager: POPDefaultNewPluginManager
     var plugins: [Plugin] {
         return pluginsController.plugins()
     }

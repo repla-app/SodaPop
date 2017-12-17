@@ -1,5 +1,5 @@
 //
-//  WCLKeyValueObservingTestsHelper.h
+//  POPKeyValueObservingTestsHelper.h
 //  PluginEditorPrototype
 //
 //  Created by Roben Kleene on 3/17/14.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLKeyValueObservingTestsHelper : NSObject
+@interface POPKeyValueObservingTestsHelper : NSObject
 + (void)observeObject:(id)object
            forKeyPath:(NSString *)keyPath
               options:(NSKeyValueObservingOptions)options

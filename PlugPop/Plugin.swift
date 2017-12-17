@@ -32,7 +32,7 @@ public class Plugin: POPPlugin {
     }
     internal let bundle: Bundle
     let hidden: Bool
-    let debugModeEnabled: Bool?
+    public let debugModeEnabled: Bool?
     let pluginType: PluginType
     
     init(bundle: Bundle,
@@ -92,7 +92,7 @@ public class Plugin: POPPlugin {
     
     // MARK: Properties
     
-    @objc dynamic var name: String {
+    @objc public dynamic var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }

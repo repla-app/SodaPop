@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PluginsManagerConfigurationTypes {
+public struct PluginsManagerConfigurationTypes {
     let defaultNewPluginManagerType: POPDefaultNewPluginManager.Type
     let pluginsDataControllerType: PluginsDataController.Type
     let pluginsControllerType: POPPluginsController.Type
@@ -19,16 +19,16 @@ struct PluginsManagerConfigurationTypes {
     }
 }
 
-class PluginsManagerConfiguration {
+public class PluginsManagerConfiguration {
     let defaultNewPluginManager: POPDefaultNewPluginManager
     let pluginsDataController: PluginsDataController
     let pluginsController: POPPluginsController
 
-    convenience init(pluginsPaths: [String],
-                     copyTempDirectoryURL: URL,
-                     defaults: DefaultsType,
-                     userPluginsPath: String,
-                     builtInPluginsPath: String?)
+    public convenience init(pluginsPaths: [String],
+                            copyTempDirectoryURL: URL,
+                            defaults: DefaultsType,
+                            userPluginsPath: String,
+                            builtInPluginsPath: String?)
     {
         self.init(types: PluginsManagerConfigurationTypes.makeDefault(),
                   pluginsPaths: pluginsPaths,
@@ -38,12 +38,12 @@ class PluginsManagerConfiguration {
                   builtInPluginsPath: builtInPluginsPath)
     }
 
-    required init(types: PluginsManagerConfigurationTypes,
-                  pluginsPaths: [String],
-                  copyTempDirectoryURL: URL,
-                  defaults: DefaultsType,
-                  userPluginsPath: String,
-                  builtInPluginsPath: String?)
+    public required init(types: PluginsManagerConfigurationTypes,
+                         pluginsPaths: [String],
+                         copyTempDirectoryURL: URL,
+                         defaults: DefaultsType,
+                         userPluginsPath: String,
+                         builtInPluginsPath: String?)
     {
         let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults)
         let pluginsDataController = types.pluginsDataControllerType.init(pluginsPaths: pluginsPaths,

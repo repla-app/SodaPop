@@ -56,6 +56,7 @@
 		45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
 		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4546770D1F04A1CE00BAB5F9 /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */; };
 		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
@@ -157,6 +158,7 @@
 		453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPDefaultNewPluginManager.m; sourceTree = "<group>"; };
 		4536957F1ED259EB00BDA37F /* OutOfTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OutOfTouch.framework; path = Carthage/Build/Mac/OutOfTouch.framework; sourceTree = "<group>"; };
+		4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POPPluginsSource.h; sourceTree = "<group>"; };
 		4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTestCase.swift; sourceTree = "<group>"; };
 		454D4C941ED1F6F7007ABBD7 /* POPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPConstants.h; sourceTree = "<group>"; };
 		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		45753DCE1E9AF75B00823315 /* PlugPop */ = {
 			isa = PBXGroup;
 			children = (
+				45753DCF1E9AF75B00823315 /* PlugPop.h */,
 				454D4C941ED1F6F7007ABBD7 /* POPConstants.h */,
 				45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */,
 				453126901EC93BEA00248FA9 /* DefaultsType.swift */,
@@ -267,11 +270,11 @@
 				450CA0791EBACDAC00D08D2A /* POPKeyToObjectController.m */,
 				450CA07A1EBACDAC00D08D2A /* POPPlugin.h */,
 				450CA07B1EBACDAC00D08D2A /* POPPlugin.m */,
-				45753DCF1E9AF75B00823315 /* PlugPop.h */,
 				45753DD01E9AF75B00823315 /* Info.plist */,
 				456783051EBFE5D100C9EC4A /* PluginMaker.swift */,
 				4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */,
 				4518471D1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m */,
+				4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */,
 				456783011EBFDC7600C9EC4A /* POPPluginsController.h */,
 				456783021EBFDC7600C9EC4A /* POPPluginsController.m */,
 				45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */,
@@ -359,6 +362,7 @@
 				456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */,
 				454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */,
 				450CA08B1EBACDAC00D08D2A /* POPKeyToObjectController.h in Headers */,
+				4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

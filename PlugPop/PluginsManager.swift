@@ -13,6 +13,9 @@ import Cocoa
 public class PluginsManager: PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
+    public var pluginsSource: POPPluginsSource {
+        return pluginsController
+    }
     let pluginsController: POPPluginsController
     let defaultNewPluginManager: POPDefaultNewPluginManager
     var plugins: [Plugin] {
@@ -96,11 +99,11 @@ public class PluginsManager: PluginsDataControllerDelegate {
     }
     
     private func add(_ plugin: Plugin) {
-        pluginsController.addPlugin(plugin)
+        pluginsController.add(plugin)
     }
     
     private func remove(_ plugin: Plugin) {
-        pluginsController.removePlugin(plugin)
+        pluginsController.remove(plugin)
     }
     
     // MARK: Adding and Removing Plugins

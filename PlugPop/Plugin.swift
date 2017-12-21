@@ -110,7 +110,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    @objc dynamic var command: String? {
+    @objc public dynamic var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -119,7 +119,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    var commandPath: String? {
+    public var commandPath: String? {
         get {
             if let resourcePath = resourcePath {
                 if let command = command {
@@ -129,7 +129,7 @@ public class Plugin: POPPlugin {
             return nil
         }
     }
-    @objc dynamic var suffixes: [String] {
+    @objc public dynamic var suffixes: [String] {
         willSet {
             assert(editable, "The plugin should be editable")
         }

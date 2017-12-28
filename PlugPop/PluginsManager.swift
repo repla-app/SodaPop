@@ -93,7 +93,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     // MARK: Convenience
     
-    func addUnwatched(_ plugin: Plugin) {
+    public func addUnwatched(_ plugin: Plugin) {
         // TODO: For now this is a big hack, this adds a plugin that isn't
         // managed by the PluginDataManager. This means if the plugin moves on
         // the file system for example, that the loaded plugin will be

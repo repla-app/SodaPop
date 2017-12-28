@@ -22,6 +22,7 @@ extension Plugin {
     }
 }
 
+@objcMembers
 public class Plugin: POPPlugin {
     enum PluginWriteError: Error {
         case failToWriteDictionaryError(URL: URL)
@@ -92,7 +93,7 @@ public class Plugin: POPPlugin {
     
     // MARK: Properties
     
-    @objc public dynamic var name: String {
+    public dynamic var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -101,7 +102,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    @objc public var identifier: String {
+    public var identifier: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -110,7 +111,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    @objc public dynamic var command: String? {
+    public dynamic var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -129,7 +130,7 @@ public class Plugin: POPPlugin {
             return nil
         }
     }
-    @objc public dynamic var suffixes: [String] {
+    public dynamic var suffixes: [String] {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -138,10 +139,10 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    @objc dynamic var type: String {
+    dynamic var type: String {
         return pluginType.name()
     }
-    @objc dynamic var editable: Bool {
+    dynamic var editable: Bool {
         didSet {
             if (!editable) {
                 infoDictionary[InfoDictionaryKeys.editable] = editable

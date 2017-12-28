@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+@objcMembers
 public class MultiCollectionController: NSObject {
     private let nameToObjectController: POPKeyToObjectController
     private var mutableObjects = NSMutableArray()
@@ -21,39 +22,39 @@ public class MultiCollectionController: NSObject {
     
     // MARK: Accessing Plugins
     
-    @objc public func object(forKey key: String) -> AnyObject? {
+    public func object(forKey key: String) -> AnyObject? {
         return nameToObjectController.object(forKey: key) as AnyObject?
     }
 
     // MARK: Convenience
     
-    @objc public func addObject(_ object: AnyObject) {
+    public func addObject(_ object: AnyObject) {
         insertObject(object, inObjectsAtIndex: 0)
     }
     
-    @objc public func addObjects(_ objects: [AnyObject]) {
+    public func addObjects(_ objects: [AnyObject]) {
         let indexes = IndexSet(integersIn: 0..<objects.count)
         insertObjects(objects, atIndexes: indexes)
     }
     
-    @objc public func removeObject(_ object: AnyObject) {
+    public func removeObject(_ object: AnyObject) {
         let index = indexOfObject(object)
         if index != NSNotFound {
             removeObjectFromObjectsAtIndex(index)
         }
     }
     
-    @objc public func indexOfObject(_ object: AnyObject) -> Int {
+    public func indexOfObject(_ object: AnyObject) -> Int {
          return mutableObjects.index(of: object)
     }
     
     // MARK: Required Key-Value Coding To-Many Relationship Compliance
     
-    @objc public func objects() -> NSArray {
+    public func objects() -> NSArray {
         return NSArray(array: mutableObjects)
     }
     
-    @objc public func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
+    public func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
         let replacedObject: AnyObject? = nameToObjectController.add(object) as AnyObject?
         mutableObjects.insert(object, at: index)
         if let replacedObject: AnyObject = replacedObject {
@@ -63,8 +64,8 @@ public class MultiCollectionController: NSObject {
             }
         }
     }
-    
-    @objc public func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {
+
+    public func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {
 
         let replacedObjects = nameToObjectController.addObjects(from: objects)
         mutableObjects.insert(objects, at: indexes)
@@ -77,13 +78,13 @@ public class MultiCollectionController: NSObject {
         removeObjectsAtIndexes(indexes)
     }
 
-    @objc public func removeObjectFromObjectsAtIndex(_ index: Int) {
+    public func removeObjectFromObjectsAtIndex(_ index: Int) {
         let object: AnyObject = mutableObjects.object(at: index) as AnyObject
         nameToObjectController.remove(object)
         mutableObjects.removeObject(at: index)
     }
     
-    @objc public func removeObjectsAtIndexes(_ indexes: IndexSet) {
+    public func removeObjectsAtIndexes(_ indexes: IndexSet) {
         let objects = mutableObjects.objects(at: indexes)
         nameToObjectController.removeObjects(from: objects)
         mutableObjects.removeObjects(at: indexes)

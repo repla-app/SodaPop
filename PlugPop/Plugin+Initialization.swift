@@ -46,7 +46,7 @@ extension Plugin {
         static let debugModeEnabled = "WCDebugModeEnabled"
     }
 
-    public class func makePlugin(url: URL) -> Plugin? {
+    @objc public class func makePlugin(url: URL) -> Plugin? {
         return self.makePlugin(path: url.path)
     }
 

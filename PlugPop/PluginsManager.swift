@@ -10,6 +10,8 @@ import Cocoa
 
 // The `POPPluginsController` manages the in memory `Plugin` objects. It
 // provides standard methods for operating on a collection of `Plugin` objects.
+
+@objcMembers
 public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     
     let pluginsDataController: PluginsDataController
@@ -18,7 +20,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     }
     let pluginsController: POPPluginsController
     let defaultNewPluginManager: POPDefaultNewPluginManager
-    var plugins: [Plugin] {
+    public var plugins: [Plugin] {
         return pluginsController.plugins()
     }
     var defaultNewPlugin: Plugin? {
@@ -81,11 +83,11 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     // MARK: Plugins
 
-    func plugin(withName name: String) -> Plugin? {
+    public func plugin(withName name: String) -> Plugin? {
         return pluginsController.plugin(withName: name)
     }
     
-    func plugin(withIdentifier identifier: String) -> Plugin? {
+    public func plugin(withIdentifier identifier: String) -> Plugin? {
         return pluginsController.plugin(withIdentifier: identifier)
     }
 

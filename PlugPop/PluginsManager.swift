@@ -31,13 +31,13 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
             return defaultNewPluginManager.defaultNewPlugin as? Plugin
         }
     }
-    var sharedResourcesPath: String? {
+    public var sharedResourcesPath: String? {
         guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
             return nil
         }
         return plugin.resourcePath
     }
-    var sharedResourcesURL: URL? {
+    public var sharedResourcesURL: URL? {
         guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
             return nil
         }

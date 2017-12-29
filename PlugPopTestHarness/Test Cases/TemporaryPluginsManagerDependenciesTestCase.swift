@@ -9,7 +9,7 @@
 import Foundation
 @testable import PlugPop
 
-class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
+public class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
     var pluginsManagerType = PluginsManager.self
     var pluginsDirectoryPaths: [String] {
         return [userPluginsPath, builtInPluginsPath]

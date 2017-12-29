@@ -13,7 +13,7 @@ import XCTest
 import XCTestTemp
 import PotionTaster
 
-class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
+public class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
     var tempPluginsDirectoryURL: URL!
     var tempPluginsDirectoryPath: String! {
         get {
@@ -27,7 +27,7 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
     }
     
-    override func setUp() {
+    override public func setUp() {
         super.setUp()
         
         // Create the plugins directory
@@ -56,7 +56,7 @@ class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
     }
     
-    override func tearDown() {
+    override public func tearDown() {
         tempPluginsDirectoryURL = nil
         tempPluginURL = nil
         

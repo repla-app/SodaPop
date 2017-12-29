@@ -8,20 +8,6 @@
 
 import Cocoa
 
-// TODO: `open()` probably shouldn't be on a model object, since it's entirely
-// related to the UI.
-extension Plugin {
-    func open() {
-        assert(editable, "The plugin should be editable")
-        if !editable {
-            return
-        }
-        if let resourcePath = resourcePath {
-            NSWorkspace.shared.openFile(resourcePath)
-        }
-    }
-}
-
 @objcMembers
 public class Plugin: POPPlugin {
     enum PluginWriteError: Error {
@@ -66,10 +52,10 @@ public class Plugin: POPPlugin {
     
     // MARK: Paths
 
-    var resourcePath: String? {
+    public var resourcePath: String? {
         return bundle.resourcePath
     }
-    var resourceURL: URL? {
+    public var resourceURL: URL? {
         if let path = resourcePath {
             return URL(fileURLWithPath: path)
         }
@@ -139,10 +125,10 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    dynamic var type: String {
+    public dynamic var type: String {
         return pluginType.name()
     }
-    dynamic var editable: Bool {
+    public dynamic var editable: Bool {
         didSet {
             if (!editable) {
                 infoDictionary[InfoDictionaryKeys.editable] = editable

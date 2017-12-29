@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 protocol EasyDuplicateType {
     func urlByDuplicatingItem(at fileURL: URL, withFilenameForDuplicate filename: String) -> URL

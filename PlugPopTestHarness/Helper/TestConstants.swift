@@ -55,7 +55,7 @@ let testPluginDefaultNewPluginKeyPath = "defaultNewPlugin"
 // MARK: Plugin Paths
 
 let testMissingFilePathComponent = "None"
-let testSlashPathComponent = "/"
+public let testSlashPathComponent = "/"
 let testPluginInfoDictionaryPathComponent = testPluginContentsDirectoryName + testSlashPathComponent + testPluginInfoDictionaryFilename
 let testPluginContentsDirectoryName = "Contents"
 let testPluginResourcesDirectoryName = "Resources"

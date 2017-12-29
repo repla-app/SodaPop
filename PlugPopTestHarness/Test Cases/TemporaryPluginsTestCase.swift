@@ -20,8 +20,8 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
             return tempPluginsDirectoryURL.path
         }
     }
-    var tempPluginURL: URL!
-    var tempPluginPath: String! {
+    public var tempPluginURL: URL!
+    public var tempPluginPath: String! {
         get {
             return tempPluginURL.path
         }

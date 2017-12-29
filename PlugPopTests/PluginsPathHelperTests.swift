@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 class PluginsPathHelperTestCase: TemporaryPluginsTestCase {
     func areEqual(_ range: NSRange, _ comparisonRange: NSRange) -> Bool {

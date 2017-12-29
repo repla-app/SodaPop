@@ -9,6 +9,7 @@
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 class PluginTests: PluginTestCase {
     func testSharedResources() {

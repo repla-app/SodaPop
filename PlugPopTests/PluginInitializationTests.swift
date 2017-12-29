@@ -9,6 +9,7 @@
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 class PluginInitializationTests: PluginsManagerTestCase {
 

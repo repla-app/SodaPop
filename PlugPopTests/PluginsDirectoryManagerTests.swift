@@ -11,6 +11,7 @@ import XCTest
 
 @testable import PlugPop
 import OutOfTouch
+import PlugPopTestHarness
 
 class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
     var pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers: Array<(_ path: String) -> Void>

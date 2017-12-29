@@ -23,7 +23,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     public var plugins: [Plugin] {
         return pluginsController.plugins()
     }
-    var defaultNewPlugin: Plugin? {
+    public var defaultNewPlugin: Plugin? {
         set {
             defaultNewPluginManager.defaultNewPlugin = newValue
         }
@@ -111,15 +111,15 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     
     // MARK: Adding and Removing Plugins
     
-    func moveToTrash(_ plugin: Plugin, handler: ((_ error: Error?) -> Void)?) {
+    public func moveToTrash(_ plugin: Plugin, handler: ((_ error: Error?) -> Void)?) {
         pluginsDataController.moveToTrash(plugin, handler: handler)
     }
     
-    func duplicate(_ plugin: Plugin, handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
+    public func duplicate(_ plugin: Plugin, handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
         pluginsDataController.duplicate(plugin, handler: handler)
     }
 
-    func newPlugin(handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
+    public func newPlugin(handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
         // TODO: Handle when the `defaultNewPlugin` is nil. This isn't an issue
         // right now only because it's impossible to run the app that way
         // without tampering with the bundle contents.

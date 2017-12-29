@@ -9,9 +9,6 @@
 import XCTest
 
 @testable import PlugPop
-import XCTestTemp
-import StringPlusPath
-import PotionTaster
 
 class PluginTests: PluginTestCase {
     func testSharedResources() {
@@ -125,7 +122,7 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
     func testPluginNames() {
 
         // Setup
-        let fromName = PotionTaster.testPluginNameNonexistent
+        let fromName = testPluginNameNonexistent
         let blockingPlugin = pluginsManager.plugin(withName: testPluginNameTwo)!
         XCTAssertNotEqual(fromName, plugin.name)
         XCTAssertNotEqual(plugin, blockingPlugin)

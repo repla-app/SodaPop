@@ -9,12 +9,11 @@
 import XCTest
 
 @testable import PlugPop
-import PotionTaster
 
 class PluginInitializationTests: PluginsManagerTestCase {
 
     func testHelloWorldPlugin() {
-        guard let helloWorldPlugin = pluginsManager.plugin(withName: PotionTaster.testPluginNameHelloWorld) else {
+        guard let helloWorldPlugin = pluginsManager.plugin(withName: testPluginNameHelloWorld) else {
             XCTAssertTrue(false)
             return
         }
@@ -29,7 +28,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
     }
 
     func testLogPlugin() {
-        guard let logPlugin = pluginsManager.plugin(withName: PotionTaster.testPluginNameTestLog) else {
+        guard let logPlugin = pluginsManager.plugin(withName: testPluginNameLog) else {
             XCTAssertTrue(false)
             return
         }
@@ -44,7 +43,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
     }
 
     func testPrintPlugin() {
-        guard let logPlugin = pluginsManager.plugin(withName: PotionTaster.testPluginNamePrint) else {
+        guard let logPlugin = pluginsManager.plugin(withName: testPluginNamePrint) else {
             XCTAssertTrue(false)
             return
         }

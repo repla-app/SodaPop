@@ -10,7 +10,6 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
-import XCTestTemp
 
 class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLType {
     var copyDirectoryController: CopyDirectoryController!

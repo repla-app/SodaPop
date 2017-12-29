@@ -27,26 +27,18 @@
 		450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */; };
 		450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */; };
 		450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */; };
-		450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0991EBACDF000D08D2A /* TestConstants.swift */; };
-		450CA0B21EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */; };
-		450CA0B31EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */; };
 		450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */; };
 		450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09D1EBACDF000D08D2A /* PluginsDataControllerTests.swift */; };
 		450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */; };
 		450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */; };
 		450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */; };
-		450CA0B91EBACDF000D08D2A /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A11EBACDF000D08D2A /* PluginsManagerTestCase.swift */; };
 		450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */; };
 		450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */; };
 		450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A41EBACDF000D08D2A /* PluginTests.swift */; };
-		450CA0BD1EBACDF000D08D2A /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A51EBACDF000D08D2A /* TemporaryPluginsTestCase.swift */; };
-		450CA0BF1EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A91EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m */; };
-		450CA0C01EBACDF000D08D2A /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */; };
 		4518471E1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4518471F1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m */; };
 		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
 		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
-		452DA1301EF7673F0005B549 /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DA12F1EF7673F0005B549 /* PluginsManagerFactoryType.swift */; };
 		453126931EC93BEA00248FA9 /* DefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453126901EC93BEA00248FA9 /* DefaultsType.swift */; };
 		453126941EC93BEA00248FA9 /* POPDefaultNewPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		453126951EC93BEA00248FA9 /* POPDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */; };
@@ -57,31 +49,39 @@
 		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
 		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4546770D1F04A1CE00BAB5F9 /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */; };
 		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C971ED1FC3C007ABBD7 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45589F771EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */; };
 		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
 		456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* POPPluginsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		456783041EBFDC7600C9EC4A /* POPPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* POPPluginsController.m */; };
 		456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456783051EBFE5D100C9EC4A /* PluginMaker.swift */; };
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45AABB3E1F0342FB00A3D189 /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AABB3D1F0342FB00A3D189 /* TemporaryPluginTestCase.swift */; };
 		45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */; };
-		45BD4DBE1FDC704600FA13E2 /* PluginOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBD1FDC704600FA13E2 /* PluginOwnerType.swift */; };
-		45BD4DC01FDC743F00FA13E2 /* PluginsManagerOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBF1FDC743F00FA13E2 /* PluginsManagerOwnerType.swift */; };
-		45BD4DC21FDC7DD600FA13E2 /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
-		45BD4DC41FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
 		45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */; };
-		45C758EC1F734FC80028619D /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
-		45C758EE1F7353C90028619D /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
 		45E5554F1ED9FF640093D234 /* PotionTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; };
 		45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45F337301F78450B00B9CDCA /* PluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F3372F1F78450B00B9CDCA /* PluginsManagerDependenciesTestCase.swift */; };
-		45F337321F78492000B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F337311F78491F00B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift */; };
 		45FCE6141FF6D1B400CCBA6B /* PlugPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 45FCE6121FF6D1B400CCBA6B /* PlugPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45FCE6181FF6D3B500CCBA6B /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
+		45FCE6191FF6D3B500CCBA6B /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
+		45FCE61A1FF6D3BE00CCBA6B /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */; };
+		45FCE61B1FF6D3BE00CCBA6B /* PluginsManagerOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBF1FDC743F00FA13E2 /* PluginsManagerOwnerType.swift */; };
+		45FCE61C1FF6D3BE00CCBA6B /* PluginOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBD1FDC704600FA13E2 /* PluginOwnerType.swift */; };
+		45FCE61D1FF6D3BE00CCBA6B /* PluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F3372F1F78450B00B9CDCA /* PluginsManagerDependenciesTestCase.swift */; };
+		45FCE61E1FF6D3BE00CCBA6B /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A51EBACDF000D08D2A /* TemporaryPluginsTestCase.swift */; };
+		45FCE61F1FF6D3BE00CCBA6B /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F337311F78491F00B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift */; };
+		45FCE6201FF6D3BE00CCBA6B /* TemporaryPluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */; };
+		45FCE6211FF6D3BE00CCBA6B /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AABB3D1F0342FB00A3D189 /* TemporaryPluginTestCase.swift */; };
+		45FCE6221FF6D3BE00CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */; };
+		45FCE6231FF6D3BE00CCBA6B /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
+		45FCE6241FF6D3BE00CCBA6B /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A11EBACDF000D08D2A /* PluginsManagerTestCase.swift */; };
+		45FCE6251FF6D3DB00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */; };
+		45FCE6261FF6D3DB00CCBA6B /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0991EBACDF000D08D2A /* TestConstants.swift */; };
+		45FCE6271FF6D3DB00CCBA6B /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DA12F1EF7673F0005B549 /* PluginsManagerFactoryType.swift */; };
+		45FCE6281FF6D3DB00CCBA6B /* POPKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A91EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m */; };
+		45FCE6291FF6D3DB00CCBA6B /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */; };
+		45FCE62A1FF6D3DB00CCBA6B /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
 		45FCF9EF1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +128,6 @@
 		450CA0791EBACDAC00D08D2A /* POPKeyToObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPKeyToObjectController.m; sourceTree = "<group>"; };
 		450CA07A1EBACDAC00D08D2A /* POPPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPlugin.h; sourceTree = "<group>"; };
 		450CA07B1EBACDAC00D08D2A /* POPPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPPlugin.m; sourceTree = "<group>"; };
-		450CA0921EBACDF000D08D2A /* PlugPopTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlugPopTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyDirectoryControllerTests.swift; sourceTree = "<group>"; };
 		450CA0941EBACDF000D08D2A /* DuplicatePluginControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuplicatePluginControllerTests.swift; sourceTree = "<group>"; };
 		450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesAndPluginsDirectoryManagerTests.swift; sourceTree = "<group>"; };
@@ -298,9 +297,6 @@
 		45753DD91E9AF75B00823315 /* PlugPopTests */ = {
 			isa = PBXGroup;
 			children = (
-				45C758EA1F734FA60028619D /* Mocks */,
-				45C079071F734AC90050A8E4 /* TestCase */,
-				45C079061F734AB30050A8E4 /* Helper */,
 				450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */,
 				450CA0941EBACDF000D08D2A /* DuplicatePluginControllerTests.swift */,
 				450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */,
@@ -315,7 +311,6 @@
 				450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */,
 				450CA0A41EBACDF000D08D2A /* PluginTests.swift */,
 				45753DDC1E9AF75B00823315 /* Info.plist */,
-				450CA0921EBACDF000D08D2A /* PlugPopTests-Bridging-Header.h */,
 			);
 			path = PlugPopTests;
 			sourceTree = "<group>";
@@ -334,7 +329,7 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		45C079071F734AC90050A8E4 /* TestCase */ = {
+		45C079071F734AC90050A8E4 /* Test Cases */ = {
 			isa = PBXGroup;
 			children = (
 				4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */,
@@ -349,7 +344,7 @@
 				45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */,
 				450CA0A11EBACDF000D08D2A /* PluginsManagerTestCase.swift */,
 			);
-			path = TestCase;
+			path = "Test Cases";
 			sourceTree = "<group>";
 		};
 		45C758EA1F734FA60028619D /* Mocks */ = {
@@ -364,6 +359,9 @@
 		45FCE6111FF6D1B400CCBA6B /* PlugPopTestHarness */ = {
 			isa = PBXGroup;
 			children = (
+				45C758EA1F734FA60028619D /* Mocks */,
+				45C079071F734AC90050A8E4 /* Test Cases */,
+				45C079061F734AB30050A8E4 /* Helper */,
 				45FCE6121FF6D1B400CCBA6B /* PlugPopTestHarness.h */,
 				45FCE6131FF6D1B400CCBA6B /* Info.plist */,
 			);
@@ -557,36 +555,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */,
-				45BD4DBE1FDC704600FA13E2 /* PluginOwnerType.swift in Sources */,
-				450CA0B91EBACDF000D08D2A /* PluginsManagerTestCase.swift in Sources */,
-				450CA0B21EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */,
-				45F337321F78492000B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
-				45F337301F78450B00B9CDCA /* PluginsManagerDependenciesTestCase.swift in Sources */,
-				45BD4DC01FDC743F00FA13E2 /* PluginsManagerOwnerType.swift in Sources */,
 				450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */,
-				4546770D1F04A1CE00BAB5F9 /* PluginTestCase.swift in Sources */,
-				452DA1301EF7673F0005B549 /* PluginsManagerFactoryType.swift in Sources */,
-				450CA0C01EBACDF000D08D2A /* XCTestCase+BundleResources.swift in Sources */,
-				450CA0BD1EBACDF000D08D2A /* TemporaryPluginsTestCase.swift in Sources */,
-				45589F771EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift in Sources */,
 				450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */,
 				450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */,
 				450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */,
 				450CA0AD1EBACDF000D08D2A /* DuplicatePluginControllerTests.swift in Sources */,
 				450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */,
 				450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */,
-				45BD4DC21FDC7DD600FA13E2 /* PluginDataEventManager.swift in Sources */,
-				450CA0B31EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */,
 				450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */,
-				45BD4DC41FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift in Sources */,
 				450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */,
 				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
-				45C758EC1F734FC80028619D /* MockPluginsController.swift in Sources */,
-				450CA0BF1EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m in Sources */,
-				450CA0B11EBACDF000D08D2A /* TestConstants.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
-				45AABB3E1F0342FB00A3D189 /* TemporaryPluginTestCase.swift in Sources */,
-				45C758EE1F7353C90028619D /* MockPluginsManager.swift in Sources */,
 				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,6 +574,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FCE6211FF6D3BE00CCBA6B /* TemporaryPluginTestCase.swift in Sources */,
+				45FCE6271FF6D3DB00CCBA6B /* PluginsManagerFactoryType.swift in Sources */,
+				45FCE6231FF6D3BE00CCBA6B /* PluginsDataControllerEventTestCase.swift in Sources */,
+				45FCE6191FF6D3B500CCBA6B /* MockPluginsManager.swift in Sources */,
+				45FCE61A1FF6D3BE00CCBA6B /* PluginTestCase.swift in Sources */,
+				45FCE61C1FF6D3BE00CCBA6B /* PluginOwnerType.swift in Sources */,
+				45FCE61D1FF6D3BE00CCBA6B /* PluginsManagerDependenciesTestCase.swift in Sources */,
+				45FCE6221FF6D3BE00CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */,
+				45FCE6261FF6D3DB00CCBA6B /* TestConstants.swift in Sources */,
+				45FCE6281FF6D3DB00CCBA6B /* POPKeyValueObservingTestsHelper.m in Sources */,
+				45FCE61B1FF6D3BE00CCBA6B /* PluginsManagerOwnerType.swift in Sources */,
+				45FCE61E1FF6D3BE00CCBA6B /* TemporaryPluginsTestCase.swift in Sources */,
+				45FCE6291FF6D3DB00CCBA6B /* XCTestCase+BundleResources.swift in Sources */,
+				45FCE6181FF6D3B500CCBA6B /* MockPluginsController.swift in Sources */,
+				45FCE61F1FF6D3BE00CCBA6B /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
+				45FCE6241FF6D3BE00CCBA6B /* PluginsManagerTestCase.swift in Sources */,
+				45FCE6251FF6D3DB00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */,
+				45FCE6201FF6D3BE00CCBA6B /* TemporaryPluginsManagerTestCase.swift in Sources */,
+				45FCE62A1FF6D3DB00CCBA6B /* PluginDataEventManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,7 +776,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PlugPopTests/PlugPopTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
@@ -798,7 +795,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PlugPopTests/PlugPopTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

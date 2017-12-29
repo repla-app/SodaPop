@@ -16,4 +16,4 @@ FOUNDATION_EXPORT const unsigned char PlugPopTestHarnessVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PlugPopTestHarness/PublicHeader.h>
 
-
+#import "POPKeyValueObservingTestsHelper.h"

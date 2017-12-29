@@ -11,7 +11,7 @@ import XCTestTemp
 import PotionTaster
 @testable import PlugPop
 
-class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
+public class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     var pluginsManagerType = PluginsManager.self
     var pluginsDirectoryPaths: [String] {
         return [builtInPluginsPath,

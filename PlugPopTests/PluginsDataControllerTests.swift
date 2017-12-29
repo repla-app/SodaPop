@@ -10,6 +10,8 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import XCTestTemp
+import PlugPopTestHarness
 
 class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
@@ -78,6 +80,7 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 }
 
 extension TemporaryDirectoryTestCase {
+
     // MARK: Helpers
     
     func createFileWithConfirmation(at URL: Foundation.URL, withContents: String) {

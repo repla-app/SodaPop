@@ -1,5 +1,5 @@
 //
-//  POPPluginsManager+UniquePluginName.m
+//  POPPluginsController+UniquePluginName.m
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/6/17.
@@ -34,16 +34,14 @@
     return newName;
 }
 
-#pragma mark Name Private
-
 - (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin
 {
     Plugin *existingPlugin = [self pluginWithName:name];
-    
+
     if (!existingPlugin) {
         return YES;
     }
-    
+
     // if there is an `existingPlugin`, then the name is only valid if the
     // `existingPlugin` is the `plugin`. So first confirm that the `plugin`
     // is not nil.
@@ -53,6 +51,8 @@
 
     return plugin == existingPlugin;
 }
+
+#pragma mark Name Private
 
 - (NSString *)uniquePluginNameFromName:(NSString *)name
                              forPlugin:(Plugin *)plugin

@@ -1,5 +1,5 @@
 //
-//  POPPluginsManager+UniquePluginName.h
+//  POPPluginsController+UniquePluginName.h
 //  PlugPop
 //
 //  Created by Roben Kleene on 5/6/17.
@@ -16,5 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface POPPluginsController (UniquePluginName)
 - (NSString *)uniquePluginNameFromName:(NSString *)name;
 - (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable Plugin *)plugin;
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin;
 @end
 NS_ASSUME_NONNULL_END

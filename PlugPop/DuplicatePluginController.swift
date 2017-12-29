@@ -74,8 +74,8 @@ class DuplicatePluginController {
                     movedPlugin.editable = true
                     movedPlugin.identifier = UUID.uuidString
                     if let uniqueName = self.delegate?.duplicatePluginController(self, 
-                                                                                uniquePluginNameFromName: movedPlugin.name, 
-                                                                                for: movedPlugin)
+                                                                                 uniquePluginNameFromName: movedPlugin.name, 
+                                                                                 for: movedPlugin)
                     {
                         movedPlugin.name = uniqueName
                     } else {

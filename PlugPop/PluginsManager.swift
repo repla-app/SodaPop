@@ -91,6 +91,10 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         return pluginsController.plugin(withIdentifier: identifier)
     }
 
+    public func isUnique(name: String, for plugin: Plugin) -> Bool {
+        return pluginsController.isUniqueName(name, for: plugin)
+    }
+
     // MARK: Convenience
     
     public func addUnwatched(_ plugin: Plugin) {

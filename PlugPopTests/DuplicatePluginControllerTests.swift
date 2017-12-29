@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 class DuplicatePluginControllerTests: PluginsManagerTestCase {
     var duplicatePluginController: DuplicatePluginController!

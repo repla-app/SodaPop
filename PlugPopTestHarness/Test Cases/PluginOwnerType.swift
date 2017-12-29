@@ -10,7 +10,7 @@ import Foundation
 
 @testable import PlugPop
 
-protocol PluginOwnerType: PluginsManagerOwnerType {
+public protocol PluginOwnerType: PluginsManagerOwnerType {
     var plugin: Plugin { get }
     var pluginURL: URL { get }
     var pluginPath: String { get }

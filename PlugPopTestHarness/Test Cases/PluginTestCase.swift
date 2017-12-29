@@ -10,19 +10,19 @@ import XCTest
 
 @testable import PlugPop
 
-class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
+open class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
     private var privatePlugin: Plugin!
-    var plugin: Plugin {
+    public var plugin: Plugin {
         return privatePlugin
     }
-    var pluginURL: URL {
+    public var pluginURL: URL {
         return plugin.bundle.bundleURL
     }
-    var pluginPath: String {
+    public var pluginPath: String {
         return pluginURL.path
     }
 
-    override func setUp() {
+    override open func setUp() {
         super.setUp()
 
         // Set the plugin
@@ -31,7 +31,7 @@ class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
         privatePlugin.isDefaultNewPlugin = true
     }
     
-    override func tearDown() {
+    override open func tearDown() {
         privatePlugin.isDefaultNewPlugin = false
         privatePlugin = nil
         super.tearDown()

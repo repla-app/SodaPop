@@ -12,13 +12,13 @@ import XCTest
 
 public class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase, PluginOwnerType {
     var tempPlugin: Plugin!
-    var plugin: Plugin {
+    public var plugin: Plugin {
         return tempPlugin
     }
-    var pluginURL: URL {
+    public var pluginURL: URL {
         return plugin.bundle.bundleURL
     }
-    var pluginPath: String {
+    public var pluginPath: String {
         return pluginURL.path
     }
 

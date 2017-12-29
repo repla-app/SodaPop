@@ -12,7 +12,7 @@ import XCTest
 public class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
 
     var tempPluginsManager: PluginsManager!
-    var pluginsManager: PluginsManager {
+    public var pluginsManager: PluginsManager {
         return tempPluginsManager
     }
 

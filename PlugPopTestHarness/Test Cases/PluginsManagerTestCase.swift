@@ -11,18 +11,18 @@ import XCTest
 
 @testable import PlugPop
 
-public class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
+open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
     private var privatePluginsManager: PluginsManager!
-    var pluginsManager: PluginsManager {
+    public var pluginsManager: PluginsManager {
         return privatePluginsManager
     }
 
-    override public func setUp() {
+    override open func setUp() {
         super.setUp()
         privatePluginsManager = makePluginsManager()
     }
 
-    override public func tearDown() {
+    override open func tearDown() {
         privatePluginsManager = nil
         // Making a `pluginsManager` will implicitly create the
         // `userPluginsURL`. So that needs to be cleaned up here.
@@ -32,7 +32,7 @@ public class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, Plugins
 
     // MARK: Helper
 
-    func newPluginWithConfirmation() -> Plugin {
+    public func newPluginWithConfirmation() -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.newPlugin { (newPlugin, error) -> Void in

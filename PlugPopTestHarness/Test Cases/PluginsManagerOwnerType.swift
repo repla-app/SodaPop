@@ -10,7 +10,7 @@ import Foundation
 
 @testable import PlugPop
 
-protocol PluginsManagerOwnerType {
+public protocol PluginsManagerOwnerType {
     var pluginsManager: PluginsManager { get }
 }
 

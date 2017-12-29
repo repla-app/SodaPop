@@ -12,7 +12,7 @@ import XCTestTemp
 extension TemporaryDirectoryTestCase: TemporaryDirectoryType { }
 extension UserDefaults: DefaultsType { }
 
-protocol TemporaryDirectoryType {
+public protocol TemporaryDirectoryType {
     var temporaryDirectoryURL: URL! { get }
     var temporaryDirectoryPath: String! { get }
 }
@@ -45,12 +45,12 @@ extension TempUserPluginsDirectoryType {
     }
 }
 
-protocol TempCopyTempURLType: TemporaryDirectoryType {
+public protocol TempCopyTempURLType: TemporaryDirectoryType {
     var tempCopyTempDirectoryURL: URL { get }
 }
 
 extension TempCopyTempURLType {
-    var tempCopyTempDirectoryURL: URL {
+    public var tempCopyTempDirectoryURL: URL {
         return temporaryDirectoryURL
             .appendingPathComponent(testCopyTempDirectoryName)
     }

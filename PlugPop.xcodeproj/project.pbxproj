@@ -60,6 +60,8 @@
 		45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */; };
 		45DA31B21FF71FD400531D9E /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DA31B11FF71FD400531D9E /* TestConstants.swift */; };
 		45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DA31B31FF71FFB00531D9E /* TestConstants.swift */; };
+		45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
+		45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
 		45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FCE6141FF6D1B400CCBA6B /* PlugPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 45FCE6121FF6D1B400CCBA6B /* PlugPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45FCE6181FF6D3B500CCBA6B /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
@@ -72,13 +74,11 @@
 		45FCE61F1FF6D3BE00CCBA6B /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F337311F78491F00B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift */; };
 		45FCE6201FF6D3BE00CCBA6B /* TemporaryPluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */; };
 		45FCE6211FF6D3BE00CCBA6B /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AABB3D1F0342FB00A3D189 /* TemporaryPluginTestCase.swift */; };
-		45FCE6231FF6D3BE00CCBA6B /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
 		45FCE6241FF6D3BE00CCBA6B /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A11EBACDF000D08D2A /* PluginsManagerTestCase.swift */; };
 		45FCE6261FF6D3DB00CCBA6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0991EBACDF000D08D2A /* Constants.swift */; };
 		45FCE6271FF6D3DB00CCBA6B /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DA12F1EF7673F0005B549 /* PluginsManagerFactoryType.swift */; };
 		45FCE6281FF6D3DB00CCBA6B /* POPKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A91EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m */; };
 		45FCE6291FF6D3DB00CCBA6B /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */; };
-		45FCE62A1FF6D3DB00CCBA6B /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
 		45FCE62C1FF6D46100CCBA6B /* POPKeyValueObservingTestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CA0A81EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45FCE6301FF6DC3500CCBA6B /* PotionTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; };
 		45FCE6311FF6DC4C00CCBA6B /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
@@ -340,7 +340,6 @@
 				450CA0A81EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.h */,
 				450CA0A91EBACDF000D08D2A /* POPKeyValueObservingTestsHelper.m */,
 				450CA0AA1EBACDF000D08D2A /* XCTestCase+BundleResources.swift */,
-				45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -356,7 +355,6 @@
 				45F337311F78491F00B9CDCA /* TemporaryPluginsManagerDependenciesTestCase.swift */,
 				45589F761EF70D2800F0F297 /* TemporaryPluginsManagerTestCase.swift */,
 				45AABB3D1F0342FB00A3D189 /* TemporaryPluginTestCase.swift */,
-				45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */,
 				450CA0A11EBACDF000D08D2A /* PluginsManagerTestCase.swift */,
 			);
 			path = "Test Cases";
@@ -386,8 +384,10 @@
 		45FCE62D1FF6D81B00CCBA6B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */,
 				450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */,
 				450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */,
+				45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */,
 				45DA31B31FF71FFB00531D9E /* TestConstants.swift */,
 			);
 			path = Helper;
@@ -588,12 +588,14 @@
 				450CA0AD1EBACDF000D08D2A /* DuplicatePluginControllerTests.swift in Sources */,
 				450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */,
 				450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */,
+				45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */,
 				450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */,
 				450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */,
 				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
 				45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */,
 				45FCE6341FF6DC7000CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
+				45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */,
 				45FCE6331FF6DC6C00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */,
 				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,
 			);
@@ -605,7 +607,6 @@
 			files = (
 				45FCE6211FF6D3BE00CCBA6B /* TemporaryPluginTestCase.swift in Sources */,
 				45FCE6271FF6D3DB00CCBA6B /* PluginsManagerFactoryType.swift in Sources */,
-				45FCE6231FF6D3BE00CCBA6B /* PluginsDataControllerEventTestCase.swift in Sources */,
 				45FCE6191FF6D3B500CCBA6B /* MockPluginsManager.swift in Sources */,
 				45FCE61A1FF6D3BE00CCBA6B /* PluginTestCase.swift in Sources */,
 				45FCE61C1FF6D3BE00CCBA6B /* PluginOwnerType.swift in Sources */,
@@ -620,7 +621,6 @@
 				45FCE61F1FF6D3BE00CCBA6B /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
 				45FCE6241FF6D3BE00CCBA6B /* PluginsManagerTestCase.swift in Sources */,
 				45FCE6201FF6D3BE00CCBA6B /* TemporaryPluginsManagerTestCase.swift in Sources */,
-				45FCE62A1FF6D3DB00CCBA6B /* PluginDataEventManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

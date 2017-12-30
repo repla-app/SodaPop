@@ -24,7 +24,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     var userPluginsPath: String {
         return temporaryUserPluginsDirectoryPath
     }
-    lazy var defaults: DefaultsType = {
+    public lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
 }

@@ -22,7 +22,7 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
 
     // MARK: `PluginsDataControllerDelegate`
 
-    func pluginsDataController(_ pluginsDataController: PluginsDataController,
+    public func pluginsDataController(_ pluginsDataController: PluginsDataController,
                                didAddPlugin plugin: Plugin)
     {
         delegate?.pluginsDataController(pluginsDataController, didAddPlugin: plugin)

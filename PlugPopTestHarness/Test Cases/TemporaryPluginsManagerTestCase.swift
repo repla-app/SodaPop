@@ -9,19 +9,19 @@
 @testable import PlugPop
 import XCTest
 
-public class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
+open class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
 
     var tempPluginsManager: PluginsManager!
     public var pluginsManager: PluginsManager {
         return tempPluginsManager
     }
 
-    override public func setUp() {
+    override open func setUp() {
         super.setUp()
         tempPluginsManager = makePluginsManager()
     }
 
-    override public func tearDown() {
+    override open func tearDown() {
         tempPluginsManager = nil
         // Making a `pluginsManager` will implicitly create the
         // `userPluginsURL`. So that needs to be cleaned up here.

@@ -57,6 +57,8 @@
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A451FF1FF83F7900687BEA /* PluginsManagerOwnerType+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A451FE1FF83F7900687BEA /* PluginsManagerOwnerType+Trash.swift */; };
+		45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
+		45A452011FF84C7400687BEA /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
 		45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */; };
 		45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */; };
 		45DA31B21FF71FD400531D9E /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DA31B11FF71FD400531D9E /* TestConstants.swift */; };
@@ -65,8 +67,6 @@
 		45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
 		45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FCE6141FF6D1B400CCBA6B /* PlugPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 45FCE6121FF6D1B400CCBA6B /* PlugPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45FCE6181FF6D3B500CCBA6B /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
-		45FCE6191FF6D3B500CCBA6B /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
 		45FCE61A1FF6D3BE00CCBA6B /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546770C1F04A1CE00BAB5F9 /* PluginTestCase.swift */; };
 		45FCE61B1FF6D3BE00CCBA6B /* PluginsManagerOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBF1FDC743F00FA13E2 /* PluginsManagerOwnerType.swift */; };
 		45FCE61C1FF6D3BE00CCBA6B /* PluginOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DBD1FDC704600FA13E2 /* PluginOwnerType.swift */; };
@@ -362,19 +362,9 @@
 			path = "Test Cases";
 			sourceTree = "<group>";
 		};
-		45C758EA1F734FA60028619D /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				45C758EB1F734FC80028619D /* MockPluginsController.swift */,
-				45C758ED1F7353C90028619D /* MockPluginsManager.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		45FCE6111FF6D1B400CCBA6B /* PlugPopTestHarness */ = {
 			isa = PBXGroup;
 			children = (
-				45C758EA1F734FA60028619D /* Mocks */,
 				45C079071F734AC90050A8E4 /* Test Cases */,
 				45C079061F734AB30050A8E4 /* Helper */,
 				45FCE6121FF6D1B400CCBA6B /* PlugPopTestHarness.h */,
@@ -386,6 +376,8 @@
 		45FCE62D1FF6D81B00CCBA6B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				45C758EB1F734FC80028619D /* MockPluginsController.swift */,
+				45C758ED1F7353C90028619D /* MockPluginsManager.swift */,
 				45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */,
 				450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */,
 				450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */,
@@ -589,6 +581,7 @@
 				450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */,
 				450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */,
 				450CA0AD1EBACDF000D08D2A /* DuplicatePluginControllerTests.swift in Sources */,
+				45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */,
 				450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */,
 				450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */,
 				45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */,
@@ -596,6 +589,7 @@
 				450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */,
 				450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */,
 				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
+				45A452011FF84C7400687BEA /* MockPluginsController.swift in Sources */,
 				45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */,
 				45FCE6341FF6DC7000CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */,
 				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
@@ -611,7 +605,6 @@
 			files = (
 				45FCE6211FF6D3BE00CCBA6B /* TemporaryPluginTestCase.swift in Sources */,
 				45FCE6271FF6D3DB00CCBA6B /* PluginsManagerFactoryType.swift in Sources */,
-				45FCE6191FF6D3B500CCBA6B /* MockPluginsManager.swift in Sources */,
 				45FCE61A1FF6D3BE00CCBA6B /* PluginTestCase.swift in Sources */,
 				45FCE61C1FF6D3BE00CCBA6B /* PluginOwnerType.swift in Sources */,
 				45FCE61D1FF6D3BE00CCBA6B /* PluginsManagerDependenciesTestCase.swift in Sources */,
@@ -620,7 +613,6 @@
 				45FCE61B1FF6D3BE00CCBA6B /* PluginsManagerOwnerType.swift in Sources */,
 				45FCE61E1FF6D3BE00CCBA6B /* TemporaryPluginsTestCase.swift in Sources */,
 				45FCE6291FF6D3DB00CCBA6B /* XCTestCase+BundleResources.swift in Sources */,
-				45FCE6181FF6D3B500CCBA6B /* MockPluginsController.swift in Sources */,
 				45DA31B21FF71FD400531D9E /* TestConstants.swift in Sources */,
 				45FCE61F1FF6D3BE00CCBA6B /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
 				45FCE6241FF6D3BE00CCBA6B /* PluginsManagerTestCase.swift in Sources */,

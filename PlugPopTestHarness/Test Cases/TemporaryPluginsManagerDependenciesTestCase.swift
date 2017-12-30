@@ -9,18 +9,18 @@
 import Foundation
 @testable import PlugPop
 
-public class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
+open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
     var pluginsManagerType = PluginsManager.self
-    var pluginsDirectoryPaths: [String] {
+    public var pluginsDirectoryPaths: [String] {
         return [userPluginsPath, builtInPluginsPath]
     }
-    var builtInPluginsPath: String {
+    public var builtInPluginsPath: String {
         return tempPluginsDirectoryPath
     }
-    var userPluginsPath: String {
+    public var userPluginsPath: String {
         return temporaryUserPluginsDirectoryPath
     }
-    lazy var defaults: DefaultsType = {
+    public lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
 }

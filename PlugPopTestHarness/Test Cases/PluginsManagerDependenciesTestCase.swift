@@ -13,15 +13,15 @@ import PotionTaster
 
 open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     var pluginsManagerType = PluginsManager.self
-    var pluginsDirectoryPaths: [String] {
+    public var pluginsDirectoryPaths: [String] {
         return [builtInPluginsPath,
                 PotionTaster.sharedTestResourcesPluginsDirectoryPath,
                 userPluginsPath]
     }
-    var builtInPluginsPath: String {
+    public var builtInPluginsPath: String {
         return PotionTaster.rootPluginsDirectoryPath
     }
-    var userPluginsPath: String {
+    public var userPluginsPath: String {
         return temporaryUserPluginsDirectoryPath
     }
     public lazy var defaults: DefaultsType = {

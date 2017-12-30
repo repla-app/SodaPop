@@ -18,12 +18,12 @@ open class TemporaryPluginsDataControllerEventTestCase: TemporaryPluginTestCase 
     override open func setUp() {
         super.setUp()
         pluginDataEventManager = PluginDataEventManager()
-        pluginDataEventManager.delegate = tempPluginsManager
-        tempPluginsManager.pluginsDataController.delegate = pluginDataEventManager
+        pluginDataEventManager.delegate = pluginsManager
+        pluginsManager.pluginsDataController.delegate = pluginDataEventManager
     }
     
     override open func tearDown() {
-        tempPluginsManager.pluginsDataController.delegate = tempPluginsManager
+        pluginsManager.pluginsDataController.delegate = pluginsManager
         pluginDataEventManager.delegate = nil
         pluginDataEventManager = nil
         super.tearDown()

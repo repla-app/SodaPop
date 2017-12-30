@@ -14,8 +14,8 @@ import XCTestTemp
 import PotionTaster
 
 open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
-    var tempPluginsDirectoryURL: URL!
-    var tempPluginsDirectoryPath: String! {
+    public var tempPluginsDirectoryURL: URL!
+    public var tempPluginsDirectoryPath: String! {
         get {
             return tempPluginsDirectoryURL.path
         }

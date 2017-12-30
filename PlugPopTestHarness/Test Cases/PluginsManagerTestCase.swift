@@ -44,7 +44,7 @@ open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsMa
         return createdPlugin
     }
 
-    func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
+    public func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.duplicate(plugin) { (newPlugin, error) -> Void in

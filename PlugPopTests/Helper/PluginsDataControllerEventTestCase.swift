@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 open class PluginsDataControllerEventTestCase: PluginTestCase {
     var pluginDataEventManager: PluginDataEventManager!

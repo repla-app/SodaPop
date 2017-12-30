@@ -12,7 +12,7 @@ import PotionTaster
 @testable import PlugPop
 
 open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
-    var pluginsManagerType = PluginsManager.self
+    public var pluginsManagerType = PluginsManager.self
     public var pluginsDirectoryPaths: [String] {
         return [builtInPluginsPath,
                 PotionTaster.sharedTestResourcesPluginsDirectoryPath,

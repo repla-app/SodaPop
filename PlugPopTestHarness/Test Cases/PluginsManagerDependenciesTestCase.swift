@@ -9,7 +9,7 @@
 import Foundation
 import XCTestTemp
 import PotionTaster
-@testable import PlugPop
+import PlugPop
 
 open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     public var pluginsManagerType = PluginsManager.self

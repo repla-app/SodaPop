@@ -9,7 +9,7 @@
 import Cocoa
 import XCTest
 
-@testable import PlugPop
+import PlugPop
 
 open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
     private var privatePluginsManager: PluginsManager!

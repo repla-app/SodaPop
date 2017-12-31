@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import PlugPop
+import PlugPop
 
 open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
     public var pluginsManagerType = PluginsManager.self

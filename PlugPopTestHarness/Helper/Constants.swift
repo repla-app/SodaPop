@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-@testable import PlugPop
+import PlugPop
 import PotionTaster
 
 // MARK: Directories
@@ -26,6 +26,7 @@ public let testPluginSuffixesEmpty = [String]()
 
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
+public let testPluginFileExtension = "wcplugin"
 public let testPluginName = PotionTaster.testPluginNameIRB
 public let testPluginNameTwo = PotionTaster.testPluginNameHTML
 public let testPluginExtension = PotionTaster.testPluginFileExtension
@@ -33,9 +34,9 @@ public let testPluginCommand = PotionTaster.testPluginCommandIRB
 public let testPluginCommandTwo = PotionTaster.testPluginCommandHTML
 public let testPluginNameNotDefault = PotionTaster.testPluginNameIRB
 public let testPluginCommandNotDefault = PotionTaster.testPluginCommandIRB
-public let testPluginDirectoryName = DuplicatePluginController.pluginFilename(fromName: testPluginName)
-public let testPluginDirectoryNameTwo = DuplicatePluginController.pluginFilename(fromName: testPluginNameTwo)
-public let testPluginDirectoryNoPluginName = DuplicatePluginController.pluginFilename(fromName: "No Plugin")
+public let testPluginDirectoryName = testPluginName.appendingPathExtension(testPluginFileExtension)!
+public let testPluginDirectoryNameTwo = testPluginNameTwo.appendingPathExtension(testPluginFileExtension)!
+public let testPluginDirectoryNoPluginName = "No Plugin".appendingPathExtension(testPluginFileExtension)!
 public let testPluginNameNonexistent = PotionTaster.testPluginNameNonexistent
 public let testPluginNameHelloWorld = PotionTaster.testPluginNameHelloWorld
 public let testPluginNameLog = PotionTaster.testPluginNameTestLog

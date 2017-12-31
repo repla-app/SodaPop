@@ -46,11 +46,11 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     // MARK: Init
 
-    class func makeConfiguration(pluginsPaths: [String],
-                                 copyTempDirectoryURL: URL,
-                                 defaults: DefaultsType,
-                                 userPluginsPath: String,
-                                 builtInPluginsPath: String?) -> PluginsManagerConfiguration
+    public class func makeConfiguration(pluginsPaths: [String],
+                                        copyTempDirectoryURL: URL,
+                                        defaults: DefaultsType,
+                                        userPluginsPath: String,
+                                        builtInPluginsPath: String?) -> PluginsManagerConfiguration
     {
         return PluginsManagerConfiguration(pluginsPaths: pluginsPaths,
                                            copyTempDirectoryURL: copyTempDirectoryURL,

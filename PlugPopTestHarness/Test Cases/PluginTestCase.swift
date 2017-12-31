@@ -8,18 +8,12 @@
 
 import XCTest
 
-@testable import PlugPop
+import PlugPop
 
 open class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
     private var privatePlugin: Plugin!
     public var plugin: Plugin {
         return privatePlugin
-    }
-    public var pluginURL: URL {
-        return plugin.bundle.bundleURL
-    }
-    public var pluginPath: String {
-        return pluginURL.path
     }
 
     override open func setUp() {

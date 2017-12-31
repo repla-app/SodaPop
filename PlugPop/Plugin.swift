@@ -17,7 +17,7 @@ public class Plugin: POPPlugin {
     struct ClassConstants {
         static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
     }
-    internal let bundle: Bundle
+    let bundle: Bundle
     let hidden: Bool
     public let debugModeEnabled: Bool?
     let pluginType: PluginType

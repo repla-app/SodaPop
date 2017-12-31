@@ -8,7 +8,7 @@
 
 import Foundation
 
-@testable import PlugPop
+import PlugPop
 
 public protocol PluginsManagerOwnerType {
     var pluginsManager: PluginsManager { get }

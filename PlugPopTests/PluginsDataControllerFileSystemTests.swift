@@ -33,6 +33,8 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
     }
     
     func testMovePlugin() {
+        let pluginPath = plugin.resourcePath!.deletingLastPathComponent.deletingLastPathComponent
+
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let destinationPluginPath = pluginPath.deletingLastPathComponent.appendingPathComponent(destinationPluginFilename)
         

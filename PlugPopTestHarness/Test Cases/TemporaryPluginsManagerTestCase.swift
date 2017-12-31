@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
-@testable import PlugPop
+import PlugPop
 import XCTest
 
 open class TemporaryPluginsManagerTestCase: TemporaryPluginsManagerDependenciesTestCase, PluginsManagerOwnerType {

@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-@testable import PlugPop
+import PlugPop
 import XCTestTemp
 import PotionTaster
 

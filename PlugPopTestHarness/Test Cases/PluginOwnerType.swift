@@ -8,11 +8,9 @@
 
 import Foundation
 
-@testable import PlugPop
+import PlugPop
 
 public protocol PluginOwnerType: PluginsManagerOwnerType {
     var plugin: Plugin { get }
-    var pluginURL: URL { get }
-    var pluginPath: String { get }
 }
 

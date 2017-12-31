@@ -1,2 +1,4 @@
 github "robenkleene/BubbleUp" ~> 1.0
 github "robenkleene/StringPlusPath" ~> 1.0
+github "robenkleene/XCTestTemp" ~> 1.1
+github "potionlab/PotionTaster" ~> 2.2

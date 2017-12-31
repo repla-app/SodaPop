@@ -1,5 +1,7 @@
+github "potionlab/PlugPopTestHarness" "0.0.2"
 github "potionlab/PotionTaster" "2.2.0"
 github "robenkleene/BubbleUp" "1.0.0"
 github "robenkleene/OutOfTouch" "2.0.1"
+github "robenkleene/PlugPop" "0.12.2"
 github "robenkleene/StringPlusPath" "1.0.0"
 github "robenkleene/XCTestTemp" "1.1.0"

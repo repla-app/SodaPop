@@ -10,6 +10,7 @@ import Cocoa
 import XCTest
 
 @testable import PlugPop
+import PlugPopTestHarness
 
 class PluginsManagerFileSystemTests: TemporaryPluginsDataControllerEventTestCase {
 

@@ -13,6 +13,7 @@ import XCTest
 import OutOfTouch
 import BubbleUp
 import XCTestTemp
+import PlugPopTestHarness
 
 protocol FilesAndPluginsDirectoryManagerFileDelegate {
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, fileWasCreatedOrModifiedAtPath path: String)

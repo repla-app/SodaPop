@@ -20,20 +20,6 @@
                ReferencedContainer = "container:PlugPop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45FCE60F1FF6D1B400CCBA6B"
-               BuildableName = "PlugPopTestHarness.framework"
-               BlueprintName = "PlugPopTestHarness"
-               ReferencedContainer = "container:PlugPop.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

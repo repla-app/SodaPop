@@ -115,7 +115,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     
     // MARK: Adding and Removing Plugins
     
-    public func moveToTrash(_ plugin: Plugin, handler: ((_ error: Error?) -> Void)?) {
+    public func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         pluginsDataController.moveToTrash(plugin, handler: handler)
     }
     

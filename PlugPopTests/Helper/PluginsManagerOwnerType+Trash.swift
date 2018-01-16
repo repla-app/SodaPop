@@ -15,15 +15,11 @@ extension PluginsManagerOwnerType {
     func moveToTrashAndCleanUpWithConfirmation(_ plugin: Plugin,
                                                handler: (() -> Void)?)
     {
-        // Confirm that a matching directory does not exist in the trash
-        let trashedPluginDirectoryName = plugin.bundle.bundlePath.lastPathComponent
-        let trashedPluginPath = testTrashDirectoryPath.appendingPathComponent(trashedPluginDirectoryName)
-        let beforeExists = FileManager.default.fileExists(atPath: trashedPluginPath)
-        assert(!beforeExists)
-
         // Trash the plugin
-        pluginsManager.moveToTrash(plugin) { error in
+        pluginsManager.moveToTrash(plugin) { url, error in
             assert(error == nil)
+            assert(url != nil)
+            let trashedPluginPath = url!.path
 
             // Confirm that the directory does exist in the trash now
             var isDir: ObjCBool = false

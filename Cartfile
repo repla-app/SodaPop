@@ -1,2 +1,3 @@
 github "robenkleene/BubbleUp" ~> 1.0
 github "robenkleene/StringPlusPath" ~> 1.0
+github "robenkleene/PlainBagel" ~> 0.1

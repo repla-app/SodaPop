@@ -9,6 +9,8 @@
 import Foundation
 @testable import PlugPop
 
+import PlainBagel
+
 class MockPluginsManager: PluginsManager {
     var mockPluginsController: MockPluginsController {
         return pluginsController as! MockPluginsController

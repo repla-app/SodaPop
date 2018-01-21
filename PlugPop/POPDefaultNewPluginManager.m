@@ -9,6 +9,8 @@
 #import "POPDefaultNewPluginManager.h"
 #import <PlugPop/PlugPop-Swift.h>
 
+@import PlainBagel;
+
 #define kInitialDefaultNewPluginName @"HTML"
 
 @interface POPDefaultNewPluginManager ()

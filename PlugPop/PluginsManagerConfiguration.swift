@@ -8,6 +8,8 @@
 
 import Foundation
 
+import PlainBagel
+
 public struct PluginsManagerConfigurationTypes {
     let defaultNewPluginManagerType: POPDefaultNewPluginManager.Type
     let pluginsDataControllerType: PluginsDataController.Type

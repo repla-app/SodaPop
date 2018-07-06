@@ -7,13 +7,11 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
-
     func testInvalidDefaultNewPluginIdentifier() {
         // # Set a bad identifier
         let UUID = Foundation.UUID()
@@ -27,22 +25,22 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let identifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNil(identifier)
     }
-    
+
     func testSettingAndDeletingDefaultNewPlugin() {
         let createdPlugin = newPluginWithConfirmation()
         pluginsManager.defaultNewPlugin = createdPlugin
-        
+
         // Assert the POPPlugin's isDefaultNewPlugin property
         XCTAssertTrue(createdPlugin.isDefaultNewPlugin)
-        
+
         // Assert the default new plugin identifier in NSUserDefaults
         let defaultNewPluginIdentifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertEqual(createdPlugin.identifier, defaultNewPluginIdentifier)
-        
+
         // Assert the default new plugin is returned from the POPPluginManager
         let defaultNewPlugin = pluginsManager.defaultNewPlugin
         XCTAssertEqual(defaultNewPlugin, createdPlugin)
-        
+
         let trashExpectation = expectation(description: "Move to trash")
         moveToTrashAndCleanUpWithConfirmation(createdPlugin) {
             trashExpectation.fulfill()
@@ -67,14 +65,14 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         let createdPlugin = newPluginWithConfirmation()
 
         pluginsManager.defaultNewPlugin = createdPlugin
-        
+
         // Seems that the problem with this test is here, renaming a plugin should move it?
         createdPlugin.name = testPluginNameNotDefault
         createdPlugin.command = testPluginCommandTwo
         createdPlugin.suffixes = testPluginSuffixesTwo
-        
+
         let createdPluginTwo = newPluginWithConfirmation()
-        
+
         XCTAssertEqual(createdPlugin.suffixes, createdPluginTwo.suffixes)
 
         let bundlePath = createdPluginTwo.bundle.bundlePath
@@ -92,11 +90,11 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
-    
+
     func testSettingDefaultNewPluginToNil() {
         let createdPlugin = newPluginWithConfirmation()
         pluginsManager.defaultNewPlugin = createdPlugin
-        
+
         let defaultNewPluginIdentifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
         XCTAssertNotNil(defaultNewPluginIdentifier, "The identifier should not be nil")
 
@@ -121,8 +119,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         var isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         POPKeyValueObservingTestsHelper.observe(createdPlugin,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new)
-        { (change: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPlugin
@@ -131,20 +128,18 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // Test that key-value observing notifications occur when second new plugin is set as the default new plugin
         let createdPluginTwo = newPluginWithConfirmation()
-        
+
         XCTAssertFalse(createdPluginTwo.isDefaultNewPlugin, "The POPPlugin should not be the default new POPPlugin.")
-        
+
         POPKeyValueObservingTestsHelper.observe(createdPlugin,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new)
-        { (change: [AnyHashable: Any]?) -> Void in
-                isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
+                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
+            isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         var isDefaultNewPluginTwo = createdPlugin.isDefaultNewPlugin
         POPKeyValueObservingTestsHelper.observe(createdPluginTwo,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new)
-        { (change: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPluginTwo
@@ -156,8 +151,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         // Test that key-value observing notifications occur when the default new plugin is set to nil
         POPKeyValueObservingTestsHelper.observe(createdPluginTwo,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new)
-        { (change: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = nil
@@ -168,5 +162,4 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
-    
 }

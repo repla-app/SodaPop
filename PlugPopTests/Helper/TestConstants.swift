@@ -34,6 +34,6 @@ let testFilenameTwo = "test2.txt"
 let testFileContents = "test"
 let testHiddenDirectoryName = ".DS_Store"
 
-// Miscellaneous 
+// Miscellaneous
 
 let testSharedResourcePathComponent = "js/zepto.js"

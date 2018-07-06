@@ -7,10 +7,9 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLType {
     var copyDirectoryController: CopyDirectoryController!
@@ -18,18 +17,18 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
     }
-    
+
     override func setUp() {
         super.setUp()
         copyDirectoryController = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                           tempDirectoryName: ClassConstants.tempDirectoryName)
         let cleanUpExpectation = expectation(description: "Cleanup")
-        copyDirectoryController.cleanUp() { error in
+        copyDirectoryController.cleanUp { error in
             XCTAssertNil(error)
             cleanUpExpectation.fulfill()
         }
     }
-    
+
     override func tearDown() {
         copyDirectoryController = nil
         super.tearDown()
@@ -55,12 +54,12 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
     func testCopy() {
         let copyExpectation = expectation(description: "Copy")
-        
+
         var copiedPluginURL: URL!
         copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
             XCTAssertNotNil(URL, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
-            
+
             if let URL = URL {
                 let movedFilename = testDirectoryName
                 let movedDestinationURL = self.tempPluginsDirectoryURL.appendingPathComponent(movedFilename)
@@ -86,7 +85,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         let pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: tempPluginURL)
         let copiedPluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: copiedPluginURL)
-        
+
         do {
             let pluginInfoDictionaryContents: String! = try String(contentsOf: pluginInfoDictionaryURL,
                                                                    encoding: String.Encoding.utf8)
@@ -96,7 +95,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
-        
+
         // Cleanup
         do {
             try removeTemporaryItem(at: copiedPluginURL)
@@ -119,7 +118,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
                 do {
                     try FileManager.default.moveItem(at: URL,
-                        to: movedDestinationURL)
+                                                     to: movedDestinationURL)
                 } catch {
                     XCTAssertTrue(false, "The move should succeed")
                 }
@@ -145,7 +144,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                                                  tempDirectoryName: ClassConstants.tempDirectoryName)
 
         let cleanUpExpectation = expectation(description: "Cleanup")
-        copyDirectoryController.cleanUp() { error in
+        copyDirectoryController.cleanUp { error in
             XCTAssertNil(error)
 
             // Assert the directory is empty

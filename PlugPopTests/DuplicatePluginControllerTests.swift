@@ -7,17 +7,16 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class DuplicatePluginControllerTests: PluginsManagerTestCase {
     var duplicatePluginController: DuplicatePluginController!
     lazy var plugin: Plugin = {
-        return self.pluginsManager.defaultNewPlugin!
+        self.pluginsManager.defaultNewPlugin!
     }()
-    
+
     override func setUp() {
         super.setUp()
         duplicatePluginController = pluginsManager.pluginsDataController.duplicatePluginController
@@ -28,7 +27,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         duplicatePluginController = nil
         super.tearDown()
     }
-    
+
     func testDuplicatePlugin() {
         // Test that the plugin starts not editable
         XCTAssertFalse(plugin.editable, "The plugin should not be editable")
@@ -60,7 +59,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         let duplicatePluginURL = duplicatePlugin.bundle.bundleURL
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: duplicatePluginURL.path,
-            isDirectory: &isDir)
+                                                    isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")
         XCTAssertTrue(isDir.boolValue, "The item should be a directory")
 
@@ -89,19 +88,19 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertEqual(plugin.command!, duplicatePlugin.command!, "The commands should be equal")
         let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
         XCTAssertEqual(DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.name), duplicatePluginFolderName, "The folder name should equal the plugin's name")
-        
+
         // Clean Up
         try! removeTemporaryItem(at: duplicatePluginURL)
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
-    
+
     func testDuplicatePluginWithFolderNameBlocked() {
         try! FileManager.default.createDirectory(at: temporaryUserPluginsDirectoryURL,
                                                  withIntermediateDirectories: true,
                                                  attributes: nil)
 
         // Function to create a blocking folder for a plugin with the provided name
-        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> ()) = { name, plugin, pluginsManager, destinationDirectoryURL in
+        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> Void) = { name, plugin, pluginsManager, destinationDirectoryURL in
             let uniqueName = pluginsManager.pluginsController.uniquePluginName(fromName: name,
                                                                                for: plugin)
             let destinationName = DuplicatePluginController.pluginFilename(fromName: uniqueName)
@@ -123,7 +122,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Block the original name, and all incremented names up to `duplicatePluginsWithCounterMax`
         // This will force a fallback to a name based on the plugin's identifier
         makeBlockingFolderWithName(plugin.name, plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
-        for index in 2..<duplicatePluginsWithCounterMax {
+        for index in 2 ..< duplicatePluginsWithCounterMax {
             makeBlockingFolderWithName("\(plugin.name) \(index)", plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
         }
 
@@ -145,5 +144,4 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Clean Up
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
-
 }

@@ -7,9 +7,8 @@
 //
 
 import Foundation
-@testable import PlugPop
-
 import PlainBagel
+@testable import PlugPop
 
 class MockPluginsManager: PluginsManager {
     var mockPluginsController: MockPluginsController {
@@ -20,8 +19,7 @@ class MockPluginsManager: PluginsManager {
                                           copyTempDirectoryURL: URL,
                                           defaults: DefaultsType,
                                           userPluginsPath: String,
-                                          builtInPluginsPath: String?) -> PluginsManagerConfiguration
-    {
+                                          builtInPluginsPath: String?) -> PluginsManagerConfiguration {
         let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: POPDefaultNewPluginManager.self,
                                                      pluginsDataControllerType: PluginsDataController.self,
                                                      pluginsControllerType: MockPluginsController.self)

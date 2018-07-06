@@ -13,15 +13,16 @@ public class Plugin: POPPlugin {
     enum PluginWriteError: Error {
         case failToWriteDictionaryError(URL: URL)
     }
-    
+
     struct ClassConstants {
         static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
     }
+
     let bundle: Bundle
     let hidden: Bool
     public let debugModeEnabled: Bool?
     let pluginType: PluginType
-    
+
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
          pluginType: PluginType,
@@ -31,8 +32,7 @@ public class Plugin: POPPlugin {
          suffixes: [String]?,
          hidden: Bool,
          editable: Bool,
-         debugModeEnabled: Bool?)
-    {
+         debugModeEnabled: Bool?) {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType
         self.bundle = bundle
@@ -41,7 +41,7 @@ public class Plugin: POPPlugin {
         self.hidden = hidden
         self.editable = editable
         self.debugModeEnabled = debugModeEnabled
-        
+
         // Optional
         self.command = command
         self.suffixes = [String]()
@@ -49,23 +49,23 @@ public class Plugin: POPPlugin {
             self.suffixes += suffixes
         }
     }
-    
+
     // MARK: Paths
 
     public var resourcePath: String? {
         return bundle.resourcePath
     }
+
     public var resourceURL: URL? {
         if let path = resourcePath {
             return URL(fileURLWithPath: path)
         }
         return nil
     }
+
     internal var infoDictionary: [AnyHashable: Any]
     internal var infoDictionaryURL: URL {
-        get {
-            return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
-        }
+        return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
     }
 
     class func urlForInfoDictionary(for plugin: Plugin) -> URL {
@@ -75,10 +75,9 @@ public class Plugin: POPPlugin {
     class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {
         return pluginURL.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
     }
-    
-    
+
     // MARK: Properties
-    
+
     public dynamic var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
@@ -88,6 +87,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
+
     public var identifier: String {
         willSet {
             assert(editable, "The plugin should be editable")
@@ -97,6 +97,7 @@ public class Plugin: POPPlugin {
             save()
         }
     }
+
     public dynamic var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
@@ -106,16 +107,16 @@ public class Plugin: POPPlugin {
             save()
         }
     }
+
     public var commandPath: String? {
-        get {
-            if let resourcePath = resourcePath {
-                if let command = command {
-                    return resourcePath.appendingPathComponent(command)
-                }
+        if let resourcePath = resourcePath {
+            if let command = command {
+                return resourcePath.appendingPathComponent(command)
             }
-            return nil
         }
+        return nil
     }
+
     public dynamic var suffixes: [String] {
         willSet {
             assert(editable, "The plugin should be editable")
@@ -125,12 +126,14 @@ public class Plugin: POPPlugin {
             save()
         }
     }
+
     public dynamic var type: String {
         return pluginType.name()
     }
+
     public dynamic var editable: Bool {
         didSet {
-            if (!editable) {
+            if !editable {
                 infoDictionary[InfoDictionaryKeys.editable] = editable
             } else {
                 infoDictionary[InfoDictionaryKeys.editable] = nil
@@ -138,19 +141,18 @@ public class Plugin: POPPlugin {
             save()
         }
     }
-    
+
     // MARK: Save
-    
+
     private func save() {
         let infoDictionaryURL = self.infoDictionaryURL
         do {
             try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
-        } catch PluginWriteError.failToWriteDictionaryError(let URL) {
+        } catch let PluginWriteError.failToWriteDictionaryError(URL) {
             print("Failed to write an info dictionary at URL \(URL)")
         } catch let error as NSError {
             print("Failed to write an info dictionary \(error)")
         }
-
     }
 
     class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
@@ -162,10 +164,9 @@ public class Plugin: POPPlugin {
     }
 
     // MARK: Description
-    
-    override public var description: String {
+
+    public override var description: String {
         let description = super.description
         return "\(description), Plugin name = \(name),  identifier = \(identifier), defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))"
     }
-    
 }

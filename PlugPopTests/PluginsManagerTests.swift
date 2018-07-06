@@ -7,18 +7,16 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class PluginsManagerTests: PluginsManagerTestCase {
-
     func testDuplicateAndTrashPlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 
         let newPlugin = newPluginWithConfirmation()
-        
+
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount + 1)
         let plugins = pluginsManager.plugins
         XCTAssertTrue(plugins.contains(newPlugin))
@@ -28,12 +26,12 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
         // Create another plugin from this plugin
         let newPluginTwo = duplicateWithConfirmation(newPlugin)
-        
+
         // Test Properties
 
         XCTAssertEqual(newPluginTwo.command!, newPlugin.command!, "The commands should be equal")
         XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!, "The commands should not be equal")
-        
+
         // Trash the duplicated plugin
         let trashExpectation = expectation(description: "Move to trash")
         moveToTrashAndCleanUpWithConfirmation(newPlugin) {

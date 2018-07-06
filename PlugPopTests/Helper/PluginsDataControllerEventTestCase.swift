@@ -7,22 +7,21 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 open class PluginsDataControllerEventTestCase: PluginTestCase {
     var pluginDataEventManager: PluginDataEventManager!
 
-    override open func setUp() {
+    open override func setUp() {
         super.setUp()
         pluginDataEventManager = PluginDataEventManager()
         pluginDataEventManager.delegate = pluginsManager
         pluginsManager.pluginsDataController.delegate = pluginDataEventManager
     }
 
-    override open func tearDown() {
+    open override func tearDown() {
         pluginsManager.pluginsDataController.delegate = pluginsManager
         pluginDataEventManager.delegate = nil
         pluginDataEventManager = nil

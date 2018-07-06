@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class PluginTests: PluginTestCase {
     func testSharedResources() {
@@ -35,7 +34,6 @@ class PluginTests: PluginTestCase {
 }
 
 class TemporaryPluginTests: TemporaryPluginTestCase {
-
     func testEditPluginProperties() {
         let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
 
@@ -69,7 +67,7 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         let samePlugin = pluginMaker.makePlugin(url: tempPluginURL)!
         XCTAssertNotEqual(plugin, samePlugin, "The plugins should not be equal")
         XCTAssertTrue(plugin.isEqual(toOther: samePlugin), "The plugins should be equal")
-        
+
         // Duplicate the plugins folder, this should not cause a second plugin to be added to the plugin manager since the copy originated from the same process
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let destinationPluginURL: URL! = tempPluginURL.deletingLastPathComponent().appendingPathComponent(destinationPluginFilename)
@@ -97,13 +95,12 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
-        
+
         return infoDictionaryContents
     }
 }
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
-
     var mockPluginsManager: MockPluginsManager {
         return pluginsManager as! MockPluginsManager
     }
@@ -121,15 +118,13 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
     }
 
     func testPluginNames() {
-
         // Setup
         let fromName = testPluginNameNonexistent
         let blockingPlugin = pluginsManager.plugin(withName: testPluginNameTwo)!
         XCTAssertNotEqual(fromName, plugin.name)
         XCTAssertNotEqual(plugin, blockingPlugin)
 
-        for index in 0...105 {
-
+        for index in 0 ... 105 {
             // Calculate the current suffixed name
             let suffix = index + 1
             let suffixedName = "\(fromName) \(suffix)"
@@ -154,10 +149,8 @@ class DuplicatePluginNameValidationTests: PluginTestCase {
                 mockPluginsManager.mockPluginsController.override(name: suffixedName, with: blockingPlugin)
             }
         }
-
     }
 }
 
 // TODO: Test trying to run a plugin that has been unloaded? After deleting it's resources
 // TODO: Add tests for invalid plugin info dictionaries, e.g., file extensions and commands can be nil
-

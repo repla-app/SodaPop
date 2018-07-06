@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import PlainBagel
 
 public struct PluginsManagerConfigurationTypes {
@@ -30,8 +29,7 @@ public class PluginsManagerConfiguration {
                             copyTempDirectoryURL: URL,
                             defaults: DefaultsType,
                             userPluginsPath: String,
-                            builtInPluginsPath: String?)
-    {
+                            builtInPluginsPath: String?) {
         self.init(types: PluginsManagerConfigurationTypes.makeDefault(),
                   pluginsPaths: pluginsPaths,
                   copyTempDirectoryURL: copyTempDirectoryURL,
@@ -45,8 +43,7 @@ public class PluginsManagerConfiguration {
                          copyTempDirectoryURL: URL,
                          defaults: DefaultsType,
                          userPluginsPath: String,
-                         builtInPluginsPath: String?)
-    {
+                         builtInPluginsPath: String?) {
         let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults)
         let pluginsDataController = types.pluginsDataControllerType.init(pluginsPaths: pluginsPaths,
                                                                          copyTempDirectoryURL: copyTempDirectoryURL,

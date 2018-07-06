@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-import Foundation
 import BubbleUp
+import Foundation
 
 protocol PluginsDirectoryManagerDelegate {
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
@@ -15,7 +15,6 @@ protocol PluginsDirectoryManagerDelegate {
 }
 
 class PluginsPathHelper {
-
     class func subpathRange(inPath path: String, untilSubpath subpath: String) -> NSRange {
         // Normalize the subpath so the same range is always returned regardless of the format of the subpath (e.g., number of slashes)
         let normalizedSubpath = subpath.standardizingPath
@@ -28,20 +27,20 @@ class PluginsPathHelper {
         let untilSubpathRange = NSRange(location: 0, length: untilSubpathLength)
         return untilSubpathRange
     }
-    
+
     class func subpath(fromPath path: String, untilSubpath subpath: String) -> String? {
-        let range = subpathRange(inPath:path, untilSubpath: subpath)
-        if (range.location == NSNotFound) {
+        let range = subpathRange(inPath: path, untilSubpath: subpath)
+        if range.location == NSNotFound {
             return nil
         }
         let pathAsNSString: NSString = path as NSString
         let pathUntilSubpath = pathAsNSString.substring(with: range)
         return pathUntilSubpath
     }
-    
+
     class func pathComponents(ofPath path: String, afterSubpath subpath: String) -> [String]? {
         let normalizedPath = path.standardizingPath
-        let range = subpathRange(inPath:normalizedPath, untilSubpath: subpath)
+        let range = subpathRange(inPath: normalizedPath, untilSubpath: subpath)
         if range.location == NSNotFound {
             return nil
         }
@@ -63,7 +62,7 @@ class PluginsPathHelper {
     class func contains(_ pathComponent: String, subpathComponent: String) -> Bool {
         let pathComponents = pathComponent.pathComponents
         let subpathComponents = subpathComponent.pathComponents
-        for index in 0..<subpathComponents.count {
+        for index in 0 ..< subpathComponents.count {
             let pathComponent = pathComponents[index] as NSString
             let subpathComponent = subpathComponents[index]
             if !pathComponent.isEqual(to: subpathComponent) {
@@ -72,14 +71,14 @@ class PluginsPathHelper {
         }
         return true
     }
-    
+
     class func does(pathComponent: String, matchPathComponent: String) -> Bool {
         let pathComponents = pathComponent.pathComponents
         let matchPathComponents = matchPathComponent.pathComponents
         if pathComponents.count != matchPathComponents.count {
             return false
         }
-        for index in 0..<pathComponents.count {
+        for index in 0 ..< pathComponents.count {
             let pathComponent = pathComponents[index] as NSString
             let matchPathComponent = matchPathComponents[index]
             if !pathComponent.isEqual(to: matchPathComponent) {
@@ -88,7 +87,7 @@ class PluginsPathHelper {
         }
         return true
     }
-    
+
     class func contains(_ path: String, subpath: String) -> Bool {
         if let pathUntilSubpath = self.subpath(fromPath: path, untilSubpath: subpath) {
             return pathUntilSubpath.standardizingPath == subpath.standardizingPath
@@ -101,23 +100,24 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     struct ClassConstants {
         static let infoDictionaryPathComponent = "Contents/Info.plist"
     }
+
     var delegate: PluginsDirectoryManagerDelegate?
     let pluginsDirectoryEventHandler: PluginsDirectoryEventHandler
     let directoryWatcher: BBUDirectoryWatcher
     let pluginsDirectoryURL: URL
     init(pluginsDirectoryURL: URL) {
         self.pluginsDirectoryURL = pluginsDirectoryURL
-        self.directoryWatcher = BBUDirectoryWatcher(url: pluginsDirectoryURL)
-        self.pluginsDirectoryEventHandler = PluginsDirectoryEventHandler()
+        directoryWatcher = BBUDirectoryWatcher(url: pluginsDirectoryURL)
+        pluginsDirectoryEventHandler = PluginsDirectoryEventHandler()
         super.init()
 
-        self.directoryWatcher.delegate = self
-        self.pluginsDirectoryEventHandler.delegate = self
+        directoryWatcher.delegate = self
+        pluginsDirectoryEventHandler.delegate = self
     }
 
     // MARK: BBUDirectoryWatcherDelegate
-    
-    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
+
+    func directoryWatcher(_: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
 
         if let pluginPath = pluginPath(fromPath: path) {
@@ -125,47 +125,42 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         }
     }
 
-    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
+    func directoryWatcher(_: BBUDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
-    
+
         if let pluginPath = pluginPath(fromPath: path) {
             pluginsDirectoryEventHandler.addFileWasCreatedOrModifiedEvent(atPluginPath: pluginPath, path: path)
         }
     }
 
-    func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, itemWasRemovedAtPath path: String) {
+    func directoryWatcher(_: BBUDirectoryWatcher, itemWasRemovedAtPath path: String) {
         assert(isSubpathOfPluginsDirectory(path), "The path should be a subpath of the plugins directory")
-        
+
         if let pluginPath = pluginPath(fromPath: path) {
             pluginsDirectoryEventHandler.addItemWasRemovedEvent(atPluginPath: pluginPath, path: path)
         }
     }
-    
+
     // MARK: PluginsDirectoryEventHandlerDelegate
 
-    func pluginsDirectoryEventHandler(_ pluginsDirectoryEventHandler: PluginsDirectoryEventHandler,
-        handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
-        createdOrModifiedDirectoryPaths directoryPaths: [String]?,
-        createdOrModifiedFilePaths filePaths: [String]?)
-    {
+    func pluginsDirectoryEventHandler(_: PluginsDirectoryEventHandler,
+                                      handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
+                                      createdOrModifiedDirectoryPaths directoryPaths: [String]?,
+                                      createdOrModifiedFilePaths filePaths: [String]?) {
         if let filePaths = filePaths {
             for path in filePaths {
-
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
-                    forFileCreatedOrModifiedAtPath: path)
-                {
+                                                                forFileCreatedOrModifiedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
                 }
-                
             }
         }
 
         if let directoryPaths = directoryPaths {
             for path in directoryPaths {
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
-                    forDirectoryCreatedOrModifiedAtPath: path)
-                {
+                                                                forDirectoryCreatedOrModifiedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
                 }
@@ -173,27 +168,24 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         }
     }
 
-    func pluginsDirectoryEventHandler(_ pluginsDirectoryEventHandler: PluginsDirectoryEventHandler,
-        handleRemovedEventsAtPluginPath pluginPath: String,
-        removedItemPaths itemPaths: [String]?)
-    {
+    func pluginsDirectoryEventHandler(_: PluginsDirectoryEventHandler,
+                                      handleRemovedEventsAtPluginPath pluginPath: String,
+                                      removedItemPaths itemPaths: [String]?) {
         if let itemPaths = itemPaths {
             for path in itemPaths {
                 if shouldFireInfoDictionaryWasRemoved(atPluginPath: pluginPath,
-                    forItemRemovedAtPath: path)
-                {
+                                                      forItemRemovedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasRemovedAtPluginPath: pluginPath)
                     return
                 }
             }
         }
     }
-    
+
     // MARK: Evaluating Events
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
-        forDirectoryCreatedOrModifiedAtPath path: String) -> Bool
-    {
+                                                      forDirectoryCreatedOrModifiedAtPath path: String) -> Bool {
         if containsValidInfoDictionarySubpath(path) {
             if doesInfoDictionaryExist(atPluginPath: pluginPath) {
                 return true
@@ -203,8 +195,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
-        forFileCreatedOrModifiedAtPath path: String) -> Bool
-    {
+                                                      forFileCreatedOrModifiedAtPath path: String) -> Bool {
         if isValidInfoDictionary(atPath: path) {
             if doesInfoDictionaryExist(atPluginPath: pluginPath) {
                 return true
@@ -214,8 +205,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func shouldFireInfoDictionaryWasRemoved(atPluginPath pluginPath: String,
-        forItemRemovedAtPath path: String) -> Bool
-    {
+                                            forItemRemovedAtPath path: String) -> Bool {
         if containsValidInfoDictionarySubpath(path) {
             if !doesInfoDictionaryExist(atPluginPath: pluginPath) {
                 return true
@@ -223,7 +213,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         }
         return false
     }
-    
+
     // MARK: Helpers
 
     func isValidInfoDictionary(atPath path: String) -> Bool {
@@ -233,7 +223,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     func containsValidInfoDictionarySubpath(_ path: String) -> Bool {
         return hasValidInfoDictionarySubpath(path, requireExactInfoDictionaryMatch: false)
     }
-    
+
     func hasValidInfoDictionarySubpath(_ path: String, requireExactInfoDictionaryMatch: Bool) -> Bool {
         if let pluginPathComponents = pluginPathComponents(fromPath: path) {
             var pluginSubpathComponents = pluginPathComponents as? [String]
@@ -244,7 +234,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
                 if let pluginSubpathComponents = pluginSubpathComponents {
                     let pluginSubpath = NSString.path(withComponents: pluginSubpathComponents)
-                    
+
                     if requireExactInfoDictionaryMatch {
                         return PluginsPathHelper.does(pathComponent: ClassConstants.infoDictionaryPathComponent, matchPathComponent: pluginSubpath)
                     } else {
@@ -252,7 +242,6 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
                     }
                 }
             }
-            
         }
         return false
     }
@@ -263,8 +252,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         let fileExists = FileManager.default.fileExists(atPath: infoDictionaryPath, isDirectory: &isDir)
         return fileExists && !isDir.boolValue
     }
-    
-    func isInfoDictionarySubdirectory(ofPath: String) -> Bool {
+
+    func isInfoDictionarySubdirectory(ofPath _: String) -> Bool {
         return false
     }
 
@@ -275,10 +264,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         }
         return nil
     }
-    
+
     func pluginPathComponent(fromPath path: String) -> String? {
         if let pathComponents = PluginsPathHelper.pathComponents(ofPath: path, afterSubpath: pluginsDirectoryURL.path) {
-            if (pathComponents.count > 0) {
+            if pathComponents.count > 0 {
                 var pluginSubpathComponents = pathComponents as Array
                 let pathComponent = pluginSubpathComponents[0]
                 return pathComponent
@@ -288,12 +277,11 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func pluginPathComponents(fromPath path: String) -> NSArray? {
-            let pathComponents = PluginsPathHelper.pathComponents(ofPath: path, afterSubpath: pluginsDirectoryURL.path)
-            return pathComponents as NSArray?
+        let pathComponents = PluginsPathHelper.pathComponents(ofPath: path, afterSubpath: pluginsDirectoryURL.path)
+        return pathComponents as NSArray?
     }
-    
+
     func isSubpathOfPluginsDirectory(_ path: String) -> Bool {
         return PluginsPathHelper.contains(path, subpath: pluginsDirectoryURL.path)
     }
-    
 }

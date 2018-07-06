@@ -1,4 +1,3 @@
-
 //
 //  DirectoryDuplicateController.swift
 //  PluginEditorPrototype
@@ -7,36 +6,34 @@
 //  Copyright (c) 2015 Roben Kleene. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 class CopyDirectoryController {
-    typealias CleanUpCompletion = ((Error?) -> ())?
+    typealias CleanUpCompletion = ((Error?) -> Void)?
     let copyTempDirectoryURL: URL
     var tempDirectoryName: String
     var trashDirectoryName: String {
         return tempDirectoryName + " Recovered"
     }
-    
+
     // Creates a directory with `tempDirectoryName` in `tempDirectoryURL`
     init(tempDirectoryURL: URL,
-         tempDirectoryName: String)
-    {
+         tempDirectoryName: String) {
         self.tempDirectoryName = tempDirectoryName
-        self.copyTempDirectoryURL = tempDirectoryURL.appendingPathComponent(tempDirectoryName)
+        copyTempDirectoryURL = tempDirectoryURL.appendingPathComponent(tempDirectoryName)
     }
 
     // MARK: Public
-    
+
     func cleanUp(completion: CleanUpCompletion) {
-            move(contentsOf: copyTempDirectoryURL,
-                 toDirectoryInTrashWithName: trashDirectoryName,
-                 completion: completion)
+        move(contentsOf: copyTempDirectoryURL,
+             toDirectoryInTrashWithName: trashDirectoryName,
+             completion: completion)
     }
-    
+
     func copyItem(at URL: URL,
-                  completionHandler handler: @escaping (_ URL: Foundation.URL?, _ error: NSError?) -> Void)
-    {
+                  completionHandler handler: @escaping (_ URL: Foundation.URL?, _ error: NSError?) -> Void) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             do {
                 let copiedURL = try type(of: self).copyItem(at: URL, to: self.copyTempDirectoryURL)
@@ -54,14 +51,12 @@ class CopyDirectoryController {
             }
         }
     }
-    
 
     // MARK: Private Clean Up Helpers
 
     func move(contentsOf URL: URL,
               toDirectoryInTrashWithName directoryInTrashName: String,
-              completion: CleanUpCompletion)
-    {
+              completion: CleanUpCompletion) {
         var validCachesURL = false
         let hasPrefix = URL.path.hasPrefix(copyTempDirectoryURL.path)
         validCachesURL = hasPrefix
@@ -78,8 +73,7 @@ class CopyDirectoryController {
         if let enumerator = FileManager.default.enumerator(at: URL,
                                                            includingPropertiesForKeys: [URLResourceKey.nameKey],
                                                            options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants],
-                                                           errorHandler: nil)
-        {
+                                                           errorHandler: nil) {
             while let fileURL = enumerator.nextObject() as? URL {
                 var resourceName: AnyObject?
                 do {
@@ -105,10 +99,10 @@ class CopyDirectoryController {
                         completion?(error)
                         return
                     }
-                    
+
                     foundFilesToRecover = true
                 }
-                
+
                 let UUID = Foundation.UUID()
                 let UUIDString = UUID.uuidString
                 let destinationFileURL = directoryToTrashURL.appendingPathComponent(UUIDString)
@@ -128,13 +122,13 @@ class CopyDirectoryController {
             return
         }
 
-        NSWorkspace.shared.recycle([directoryToTrashURL]) { (_, error) in
+        NSWorkspace.shared.recycle([directoryToTrashURL]) { _, error in
             return completion?(error)
         }
     }
 
     // MARK: Private Duplicate Helpers
-    
+
     private class func copyItem(at URL: URL, to directoryURL: URL) throws -> Foundation.URL? {
         do {
             // Setup the destination directory
@@ -142,7 +136,7 @@ class CopyDirectoryController {
         } catch let error as NSError {
             throw error
         }
-        
+
         let uuid = UUID()
         let uuidString = uuid.uuidString
         let destinationURL = directoryURL.appendingPathComponent(uuidString)
@@ -154,5 +148,4 @@ class CopyDirectoryController {
             throw error
         }
     }
-
 }

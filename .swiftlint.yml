@@ -1,0 +1,11 @@
+disabled_rules:
+  - closure_parameter_position
+  - file_length
+  - function_body_length
+  - function_parameter_count
+  - identifier_name
+  - todo
+  - type_name
+  - xctfail_message
+excluded:
+  - Carthage

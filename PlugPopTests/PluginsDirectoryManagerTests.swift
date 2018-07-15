@@ -13,12 +13,12 @@ import PlugPopTestHarness
 import XCTest
 
 class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
-    var pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers: Array < (_ path: String) -> Void>
-    var pluginInfoDictionaryWasRemovedAtPluginPathHandlers: Array < (_ path: String) -> Void>
+    var pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers: [(String) -> Void]
+    var pluginInfoDictionaryWasRemovedAtPluginPathHandlers: [(String) -> Void]
 
     init() {
-        pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers = Array < (_ path: String) -> Void > ()
-        pluginInfoDictionaryWasRemovedAtPluginPathHandlers = Array < (_ path: String) -> Void > ()
+        pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers = [(String) -> Void]()
+        pluginInfoDictionaryWasRemovedAtPluginPathHandlers = [(String) -> Void]()
     }
 
     // MARK: PluginsDirectoryManagerDelegate

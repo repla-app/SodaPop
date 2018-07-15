@@ -91,7 +91,9 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                                                    encoding: String.Encoding.utf8)
             let copiedPluginInfoDictionaryContents: String! = try String(contentsOf: copiedPluginInfoDictionaryURL,
                                                                          encoding: String.Encoding.utf8)
-            XCTAssertEqual(copiedPluginInfoDictionaryContents, pluginInfoDictionaryContents, "The contents should be equal")
+            XCTAssertEqual(copiedPluginInfoDictionaryContents,
+                           pluginInfoDictionaryContents,
+                           "The contents should be equal")
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
@@ -179,3 +181,4 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
     }
 }
+

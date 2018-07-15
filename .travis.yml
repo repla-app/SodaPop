@@ -1,3 +1,15 @@
 language: swift
-osx_image: xcode9.3
+osx_image: xcode9.4
 script: make ci
+xcode_project: PlugPop
+xcode_scheme: PlugPop
+env:
+  global:
+  - FRAMEWORK_NAME=PlugPop
+before_install:
+- brew update
+- brew outdated carthage || brew upgrade carthage
+before_script:
+- make lint
+- carthage bootstrap
+

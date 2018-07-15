@@ -2,7 +2,7 @@ SCHEME = PlugPop
 
 .PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap
 
-ci: lint bootstrap test
+ci: test
 ac: autocorrect
 autocorrect: swiftformat swiftlint_autocorrect
 
@@ -26,3 +26,4 @@ test:
 		-alltargets \
 		-configuration Debug \
 		-scheme $(SCHEME)
+

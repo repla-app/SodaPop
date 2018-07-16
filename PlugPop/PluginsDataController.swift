@@ -79,7 +79,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
             assert(false)
         }
 
-        let paths = pluginsPaths + [builtInPluginsPath, userPluginsPath].flatMap { $0 }
+        let paths = pluginsPaths + [builtInPluginsPath, userPluginsPath].compactMap { $0 }
         let pathsSet = Set(paths)
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)

@@ -138,10 +138,10 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         do {
             let contents = try FileManager
                 .default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                                            includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                            options: [
-                                                .skipsHiddenFiles,
-                                                .skipsSubdirectoryDescendants
+                                             includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                             options: [
+                                                 .skipsHiddenFiles,
+                                                 .skipsSubdirectoryDescendants
                 ])
             XCTAssertFalse(contents.isEmpty, "The contents should not be empty")
         } catch {

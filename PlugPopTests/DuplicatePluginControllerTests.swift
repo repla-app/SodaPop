@@ -105,8 +105,8 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     func testDuplicatePluginWithFolderNameBlocked() {
         do {
             try FileManager.default.createDirectory(at: temporaryUserPluginsDirectoryURL,
-                                                     withIntermediateDirectories: true,
-                                                     attributes: nil)
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
         } catch {
             XCTFail()
         }
@@ -123,8 +123,8 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
 
             do {
                 try FileManager.default.createDirectory(at: destinationFolderURL,
-                                                         withIntermediateDirectories: false,
-                                                         attributes: nil)
+                                                        withIntermediateDirectories: false,
+                                                        attributes: nil)
             } catch {
                 XCTFail()
             }

@@ -46,7 +46,11 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                                         isDirectory: &isDir)
             XCTAssertTrue(exists, "The item should exist")
             XCTAssertTrue(isDir.boolValue, "The item should be a directory")
-            try! removeTemporaryItem(at: directoryURL)
+            do {
+                try removeTemporaryItem(at: directoryURL)
+            } catch {
+                XCTFail()
+            }
         }
     }
 
@@ -132,9 +136,13 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         // Assert the contents is empty
         do {
-            let contents = try FileManager.default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                                                                       includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                                                       options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            let contents = try FileManager
+                .default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
+                                            includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                            options: [
+                                                .skipsHiddenFiles,
+                                                .skipsSubdirectoryDescendants
+                ])
             XCTAssertFalse(contents.isEmpty, "The contents should not be empty")
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")
@@ -151,9 +159,10 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
             // Assert the directory is empty
             do {
-                let contentsTwo = try FileManager.default.contentsOfDirectory(at: self.copyDirectoryController.copyTempDirectoryURL,
-                                                                              includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                                                              options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+                let contentsTwo = try FileManager.default
+                    .contentsOfDirectory(at: self.copyDirectoryController.copyTempDirectoryURL,
+                                         includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                         options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
                 XCTAssertTrue(contentsTwo.isEmpty, "The contents should be empty")
             } catch {
                 XCTAssertTrue(false, "Getting the contents should succeed")
@@ -164,7 +173,8 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Clean Up
-        let recoveredFilesPath = testTrashDirectoryPath.appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
+        let recoveredFilesPath = testTrashDirectoryPath
+            .appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: recoveredFilesPath, isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")
@@ -178,7 +188,10 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         }
 
         // Clean up `CopyDirectoryController` temporary directories
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 }
-

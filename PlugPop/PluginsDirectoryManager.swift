@@ -9,14 +9,17 @@
 import BubbleUp
 import Foundation
 
-protocol PluginsDirectoryManagerDelegate {
-    func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
-    func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager, pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String)
+protocol PluginsDirectoryManagerDelegate: class {
+    func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
+                                 pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
+    func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
+                                 pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String)
 }
 
 class PluginsPathHelper {
     class func subpathRange(inPath path: String, untilSubpath subpath: String) -> NSRange {
-        // Normalize the subpath so the same range is always returned regardless of the format of the subpath (e.g., number of slashes)
+        // Normalize the subpath so the same range is always returned
+        // regardless of the format of the subpath (e.g., number of slashes)
         let normalizedSubpath = subpath.standardizingPath
         let pathAsNSString: NSString = path as NSString
         let subpathRange = pathAsNSString.range(of: normalizedSubpath)
@@ -101,7 +104,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         static let infoDictionaryPathComponent = "Contents/Info.plist"
     }
 
-    var delegate: PluginsDirectoryManagerDelegate?
+    weak var delegate: PluginsDirectoryManagerDelegate?
     let pluginsDirectoryEventHandler: PluginsDirectoryEventHandler
     let directoryWatcher: BBUDirectoryWatcher
     let pluginsDirectoryURL: URL
@@ -151,7 +154,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
             for path in filePaths {
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
                                                                 forFileCreatedOrModifiedAtPath: path) {
-                    delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
+                    delegate?.pluginsDirectoryManager(self,
+                                                      pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
                 }
             }
@@ -161,7 +165,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
             for path in directoryPaths {
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
                                                                 forDirectoryCreatedOrModifiedAtPath: path) {
-                    delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
+                    delegate?.pluginsDirectoryManager(self,
+                                                      pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
                 }
             }
@@ -236,9 +241,11 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
                     let pluginSubpath = NSString.path(withComponents: pluginSubpathComponents)
 
                     if requireExactInfoDictionaryMatch {
-                        return PluginsPathHelper.does(pathComponent: ClassConstants.infoDictionaryPathComponent, matchPathComponent: pluginSubpath)
+                        return PluginsPathHelper.does(pathComponent: ClassConstants.infoDictionaryPathComponent,
+                                                      matchPathComponent: pluginSubpath)
                     } else {
-                        return PluginsPathHelper.contains(ClassConstants.infoDictionaryPathComponent, subpathComponent: pluginSubpath)
+                        return PluginsPathHelper.contains(ClassConstants.infoDictionaryPathComponent,
+                                                          subpathComponent: pluginSubpath)
                     }
                 }
             }

@@ -46,7 +46,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         // # Clean Up
         do {
             try removeTemporaryItem(at: tempCopyTempDirectoryURL)
-        } catch let error as NSError {
+        } catch {
             XCTFail()
         }
     }
@@ -62,7 +62,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         // # Clean Up
         do {
             try removeTemporaryItem(at: tempCopyTempDirectoryURL)
-        } catch let error as NSError {
+        } catch {
             XCTFail()
         }
     }

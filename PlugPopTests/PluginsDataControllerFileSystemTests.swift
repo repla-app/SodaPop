@@ -25,16 +25,17 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
         waitForExpectations(timeout: defaultTimeout, handler: nil)
         XCTAssertNotNil(newPlugin, "The plugin should not be nil")
 
-        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin), "The plugins should contain the plugin")
+        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin))
         removeWithConfirmation(newPlugin)
-        XCTAssertFalse(pluginsManager.pluginsDataController.plugins.contains(newPlugin), "The plugins should not contain the plugin")
+        XCTAssertFalse(pluginsManager.pluginsDataController.plugins.contains(newPlugin))
     }
 
     func testMovePlugin() {
         let pluginPath = plugin.resourcePath!.deletingLastPathComponent.deletingLastPathComponent
 
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
-        let destinationPluginPath = pluginPath.deletingLastPathComponent.appendingPathComponent(destinationPluginFilename)
+        let destinationPluginPath = pluginPath.deletingLastPathComponent
+            .appendingPathComponent(destinationPluginFilename)
 
         // Move the plugin
         var newPlugin: Plugin!

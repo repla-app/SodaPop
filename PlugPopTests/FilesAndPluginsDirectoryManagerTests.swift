@@ -339,7 +339,7 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         fileAndPluginsDirectoryManager = nil // Make sure this happens after setting its delegate to nil
         do {
             try removeTemporaryItem(at: baseDirectoryURL)
-        } catch let error as NSError {
+        } catch {
             XCTFail()
         }
         super.tearDown()

@@ -12,13 +12,15 @@ import XCTest
 
 class PluginTests: PluginTestCase {
     func testSharedResources() {
-        let testSharedResourcesPath = pluginsManager.sharedResourcesPath!.appendingPathComponent(testSharedResourcePathComponent)
+        let testSharedResourcesPath = pluginsManager.sharedResourcesPath!
+            .appendingPathComponent(testSharedResourcePathComponent)
         var isDir: ObjCBool = false
         var fileExists = FileManager.default.fileExists(atPath: testSharedResourcesPath, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertFalse(isDir.boolValue)
 
-        let testSharedResourcesURL = pluginsManager.sharedResourcesURL!.appendingPathComponent(testSharedResourcePathComponent)
+        let testSharedResourcesURL = pluginsManager.sharedResourcesURL!
+            .appendingPathComponent(testSharedResourcePathComponent)
         fileExists = FileManager.default.fileExists(atPath: testSharedResourcesURL.path, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertFalse(isDir.boolValue)
@@ -68,9 +70,12 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         XCTAssertNotEqual(plugin, samePlugin, "The plugins should not be equal")
         XCTAssertTrue(plugin.isEqual(toOther: samePlugin), "The plugins should be equal")
 
-        // Duplicate the plugins folder, this should not cause a second plugin to be added to the plugin manager since the copy originated from the same process
+        // Duplicate the plugins folder, this should not cause a second plugin
+        // to be added to the plugin manager since the copy originated from the
+        // same process
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
-        let destinationPluginURL: URL! = tempPluginURL.deletingLastPathComponent().appendingPathComponent(destinationPluginFilename)
+        let destinationPluginURL: URL! = tempPluginURL.deletingLastPathComponent()
+            .appendingPathComponent(destinationPluginFilename)
         do {
             try FileManager.default.copyItem(at: tempPluginURL as URL, to: destinationPluginURL)
         } catch {
@@ -82,7 +87,9 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         // This fails because the bundle URL and commandPath are different
         XCTAssertFalse(plugin.isEqual(to: newPlugin), "The plugins should be equal")
 
-        // TODO: It would be nice to test modifying properties, but there isn't a way to do that because with two separate plugin directories the command paths and info dictionary URLs will be different
+        // TODO: It would be nice to test modifying properties, but there isn't
+        // a way to do that because with two separate plugin directories the
+        // command paths and info dictionary URLs will be different
     }
 
     // MARK: Helper
@@ -91,7 +98,8 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
         var infoDictionaryContents: String!
         do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath, encoding: String.Encoding.utf8)
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,
+                                                encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
@@ -101,7 +109,6 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
 }
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
-
     var mockPluginsManager: MockPluginsManager {
         guard let mockPluginsManager = pluginsManager as? MockPluginsManager else {
             XCTFail()

@@ -23,8 +23,9 @@ class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
 
     // MARK: PluginsDirectoryManagerDelegate
 
-    func pluginsDirectoryManager(_: PluginsDirectoryManager, pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
-        assert(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers.count > 0, "There should be at least one handler")
+    func pluginsDirectoryManager(_: PluginsDirectoryManager,
+                                 pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
+        assert(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers.count > 0)
 
         if pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers.count > 0 {
             let handler = pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandlers.remove(at: 0)
@@ -32,8 +33,9 @@ class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
         }
     }
 
-    func pluginsDirectoryManager(_: PluginsDirectoryManager, pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String) {
-        assert(pluginInfoDictionaryWasRemovedAtPluginPathHandlers.count > 0, "There should be at least one handler")
+    func pluginsDirectoryManager(_: PluginsDirectoryManager,
+                                 pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String) {
+        assert(pluginInfoDictionaryWasRemovedAtPluginPathHandlers.count > 0)
 
         if pluginInfoDictionaryWasRemovedAtPluginPathHandlers.count > 0 {
             let handler = pluginInfoDictionaryWasRemovedAtPluginPathHandlers.remove(at: 0)
@@ -65,7 +67,8 @@ extension PluginsDirectoryManagerTests {
         })
 
         let createExpectation = expectation(description: "Info dictionary was created")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == destinationPluginPath {
                 createExpectation.fulfill()
             }
@@ -79,7 +82,8 @@ extension PluginsDirectoryManagerTests {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
 
-    func movePluginWithConfirmation(atPluginPath tempPluginPath: String, toUnwatchedDestinationPluginPath destinationPluginPath: String) {
+    func movePluginWithConfirmation(atPluginPath tempPluginPath: String,
+                                    toUnwatchedDestinationPluginPath destinationPluginPath: String) {
         let removeExpectation = expectation(description: "Info dictionary was removed")
         pluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == tempPluginPath {
@@ -104,14 +108,17 @@ extension PluginsDirectoryManagerTests {
 
     func copyPluginWithConfirmation(atPluginPath pluginPath: String, destinationPluginPath: String) {
         let createExpectation = expectation(description: "Info dictionary was created or modified")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == destinationPluginPath {
                 createExpectation.fulfill()
             }
         })
 
         let copyExpectation = expectation(description: "Copy finished")
-        OutOfTouch.copyDirectory(atPath: pluginPath, toPath: destinationPluginPath) { standardOutput, standardError, exitStatus in
+        OutOfTouch.copyDirectory(atPath: pluginPath,
+                                 toPath: destinationPluginPath) {
+            standardOutput, standardError, exitStatus in
             XCTAssertNil(standardOutput)
             XCTAssertNil(standardError)
             XCTAssert(exitStatus == 0)
@@ -247,7 +254,8 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
 
         // Move back
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == self.tempPluginPath {
                 expectationTwo.fulfill()
             }
@@ -263,7 +271,8 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
 
         var infoDictionaryContents: String!
         do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath, encoding: String.Encoding.utf8)
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,
+                                                encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
@@ -281,7 +290,8 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
 
         // Add back the info dictionary
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == self.tempPluginPath {
                 expectationTwo.fulfill()
             }
@@ -296,14 +306,16 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         // Read in the contents of the info dictionary
         var infoDictionaryContents: String!
         do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath, encoding: String.Encoding.utf8)
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,
+                                                encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
 
         // Remove the info dictionary
         let expectation = self.expectation(description: "Info dictionary was created or modified")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == self.tempPluginPath {
                 expectation.fulfill()
             }
@@ -315,7 +327,8 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
 
         // Remove the info dictionary
         let expectationTwo = self.expectation(description: "Info dictionary was created or modified")
-        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { (path) -> Void in
+        pluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            (path) -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: path) == self.tempPluginPath {
                 expectationTwo.fulfill()
             }

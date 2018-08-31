@@ -48,7 +48,11 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
         // Creating a `PluginsDataController` implicitly creates the
         // `userPluginsPath` (which starts from "Application Support").
-        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        do {
+            try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testExistingPlugins() {
@@ -72,7 +76,11 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
         // Creating a `PluginsDataController` implicitly creates the
         // `userPluginsPath` (which starts from "Application Support").
-        try! removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        do {
+            try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 }
 
@@ -251,8 +259,13 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 }
 
 class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
+
     func cleanUpDuplicatedPlugins() {
-        try! removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
+        do {
+            try removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testDuplicateAndTrashPlugin() {
@@ -295,7 +308,11 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
 
         cleanUpDuplicatedPlugins()
         let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
-        try! removeTemporaryItem(at: duplicatePluginURL)
+        do {
+            try removeTemporaryItem(at: duplicatePluginURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     // This tests that an error is generated if the entire

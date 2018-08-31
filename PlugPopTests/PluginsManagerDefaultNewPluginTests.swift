@@ -56,7 +56,11 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // # Clean Up
 
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testDefaultNewPlugin() {
@@ -88,7 +92,11 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // # Clean Up
 
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testSettingDefaultNewPluginToNil() {
@@ -109,7 +117,11 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // # Clean Up
 
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testDefaultNewPluginKeyValueObserving() {
@@ -160,6 +172,10 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         // # Clean Up
 
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 }

@@ -101,8 +101,13 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
 }
 
 class DuplicatePluginNameValidationTests: PluginTestCase {
+
     var mockPluginsManager: MockPluginsManager {
-        return pluginsManager as! MockPluginsManager
+        guard let mockPluginsManager = pluginsManager as? MockPluginsManager else {
+            XCTFail()
+            abort()
+        }
+        return mockPluginsManager
     }
 
     class NameBlocker: NSObject {

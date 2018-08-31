@@ -21,7 +21,7 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
             let directoryContents = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
             let testPluginPaths = directoryContents.filter { ($0 as NSString).pathExtension == pluginFileExtension }
             XCTAssert(!testPluginPaths.isEmpty, "The test plugin paths count should be greater than zero")
-            XCTAssert(testPluginPaths.count == pluginPaths.count, "The plugin paths count should equal the test plugin paths count")
+            XCTAssert(testPluginPaths.count == pluginPaths.count)
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")
         }
@@ -36,9 +36,10 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
             }
         }
 
+        let defaultNewPluginManager = POPDefaultNewPluginManager(defaults: defaults)
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
-                                                          defaultNewPluginManager: POPDefaultNewPluginManager(defaults: defaults),
+                                                          defaultNewPluginManager: defaultNewPluginManager,
                                                           userPluginsPath: userPluginsPath,
                                                           builtInPluginsPath: builtInPluginsPath)
         let testPluginsCount = pluginsDataController.plugins(atPluginPaths: pluginPaths).count
@@ -56,9 +57,10 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
     }
 
     func testExistingPlugins() {
+        let defaultNewPluginManager = POPDefaultNewPluginManager(defaults: defaults)
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
-                                                          defaultNewPluginManager: POPDefaultNewPluginManager(defaults: defaults),
+                                                          defaultNewPluginManager: defaultNewPluginManager,
                                                           userPluginsPath: userPluginsPath,
                                                           builtInPluginsPath: builtInPluginsPath)
         let plugins = pluginsDataController.plugins
@@ -259,7 +261,6 @@ class PluginsDataControllerTemporaryDirectoryTests: TemporaryDirectoryTestCase {
 }
 
 class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
-
     func cleanUpDuplicatedPlugins() {
         do {
             try removeTemporaryItem(at: temporaryUserPluginsDirectoryURL)
@@ -287,8 +288,8 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
 
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
-        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, startingPluginsCount + 1, "The plugins count should be two")
-        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin!), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, startingPluginsCount + 1)
+        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin!))
 
         // Trash the duplicated plugin
         let removeExpectation = expectation(description: "Plugin was removed")
@@ -375,7 +376,8 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
 
         // # Real Tests Follow
         do {
-            try PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
+            let directory = temporaryUserPluginsDirectoryURL.deletingLastPathComponent()
+            try PluginsDataController.createDirectoryIfMissing(at: directory)
         } catch {
             XCTFail()
         }

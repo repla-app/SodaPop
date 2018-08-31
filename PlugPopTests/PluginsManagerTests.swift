@@ -30,7 +30,7 @@ class PluginsManagerTests: PluginsManagerTestCase {
         // Test Properties
 
         XCTAssertEqual(newPluginTwo.command!, newPlugin.command!, "The commands should be equal")
-        XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!, "The commands should not be equal")
+        XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!)
 
         // Trash the duplicated plugin
         let trashExpectation = expectation(description: "Move to trash")
@@ -44,7 +44,11 @@ class PluginsManagerTests: PluginsManagerTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // # Clean Up
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch let error as NSError {
+            XCTFail()
+        }
     }
 
     func testRenamePlugin() {
@@ -56,7 +60,11 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertNil(pluginsManager.plugin(withName: oldPluginName))
 
         // # Clean Up
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch let error as NSError {
+            XCTFail()
+        }
     }
 
     func testBuiltInPlugins() {
@@ -78,14 +86,18 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
         var pluginsPathsCount = 0
 
-        let contents = try! FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
-        let paths = contents
         let pluginFileExtensionMatch = ".\(testPluginExtension)"
-        let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
-        let pluginPaths = paths.filter {
-            pluginFileExtensionPredicate.evaluate(with: $0)
+        let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@",
+                                                                     pluginFileExtensionMatch)
+        do {
+            let paths = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
+            let pluginPaths = paths.filter {
+                pluginFileExtensionPredicate.evaluate(with: $0)
+            }
+            pluginsPathsCount += pluginPaths.count
+            XCTAssert(builtInPluginsTested == pluginsPathsCount)
+        } catch {
+            XCTFail()
         }
-        pluginsPathsCount += pluginPaths.count
-        XCTAssert(builtInPluginsTested == pluginsPathsCount)
     }
 }

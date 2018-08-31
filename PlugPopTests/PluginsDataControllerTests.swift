@@ -357,8 +357,11 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
         }
 
         // # Real Tests Follow
-
-        try! PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
+        do {
+            try PluginsDataController.createDirectoryIfMissing(at: temporaryUserPluginsDirectoryURL.deletingLastPathComponent())
+        } catch {
+            XCTFail()
+        }
 
         // Block the destination directory with a file
         let createSuccess = FileManager.default.createFile(atPath: temporaryUserPluginsDirectoryPath,

@@ -14,14 +14,14 @@ import PlugPopTestHarness
 import XCTest
 import XCTestTemp
 
-protocol FilesAndPluginsDirectoryManagerFileDelegate {
+protocol FilesAndPluginsDirectoryManagerFileDelegate: class {
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, fileWasCreatedOrModifiedAtPath path: String)
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, directoryWasCreatedOrModifiedAtPath path: String)
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, itemWasRemovedAtPath path: String)
 }
 
 class FilesAndPluginsDirectoryManager: PluginsDirectoryManager {
-    var fileDelegate: FilesAndPluginsDirectoryManagerFileDelegate?
+    weak var fileDelegate: FilesAndPluginsDirectoryManagerFileDelegate?
 
     override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, directoryWasCreatedOrModifiedAtPath: path)

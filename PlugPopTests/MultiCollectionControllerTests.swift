@@ -41,13 +41,15 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
         let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginChangedNameFilename = testDirectoryNameThree
-        let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginChangedNameFilename)
+        let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL, 
+                                                           withFilenameForDuplicate: newPluginChangedNameFilename)
         let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
         let changedName = testDirectoryName
         newPluginChangedName.name = changedName
 
         let newPluginChangedNameTwoFilename = testDirectoryNameFour
-        let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginChangedNameTwoFilename)
+        let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                              withFilenameForDuplicate: newPluginChangedNameTwoFilename)
         let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedNameTwo.name = changedName
 
@@ -59,15 +61,15 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
         XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
         // Test New Plugins
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo, "The plugins should be equal")
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo), "The plugins should contain the second new plugin")
-        XCTAssertFalse(multiCollectionController.objects().contains(newPlugin), "The plugins should not contain the new plugin")
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin), "The plugins should not contain the temporary plugin")
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
+        XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
+        XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
+        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo, "The plugins should be equal")
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo), "The plugins should contain the second new plugin changed name")
-        XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName), "The plugins should not contain the new plugin changed name")
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo)
+        XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
+        XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
 
         for pluginURL: URL in newPluginURLs {
             // Clean up
@@ -100,9 +102,9 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         let newPlugin = Plugin.makePlugin(url: destinationPluginURL)!
         multiCollectionController.addObject(newPlugin)
         XCTAssertEqual(multiCollectionController.objects().count, 1, "The plugins count should be one")
-        XCTAssertEqual(multiCollectionController.object(forKey: newPlugin.name)! as? Plugin, newPlugin, "The plugins should be equal")
-        XCTAssertTrue(multiCollectionController.objects().contains(newPlugin), "The plugins should contain the new plugin")
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin), "The plugins should not contain the temporary plugin")
+        XCTAssertEqual(multiCollectionController.object(forKey: newPlugin.name)! as? Plugin, newPlugin)
+        XCTAssertTrue(multiCollectionController.objects().contains(newPlugin))
+        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Clean up
         do {
@@ -122,14 +124,16 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginChangedNameFilename = testDirectoryNameThree
-        let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginChangedNameFilename)
+        let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                           withFilenameForDuplicate: newPluginChangedNameFilename)
         let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedName.editable = true
         let changedName = testDirectoryName
         newPluginChangedName.name = changedName
 
         let newPluginChangedNameTwoFilename = testDirectoryNameFour
-        let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginChangedNameTwoFilename)
+        let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                              withFilenameForDuplicate: newPluginChangedNameTwoFilename)
         let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedNameTwo.name = changedName
 
@@ -141,15 +145,15 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
         // Test New Plugins
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo, "The plugins should be equal")
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo), "The plugins should contain the second new plugin")
-        XCTAssertFalse(multiCollectionController.objects().contains(newPlugin), "The plugins should not contain the new plugin")
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin), "The plugins should not contain the temporary plugin")
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
+        XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
+        XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
+        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo, "The plugins should be equal")
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo), "The plugins should contain the second new plugin changed name")
-        XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName), "The plugins should not contain the new plugin changed name")
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo)
+        XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
+        XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
 
         for pluginURL: URL in newPluginURLs {
             // Clean up

@@ -67,7 +67,8 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
         XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo)
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
+                       newPluginChangedNameTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
 
@@ -151,7 +152,8 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin, newPluginChangedNameTwo)
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
+                       newPluginChangedNameTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
 

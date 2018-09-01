@@ -12,7 +12,7 @@ import Foundation
 class PluginDataEventManager: PluginsDataControllerDelegate {
     var pluginWasAddedHandlers: Array < (_ plugin: Plugin) -> Void>
     var pluginWasRemovedHandlers: Array < (_ plugin: Plugin) -> Void>
-    var delegate: PluginsDataControllerDelegate?
+    weak var delegate: PluginsDataControllerDelegate?
 
     init() {
         pluginWasAddedHandlers = Array < (_ plugin: Plugin) -> Void > ()

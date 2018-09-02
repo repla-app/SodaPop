@@ -10,13 +10,13 @@ import Foundation
 @testable import PlugPop
 
 class PluginDataEventManager: PluginsDataControllerDelegate {
-    var pluginWasAddedHandlers: Array < (_ plugin: Plugin) -> Void>
-    var pluginWasRemovedHandlers: Array < (_ plugin: Plugin) -> Void>
+    var pluginWasAddedHandlers: [(Plugin) -> Void]
+    var pluginWasRemovedHandlers: [(Plugin) -> Void]
     weak var delegate: PluginsDataControllerDelegate?
 
     init() {
-        pluginWasAddedHandlers = Array < (_ plugin: Plugin) -> Void > ()
-        pluginWasRemovedHandlers = Array < (_ plugin: Plugin) -> Void > ()
+        pluginWasAddedHandlers = [(Plugin) -> Void]()
+        pluginWasRemovedHandlers = [(Plugin) -> Void]()
     }
 
     // MARK: `PluginsDataControllerDelegate`

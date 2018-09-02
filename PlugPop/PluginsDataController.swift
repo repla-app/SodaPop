@@ -28,7 +28,7 @@ protocol PluginsDataControllerDelegate: class {
 // level operations related to `Plugin`, such as duplicating `Plugin` files and
 // moving `Plugin` files to the trash.
 class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginControllerDelegate {
-    var delegate: PluginsDataControllerDelegate?
+    weak var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]
     var pluginPathToPluginDictionary: [String: Plugin]
     lazy var duplicatePluginController: DuplicatePluginController = {

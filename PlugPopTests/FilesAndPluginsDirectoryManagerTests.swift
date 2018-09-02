@@ -40,14 +40,14 @@ class FilesAndPluginsDirectoryManager: PluginsDirectoryManager {
 }
 
 class FilesAndPluginsDirectoryEventManager: PluginsDirectoryEventManager, FilesAndPluginsDirectoryManagerFileDelegate {
-    var fileWasCreatedOrModifiedAtPathHandlers: Array < (_ path: String) -> Void>
-    var directoryWasCreatedOrModifiedAtPathHandlers: Array < (_ path: String) -> Void>
-    var itemWasRemovedAtPathHandlers: Array < (_ path: String) -> Void>
+    var fileWasCreatedOrModifiedAtPathHandlers: [(String) -> Void]
+    var directoryWasCreatedOrModifiedAtPathHandlers: [(String) -> Void]
+    var itemWasRemovedAtPathHandlers: [(String) -> Void]
 
     override init() {
-        fileWasCreatedOrModifiedAtPathHandlers = Array < (_ path: String) -> Void > ()
-        directoryWasCreatedOrModifiedAtPathHandlers = Array < (_ path: String) -> Void > ()
-        itemWasRemovedAtPathHandlers = Array < (_ path: String) -> Void > ()
+        fileWasCreatedOrModifiedAtPathHandlers = [(String) -> Void]()
+        directoryWasCreatedOrModifiedAtPathHandlers = [(String) -> Void]()
+        itemWasRemovedAtPathHandlers = [(String) -> Void]()
         super.init()
     }
 

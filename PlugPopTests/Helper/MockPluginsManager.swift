@@ -12,7 +12,11 @@ import PlainBagel
 
 class MockPluginsManager: PluginsManager {
     var mockPluginsController: MockPluginsController {
-        return pluginsController as! MockPluginsController
+        guard let mockPluginsController = pluginsController as? MockPluginsController else {
+            assert(false)
+            abort()
+        }
+        return mockPluginsController
     }
 
     override class func makeConfiguration(pluginsPaths: [String],

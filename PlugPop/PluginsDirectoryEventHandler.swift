@@ -20,7 +20,7 @@ import Cocoa
 // plugin would not be reloaded for the second edit if events are prevented
 // from firing during the delay period.
 
-protocol PluginsDirectoryEventHandlerDelegate {
+protocol PluginsDirectoryEventHandlerDelegate: class {
     func pluginsDirectoryEventHandler(_ pluginsDirectoryEventHandler: PluginsDirectoryEventHandler,
                                       handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
                                       createdOrModifiedDirectoryPaths directoryPaths: [String]?,
@@ -34,7 +34,7 @@ class PluginsDirectoryEventHandler {
     var pluginPathToCreatedOrModifiedFilePaths: [String: [String]]
     var pluginPathToCreatedOrModifiedDirectoryPaths: [String: [String]]
     var pluginPathToRemovedItemPaths: [String: [String]]
-    var delegate: PluginsDirectoryEventHandlerDelegate?
+    weak var delegate: PluginsDirectoryEventHandlerDelegate?
 
     struct ClassConstants {
         static let fileEventDelay = 0.3

@@ -118,7 +118,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
     func modifyWithConfirmation(_ plugin: Plugin, handler: @escaping (_ plugin: Plugin?) -> Void) {
         // Get the old identifier
         let infoDictionary = NSDictionary(contentsOf: plugin.infoDictionaryURL)! as Dictionary
-        let identifier: String = infoDictionary[Plugin.InfoDictionaryKeys.identifier as NSString] as! String
+        let identifier: String = infoDictionary[Plugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
 
         // Make a new identifier
         let UUID = Foundation.UUID()

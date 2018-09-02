@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DuplicatePluginControllerDelegate {
+protocol DuplicatePluginControllerDelegate: class {
     func duplicatePluginController(_ duplicatePluginController: DuplicatePluginController,
                                    uniquePluginNameFromName name: String,
                                    for plugin: Plugin) -> String?
@@ -25,7 +25,7 @@ class DuplicatePluginController {
     }()
 
     let pluginMaker: PluginMaker
-    var delegate: DuplicatePluginControllerDelegate?
+    weak var delegate: DuplicatePluginControllerDelegate?
     let copyTempDirectoryURL: URL
 
     enum ClassConstants {

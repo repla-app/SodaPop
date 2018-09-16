@@ -103,7 +103,8 @@ extension FilesAndPluginsDirectoryManagerTests {
 
     func createPluginInfoDictionaryWasRemovedExpectation(forPluginPath path: String) {
         let pluginInfoDictionaryWasRemovedExpectation = expectation(description: "Plugin info dictionary was removed")
-        fileAndPluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: { returnedPath -> Void in
+        fileAndPluginsDirectoryEventManager.add(pluginInfoDictionaryWasRemovedAtPluginPathHandler: {
+            returnedPath -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: returnedPath) == path {
                 pluginInfoDictionaryWasRemovedExpectation.fulfill()
             }
@@ -111,8 +112,11 @@ extension FilesAndPluginsDirectoryManagerTests {
     }
 
     func createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath path: String) {
-        let pluginInfoDictionaryWasCreatedOrModifiedExpectation = expectation(description: "Plugin info dictionary was created or modified")
-        fileAndPluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: { returnedPath -> Void in
+        let pluginInfoDictionaryWasCreatedOrModifiedExpectation = expectation(description: """
+        Plugin info dictionary was created or modified
+        """)
+        fileAndPluginsDirectoryEventManager.add(pluginInfoDictionaryWasCreatedOrModifiedAtPluginPathHandler: {
+            returnedPath -> Void in
             if type(of: self).resolve(temporaryDirectoryPath: returnedPath) == path {
                 pluginInfoDictionaryWasCreatedOrModifiedExpectation.fulfill()
             }
@@ -269,7 +273,8 @@ extension FilesAndPluginsDirectoryManagerTests {
 
     func performValidPluginHierarchyOperation(atPath path: String, isRemove: Bool, requireConfirmation: Bool) {
         let testPluginDirectoryPath = path.appendingPathComponent(testPluginDirectoryName)
-        let testPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testPluginContentsDirectoryName)
+        let testPluginContentsDirectoryPath = testPluginDirectoryPath
+            .appendingPathComponent(testPluginContentsDirectoryName)
         let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginResourcesDirectoryName)
         let testPluginResourcesFilePath = testPluginResourcesDirectoryPath.appendingPathComponent(testFilename)
         let testPluginContentsFilePath = testPluginContentsDirectoryPath.appendingPathComponent(testFilename)

@@ -166,18 +166,25 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         new POPPlugin property should have occurred.
         """)
         XCTAssertTrue(createdPluginTwo.isDefaultNewPlugin, "The POPPlugin should be the default new POPPlugin.")
-        XCTAssertFalse(isDefaultNewPlugin, "The key-value observing change notification for the POPPlugin's default new POPPlugin property should have occurred.")
-        XCTAssertFalse(createdPlugin.isDefaultNewPlugin, "The POPPlugin should not be the default new POPPlugin.")
+        XCTAssertFalse(isDefaultNewPlugin, """
+        The key-value observing change notification for the POPPlugin's default
+        new POPPlugin property should have occurred.
+        """)
+        XCTAssertFalse(createdPlugin.isDefaultNewPlugin)
 
         // Test that key-value observing notifications occur when the default new plugin is set to nil
         POPKeyValueObservingTestsHelper.observe(createdPluginTwo,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) {
+            (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = nil
-        XCTAssertFalse(isDefaultNewPluginTwo, "The key-value observing change notification for the second POPPlugin's default new POPPlugin property should have occurred.")
-        XCTAssertFalse(createdPluginTwo.isDefaultNewPlugin, "The second POPPlugin should not be the default new POPPlugin.")
+        XCTAssertFalse(isDefaultNewPluginTwo, """
+        The key-value observing change notification for the second POPPlugin's
+        default new POPPlugin property should have occurred.
+        """)
+        XCTAssertFalse(createdPluginTwo.isDefaultNewPlugin)
 
         // # Clean Up
 

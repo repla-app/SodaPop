@@ -58,35 +58,49 @@ class DuplicatePluginController {
                                              var plugin: Plugin?
                                              if let URL = URL {
                                                  let UUID = Foundation.UUID()
-                                                 let movedFilename = type(of: self).pluginFilename(fromName: UUID.uuidString)
-                                                 let movedDestinationURL = destinationDirectoryURL.appendingPathComponent(movedFilename)
+                                                 let movedFilename = type(of: self)
+                                                     .pluginFilename(fromName: UUID.uuidString)
+                                                 let movedDestinationURL = destinationDirectoryURL
+                                                     .appendingPathComponent(movedFilename)
 
                                                  do {
-                                                     try FileManagerHelper.createDirectoryIfMissing(at: destinationDirectoryURL)
+                                                     try FileManagerHelper
+                                                         .createDirectoryIfMissing(at: destinationDirectoryURL)
                                                      try FileManager.default.moveItem(at: URL, to: movedDestinationURL)
                                                  } catch let error as NSError {
                                                      handler(nil, error)
                                                      return
                                                  }
 
-                                                 if let movedPlugin = self.pluginMaker.makePlugin(url: movedDestinationURL) {
+                                                 if let movedPlugin = self.pluginMaker
+                                                     .makePlugin(url: movedDestinationURL) {
                                                      movedPlugin.editable = true
                                                      movedPlugin.identifier = UUID.uuidString
-                                                     if let uniqueName = self.delegate?.duplicatePluginController(self,
-                                                                                                                  uniquePluginNameFromName: movedPlugin.name,
-                                                                                                                  for: movedPlugin) {
+                                                     if let uniqueName = self.delegate?
+                                                         .duplicatePluginController(self,
+                                                                                    uniquePluginNameFromName:
+                                                                                    movedPlugin.name,
+                                                                                    for: movedPlugin) {
                                                          movedPlugin.name = uniqueName
                                                      } else {
                                                          movedPlugin.name = movedPlugin.identifier
                                                      }
                                                      plugin = movedPlugin
 
-                                                     // Attempt to move the plugin to a directory based on its name (this can safely fail)
-                                                     let renamedPluginFilename = type(of: self).pluginFilename(fromName: movedPlugin.name)
-                                                     let renamedDestinationURL = movedDestinationURL.deletingLastPathComponent().appendingPathComponent(renamedPluginFilename)
+                                                     // Attempt to move the
+                                                     // plugin to a directory
+                                                     // based on its name (this
+                                                     // can safely fail)
+                                                     let renamedPluginFilename = type(of: self)
+                                                         .pluginFilename(fromName: movedPlugin.name)
+                                                     let renamedDestinationURL = movedDestinationURL
+                                                         .deletingLastPathComponent()
+                                                         .appendingPathComponent(renamedPluginFilename)
                                                      do {
-                                                         try FileManager.default.moveItem(at: movedDestinationURL, to: renamedDestinationURL)
-                                                         if let renamedPlugin = self.pluginMaker.makePlugin(url: renamedDestinationURL) {
+                                                         try FileManager.default.moveItem(at: movedDestinationURL,
+                                                                                          to: renamedDestinationURL)
+                                                         if let renamedPlugin = self.pluginMaker
+                                                             .makePlugin(url: renamedDestinationURL) {
                                                              plugin = renamedPlugin
                                                          }
                                                      } catch {

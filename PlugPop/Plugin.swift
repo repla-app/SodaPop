@@ -167,6 +167,11 @@ public class Plugin: POPPlugin {
 
     public override var description: String {
         let description = super.description
-        return "\(description), Plugin name = \(name),  identifier = \(identifier), defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))"
+        return """
+        \(description), Plugin name = \(name),  identifier = \(identifier),
+        defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable
+        = \(editable), debugModeEnabled = \(String(describing:
+        debugModeEnabled))
+        """
     }
 }

@@ -275,10 +275,12 @@ extension FilesAndPluginsDirectoryManagerTests {
         let testPluginDirectoryPath = path.appendingPathComponent(testPluginDirectoryName)
         let testPluginContentsDirectoryPath = testPluginDirectoryPath
             .appendingPathComponent(testPluginContentsDirectoryName)
-        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginResourcesDirectoryName)
+        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginResourcesDirectoryName)
         let testPluginResourcesFilePath = testPluginResourcesDirectoryPath.appendingPathComponent(testFilename)
         let testPluginContentsFilePath = testPluginContentsDirectoryPath.appendingPathComponent(testFilename)
-        let testInfoDictionaryFilePath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginInfoDictionaryFilename)
+        let testInfoDictionaryFilePath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginInfoDictionaryFilename)
 
         if !isRemove {
             if !requireConfirmation {
@@ -366,7 +368,8 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createFileWithConfirmation(atPath: testFilePath)
 
         // Create the contents directory, this should not cause a callback
-        let testPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testPluginContentsDirectoryName)
+        let testPluginContentsDirectoryPath = testPluginDirectoryPath
+            .appendingPathComponent(testPluginContentsDirectoryName)
         createDirectoryWithConfirmation(atPath: testPluginContentsDirectoryPath)
 
         // Create a file in the contents directory, this should not cause a callback
@@ -374,7 +377,8 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createFileWithConfirmation(atPath: testPluginContentsFilePath)
 
         // Create the resource directory, this should not cause a callback
-        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginResourcesDirectoryName)
+        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginResourcesDirectoryName)
         createDirectoryWithConfirmation(atPath: testPluginResourcesDirectoryPath)
 
         // Create a file in the resource directory, this should not cause a callback
@@ -382,7 +386,8 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createFileWithConfirmation(atPath: testPluginResourcesFilePath)
 
         // Create an info dictionary in the contents directory, this should cause a callback
-        let testInfoDictionaryFilePath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginInfoDictionaryFilename)
+        let testInfoDictionaryFilePath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginInfoDictionaryFilename)
         createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
         createFileWithConfirmation(atPath: testInfoDictionaryFilePath)
 
@@ -422,7 +427,8 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createDirectoryWithConfirmation(atPath: testInvalidPluginContentsDirectoryPath)
 
         // Create a info dictionary in the invalid contents directory, this should not cause a callback
-        let testInvalidInfoDictionaryPath = testInvalidPluginContentsDirectoryPath.appendingPathComponent(testPluginInfoDictionaryFilename)
+        let testInvalidInfoDictionaryPath = testInvalidPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginInfoDictionaryFilename)
         createFileWithConfirmation(atPath: testInvalidInfoDictionaryPath)
 
         // Clean up
@@ -464,11 +470,13 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
 
         // Create the contents directory, this should not cause a callback
-        let testPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testPluginContentsDirectoryName)
+        let testPluginContentsDirectoryPath = testPluginDirectoryPath
+            .appendingPathComponent(testPluginContentsDirectoryName)
         createDirectoryWithConfirmation(atPath: testPluginContentsDirectoryPath)
 
         // Create a directory for the info dictionary, this should not cause a callback
-        let testPluginInfoDictionaryDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginInfoDictionaryFilename)
+        let testPluginInfoDictionaryDirectoryPath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginInfoDictionaryFilename)
         createDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
 
         // Clean up
@@ -492,13 +500,18 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
 
         let testPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
-        let testPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testPluginContentsDirectoryName)
-        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testPluginResourcesDirectoryName)
-        let testRenamedPluginResourcesDirectoryPath = testPluginContentsDirectoryPath.appendingPathComponent(testDirectoryName)
-        moveDirectoryWithConfirmation(atPath: testPluginResourcesDirectoryPath, destinationPath: testRenamedPluginResourcesDirectoryPath)
+        let testPluginContentsDirectoryPath = testPluginDirectoryPath
+            .appendingPathComponent(testPluginContentsDirectoryName)
+        let testPluginResourcesDirectoryPath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testPluginResourcesDirectoryName)
+        let testRenamedPluginResourcesDirectoryPath = testPluginContentsDirectoryPath
+            .appendingPathComponent(testDirectoryName)
+        moveDirectoryWithConfirmation(atPath: testPluginResourcesDirectoryPath,
+                                      destinationPath: testRenamedPluginResourcesDirectoryPath)
 
         // Clean up
-        moveDirectoryWithConfirmation(atPath: testRenamedPluginResourcesDirectoryPath, destinationPath: testPluginResourcesDirectoryPath)
+        moveDirectoryWithConfirmation(atPath: testRenamedPluginResourcesDirectoryPath,
+                                      destinationPath: testPluginResourcesDirectoryPath)
 
         removeValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
     }
@@ -507,14 +520,17 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
 
         let testPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
-        let testPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testPluginContentsDirectoryName)
+        let testPluginContentsDirectoryPath = testPluginDirectoryPath
+            .appendingPathComponent(testPluginContentsDirectoryName)
         let testRenamedPluginContentsDirectoryPath = testPluginDirectoryPath.appendingPathComponent(testDirectoryName)
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
-        moveDirectoryWithConfirmation(atPath: testPluginContentsDirectoryPath, destinationPath: testRenamedPluginContentsDirectoryPath)
+        moveDirectoryWithConfirmation(atPath: testPluginContentsDirectoryPath,
+                                      destinationPath: testRenamedPluginContentsDirectoryPath)
 
         // Clean up
         createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
-        moveDirectoryWithConfirmation(atPath: testRenamedPluginContentsDirectoryPath, destinationPath: testPluginContentsDirectoryPath)
+        moveDirectoryWithConfirmation(atPath: testRenamedPluginContentsDirectoryPath,
+                                      destinationPath: testPluginContentsDirectoryPath)
 
         removeValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
     }
@@ -545,11 +561,13 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         let watchedPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
         createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: watchedPluginDirectoryPath)
 
-        moveDirectoryWithConfirmation(atUnwatchedPath: unwatchedPluginDirectoryPath, destinationPath: watchedPluginDirectoryPath)
+        moveDirectoryWithConfirmation(atUnwatchedPath: unwatchedPluginDirectoryPath,
+                                      destinationPath: watchedPluginDirectoryPath)
 
         // Move to unwatched directory
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: watchedPluginDirectoryPath)
-        moveDirectoryWithConfirmation(atPath: watchedPluginDirectoryPath, toUnwatchedDestinationPath: unwatchedPluginDirectoryPath)
+        moveDirectoryWithConfirmation(atPath: watchedPluginDirectoryPath,
+                                      toUnwatchedDestinationPath: unwatchedPluginDirectoryPath)
 
         // Clean up
         removeValidPluginHierarchy(atPath: unwatchedDirectoryPath)

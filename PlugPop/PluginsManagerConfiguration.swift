@@ -47,7 +47,8 @@ public class PluginsManagerConfiguration {
         let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults)
         let pluginsDataController = types.pluginsDataControllerType.init(pluginsPaths: pluginsPaths,
                                                                          copyTempDirectoryURL: copyTempDirectoryURL,
-                                                                         defaultNewPluginManager: defaultNewPluginManager,
+                                                                         defaultNewPluginManager:
+                                                                         defaultNewPluginManager,
                                                                          userPluginsPath: userPluginsPath,
                                                                          builtInPluginsPath: builtInPluginsPath)
         let pluginsController = types.pluginsControllerType.init(plugins: pluginsDataController.plugins)

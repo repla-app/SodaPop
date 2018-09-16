@@ -171,7 +171,7 @@ public class Plugin: POPPlugin {
         \(description), Plugin name = \(name),  identifier = \(identifier),
         defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable
         = \(editable), debugModeEnabled = \(String(describing:
-        debugModeEnabled))
+            debugModeEnabled))
         """
     }
 }

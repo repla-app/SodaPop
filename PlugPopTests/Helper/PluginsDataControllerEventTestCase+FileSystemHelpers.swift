@@ -15,7 +15,9 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: Move Helpers
 
-    func moveWithConfirmation(_ plugin: Plugin, destinationPluginPath: String, handler: @escaping (_ plugin: Plugin?) -> Void) {
+    func moveWithConfirmation(_ plugin: Plugin,
+                              destinationPluginPath: String,
+                              handler: @escaping (_ plugin: Plugin?) -> Void) {
         let pluginPath = plugin.bundle.bundlePath
         guard isTemporaryItem(atPath: pluginPath) else {
             XCTFail("Tried to move a plugin that is not in a temporary directory.")

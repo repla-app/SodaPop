@@ -15,20 +15,25 @@ import XCTest
 import XCTestTemp
 
 protocol FilesAndPluginsDirectoryManagerFileDelegate: class {
-    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, fileWasCreatedOrModifiedAtPath path: String)
-    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, directoryWasCreatedOrModifiedAtPath path: String)
-    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager, itemWasRemovedAtPath path: String)
+    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager,
+                                     fileWasCreatedOrModifiedAtPath path: String)
+    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager,
+                                     directoryWasCreatedOrModifiedAtPath path: String)
+    func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager,
+                                     itemWasRemovedAtPath path: String)
 }
 
 class FilesAndPluginsDirectoryManager: PluginsDirectoryManager {
     weak var fileDelegate: FilesAndPluginsDirectoryManagerFileDelegate?
 
-    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, directoryWasCreatedOrModifiedAtPath path: String) {
+    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher,
+                                   directoryWasCreatedOrModifiedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, directoryWasCreatedOrModifiedAtPath: path)
         super.directoryWatcher(directoryWatcher, directoryWasCreatedOrModifiedAtPath: path)
     }
 
-    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher, fileWasCreatedOrModifiedAtPath path: String) {
+    override func directoryWatcher(_ directoryWatcher: BBUDirectoryWatcher,
+                                   fileWasCreatedOrModifiedAtPath path: String) {
         fileDelegate?.testPluginsDirectoryManager(self, fileWasCreatedOrModifiedAtPath: path)
         super.directoryWatcher(directoryWatcher, fileWasCreatedOrModifiedAtPath: path)
     }
@@ -60,7 +65,8 @@ class FilesAndPluginsDirectoryEventManager: PluginsDirectoryEventManager, FilesA
         }
     }
 
-    func testPluginsDirectoryManager(_: FilesAndPluginsDirectoryManager, directoryWasCreatedOrModifiedAtPath path: String) {
+    func testPluginsDirectoryManager(_: FilesAndPluginsDirectoryManager,
+                                     directoryWasCreatedOrModifiedAtPath path: String) {
         assert(directoryWasCreatedOrModifiedAtPathHandlers.count > 0, "There should be at least one handler")
 
         if directoryWasCreatedOrModifiedAtPathHandlers.count > 0 {

@@ -87,7 +87,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         XCTAssertTrue(createdPluginTwo.name.hasPrefix(createdPlugin.name))
         XCTAssertEqual(createdPluginTwoName, pluginFolderName, "The folder name should equal the plugin's name")
 
-        XCTAssertEqual(createdPlugin.command!, createdPluginTwo.command!, "The new POPPlugin's command should equal the POPPlugin's command.")
+        XCTAssertEqual(createdPlugin.command!, createdPluginTwo.command!)
         XCTAssertNotEqual(createdPlugin.identifier, createdPluginTwo.identifier, "The identifiers should not be equal")
 
         // # Clean Up
@@ -131,11 +131,15 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         var isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         POPKeyValueObservingTestsHelper.observe(createdPlugin,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) {
+            (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPlugin
-        XCTAssertTrue(isDefaultNewPlugin, "The key-value observing change notification for the POPPlugin's default new POPPlugin property should have occurred.")
+        XCTAssertTrue(isDefaultNewPlugin, """
+        The key-value observing change notification for the POPPlugin's default
+        new POPPlugin property should have occurred.
+        """)
         XCTAssertTrue(createdPlugin.isDefaultNewPlugin, "The POPPlugin should be the default new POPPlugin.")
 
         // Test that key-value observing notifications occur when second new plugin is set as the default new plugin
@@ -145,17 +149,22 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         POPKeyValueObservingTestsHelper.observe(createdPlugin,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) {
+            (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPlugin = createdPlugin.isDefaultNewPlugin
         }
         var isDefaultNewPluginTwo = createdPlugin.isDefaultNewPlugin
         POPKeyValueObservingTestsHelper.observe(createdPluginTwo,
                                                 forKeyPath: testPluginDefaultNewPluginKeyPath,
-                                                options: NSKeyValueObservingOptions.new) { (_: [AnyHashable: Any]?) -> Void in
+                                                options: NSKeyValueObservingOptions.new) {
+            (_: [AnyHashable: Any]?) -> Void in
             isDefaultNewPluginTwo = createdPluginTwo.isDefaultNewPlugin
         }
         pluginsManager.defaultNewPlugin = createdPluginTwo
-        XCTAssertTrue(isDefaultNewPluginTwo, "The key-value observing change notification for the POPPlugin's default new POPPlugin property should have occurred.")
+        XCTAssertTrue(isDefaultNewPluginTwo, """
+        The key-value observing change notification for the POPPlugin's default
+        new POPPlugin property should have occurred.
+        """)
         XCTAssertTrue(createdPluginTwo.isDefaultNewPlugin, "The POPPlugin should be the default new POPPlugin.")
         XCTAssertFalse(isDefaultNewPlugin, "The key-value observing change notification for the POPPlugin's default new POPPlugin property should have occurred.")
         XCTAssertFalse(createdPlugin.isDefaultNewPlugin, "The POPPlugin should not be the default new POPPlugin.")

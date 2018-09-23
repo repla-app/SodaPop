@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-@testable import PlugPop
+import PlugPop
 import PlugPopTestHarness
 import XCTest
 import XCTestTemp

@@ -46,6 +46,23 @@
 		45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
 		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4538283421582DB200552088 /* PlugPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538283221582DB200552088 /* PlugPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4538286E215830A900552088 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285D215830A900552088 /* Constants.swift */; };
+		4538286F215830A900552088 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285E215830A900552088 /* XCTestCase+BundleResources.swift */; };
+		45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */; };
+		45382871215830A900552088 /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382860215830A900552088 /* PluginsManagerFactoryType.swift */; };
+		45382872215830A900552088 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382861215830A900552088 /* TestConstants.swift */; };
+		45382873215830A900552088 /* PluginsManagerOwnerType+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */; };
+		45382874215830A900552088 /* POPKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */; };
+		45382875215830A900552088 /* PluginsManagerOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382865215830A900552088 /* PluginsManagerOwnerType.swift */; };
+		45382876215830A900552088 /* TemporaryPluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */; };
+		45382877215830A900552088 /* PluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */; };
+		45382878215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */; };
+		45382879215830A900552088 /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382869215830A900552088 /* PluginTestCase.swift */; };
+		4538287A215830A900552088 /* PluginOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286A215830A900552088 /* PluginOwnerType.swift */; };
+		4538287B215830A900552088 /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */; };
+		4538287C215830A900552088 /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286C215830A900552088 /* TemporaryPluginTestCase.swift */; };
+		4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286D215830A900552088 /* PluginsManagerTestCase.swift */; };
 		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -139,6 +156,25 @@
 		453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDefaultNewPluginManager.h; sourceTree = "<group>"; };
 		453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPDefaultNewPluginManager.m; sourceTree = "<group>"; };
 		4536957F1ED259EB00BDA37F /* OutOfTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OutOfTouch.framework; path = Carthage/Build/Mac/OutOfTouch.framework; sourceTree = "<group>"; };
+		4538283021582DB100552088 /* PlugPopTestHarness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlugPopTestHarness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4538283221582DB200552088 /* PlugPopTestHarness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugPopTestHarness.h; sourceTree = "<group>"; };
+		4538283321582DB200552088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4538285D215830A900552088 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4538285E215830A900552088 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
+		4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPKeyValueObservingTestsHelper.h; sourceTree = "<group>"; };
+		45382860215830A900552088 /* PluginsManagerFactoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerFactoryType.swift; sourceTree = "<group>"; };
+		45382861215830A900552088 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsManagerOwnerType+Trash.swift"; sourceTree = "<group>"; };
+		45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPKeyValueObservingTestsHelper.m; sourceTree = "<group>"; };
+		45382865215830A900552088 /* PluginsManagerOwnerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerOwnerType.swift; sourceTree = "<group>"; };
+		45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsManagerTestCase.swift; sourceTree = "<group>"; };
+		45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerDependenciesTestCase.swift; sourceTree = "<group>"; };
+		45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsManagerDependenciesTestCase.swift; sourceTree = "<group>"; };
+		45382869215830A900552088 /* PluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTestCase.swift; sourceTree = "<group>"; };
+		4538286A215830A900552088 /* PluginOwnerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginOwnerType.swift; sourceTree = "<group>"; };
+		4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsTestCase.swift; sourceTree = "<group>"; };
+		4538286C215830A900552088 /* TemporaryPluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginTestCase.swift; sourceTree = "<group>"; };
+		4538286D215830A900552088 /* PluginsManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerTestCase.swift; sourceTree = "<group>"; };
 		4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POPPluginsSource.h; sourceTree = "<group>"; };
 		454D4C941ED1F6F7007ABBD7 /* POPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPConstants.h; sourceTree = "<group>"; };
 		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
@@ -165,6 +201,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4538282C21582DB100552088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45753DC81E9AF75B00823315 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,11 +248,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4538283121582DB100552088 /* PlugPopTestHarness */ = {
+			isa = PBXGroup;
+			children = (
+				4538285C215830A900552088 /* Helper */,
+				45382864215830A900552088 /* Test Cases */,
+				4538283221582DB200552088 /* PlugPopTestHarness.h */,
+				4538283321582DB200552088 /* Info.plist */,
+			);
+			path = PlugPopTestHarness;
+			sourceTree = "<group>";
+		};
+		4538285C215830A900552088 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4538285D215830A900552088 /* Constants.swift */,
+				4538285E215830A900552088 /* XCTestCase+BundleResources.swift */,
+				4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */,
+				45382860215830A900552088 /* PluginsManagerFactoryType.swift */,
+				45382861215830A900552088 /* TestConstants.swift */,
+				45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */,
+				45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		45382864215830A900552088 /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				45382865215830A900552088 /* PluginsManagerOwnerType.swift */,
+				45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */,
+				45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */,
+				45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */,
+				45382869215830A900552088 /* PluginTestCase.swift */,
+				4538286A215830A900552088 /* PluginOwnerType.swift */,
+				4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */,
+				4538286C215830A900552088 /* TemporaryPluginTestCase.swift */,
+				4538286D215830A900552088 /* PluginsManagerTestCase.swift */,
+			);
+			path = "Test Cases";
+			sourceTree = "<group>";
+		};
 		45753DC21E9AF75B00823315 = {
 			isa = PBXGroup;
 			children = (
 				45753DCE1E9AF75B00823315 /* PlugPop */,
 				45753DD91E9AF75B00823315 /* PlugPopTests */,
+				4538283121582DB100552088 /* PlugPopTestHarness */,
 				45753DCD1E9AF75B00823315 /* Products */,
 				451847201EBE8AC50004FCAE /* Frameworks */,
 			);
@@ -220,6 +305,7 @@
 			children = (
 				45753DCC1E9AF75B00823315 /* PlugPop.framework */,
 				45753DD51E9AF75B00823315 /* PlugPopTests.xctest */,
+				4538283021582DB100552088 /* PlugPopTestHarness.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -300,6 +386,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4538282D21582DB100552088 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */,
+				4538283421582DB200552088 /* PlugPopTestHarness.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45753DC91E9AF75B00823315 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +413,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4538282F21582DB100552088 /* PlugPopTestHarness */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4538283721582DB200552088 /* Build configuration list for PBXNativeTarget "PlugPopTestHarness" */;
+			buildPhases = (
+				4538282B21582DB100552088 /* Sources */,
+				4538282C21582DB100552088 /* Frameworks */,
+				4538282D21582DB100552088 /* Headers */,
+				4538282E21582DB100552088 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlugPopTestHarness;
+			productName = PlugPopTestHarness;
+			productReference = 4538283021582DB100552088 /* PlugPopTestHarness.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		45753DCB1E9AF75B00823315 /* PlugPop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45753DE01E9AF75B00823315 /* Build configuration list for PBXNativeTarget "PlugPop" */;
@@ -364,6 +477,11 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Roben Kleene";
 				TargetAttributes = {
+					4538282F21582DB100552088 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = ZMEAAJZPVP;
+						ProvisioningStyle = Automatic;
+					};
 					45753DCB1E9AF75B00823315 = {
 						CreatedOnToolsVersion = 8.3.1;
 						LastSwiftMigration = 0900;
@@ -390,11 +508,19 @@
 			targets = (
 				45753DCB1E9AF75B00823315 /* PlugPop */,
 				45753DD41E9AF75B00823315 /* PlugPopTests */,
+				4538282F21582DB100552088 /* PlugPopTestHarness */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4538282E21582DB100552088 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45753DCA1E9AF75B00823315 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +538,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4538282B21582DB100552088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45382875215830A900552088 /* PluginsManagerOwnerType.swift in Sources */,
+				4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */,
+				45382871215830A900552088 /* PluginsManagerFactoryType.swift in Sources */,
+				45382873215830A900552088 /* PluginsManagerOwnerType+Trash.swift in Sources */,
+				45382879215830A900552088 /* PluginTestCase.swift in Sources */,
+				45382878215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
+				45382877215830A900552088 /* PluginsManagerDependenciesTestCase.swift in Sources */,
+				4538286F215830A900552088 /* XCTestCase+BundleResources.swift in Sources */,
+				45382876215830A900552088 /* TemporaryPluginsManagerTestCase.swift in Sources */,
+				4538287A215830A900552088 /* PluginOwnerType.swift in Sources */,
+				4538287B215830A900552088 /* TemporaryPluginsTestCase.swift in Sources */,
+				45382874215830A900552088 /* POPKeyValueObservingTestsHelper.m in Sources */,
+				4538286E215830A900552088 /* Constants.swift in Sources */,
+				4538287C215830A900552088 /* TemporaryPluginTestCase.swift in Sources */,
+				45382872215830A900552088 /* TestConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45753DC71E9AF75B00823315 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,6 +626,64 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4538283521582DB200552088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZMEAAJZPVP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PlugPopTestHarness/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTestHarness;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		4538283621582DB200552088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZMEAAJZPVP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PlugPopTestHarness/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTestHarness;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		45753DDE1E9AF75B00823315 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -677,6 +883,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4538283721582DB200552088 /* Build configuration list for PBXNativeTarget "PlugPopTestHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4538283521582DB200552088 /* Debug */,
+				4538283621582DB200552088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45753DC61E9AF75B00823315 /* Build configuration list for PBXProject "PlugPop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

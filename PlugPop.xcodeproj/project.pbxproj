@@ -56,8 +56,6 @@
 		4568A65F20143164002E248C /* PlainBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; };
 		4568A66220143897002E248C /* PlainBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; };
 		4568A66320143958002E248C /* PlainBagel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		456B81711FF9864000923A7C /* PlugPopTestHarness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 456B81701FF9864000923A7C /* PlugPopTestHarness.framework */; };
-		456B81721FF9883A00923A7C /* PlugPopTestHarness.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 456B81701FF9864000923A7C /* PlugPopTestHarness.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		45753DDD1E9AF75B00823315 /* PlugPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* PlugPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
@@ -93,7 +91,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4568A66320143958002E248C /* PlainBagel.framework in CopyFiles */,
-				456B81721FF9883A00923A7C /* PlugPopTestHarness.framework in CopyFiles */,
 				45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */,
 				45355CB01F2E3BA00003127D /* StringPlusPath.framework in CopyFiles */,
 				45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */,
@@ -150,7 +147,6 @@
 		456783021EBFDC7600C9EC4A /* POPPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPPluginsController.m; sourceTree = "<group>"; };
 		456783051EBFE5D100C9EC4A /* PluginMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginMaker.swift; sourceTree = "<group>"; };
 		4568A65D20143157002E248C /* PlainBagel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlainBagel.framework; path = Carthage/Build/Mac/PlainBagel.framework; sourceTree = "<group>"; };
-		456B81701FF9864000923A7C /* PlugPopTestHarness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlugPopTestHarness.framework; path = Carthage/Build/Mac/PlugPopTestHarness.framework; sourceTree = "<group>"; };
 		45753DCC1E9AF75B00823315 /* PlugPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlugPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753DCF1E9AF75B00823315 /* PlugPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugPop.h; sourceTree = "<group>"; };
 		45753DD01E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,7 +180,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */,
-				456B81711FF9864000923A7C /* PlugPopTestHarness.framework in Frameworks */,
 				453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */,
 				45355CB11F2E64C50003127D /* BubbleUp.framework in Frameworks */,
 				45FCE6311FF6DC4C00CCBA6B /* StringPlusPath.framework in Frameworks */,
@@ -200,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				4568A65D20143157002E248C /* PlainBagel.framework */,
-				456B81701FF9864000923A7C /* PlugPopTestHarness.framework */,
 				45FCE6361FF6DF4E00CCBA6B /* PlugPop.framework */,
 				45E5554E1ED9FF640093D234 /* PotionTaster.framework */,
 				4536957F1ED259EB00BDA37F /* OutOfTouch.framework */,

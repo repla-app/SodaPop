@@ -49,7 +49,7 @@
 		4538283421582DB200552088 /* PlugPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538283221582DB200552088 /* PlugPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4538286E215830A900552088 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285D215830A900552088 /* Constants.swift */; };
 		4538286F215830A900552088 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285E215830A900552088 /* XCTestCase+BundleResources.swift */; };
-		45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */; };
+		45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45382871215830A900552088 /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382860215830A900552088 /* PluginsManagerFactoryType.swift */; };
 		45382872215830A900552088 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382861215830A900552088 /* TestConstants.swift */; };
 		45382873215830A900552088 /* PluginsManagerOwnerType+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */; };

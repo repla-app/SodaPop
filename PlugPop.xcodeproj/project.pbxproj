@@ -63,6 +63,11 @@
 		4538287B215830A900552088 /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */; };
 		4538287C215830A900552088 /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286C215830A900552088 /* TemporaryPluginTestCase.swift */; };
 		4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286D215830A900552088 /* PluginsManagerTestCase.swift */; };
+		4538287E215831C000552088 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
+		4538287F215831D900552088 /* PlugPopTestHarness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538283021582DB100552088 /* PlugPopTestHarness.framework */; };
+		45382882215832DF00552088 /* PotionTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; };
+		45382883215832F200552088 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
+		453828842158330F00552088 /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -205,6 +210,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4538287E215831C000552088 /* PlugPop.framework in Frameworks */,
+				45382882215832DF00552088 /* PotionTaster.framework in Frameworks */,
+				45382883215832F200552088 /* XCTestTemp.framework in Frameworks */,
+				453828842158330F00552088 /* StringPlusPath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4538287F215831D900552088 /* PlugPopTestHarness.framework in Frameworks */,
 				45753DD61E9AF75B00823315 /* PlugPop.framework in Frameworks */,
 				453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */,
 				45355CB11F2E64C50003127D /* BubbleUp.framework in Frameworks */,
@@ -640,13 +650,16 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PlugPopTestHarness/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTestHarness;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -670,13 +683,16 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PlugPopTestHarness/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.1percenter.PlugPopTestHarness;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

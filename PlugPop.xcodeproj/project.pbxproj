@@ -96,6 +96,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4530BD9121601F3D00A256AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4538282F21582DB100552088;
+			remoteInfo = PlugPopTestHarness;
+		};
+		4530BD9321601F4300A256AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45753DCB1E9AF75B00823315;
+			remoteInfo = PlugPop;
+		};
 		45753DD71E9AF75B00823315 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
@@ -435,6 +449,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4530BD9421601F4300A256AE /* PBXTargetDependency */,
 			);
 			name = PlugPopTestHarness;
 			productName = PlugPopTestHarness;
@@ -472,6 +487,7 @@
 			);
 			dependencies = (
 				45753DD81E9AF75B00823315 /* PBXTargetDependency */,
+				4530BD9221601F3D00A256AE /* PBXTargetDependency */,
 			);
 			name = PlugPopTests;
 			productName = PlugPopTests;
@@ -629,6 +645,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4530BD9221601F3D00A256AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4538282F21582DB100552088 /* PlugPopTestHarness */;
+			targetProxy = 4530BD9121601F3D00A256AE /* PBXContainerItemProxy */;
+		};
+		4530BD9421601F4300A256AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45753DCB1E9AF75B00823315 /* PlugPop */;
+			targetProxy = 4530BD9321601F4300A256AE /* PBXContainerItemProxy */;
+		};
 		45753DD81E9AF75B00823315 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 45753DCB1E9AF75B00823315 /* PlugPop */;

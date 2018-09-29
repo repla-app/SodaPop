@@ -12,4 +12,15 @@ before_install:
 before_script:
 - make lint
 - carthage bootstrap
-
+before_deploy:
+- carthage build --no-skip-current
+- carthage archive $FRAMEWORK_NAME
+deploy:
+  provider: releases
+  api_key:
+    secure: XtXsnM8YJnhos8ubVqeFuKeIEcV3cncdJuCEXFkSURlKvzntljLiwUMnwHu3KBXSxvi159WAGddyMAWR96OSmHzKqUuM6hwBAJbrf+tW5XCcgO2ktdnB5m6gj9XjoUQ7LVpaL8vcBqfKOSlr2rEtKdFlT6Qgq28OKNDQYtNkpw/1yR0Vg9nrHF6WzXJbiooAutjtB6OwnFhVV8N+0KViQhOdY7XaJcFXx97bRj0p/WiYlwT2txusg5FI4TsdFZKB2B0qd8jwcPQ4I9xyP4AioG6MLF6MUqZt+kWFu0kf9TEsZJ87tC7JNuTOo5PyGDawkrsqovwUZTEe/JAB4htHkVLEndshvTnSq4ZTk8PtvS7ot4NOSJmkzkefof/1LDrnWjDZymixZaDWPtzgpa84Mt2szPTs0eR1i8OgKoAjI+nOEaqjbmTtdGaXE/Ei/GypKXuYHNflNNKmJNBIxNbNCWKSdotbgtLn5hUu7DgKMhO84Cqicw/E+LtDlDkyEx9QnNFHpa6tFGMPke60BJD271IZYfdVcHYbX2pt5eoSXxM/T2RISbuPu0WP62iqsDrJq0HVDwrsOW2tnIcFWrtTFftHaN0B9TGJVFZFt5DDG9YAIr2fuNCkSKKMbsqaX/STv4pk+dZ4ChYIUDL3RYrvo/THXSMmrqGXnEuJO8WX+z4=
+  file: PlugPop.framework.zip
+  skip_cleanup: true
+  on:
+    repo: robenkleene/PlugPop
+    tags: true

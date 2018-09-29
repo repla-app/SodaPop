@@ -16,9 +16,5 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPluginsController : NSObject <POPPluginsSource>
 - (instancetype)initWithPlugins:(NSArray *)plugins;
-- (void)addPlugin:(Plugin *)plugin;
-- (void)removePlugin:(Plugin *)plugin;
-- (nullable Plugin *)pluginWithName:(NSString *)name;
-- (nullable Plugin *)pluginWithIdentifier:(NSString *)identifier;
 @end
 NS_ASSUME_NONNULL_END

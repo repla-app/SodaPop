@@ -22,5 +22,5 @@ deploy:
   file: PlugPop.framework.zip
   skip_cleanup: true
   on:
-    repo: robenkleene/PlugPop
+    repo: thepotionlab/PlugPop
     tags: true

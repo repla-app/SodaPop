@@ -18,7 +18,9 @@ let testPluginDefaultNewPluginKeyPath = "defaultNewPlugin"
 
 let testMissingFilePathComponent = "None"
 let testSlashPathComponent = "/"
-let testPluginInfoDictionaryPathComponent = testPluginContentsDirectoryName + testSlashPathComponent + testPluginInfoDictionaryFilename
+let testPluginInfoDictionaryPathComponent = testPluginContentsDirectoryName +
+    testSlashPathComponent +
+    testPluginInfoDictionaryFilename
 let testPluginContentsDirectoryName = "Contents"
 let testPluginResourcesDirectoryName = "Resources"
 let testPluginInfoDictionaryFilename = "Info.plist"
@@ -34,6 +36,6 @@ let testFilenameTwo = "test2.txt"
 let testFileContents = "test"
 let testHiddenDirectoryName = ".DS_Store"
 
-// Miscellaneous 
+// Miscellaneous
 
 let testSharedResourcePathComponent = "js/zepto.js"

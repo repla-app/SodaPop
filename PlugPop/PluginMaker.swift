@@ -9,15 +9,13 @@
 import Foundation
 
 class PluginMaker {
-
     let builtInPluginsPath: String?
     let userPluginsPath: String?
     let defaultNewPluginManager: POPDefaultNewPluginManager
-    
+
     init(defaultNewPluginManager: POPDefaultNewPluginManager,
          userPluginsPath: String?,
-         builtInPluginsPath: String?)
-    {
+         builtInPluginsPath: String?) {
         self.defaultNewPluginManager = defaultNewPluginManager
         self.builtInPluginsPath = builtInPluginsPath
         self.userPluginsPath = userPluginsPath
@@ -31,7 +29,7 @@ class PluginMaker {
         plugin.dataSource = defaultNewPluginManager
         return plugin
     }
-    
+
     func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }
@@ -49,5 +47,4 @@ class PluginMaker {
             return PluginType.other
         }
     }
-
 }

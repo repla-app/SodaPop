@@ -20,10 +20,10 @@ extension PluginsDataController {
                 pluginPaths.append(pluginPath)
             }
         }
-        
+
         return pluginPaths
     }
-    
+
     func plugins(atPluginPaths pluginPaths: [String]) -> [Plugin] {
         var plugins = [Plugin]()
         for pluginPath in pluginPaths {
@@ -33,11 +33,10 @@ extension PluginsDataController {
         }
         return plugins
     }
-    
+
     func plugins(atPath path: String) -> [Plugin] {
         let pluginPaths = type(of: self).pathsForPlugins(atPath: path)
         let plugins = self.plugins(atPluginPaths: pluginPaths)
         return plugins
     }
-
 }

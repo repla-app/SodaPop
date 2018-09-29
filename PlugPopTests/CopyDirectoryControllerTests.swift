@@ -7,10 +7,9 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLType {
     var copyDirectoryController: CopyDirectoryController!
@@ -18,18 +17,18 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
     enum ClassConstants {
         static let tempDirectoryName = "Copy Directory Test"
     }
-    
+
     override func setUp() {
         super.setUp()
         copyDirectoryController = CopyDirectoryController(tempDirectoryURL: tempCopyTempDirectoryURL,
                                                           tempDirectoryName: ClassConstants.tempDirectoryName)
         let cleanUpExpectation = expectation(description: "Cleanup")
-        copyDirectoryController.cleanUp() { error in
+        copyDirectoryController.cleanUp { error in
             XCTAssertNil(error)
             cleanUpExpectation.fulfill()
         }
     }
-    
+
     override func tearDown() {
         copyDirectoryController = nil
         super.tearDown()
@@ -47,7 +46,11 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                                         isDirectory: &isDir)
             XCTAssertTrue(exists, "The item should exist")
             XCTAssertTrue(isDir.boolValue, "The item should be a directory")
-            try! removeTemporaryItem(at: directoryURL)
+            do {
+                try removeTemporaryItem(at: directoryURL)
+            } catch {
+                XCTFail()
+            }
         }
     }
 
@@ -55,12 +58,12 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
     func testCopy() {
         let copyExpectation = expectation(description: "Copy")
-        
+
         var copiedPluginURL: URL!
         copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
             XCTAssertNotNil(URL, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
-            
+
             if let URL = URL {
                 let movedFilename = testDirectoryName
                 let movedDestinationURL = self.tempPluginsDirectoryURL.appendingPathComponent(movedFilename)
@@ -86,17 +89,19 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         let pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: tempPluginURL)
         let copiedPluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: copiedPluginURL)
-        
+
         do {
             let pluginInfoDictionaryContents: String! = try String(contentsOf: pluginInfoDictionaryURL,
                                                                    encoding: String.Encoding.utf8)
             let copiedPluginInfoDictionaryContents: String! = try String(contentsOf: copiedPluginInfoDictionaryURL,
                                                                          encoding: String.Encoding.utf8)
-            XCTAssertEqual(copiedPluginInfoDictionaryContents, pluginInfoDictionaryContents, "The contents should be equal")
+            XCTAssertEqual(copiedPluginInfoDictionaryContents,
+                           pluginInfoDictionaryContents,
+                           "The contents should be equal")
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
-        
+
         // Cleanup
         do {
             try removeTemporaryItem(at: copiedPluginURL)
@@ -119,7 +124,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
                 do {
                     try FileManager.default.moveItem(at: URL,
-                        to: movedDestinationURL)
+                                                     to: movedDestinationURL)
                 } catch {
                     XCTAssertTrue(false, "The move should succeed")
                 }
@@ -131,9 +136,13 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         // Assert the contents is empty
         do {
-            let contents = try FileManager.default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
-                                                                       includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                                                       options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            let contents = try FileManager
+                .default.contentsOfDirectory(at: copyDirectoryController.copyTempDirectoryURL,
+                                             includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                             options: [
+                                                 .skipsHiddenFiles,
+                                                 .skipsSubdirectoryDescendants
+                ])
             XCTAssertFalse(contents.isEmpty, "The contents should not be empty")
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")
@@ -145,14 +154,15 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                                                  tempDirectoryName: ClassConstants.tempDirectoryName)
 
         let cleanUpExpectation = expectation(description: "Cleanup")
-        copyDirectoryController.cleanUp() { error in
+        copyDirectoryController.cleanUp { error in
             XCTAssertNil(error)
 
             // Assert the directory is empty
             do {
-                let contentsTwo = try FileManager.default.contentsOfDirectory(at: self.copyDirectoryController.copyTempDirectoryURL,
-                                                                              includingPropertiesForKeys: [URLResourceKey.nameKey],
-                                                                              options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+                let contentsTwo = try FileManager.default
+                    .contentsOfDirectory(at: self.copyDirectoryController.copyTempDirectoryURL,
+                                         includingPropertiesForKeys: [URLResourceKey.nameKey],
+                                         options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
                 XCTAssertTrue(contentsTwo.isEmpty, "The contents should be empty")
             } catch {
                 XCTAssertTrue(false, "Getting the contents should succeed")
@@ -163,7 +173,8 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Clean Up
-        let recoveredFilesPath = testTrashDirectoryPath.appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
+        let recoveredFilesPath = testTrashDirectoryPath
+            .appendingPathComponent(copyDirectoryControllerTwo.trashDirectoryName)
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: recoveredFilesPath, isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")
@@ -177,6 +188,10 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         }
 
         // Clean up `CopyDirectoryController` temporary directories
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 }

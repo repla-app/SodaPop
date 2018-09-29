@@ -7,21 +7,23 @@
 //
 
 import Foundation
-@testable import PlugPop
-
 import PlainBagel
+@testable import PlugPop
 
 class MockPluginsManager: PluginsManager {
     var mockPluginsController: MockPluginsController {
-        return pluginsController as! MockPluginsController
+        guard let mockPluginsController = pluginsController as? MockPluginsController else {
+            assert(false)
+            abort()
+        }
+        return mockPluginsController
     }
 
     override class func makeConfiguration(pluginsPaths: [String],
                                           copyTempDirectoryURL: URL,
                                           defaults: DefaultsType,
                                           userPluginsPath: String,
-                                          builtInPluginsPath: String?) -> PluginsManagerConfiguration
-    {
+                                          builtInPluginsPath: String?) -> PluginsManagerConfiguration {
         let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: POPDefaultNewPluginManager.self,
                                                      pluginsDataControllerType: PluginsDataController.self,
                                                      pluginsControllerType: MockPluginsController.self)

@@ -6,54 +6,54 @@
 //  Copyright (c) 2015 Roben Kleene. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 @objcMembers
 public class MultiCollectionController: NSObject {
     private let nameToObjectController: POPKeyToObjectController
     private var mutableObjects = NSMutableArray()
-    
+
     @objc public init(objects: [AnyObject], key: String) {
-        self.nameToObjectController = POPKeyToObjectController(key: key, objects: objects)
-        self.mutableObjects.addObjects(from: self.nameToObjectController.allObjects())
+        nameToObjectController = POPKeyToObjectController(key: key, objects: objects)
+        mutableObjects.addObjects(from: nameToObjectController.allObjects())
         super.init()
     }
-    
+
     // MARK: Accessing Plugins
-    
+
     public func object(forKey key: String) -> AnyObject? {
         return nameToObjectController.object(forKey: key) as AnyObject?
     }
 
     // MARK: Convenience
-    
+
     public func addObject(_ object: AnyObject) {
         insertObject(object, inObjectsAtIndex: 0)
     }
-    
+
     public func addObjects(_ objects: [AnyObject]) {
-        let indexes = IndexSet(integersIn: 0..<objects.count)
+        let indexes = IndexSet(integersIn: 0 ..< objects.count)
         insertObjects(objects, atIndexes: indexes)
     }
-    
+
     public func removeObject(_ object: AnyObject) {
         let index = indexOfObject(object)
         if index != NSNotFound {
             removeObjectFromObjectsAtIndex(index)
         }
     }
-    
+
     public func indexOfObject(_ object: AnyObject) -> Int {
-         return mutableObjects.index(of: object)
+        return mutableObjects.index(of: object)
     }
-    
+
     // MARK: Required Key-Value Coding To-Many Relationship Compliance
-    
+
     public func objects() -> NSArray {
         return NSArray(array: mutableObjects)
     }
-    
+
     public func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
         let replacedObject: AnyObject? = nameToObjectController.add(object) as AnyObject?
         mutableObjects.insert(object, at: index)
@@ -66,15 +66,14 @@ public class MultiCollectionController: NSObject {
     }
 
     public func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {
-
         let replacedObjects = nameToObjectController.addObjects(from: objects)
         mutableObjects.insert(objects, at: indexes)
 
         let indexes = mutableObjects.indexesOfObjects(options: [], passingTest: {
-            (object, index, stop) -> Bool in
-            return (replacedObjects as NSArray).contains(object)
+            (object, _, _) -> Bool in
+            (replacedObjects as NSArray).contains(object)
         })
-        
+
         removeObjectsAtIndexes(indexes)
     }
 
@@ -83,11 +82,10 @@ public class MultiCollectionController: NSObject {
         nameToObjectController.remove(object)
         mutableObjects.removeObject(at: index)
     }
-    
+
     public func removeObjectsAtIndexes(_ indexes: IndexSet) {
         let objects = mutableObjects.objects(at: indexes)
         nameToObjectController.removeObjects(from: objects)
         mutableObjects.removeObjects(at: indexes)
     }
-
 }

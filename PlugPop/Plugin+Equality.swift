@@ -10,35 +10,34 @@ import Foundation
 
 extension Plugin {
     func isEqual(toOther plugin: Plugin) -> Bool {
-
-        if self.name != plugin.name {
-            return false
-        }
-        
-        if self.identifier != plugin.identifier {
+        if name != plugin.name {
             return false
         }
 
-        if self.editable != plugin.editable {
+        if identifier != plugin.identifier {
             return false
         }
 
-        if self.type != plugin.type {
-            return false
-        }
-        
-        if self.command != plugin.command {
+        if editable != plugin.editable {
             return false
         }
 
-        if self.commandPath != plugin.commandPath {
+        if type != plugin.type {
             return false
         }
 
-        if self.infoDictionaryURL != plugin.infoDictionaryURL {
+        if command != plugin.command {
             return false
         }
-        
+
+        if commandPath != plugin.commandPath {
+            return false
+        }
+
+        if infoDictionaryURL != plugin.infoDictionaryURL {
+            return false
+        }
+
         return true
     }
 }

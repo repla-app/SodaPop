@@ -7,11 +7,13 @@
 //
 
 extension POPPluginsController: POPDefaultNewPluginManagerDataSource {
-    public func defaultNewPluginManager(_ defaultNewPluginManager: POPDefaultNewPluginManager, pluginWithName name: String) -> Plugin? {
+    public func defaultNewPluginManager(_: POPDefaultNewPluginManager,
+                                        pluginWithName name: String) -> Plugin? {
         return plugin(withName: name)
     }
 
-    public func defaultNewPluginManager(_ defaultNewPluginManager: POPDefaultNewPluginManager, pluginWithIdentifier identifier: String) -> Plugin? {
+    public func defaultNewPluginManager(_: POPDefaultNewPluginManager,
+                                        pluginWithIdentifier identifier: String) -> Plugin? {
         return plugin(withIdentifier: identifier)
     }
 }

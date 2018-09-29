@@ -7,17 +7,16 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class DuplicatePluginControllerTests: PluginsManagerTestCase {
     var duplicatePluginController: DuplicatePluginController!
     lazy var plugin: Plugin = {
-        return self.pluginsManager.defaultNewPlugin!
+        self.pluginsManager.defaultNewPlugin!
     }()
-    
+
     override func setUp() {
         super.setUp()
         duplicatePluginController = pluginsManager.pluginsDataController.duplicatePluginController
@@ -28,7 +27,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         duplicatePluginController = nil
         super.tearDown()
     }
-    
+
     func testDuplicatePlugin() {
         // Test that the plugin starts not editable
         XCTAssertFalse(plugin.editable, "The plugin should not be editable")
@@ -36,7 +35,8 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         var pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(for: plugin)
         var pluginInfoDictionaryContents: String!
         do {
-            pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL, encoding: String.Encoding.utf8)
+            pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
+                                                      encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
@@ -60,7 +60,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         let duplicatePluginURL = duplicatePlugin.bundle.bundleURL
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: duplicatePluginURL.path,
-            isDirectory: &isDir)
+                                                    isDirectory: &isDir)
         XCTAssertTrue(exists, "The item should exist")
         XCTAssertTrue(isDir.boolValue, "The item should be a directory")
 
@@ -69,7 +69,8 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: duplicatePlugin.bundle.bundleURL)
 
         do {
-            pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL, encoding: String.Encoding.utf8)
+            pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
+                                                      encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
         }
@@ -84,24 +85,35 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertNotEqual(plugin.name, duplicatePlugin.name, "The names should not be equal")
         XCTAssertEqual(plugin.hidden, duplicatePlugin.hidden, "The hidden should equal the plugin's hidden")
         let longName: String = duplicatePlugin.name
-        XCTAssertTrue(longName.hasPrefix(plugin.name), "The new POPPlugin's name should start with the POPPlugin's name.")
+        XCTAssertTrue(longName.hasPrefix(plugin.name))
         XCTAssertNotEqual(plugin.commandPath!, duplicatePlugin.commandPath!, "The command paths should not be equal")
         XCTAssertEqual(plugin.command!, duplicatePlugin.command!, "The commands should be equal")
         let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
-        XCTAssertEqual(DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.name), duplicatePluginFolderName, "The folder name should equal the plugin's name")
-        
+        XCTAssertEqual(DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.name),
+                       duplicatePluginFolderName,
+                       "The folder name should equal the plugin's name")
+
         // Clean Up
-        try! removeTemporaryItem(at: duplicatePluginURL)
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: duplicatePluginURL)
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
-    
+
     func testDuplicatePluginWithFolderNameBlocked() {
-        try! FileManager.default.createDirectory(at: temporaryUserPluginsDirectoryURL,
-                                                 withIntermediateDirectories: true,
-                                                 attributes: nil)
+        do {
+            try FileManager.default.createDirectory(at: temporaryUserPluginsDirectoryURL,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+        } catch {
+            XCTFail()
+        }
 
         // Function to create a blocking folder for a plugin with the provided name
-        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> ()) = { name, plugin, pluginsManager, destinationDirectoryURL in
+        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> Void) = {
+            name, plugin, pluginsManager, destinationDirectoryURL in
             let uniqueName = pluginsManager.pluginsController.uniquePluginName(fromName: name,
                                                                                for: plugin)
             let destinationName = DuplicatePluginController.pluginFilename(fromName: uniqueName)
@@ -109,9 +121,13 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
             // Create a folder at the destination URL
             let destinationFolderURL = destinationDirectoryURL.appendingPathComponent(destinationName)
 
-            try! FileManager.default.createDirectory(at: destinationFolderURL,
-                                                     withIntermediateDirectories: false,
-                                                     attributes: nil)
+            do {
+                try FileManager.default.createDirectory(at: destinationFolderURL,
+                                                        withIntermediateDirectories: false,
+                                                        attributes: nil)
+            } catch {
+                XCTFail()
+            }
 
             // Test that the folder exists
             var isDir: ObjCBool = false
@@ -123,8 +139,11 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Block the original name, and all incremented names up to `duplicatePluginsWithCounterMax`
         // This will force a fallback to a name based on the plugin's identifier
         makeBlockingFolderWithName(plugin.name, plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
-        for index in 2..<duplicatePluginsWithCounterMax {
-            makeBlockingFolderWithName("\(plugin.name) \(index)", plugin, pluginsManager, temporaryUserPluginsDirectoryURL)
+        for index in 2 ..< duplicatePluginsWithCounterMax {
+            makeBlockingFolderWithName("\(plugin.name) \(index)",
+                                       plugin,
+                                       pluginsManager,
+                                       temporaryUserPluginsDirectoryURL)
         }
 
         // Perform the duplicate
@@ -140,10 +159,15 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
 
         // Assert the folder name equals the plugin's identifier
         let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
-        XCTAssertEqual(duplicatePluginFolderName, DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.identifier), "The folder name should equal the identifier")
+        XCTAssertEqual(duplicatePluginFolderName,
+                       DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.identifier),
+                       "The folder name should equal the identifier")
 
         // Clean Up
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
-
 }

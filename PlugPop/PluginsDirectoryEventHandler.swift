@@ -8,7 +8,7 @@
 
 import Cocoa
 
-// What needs to be unique are created events 
+// What needs to be unique are created events
 
 // The reason events are coalesced by sending the events after the delay period,
 // as opposed to sending an event right away then preventing events from being
@@ -20,34 +20,34 @@ import Cocoa
 // plugin would not be reloaded for the second edit if events are prevented
 // from firing during the delay period.
 
-protocol PluginsDirectoryEventHandlerDelegate {
+protocol PluginsDirectoryEventHandlerDelegate: class {
     func pluginsDirectoryEventHandler(_ pluginsDirectoryEventHandler: PluginsDirectoryEventHandler,
-        handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
-        createdOrModifiedDirectoryPaths directoryPaths: [String]?,
-        createdOrModifiedFilePaths filePaths: [String]?)
+                                      handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
+                                      createdOrModifiedDirectoryPaths directoryPaths: [String]?,
+                                      createdOrModifiedFilePaths filePaths: [String]?)
     func pluginsDirectoryEventHandler(_ pluginsDirectoryEventHandler: PluginsDirectoryEventHandler,
-        handleRemovedEventsAtPluginPath pluginPath: String,
-        removedItemPaths itemPaths: [String]?)
+                                      handleRemovedEventsAtPluginPath pluginPath: String,
+                                      removedItemPaths itemPaths: [String]?)
 }
 
 class PluginsDirectoryEventHandler {
-    var pluginPathToCreatedOrModifiedFilePaths: [String : [String]]
-    var pluginPathToCreatedOrModifiedDirectoryPaths: [String : [String]]
-    var pluginPathToRemovedItemPaths: [String : [String]]
-    var delegate: PluginsDirectoryEventHandlerDelegate?
-    
+    var pluginPathToCreatedOrModifiedFilePaths: [String: [String]]
+    var pluginPathToCreatedOrModifiedDirectoryPaths: [String: [String]]
+    var pluginPathToRemovedItemPaths: [String: [String]]
+    weak var delegate: PluginsDirectoryEventHandlerDelegate?
+
     struct ClassConstants {
         static let fileEventDelay = 0.3
     }
-    
+
     init() {
-        self.pluginPathToCreatedOrModifiedFilePaths = [String : [String]]()
-        self.pluginPathToCreatedOrModifiedDirectoryPaths = [String : [String]]()
-        self.pluginPathToRemovedItemPaths = [String : [String]]()
+        pluginPathToCreatedOrModifiedFilePaths = [String: [String]]()
+        pluginPathToCreatedOrModifiedDirectoryPaths = [String: [String]]()
+        pluginPathToRemovedItemPaths = [String: [String]]()
     }
-    
+
     // MARK: Collecting Handlers
-    
+
     func addDirectoryWasCreatedOrModifiedEvent(atPluginPaths pluginPath: String, forPath path: String) {
         if var paths = pluginPathToCreatedOrModifiedDirectoryPaths[pluginPath] {
             paths.append(path)
@@ -88,7 +88,7 @@ class PluginsDirectoryEventHandler {
             self.fireCreatedOrModifiedEvents(atPluginPath: pluginPath)
         })
     }
-    
+
     func fireRemovedEventsAfterDelay(for pluginPath: String) {
         let delay = ClassConstants.fileEventDelay * Double(NSEC_PER_SEC)
         let time = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
@@ -96,21 +96,21 @@ class PluginsDirectoryEventHandler {
             self.fireRemovedEvents(for: pluginPath)
         })
     }
-    
+
     // MARK: Firing Handlers
-    
+
     func fireCreatedOrModifiedEvents(atPluginPath pluginPath: String) {
         let filePaths = pluginPathToCreatedOrModifiedFilePaths[pluginPath]
         let directoryPaths = pluginPathToCreatedOrModifiedDirectoryPaths[pluginPath]
-        
+
         if filePaths == nil && directoryPaths == nil {
             return
         }
-        
+
         delegate?.pluginsDirectoryEventHandler(self,
-            handleCreatedOrModifiedEventsAtPluginPath: pluginPath,
-            createdOrModifiedDirectoryPaths: directoryPaths,
-            createdOrModifiedFilePaths: filePaths)
+                                               handleCreatedOrModifiedEventsAtPluginPath: pluginPath,
+                                               createdOrModifiedDirectoryPaths: directoryPaths,
+                                               createdOrModifiedFilePaths: filePaths)
 
         pluginPathToCreatedOrModifiedFilePaths[pluginPath] = nil
         pluginPathToCreatedOrModifiedDirectoryPaths[pluginPath] = nil
@@ -119,10 +119,9 @@ class PluginsDirectoryEventHandler {
     func fireRemovedEvents(for pluginPath: String) {
         if let itemPaths = pluginPathToRemovedItemPaths[pluginPath] {
             delegate?.pluginsDirectoryEventHandler(self,
-                handleRemovedEventsAtPluginPath: pluginPath,
-                removedItemPaths: itemPaths)
+                                                   handleRemovedEventsAtPluginPath: pluginPath,
+                                                   removedItemPaths: itemPaths)
             pluginPathToRemovedItemPaths[pluginPath] = nil
         }
     }
-    
 }

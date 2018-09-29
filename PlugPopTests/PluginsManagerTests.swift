@@ -7,18 +7,16 @@
 //
 
 import Cocoa
-import XCTest
-
 @testable import PlugPop
 import PlugPopTestHarness
+import XCTest
 
 class PluginsManagerTests: PluginsManagerTestCase {
-
     func testDuplicateAndTrashPlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 
         let newPlugin = newPluginWithConfirmation()
-        
+
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount + 1)
         let plugins = pluginsManager.plugins
         XCTAssertTrue(plugins.contains(newPlugin))
@@ -28,12 +26,12 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
         // Create another plugin from this plugin
         let newPluginTwo = duplicateWithConfirmation(newPlugin)
-        
+
         // Test Properties
 
         XCTAssertEqual(newPluginTwo.command!, newPlugin.command!, "The commands should be equal")
-        XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!, "The commands should not be equal")
-        
+        XCTAssertNotEqual(pluginsManager.defaultNewPlugin!.command!, newPlugin.command!)
+
         // Trash the duplicated plugin
         let trashExpectation = expectation(description: "Move to trash")
         moveToTrashAndCleanUpWithConfirmation(newPlugin) {
@@ -46,7 +44,11 @@ class PluginsManagerTests: PluginsManagerTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // # Clean Up
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testRenamePlugin() {
@@ -58,7 +60,11 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertNil(pluginsManager.plugin(withName: oldPluginName))
 
         // # Clean Up
-        try! removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        do {
+            try removeTemporaryItem(at: tempCopyTempDirectoryURL)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testBuiltInPlugins() {
@@ -80,14 +86,18 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
         var pluginsPathsCount = 0
 
-        let contents = try! FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
-        let paths = contents
         let pluginFileExtensionMatch = ".\(testPluginExtension)"
-        let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@", pluginFileExtensionMatch)
-        let pluginPaths = paths.filter {
-            pluginFileExtensionPredicate.evaluate(with: $0)
+        let pluginFileExtensionPredicate: NSPredicate! = NSPredicate(format: "self ENDSWITH %@",
+                                                                     pluginFileExtensionMatch)
+        do {
+            let paths = try FileManager.default.contentsOfDirectory(atPath: builtInPluginsPath)
+            let pluginPaths = paths.filter {
+                pluginFileExtensionPredicate.evaluate(with: $0)
+            }
+            pluginsPathsCount += pluginPaths.count
+            XCTAssert(builtInPluginsTested == pluginsPathsCount)
+        } catch {
+            XCTFail()
         }
-        pluginsPathsCount += pluginPaths.count
-        XCTAssert(builtInPluginsTested == pluginsPathsCount)
     }
 }

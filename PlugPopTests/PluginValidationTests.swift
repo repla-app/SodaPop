@@ -11,7 +11,7 @@ import XCTest
 @testable import PlugPop
 import PlugPopTestHarness
 
-class PluginValidationTests: PluginTestCase {
+class TemporaryPluginValidationTests: TemporaryPluginTestCase {
 
     func testNameValidation() {
         plugin.name = testPluginName
@@ -36,13 +36,11 @@ class PluginValidationTests: PluginTestCase {
 
         // Create a new plugin
         let createdPlugin = newPluginWithConfirmation()
+        NSLog("createdPlugin = \(createdPlugin.resourcePath)")
 
         // Test that the name is not valid for another plugin
         error = nil
         name = testPluginName as AnyObject?
-        NSLog("testPluginName = \(testPluginName)")
-        NSLog("plugin.name = \(plugin.name)")
-
         do {
             try createdPlugin.validateName(&name)
         } catch let nameError as NSError {
@@ -108,6 +106,9 @@ class PluginValidationTests: PluginTestCase {
             XCTAssertTrue(false, "Validation should succeed")
         }
     }
+}
+
+class PluginValidationTests: PluginTestCase {
 
     func testSuffixValidation() {
         // Test Valid Extensions

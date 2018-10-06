@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import Potion
+@testable import PlugPop
 import PlugPopTestHarness
 
 class PluginValidationTests: PluginTestCase {

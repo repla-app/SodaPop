@@ -26,7 +26,7 @@ class PluginMaker {
         guard let plugin = Plugin.makePlugin(path: path, pluginType: pluginType) else {
             return nil
         }
-        plugin.dataSource = defaultNewPluginManager
+        plugin.defaultPluginDataSource = defaultNewPluginManager
         return plugin
     }
 

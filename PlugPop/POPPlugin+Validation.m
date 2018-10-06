@@ -72,7 +72,7 @@
         return NO;
     }
 
-    if (![[PluginsManager sharedInstance] isUniqueWithName:name for:(Plugin *)self]) {
+    if (![self.uniqueNameDataSource isUniqueName:name forPlugin:(POPPlugin *)self]) {
         return NO;
     }
 

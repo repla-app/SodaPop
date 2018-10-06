@@ -83,7 +83,7 @@
 		45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
 		45A452011FF84C7400687BEA /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
 		45A47C9B2169722B008897C5 /* POPPlugin+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A47C992169722B008897C5 /* POPPlugin+Validation.m */; };
-		45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A47C9A2169722B008897C5 /* POPPlugin+Validation.h */; };
+		45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A47C9A2169722B008897C5 /* POPPlugin+Validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A47C9E2169723D008897C5 /* PluginValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A47C9D2169723D008897C5 /* PluginValidationTests.swift */; };
 		45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */; };
 		45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */; };
@@ -438,8 +438,8 @@
 				453126941EC93BEA00248FA9 /* POPDefaultNewPluginManager.h in Headers */,
 				456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */,
 				454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */,
-				45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */,
 				450CA08B1EBACDAC00D08D2A /* POPKeyToObjectController.h in Headers */,
+				45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */,
 				4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

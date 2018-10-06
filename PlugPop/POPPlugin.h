@@ -17,8 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol UniqueNameDataSource
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(POPPlugin *)plugin;
+@end
+NS_ASSUME_NONNULL_END
+
+NS_ASSUME_NONNULL_BEGIN
 @interface POPPlugin : NSObject
-@property (nonatomic, weak, nullable) id <DefaultPluginDataSource> dataSource;
+@property (nonatomic, weak, nullable) id <DefaultPluginDataSource> defaultPluginDataSource;
+@property (nonatomic, weak, nullable) id <UniqueNameDataSource> uniqueNameDataSource;
 @property (nonatomic, assign, getter = isDefaultNewPlugin) BOOL defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END

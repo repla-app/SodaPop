@@ -12,13 +12,11 @@ class PluginMaker {
     let builtInPluginsPath: String?
     let userPluginsPath: String?
     let defaultNewPluginManager: POPDefaultNewPluginManager
-    let pluginsController: POPPluginsController
+    var pluginsController: POPPluginsController?
 
     init(defaultNewPluginManager: POPDefaultNewPluginManager,
-         pluginsController: POPPluginsController,
          userPluginsPath: String?,
          builtInPluginsPath: String?) {
-        self.pluginsController = pluginsController
         self.defaultNewPluginManager = defaultNewPluginManager
         self.builtInPluginsPath = builtInPluginsPath
         self.userPluginsPath = userPluginsPath
@@ -29,6 +27,7 @@ class PluginMaker {
         guard let plugin = Plugin.makePlugin(path: path, pluginType: pluginType) else {
             return nil
         }
+        plugin.uniqueNameDataSource = pluginsController
         plugin.defaultPluginDataSource = defaultNewPluginManager
         return plugin
     }

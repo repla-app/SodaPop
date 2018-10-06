@@ -44,15 +44,21 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     var plugins: [Plugin] {
         return Array(self.pluginPathToPluginDictionary.values)
     }
+    var pluginsController: POPPluginsController? {
+        didSet {
+            pluginMaker.pluginsController = pluginsController
+            for plugin in plugins {
+                plugin.uniqueNameDataSource = pluginsController
+            }
+        }
+    }
 
     required init(pluginsPaths: [String],
                   copyTempDirectoryURL: URL,
                   defaultNewPluginManager: POPDefaultNewPluginManager,
-                  pluginsController: POPPluginsController,
                   userPluginsPath: String,
                   builtInPluginsPath: String?) {
         pluginMaker = PluginMaker(defaultNewPluginManager: defaultNewPluginManager,
-                                  pluginsController: pluginsController,
                                   userPluginsPath: userPluginsPath,
                                   builtInPluginsPath: builtInPluginsPath)
         pluginDirectoryManagers = [PluginsDirectoryManager]()

@@ -72,7 +72,13 @@
         return NO;
     }
 
-    if (![self.uniqueNameDataSource isUniqueName:name forPlugin:(POPPlugin *)self]) {
+
+    id <UniqueNameDataSource> uniqueNameDataSource = self.uniqueNameDataSource;
+    if (uniqueNameDataSource == nil) {
+        return NO;
+    }
+
+    if (![uniqueNameDataSource isUniqueName:name forPlugin:(POPPlugin *)self]) {
         return NO;
     }
 

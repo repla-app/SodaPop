@@ -36,7 +36,6 @@ class TemporaryPluginValidationTests: TemporaryPluginTestCase {
 
         // Create a new plugin
         let createdPlugin = newPluginWithConfirmation()
-        NSLog("createdPlugin = \(createdPlugin.resourcePath)")
 
         // Test that the name is not valid for another plugin
         error = nil

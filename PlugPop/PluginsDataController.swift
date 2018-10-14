@@ -160,7 +160,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
 
     func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         assert(plugin.editable, "The plugin should be editable")
-
+        remove(plugin)
         let bundeURL = plugin.bundle.bundleURL
         NSWorkspace.shared.recycle([bundeURL]) { [weak self] dictionary, error in
             guard let strongSelf = self else {

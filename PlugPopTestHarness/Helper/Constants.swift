@@ -47,4 +47,4 @@ public let testPluginNamePrint = PotionTaster.testPluginNamePrint
 
 public let testApplicationSupportDirectoryName = "Application Support"
 public let testAppName = "PlugPop"
-public let testCopyTempDirectoryName = "Duplicate Plugin"
+public let testCopyTempDirectoryName = "Duplicate Plugin Tests"

@@ -311,10 +311,6 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
 
         let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
         do {
-            let contents = try FileManager.default.contentsOfDirectory(atPath: duplicatePluginURL.path)
-            XCTAssert(contents.isEmpty, """
-                The `duplicatePluginURL` should be empty \(String(describing: duplicatePluginURL)), \(contents)
-                """)
             try removeTemporaryItem(at: duplicatePluginURL)
         } catch {
             XCTFail()

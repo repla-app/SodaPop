@@ -96,13 +96,25 @@ class TemporaryPluginValidationTests: TemporaryPluginTestCase {
         }
         XCTAssertNotNil(error, "The error should not be nil.")
         // Delete
-        moveToTrashAndCleanUpWithConfirmation(createdPlugin, handler: nil)
+        let trashExpectation = expectation(description: "Move to trash")
+        moveToTrashAndCleanUpWithConfirmation(createdPlugin) {
+            trashExpectation.fulfill()
+        }
+        waitForExpectations(timeout: defaultTimeout, handler: nil)
+
         // Test that the new name is now valid
-        error = nil;
         do {
             try plugin.validateName(&name)
         } catch {
             XCTAssertTrue(false, "Validation should succeed")
+        }
+
+        // Clean Up
+        let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
+        do {
+            try removeTemporaryItem(at: duplicatePluginURL)
+        } catch {
+            XCTFail()
         }
     }
 }

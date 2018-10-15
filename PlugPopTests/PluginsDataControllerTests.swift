@@ -87,7 +87,6 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 }
 
 extension TemporaryDirectoryTestCase {
-
     // MARK: Helpers
 
     func createFileWithConfirmation(at URL: Foundation.URL, withContents _: String) {

@@ -32,5 +32,4 @@ open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsMa
         }
         super.tearDown()
     }
-
 }

@@ -170,8 +170,7 @@ public class Plugin: POPPlugin {
         return """
         \(description), Plugin name = \(name),  identifier = \(identifier),
         defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable
-        = \(editable), debugModeEnabled = \(String(describing:
-            debugModeEnabled))
+        = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))
         """
     }
 }

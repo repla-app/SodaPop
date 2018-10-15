@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import XCTest
 import PlugPop
+import XCTest
 
 public protocol PluginsManagerOwnerType {
     var pluginsManager: PluginsManager { get }
 }
 
 extension PluginsManagerOwnerType where Self: XCTestCase {
-
     public func newPluginWithConfirmation() -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")

@@ -98,7 +98,6 @@ class FilesAndPluginsDirectoryEventManager: PluginsDirectoryEventManager, FilesA
 }
 
 extension FilesAndPluginsDirectoryManagerTests {
-
     // MARK: Expectation Helpers
 
     func createPluginInfoDictionaryWasRemovedExpectation(forPluginPath path: String) {

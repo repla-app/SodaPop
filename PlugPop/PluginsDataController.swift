@@ -42,8 +42,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
     let duplicatePluginDestinationDirectoryURL: URL
     let copyTempDirectoryURL: URL
     var plugins: [Plugin] {
-        return Array(self.pluginPathToPluginDictionary.values)
+        return Array(pluginPathToPluginDictionary.values)
     }
+
     var pluginsController: POPPluginsController? {
         didSet {
             pluginMaker.pluginsController = pluginsController

@@ -12,10 +12,9 @@ import XCTest
 import PlugPopTestHarness
 
 class TemporaryPluginValidationTests: TemporaryPluginTestCase {
-
     func testNameValidation() {
         plugin.name = testPluginName
-        
+
         // Test that the name is valid for this plugin
         var name: AnyObject? = testPluginName as AnyObject?
         do {
@@ -65,7 +64,7 @@ class TemporaryPluginValidationTests: TemporaryPluginTestCase {
             error = nameError
         }
         XCTAssertNotNil(error, "The error should not be nil.")
-        
+
         // Test that the name is now valid for the second plugin
         name = plugin.name as AnyObject?
         plugin.name = testPluginNameNonexistent
@@ -120,7 +119,6 @@ class TemporaryPluginValidationTests: TemporaryPluginTestCase {
 }
 
 class PluginValidationTests: PluginTestCase {
-
     func testSuffixValidation() {
         // Test Valid Extensions
         var suffixes: AnyObject? = testPluginSuffixesTwo as AnyObject?
@@ -170,5 +168,4 @@ class PluginValidationTests: PluginTestCase {
         }
         XCTAssertNotNil(error, "The error should not be nil.")
     }
-
 }

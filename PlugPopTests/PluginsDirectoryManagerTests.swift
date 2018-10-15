@@ -55,7 +55,6 @@ class PluginsDirectoryEventManager: PluginsDirectoryManagerDelegate {
 }
 
 extension PluginsDirectoryManagerTests {
-
     // MARK: Move Helpers
 
     func movePluginWithConfirmation(atPluginPath tempPluginPath: String, destinationPluginPath: String) {

@@ -12,7 +12,6 @@ import OutOfTouch
 import XCTest
 
 extension TemporaryPluginsDataControllerEventTestCase {
-
     // MARK: Move Helpers
 
     func moveWithConfirmation(_ plugin: Plugin,

@@ -11,7 +11,6 @@ import Cocoa
 import XCTest
 
 class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventTestCase {
-
     // MARK: File System Tests
 
     func testAddAndDeletePlugin() {

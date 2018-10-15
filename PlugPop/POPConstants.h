@@ -7,3 +7,5 @@
 //
 
 #define kPluginNameKey @"name"
+#define kErrorDomain @"com.thepotionlab.PlugPop"
+#define kErrorCodeInvalidPlugin -42

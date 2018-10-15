@@ -87,7 +87,6 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 }
 
 extension TemporaryDirectoryTestCase {
-
     // MARK: Helpers
 
     func createFileWithConfirmation(at URL: Foundation.URL, withContents _: String) {
@@ -289,17 +288,17 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         XCTAssertEqual(pluginsManager.pluginsDataController.plugins.count, startingPluginsCount + 1)
-        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin!))
+        XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin))
 
         // Trash the duplicated plugin
         let removeExpectation = expectation(description: "Plugin was removed")
         pluginDataEventManager.add(pluginWasRemovedHandler: { (removedPlugin) -> Void in
-            XCTAssertEqual(newPlugin!, removedPlugin, "The plugins should be equal")
+            XCTAssertEqual(newPlugin, removedPlugin, "The plugins should be equal")
             removeExpectation.fulfill()
         })
 
         let trashExpectation = expectation(description: "Move to trash")
-        moveToTrashAndCleanUpWithConfirmation(newPlugin!) {
+        moveToTrashAndCleanUpWithConfirmation(newPlugin) {
             trashExpectation.fulfill()
         }
 
@@ -308,6 +307,7 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
         // # Clean Up
 
         cleanUpDuplicatedPlugins()
+
         let duplicatePluginURL = temporaryDirectoryURL.appendingPathComponent(testCopyTempDirectoryName)
         do {
             try removeTemporaryItem(at: duplicatePluginURL)

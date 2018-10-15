@@ -52,6 +52,7 @@ public class PluginsManagerConfiguration {
                                                                          userPluginsPath: userPluginsPath,
                                                                          builtInPluginsPath: builtInPluginsPath)
         let pluginsController = types.pluginsControllerType.init(plugins: pluginsDataController.plugins)
+        pluginsDataController.pluginsController = pluginsController
         self.defaultNewPluginManager = defaultNewPluginManager
         self.pluginsDataController = pluginsDataController
         self.pluginsController = pluginsController

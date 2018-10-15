@@ -23,3 +23,4 @@ FOUNDATION_EXPORT const unsigned char PlugPopVersionString[];
 #import <PlugPop/POPPluginsController.h>
 #import <PlugPop/POPDefaultNewPluginManager.h>
 #import <PlugPop/POPKeyToObjectController.h>
+#import <PlugPop/POPPlugin+Validation.h>

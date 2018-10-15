@@ -20,21 +20,21 @@
     }
 
     if (defaultNewPlugin) {
-        self.dataSource.defaultNewPlugin = self;
-    } else if (self.dataSource.defaultNewPlugin == self) {
-        self.dataSource.defaultNewPlugin = nil;
+        self.defaultPluginDataSource.defaultNewPlugin = self;
+    } else if (self.defaultPluginDataSource.defaultNewPlugin == self) {
+        self.defaultPluginDataSource.defaultNewPlugin = nil;
     }
 
-    _defaultNewPlugin = (self.dataSource.defaultNewPlugin == self);
+    _defaultNewPlugin = (self.defaultPluginDataSource.defaultNewPlugin == self);
 }
 
 - (BOOL)isDefaultNewPlugin
 {
-    if (!self.dataSource) {
+    if (!self.defaultPluginDataSource) {
         return NO;
     }
 
-    BOOL isDefaultNewPlugin = (self.dataSource.defaultNewPlugin == self);
+    BOOL isDefaultNewPlugin = (self.defaultPluginDataSource.defaultNewPlugin == self);
     
     if (_defaultNewPlugin != isDefaultNewPlugin) {
         _defaultNewPlugin = isDefaultNewPlugin;

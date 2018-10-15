@@ -10,9 +10,6 @@
 
 #import "POPPluginsSource.h"
 
-@class Plugin;
-@class MultiCollectionController;
-
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPluginsController : NSObject <POPPluginsSource>
 - (instancetype)initWithPlugins:(NSArray *)plugins;

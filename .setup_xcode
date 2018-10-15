@@ -1,2 +1,4 @@
 -b
 -d
+-t PlugPop
+-t PlugPopTestHarness

@@ -10,9 +10,6 @@ before_script:
 before_deploy:
   - carthage build --no-skip-current
   - carthage archive PlugPop PlugPopTestHarness
-branches:
-  only:
-  - /^\d+\.\d+\.\d+$/
 notifications:
   irc: "chat.freenode.net#thepotionlab-notifications"
 deploy:

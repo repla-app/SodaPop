@@ -1,6 +1,10 @@
 language: swift
 osx_image: xcode10
 script: make ci
+branches:
+  only:
+    - master
+    - /^\d+\.\d+\.\d+$/
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
@@ -10,10 +14,6 @@ before_script:
 before_deploy:
   - carthage build --no-skip-current
   - carthage archive PlugPop PlugPopTestHarness
-branches:
-  only:
-  - master
-  - /^\d+\.\d+\.\d+$/
 notifications:
   irc: "chat.freenode.net#thepotionlab-notifications"
 deploy:

@@ -12,6 +12,7 @@ before_deploy:
   - carthage archive PlugPop PlugPopTestHarness
 branches:
   only:
+  - master
   - /^\d+\.\d+\.\d+$/
 notifications:
   irc: "chat.freenode.net#thepotionlab-notifications"

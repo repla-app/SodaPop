@@ -73,7 +73,9 @@ class PluginsManagerTests: PluginsManagerTestCase {
 
         for plugin in plugins {
             let testPluginPath = builtInPluginsPath.appendingPathComponent(plugin.bundle.bundlePath.lastPathComponent)
-            guard plugin.bundle.bundlePath == testPluginPath else {
+            let resolvedTestPluginPath = (testPluginPath as NSString).resolvingSymlinksInPath
+            let resolvedPluginPath = (plugin.bundle.bundlePath as NSString).resolvingSymlinksInPath
+            guard resolvedPluginPath == resolvedTestPluginPath else {
                 XCTAssertEqual(plugin.pluginType, .other)
                 continue
             }

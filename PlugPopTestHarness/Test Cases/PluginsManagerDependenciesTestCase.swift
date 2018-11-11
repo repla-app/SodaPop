@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import XCTest
 import PlainBagel
 import PlugPop
 import PotionTaster
@@ -33,4 +34,24 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public lazy var defaults: DefaultsType = {
         UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
     }()
+
+    open override func setUp() {
+        super.setUp()
+        guard let userDefaults = defaults as? UserDefaults else {
+            XCTFail()
+            return
+        }
+        userDefaults.removePersistentDomain(forName: testMockUserDefaultsSuiteName)
+        XCTAssertNil(userDefaults.persistentDomain(forName: testMockUserDefaultsSuiteName))
+    }
+
+    open override func tearDown() {
+        super.tearDown()
+        guard let userDefaults = defaults as? UserDefaults else {
+            XCTFail()
+            return
+        }
+        userDefaults.removePersistentDomain(forName: testMockUserDefaultsSuiteName)
+        XCTAssertNil(userDefaults.persistentDomain(forName: testMockUserDefaultsSuiteName))
+    }
 }

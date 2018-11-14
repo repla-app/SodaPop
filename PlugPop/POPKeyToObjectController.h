@@ -20,4 +20,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)allObjects;
 @end
 NS_ASSUME_NONNULL_END
-

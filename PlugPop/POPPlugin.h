@@ -24,8 +24,8 @@ NS_ASSUME_NONNULL_END
 
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPlugin : NSObject
-@property (nonatomic, weak, nullable) id <DefaultPluginDataSource> defaultPluginDataSource;
-@property (nonatomic, weak, nullable) id <UniqueNameDataSource> uniqueNameDataSource;
-@property (nonatomic, assign, getter = isDefaultNewPlugin) BOOL defaultNewPlugin;
+@property (nonatomic, weak, nullable) id<DefaultPluginDataSource> defaultPluginDataSource;
+@property (nonatomic, weak, nullable) id<UniqueNameDataSource> uniqueNameDataSource;
+@property (nonatomic, assign, getter=isDefaultNewPlugin) BOOL defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END

@@ -11,31 +11,25 @@
 
 @implementation POPPluginsController (UniquePluginName)
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name
-{
-    return [self uniquePluginNameFromName:name
-                                forPlugin:nil];
+- (NSString *)uniquePluginNameFromName:(NSString *)name {
+    return [self uniquePluginNameFromName:name forPlugin:nil];
 }
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name
-                             forPlugin:(Plugin *)plugin
-{
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin {
     if ([self isUniqueName:name forPlugin:plugin]) {
         return name;
     }
-    
-    NSString *newName = [self uniquePluginNameFromName:name forPlugin:plugin
-                                                 index:2];
-    
+
+    NSString *newName = [self uniquePluginNameFromName:name forPlugin:plugin index:2];
+
     if (!newName && plugin) {
         newName = plugin.identifier;
     }
-    
+
     return newName;
 }
 
-- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin
-{
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin {
     Plugin *existingPlugin = [self pluginWithName:name];
 
     if (!existingPlugin) {
@@ -54,22 +48,17 @@
 
 #pragma mark Name Private
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name
-                             forPlugin:(Plugin *)plugin
-                                 index:(NSUInteger)index
-{
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin index:(NSUInteger)index {
     if (index > kDuplicatePluginsWithCounterMax) {
         return nil;
     }
-    
+
     NSString *newName = [NSString stringWithFormat:@"%@ %lu", name, (unsigned long)index];
     if ([self isUniqueName:newName forPlugin:plugin]) {
         return newName;
     }
-    
+
     index++;
-    return [self uniquePluginNameFromName:name
-                                forPlugin:plugin
-                                    index:index];
+    return [self uniquePluginNameFromName:name forPlugin:plugin index:index];
 }
 @end

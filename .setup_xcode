@@ -1,5 +1,6 @@
 -b
 -d
+-c
 -s travis
 -i "chat.freenode.net#thepotionlab-notifications"
 -t PlugPop

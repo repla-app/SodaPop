@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import XCTest
 import PlainBagel
 import PlugPop
 import PotionTaster
+import XCTest
 import XCTestTemp
 
 open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {

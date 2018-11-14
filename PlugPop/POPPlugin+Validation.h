@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPlugin (Validation)
 #pragma mark Validation
-- (BOOL)validateExtensions:(_Nullable id * _Nullable)ioValue error:(NSError * __autoreleasing *)outError;
-- (BOOL)validateName:(_Nullable id * _Nullable)ioValue error:(NSError * __autoreleasing *)outError;
+- (BOOL)validateExtensions:(_Nullable id *_Nullable)ioValue error:(NSError *__autoreleasing *)outError;
+- (BOOL)validateName:(_Nullable id *_Nullable)ioValue error:(NSError *__autoreleasing *)outError;
 #pragma mark Name
 + (BOOL)nameContainsOnlyValidCharacters:(NSString *)name;
 - (BOOL)nameIsValid:(NSString *)name;

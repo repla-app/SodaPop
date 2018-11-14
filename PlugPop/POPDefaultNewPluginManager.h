@@ -6,8 +6,8 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "POPPlugin.h"
+#import <Foundation/Foundation.h>
 
 #define kDefaultNewPluginIdentifierKey @"POPDefaultNewPluginIdentifier"
 
@@ -28,9 +28,8 @@ NS_ASSUME_NONNULL_END
 
 NS_ASSUME_NONNULL_BEGIN
 @interface POPDefaultNewPluginManager : NSObject <DefaultPluginDataSource>
-- (instancetype)initWithDefaults:(_Nonnull id <DefaultsType>)defaults;
-@property (nonatomic, strong, nullable) id <POPDefaultNewPluginManagerDataSource> dataSource;
+- (instancetype)initWithDefaults:(_Nonnull id<DefaultsType>)defaults;
+@property (nonatomic, strong, nullable) id<POPDefaultNewPluginManagerDataSource> dataSource;
 @property (nonatomic, strong, nullable) POPPlugin *defaultNewPlugin;
 @end
 NS_ASSUME_NONNULL_END
-

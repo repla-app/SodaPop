@@ -19,8 +19,7 @@ static void *POPKeyToObjectControllerContext;
 
 @synthesize keyToObjectDictionary = _keyToObjectDictionary;
 
-- (instancetype)initWithKey:(NSString *)key
-{
+- (instancetype)initWithKey:(NSString *)key {
     self = [super init];
     if (self) {
         _key = key;
@@ -28,8 +27,7 @@ static void *POPKeyToObjectControllerContext;
     return self;
 }
 
-- (instancetype)initWithKey:(NSString *)key objects:(NSArray *)objects
-{
+- (instancetype)initWithKey:(NSString *)key objects:(NSArray *)objects {
     self = [self initWithKey:key];
     if (self) {
         [self addObjectsFromArray:objects];
@@ -37,12 +35,11 @@ static void *POPKeyToObjectControllerContext;
     return self;
 }
 
-- (id)addObject:(id)object
-{
+- (id)addObject:(id)object {
     NSString *value = [object valueForKey:self.key];
 
     id existingObject = self.keyToObjectDictionary[value];
-    
+
     if (existingObject) {
         [self removeObject:existingObject];
     }
@@ -56,20 +53,16 @@ static void *POPKeyToObjectControllerContext;
     return existingObject;
 }
 
-- (void)removeObject:(id)object
-{
+- (void)removeObject:(id)object {
     NSString *key = [object valueForKey:self.key];
 
     if (self.keyToObjectDictionary[key] == object) {
         [self.keyToObjectDictionary removeObjectForKey:key];
-        [object removeObserver:self
-                    forKeyPath:self.key
-                       context:&POPKeyToObjectControllerContext];
+        [object removeObserver:self forKeyPath:self.key context:&POPKeyToObjectControllerContext];
     }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     NSArray *objects = [self allObjects];
     for (id object in objects) {
         [self removeObject:object];
@@ -79,8 +72,7 @@ static void *POPKeyToObjectControllerContext;
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context
-{
+                       context:(void *)context {
     if (context != &POPKeyToObjectControllerContext) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         return;
@@ -90,24 +82,21 @@ static void *POPKeyToObjectControllerContext;
     if (keyValueChange != NSKeyValueChangeSetting) {
         return;
     }
-    
+
     if (![keyPath isEqualToString:self.key]) {
         return;
     }
 
     NSString *oldValue = change[NSKeyValueChangeOldKey];
     NSString *newValue = change[NSKeyValueChangeNewKey];
-    
+
     [self.keyToObjectDictionary removeObjectForKey:oldValue];
     self.keyToObjectDictionary[newValue] = object;
 }
 
-
-
 #pragma mark Convienence Methods
 
-- (NSArray *)addObjectsFromArray:(NSArray *)objects
-{
+- (NSArray *)addObjectsFromArray:(NSArray *)objects {
     NSMutableArray *removedObjects = [NSMutableArray array];
     for (id object in objects) {
         id removedObject = [self addObject:object];
@@ -118,31 +107,25 @@ static void *POPKeyToObjectControllerContext;
     return removedObjects;
 }
 
-- (void)removeObjectsFromArray:(NSArray *)objects
-{
+- (void)removeObjectsFromArray:(NSArray *)objects {
     for (id object in objects) {
         [self removeObject:object];
     }
 }
 
-
 #pragma mark Accessing Plugins
 
-- (id)objectForKey:(NSString *)key
-{
+- (id)objectForKey:(NSString *)key {
     return self.keyToObjectDictionary[key];
 }
 
-- (NSArray *)allObjects
-{
+- (NSArray *)allObjects {
     return [self.keyToObjectDictionary allValues];
 }
 
-
 #pragma mark Properties
 
-- (NSMutableDictionary *)keyToObjectDictionary
-{
+- (NSMutableDictionary *)keyToObjectDictionary {
     if (_keyToObjectDictionary) {
         return _keyToObjectDictionary;
     }

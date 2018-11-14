@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import XCTest
 import PlainBagel
 import PlugPop
+import XCTest
 
 open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase, PluginsManagerFactoryType {
     public var pluginsManagerType = PluginsManager.self

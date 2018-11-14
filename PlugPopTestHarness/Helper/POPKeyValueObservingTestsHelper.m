@@ -17,8 +17,7 @@
 - (id)initWithObject:(id)object
              keyPath:(NSString *)keyPath
              options:(NSKeyValueObservingOptions)options
-     completionBlock:(void (^)(NSDictionary *change))completionBlock
-{
+     completionBlock:(void (^)(NSDictionary *change))completionBlock {
     self = [super init];
     if (self) {
         _completionBlock = completionBlock;
@@ -30,14 +29,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context
-{
+                       context:(void *)context {
     [object removeObserver:self forKeyPath:keyPath];
     self.completionBlock(change);
 }
 
 @end
-
 
 @interface POPKeyValueObservingTestsHelper ()
 @property (nonatomic, strong) NSMutableArray *observers;
@@ -48,8 +45,7 @@
 + (void)observeObject:(id)object
            forKeyPath:(NSString *)keyPath
               options:(NSKeyValueObservingOptions)options
-      completionBlock:(void (^)(NSDictionary *change))completionBlock
-{
+      completionBlock:(void (^)(NSDictionary *change))completionBlock {
     [[POPKeyValueObservingTestsHelper shareKeyValueObservingTestsHelper] observeObject:object
                                                                             forKeyPath:keyPath
                                                                                options:options
@@ -58,11 +54,10 @@
 
 #pragma mark Private
 
-+ (instancetype)shareKeyValueObservingTestsHelper
-{
++ (instancetype)shareKeyValueObservingTestsHelper {
     static dispatch_once_t pred;
     static POPKeyValueObservingTestsHelper *keyValueObservingTestsHelper = nil;
-    
+
     dispatch_once(&pred, ^{
         keyValueObservingTestsHelper = [[self alloc] init];
     });
@@ -70,8 +65,7 @@
     return keyValueObservingTestsHelper;
 }
 
-- (NSMutableArray *)observers
-{
+- (NSMutableArray *)observers {
     if (_observers) {
         return _observers;
     }
@@ -84,13 +78,12 @@
 - (void)observeObject:(id)object
            forKeyPath:(NSString *)keyPath
               options:(NSKeyValueObservingOptions)options
-      completionBlock:(void (^)(NSDictionary *change))completionBlock
-{
+      completionBlock:(void (^)(NSDictionary *change))completionBlock {
     __block POPKeyValueObserver *observer;
     observer = [[POPKeyValueObserver alloc] initWithObject:object
                                                    keyPath:keyPath
                                                    options:options
-                                           completionBlock:^void (NSDictionary *change) {
+                                           completionBlock:^void(NSDictionary *change) {
                                                [self.observers removeObject:observer];
                                                completionBlock(change);
                                            }];

@@ -15,31 +15,26 @@
 
 @implementation POPPluginsController
 
-- (instancetype)initWithPlugins:(NSArray *)plugins
-{
+- (instancetype)initWithPlugins:(NSArray *)plugins {
     self = [super init];
     if (self) {
-        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins
-                                                                                    key:kPluginNameKey];
+        _multiCollectionController = [[MultiCollectionController alloc] initWithObjects:plugins key:kPluginNameKey];
     }
     return self;
 }
 
-- (void)addPlugin:(Plugin *)plugin
-{
+- (void)addPlugin:(Plugin *)plugin {
     [self insertObject:plugin inPluginsAtIndex:0];
 }
 
-- (void)removePlugin:(Plugin *)plugin
-{
+- (void)removePlugin:(Plugin *)plugin {
     NSUInteger index = [self indexOfObject:plugin];
     if (index != NSNotFound) {
         [self removeObjectFromPluginsAtIndex:index];
     }
 }
 
-- (Plugin *)pluginWithName:(NSString *)name
-{
+- (Plugin *)pluginWithName:(NSString *)name {
     id object = [self.multiCollectionController objectForKey:name];
     if ([object isKindOfClass:[Plugin class]]) {
         return object;
@@ -47,8 +42,7 @@
     return nil;
 }
 
-- (Plugin *)pluginWithIdentifier:(NSString *)identifier
-{
+- (Plugin *)pluginWithIdentifier:(NSString *)identifier {
     // TODO: This should obviously be optimized by creating a key value
     // collection to retrieve `Plugin` by key.
     NSArray *plugins = self.plugins;
@@ -60,35 +54,29 @@
     return nil;
 }
 
-- (NSUInteger)indexOfObject:(Plugin *)plugin
-{
+- (NSUInteger)indexOfObject:(Plugin *)plugin {
     return [self.multiCollectionController indexOfObject:plugin];
 }
 
 #pragma mark Required Key-Value Coding To-Many Relationship Compliance
 
-- (NSArray *)plugins
-{
+- (NSArray *)plugins {
     return [self.multiCollectionController objects];
 }
 
-- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index
-{
+- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index {
     [self.multiCollectionController insertObject:plugin inObjectsAtIndex:index];
 }
 
-- (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes
-{
+- (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes {
     [self.multiCollectionController insertObjects:pluginsArray atIndexes:indexes];
 }
 
-- (void)removeObjectFromPluginsAtIndex:(NSUInteger)index
-{
+- (void)removeObjectFromPluginsAtIndex:(NSUInteger)index {
     [self.multiCollectionController removeObjectFromObjectsAtIndex:index];
 }
 
-- (void)removePluginsAtIndexes:(NSIndexSet *)indexes
-{
+- (void)removePluginsAtIndexes:(NSIndexSet *)indexes {
     [self.multiCollectionController removeObjectsAtIndexes:indexes];
 }
 

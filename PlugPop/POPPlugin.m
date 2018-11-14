@@ -13,8 +13,7 @@
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 
-- (void)setDefaultNewPlugin:(BOOL)defaultNewPlugin
-{
+- (void)setDefaultNewPlugin:(BOOL)defaultNewPlugin {
     if ([self isDefaultNewPlugin] == defaultNewPlugin) {
         return;
     }
@@ -28,18 +27,17 @@
     _defaultNewPlugin = (self.defaultPluginDataSource.defaultNewPlugin == self);
 }
 
-- (BOOL)isDefaultNewPlugin
-{
+- (BOOL)isDefaultNewPlugin {
     if (!self.defaultPluginDataSource) {
         return NO;
     }
 
     BOOL isDefaultNewPlugin = (self.defaultPluginDataSource.defaultNewPlugin == self);
-    
+
     if (_defaultNewPlugin != isDefaultNewPlugin) {
         _defaultNewPlugin = isDefaultNewPlugin;
     }
-    
+
     return _defaultNewPlugin;
 }
 

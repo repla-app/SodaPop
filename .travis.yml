@@ -23,7 +23,7 @@ deploy:
   file: PlugPop.framework.zip
   skip_cleanup: true
   on:
-    repo: thepotionlab/PlugPop
+    repo: repla-app/PlugPop
     tags: true
 env:
   global:

@@ -12,4 +12,4 @@ let defaultTimeout = 20.0
 
 // MARK: `UserDefaults`
 
-let testMockUserDefaultsSuiteName = "com.1percenter.PlugPopTests"
+let testMockUserDefaultsSuiteName = "app.repla.PlugPopTests"

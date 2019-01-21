@@ -65,7 +65,7 @@
 		4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286D215830A900552088 /* PluginsManagerTestCase.swift */; };
 		4538287E215831C000552088 /* PlugPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* PlugPop.framework */; };
 		4538287F215831D900552088 /* PlugPopTestHarness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538283021582DB100552088 /* PlugPopTestHarness.framework */; };
-		45382882215832DF00552088 /* PotionTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; };
+		45382882215832DF00552088 /* SodaTaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* SodaTaster.framework */; };
 		45382883215832F200552088 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
 		453828842158330F00552088 /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,7 +90,7 @@
 		45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DA31B31FF71FFB00531D9E /* TestConstants.swift */; };
 		45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
 		45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
-		45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* PotionTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45E555501ED9FF880093D234 /* SodaTaster.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* SodaTaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45FCE6311FF6DC4C00CCBA6B /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
 		45FCE6331FF6DC6C00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */; };
 		45FCE6341FF6DC7000CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */; };
@@ -132,7 +132,7 @@
 				4568A66320143958002E248C /* PlainBagel.framework in CopyFiles */,
 				45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */,
 				45355CB01F2E3BA00003127D /* StringPlusPath.framework in CopyFiles */,
-				45E555501ED9FF880093D234 /* PotionTaster.framework in CopyFiles */,
+				45E555501ED9FF880093D234 /* SodaTaster.framework in CopyFiles */,
 				453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */,
 				454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */,
 			);
@@ -220,8 +220,7 @@
 		45C758EB1F734FC80028619D /* MockPluginsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPluginsController.swift; sourceTree = "<group>"; };
 		45C758ED1F7353C90028619D /* MockPluginsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPluginsManager.swift; sourceTree = "<group>"; };
 		45DA31B31FF71FFB00531D9E /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
-		45E5554E1ED9FF640093D234 /* PotionTaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PotionTaster.framework; path = Carthage/Build/Mac/PotionTaster.framework; sourceTree = "<group>"; };
-		45FCE6361FF6DF4E00CCBA6B /* PlugPop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlugPop.framework; path = Carthage/Build/Mac/PlugPop.framework; sourceTree = "<group>"; };
+		45E5554E1ED9FF640093D234 /* SodaTaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaTaster.framework; path = Carthage/Build/Mac/SodaTaster.framework; sourceTree = "<group>"; };
 		45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POPPluginsController+POPDefaultNewPluginManagerDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4538287E215831C000552088 /* PlugPop.framework in Frameworks */,
-				45382882215832DF00552088 /* PotionTaster.framework in Frameworks */,
+				45382882215832DF00552088 /* SodaTaster.framework in Frameworks */,
 				45382883215832F200552088 /* XCTestTemp.framework in Frameworks */,
 				453828842158330F00552088 /* StringPlusPath.framework in Frameworks */,
 			);
@@ -268,8 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				4568A65D20143157002E248C /* PlainBagel.framework */,
-				45FCE6361FF6DF4E00CCBA6B /* PlugPop.framework */,
-				45E5554E1ED9FF640093D234 /* PotionTaster.framework */,
+				45E5554E1ED9FF640093D234 /* SodaTaster.framework */,
 				4536957F1ED259EB00BDA37F /* OutOfTouch.framework */,
 				454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */,
 				451847231EBE8AC80004FCAE /* StringPlusPath.framework */,

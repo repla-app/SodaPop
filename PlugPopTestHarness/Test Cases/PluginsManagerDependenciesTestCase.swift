@@ -9,7 +9,7 @@
 import Foundation
 import PlainBagel
 import PlugPop
-import PotionTaster
+import SodaTaster
 import XCTest
 import XCTestTemp
 
@@ -18,13 +18,13 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public var pluginsDirectoryPaths: [String] {
         return [
             builtInPluginsPath,
-            PotionTaster.sharedTestResourcesPluginsDirectoryPath,
+            SodaTaster.sharedTestResourcesPluginsDirectoryPath,
             userPluginsPath
         ]
     }
 
     public var builtInPluginsPath: String {
-        return PotionTaster.rootPluginsDirectoryPath
+        return SodaTaster.rootPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

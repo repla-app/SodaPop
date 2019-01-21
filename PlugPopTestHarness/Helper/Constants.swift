@@ -7,7 +7,7 @@
 //
 
 import PlugPop
-import PotionTaster
+import SodaTaster
 
 // MARK: Directories
 
@@ -22,26 +22,26 @@ public let testPluginSuffixes: [String] = [testPluginSuffix]
 public let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 public let testPluginSuffixesEmpty = [String]()
 
-// MARK: `PotionTaster`
+// MARK: `SodaTaster`
 
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
 public let testPluginFileExtension = "wcplugin"
-public let testPluginName = PotionTaster.testPluginNameIRB
-public let testPluginNameTwo = PotionTaster.testPluginNameHTML
-public let testPluginExtension = PotionTaster.testPluginFileExtension
-public let testPluginCommand = PotionTaster.testPluginCommandIRB
-public let testPluginCommandTwo = PotionTaster.testPluginCommandHTML
-public let testPluginNameNotDefault = PotionTaster.testPluginNameIRB
-public let testPluginCommandNotDefault = PotionTaster.testPluginCommandIRB
+public let testPluginName = SodaTaster.testPluginNameIRB
+public let testPluginNameTwo = SodaTaster.testPluginNameHTML
+public let testPluginExtension = SodaTaster.testPluginFileExtension
+public let testPluginCommand = SodaTaster.testPluginCommandIRB
+public let testPluginCommandTwo = SodaTaster.testPluginCommandHTML
+public let testPluginNameNotDefault = SodaTaster.testPluginNameIRB
+public let testPluginCommandNotDefault = SodaTaster.testPluginCommandIRB
 public let testPluginDirectoryName = testPluginName.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNameTwo = testPluginNameTwo.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNoPluginName = "No Plugin".appendingPathExtension(testPluginFileExtension)!
-public let testPluginNameNonexistent = PotionTaster.testPluginNameNonexistent
-public let testPluginNameHelloWorld = PotionTaster.testPluginNameHelloWorld
-public let testPluginNameCat = PotionTaster.testPluginNameCat
-public let testPluginNameLog = PotionTaster.testPluginNameTestLog
-public let testPluginNamePrint = PotionTaster.testPluginNamePrint
+public let testPluginNameNonexistent = SodaTaster.testPluginNameNonexistent
+public let testPluginNameHelloWorld = SodaTaster.testPluginNameHelloWorld
+public let testPluginNameCat = SodaTaster.testPluginNameCat
+public let testPluginNameLog = SodaTaster.testPluginNameTestLog
+public let testPluginNamePrint = SodaTaster.testPluginNamePrint
 
 // MARK: Directories & Files
 

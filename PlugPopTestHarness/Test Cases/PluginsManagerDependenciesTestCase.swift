@@ -18,7 +18,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public var pluginsDirectoryPaths: [String] {
         return [
             builtInPluginsPath,
-            SodaTaster.sharedTestResourcesPluginsDirectoryPath,
+            SodaTaster.rootTestBundlePluginsDirectoryPath,
             userPluginsPath
         ]
     }

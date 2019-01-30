@@ -1,5 +1,5 @@
-github "repla-app/SodaTaster" "7e0deaac0a3767acd2beda02c22569fa06fd0150"
-github "robenkleene/BubbleUp" "1.0.2"
+github "repla-app/SodaTaster" "3.0.0"
+github "robenkleene/BubbleUp" "1.0.3"
 github "robenkleene/OutOfTouch" "2.0.2"
 github "robenkleene/PlainBagel" "0.1.2"
 github "robenkleene/StringPlusPath" "1.0.1"

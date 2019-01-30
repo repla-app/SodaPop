@@ -18,13 +18,13 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public var pluginsDirectoryPaths: [String] {
         return [
             builtInPluginsPath,
-            SodaTaster.rootTestBundlePluginsDirectoryPath,
+            TestBundles.rootTestBundlePluginsDirectoryPath,
             userPluginsPath
         ]
     }
 
     public var builtInPluginsPath: String {
-        return SodaTaster.rootPluginsDirectoryPath
+        return TestBundles.rootPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

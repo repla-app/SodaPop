@@ -27,21 +27,21 @@ public let testPluginSuffixesEmpty = [String]()
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
 public let testPluginFileExtension = "wcplugin"
-public let testPluginName = SodaTaster.testPluginNameIRB
-public let testPluginNameTwo = SodaTaster.testPluginNameHTML
-public let testPluginExtension = SodaTaster.testPluginFileExtension
-public let testPluginCommand = SodaTaster.testPluginCommandIRB
-public let testPluginCommandTwo = SodaTaster.testPluginCommandHTML
-public let testPluginNameNotDefault = SodaTaster.testPluginNameIRB
-public let testPluginCommandNotDefault = SodaTaster.testPluginCommandIRB
+public let testPluginName = TestBundles.testPluginNameIRB
+public let testPluginNameTwo = TestBundles.testPluginNameHTML
+public let testPluginExtension = TestBundles.testPluginFileExtension
+public let testPluginCommand = TestBundles.testPluginCommandIRB
+public let testPluginCommandTwo = TestBundles.testPluginCommandHTML
+public let testPluginNameNotDefault = TestBundles.testPluginNameIRB
+public let testPluginCommandNotDefault = TestBundles.testPluginCommandIRB
 public let testPluginDirectoryName = testPluginName.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNameTwo = testPluginNameTwo.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNoPluginName = "No Plugin".appendingPathExtension(testPluginFileExtension)!
-public let testPluginNameNonexistent = SodaTaster.testPluginNameNonexistent
-public let testPluginNameHelloWorld = SodaTaster.testPluginNameHelloWorld
-public let testPluginNameCat = SodaTaster.testPluginNameCat
-public let testPluginNameLog = SodaTaster.testPluginNameTestLog
-public let testPluginNamePrint = SodaTaster.testPluginNamePrint
+public let testPluginNameNonexistent = TestBundles.testPluginNameNonexistent
+public let testPluginNameHelloWorld = TestBundles.testPluginNameHelloWorld
+public let testPluginNameCat = TestBundles.testPluginNameCat
+public let testPluginNameLog = TestBundles.testPluginNameTestLog
+public let testPluginNamePrint = TestBundles.testPluginNamePrint
 
 // MARK: Directories & Files
 

@@ -11,20 +11,21 @@
 
 @import PlainBagel;
 
-#define kInitialDefaultNewPluginName @"HTML"
-
 @interface POPDefaultNewPluginManager ()
 @property (nonatomic, strong) id<DefaultsType> defaults;
+@property (nonatomic, strong) NSString *fallbackDefaultNewPluginName;
 @end
 
 @implementation POPDefaultNewPluginManager
 
 @synthesize defaultNewPlugin = _defaultNewPlugin;
 
-- (instancetype)initWithDefaults:(id<DefaultsType>)defaults {
+- (instancetype)initWithDefaults:(_Nonnull id<DefaultsType>)defaults
+    fallbackDefaultNewPluginName:(NSString *)fallbackDefaultNewPluginName {
     self = [super init];
     if (self) {
         _defaults = defaults;
+        _fallbackDefaultNewPluginName = fallbackDefaultNewPluginName;
     }
     return self;
 }
@@ -45,7 +46,7 @@
     }
 
     if (!plugin && self.dataSource) {
-        plugin = [self.dataSource defaultNewPluginManager:self pluginWithName:kInitialDefaultNewPluginName];
+        plugin = [self.dataSource defaultNewPluginManager:self pluginWithName:self.fallbackDefaultNewPluginName];
     }
 
     _defaultNewPlugin = plugin;

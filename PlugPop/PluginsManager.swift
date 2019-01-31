@@ -53,11 +53,13 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     public class func makeConfiguration(pluginsPaths: [String],
                                         copyTempDirectoryURL: URL,
                                         defaults: DefaultsType,
+                                        fallbackDefaultNewPluginName: String,
                                         userPluginsPath: String,
                                         builtInPluginsPath: String?) -> PluginsManagerConfiguration {
         return PluginsManagerConfiguration(pluginsPaths: pluginsPaths,
                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                            defaults: defaults,
+                                           fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
                                            userPluginsPath: userPluginsPath,
                                            builtInPluginsPath: builtInPluginsPath)
     }
@@ -65,11 +67,13 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     public convenience init(pluginsPaths: [String],
                             copyTempDirectoryURL: URL,
                             defaults: DefaultsType,
+                            fallbackDefaultNewPluginName: String,
                             userPluginsPath: String,
                             builtInPluginsPath: String?) {
         let pluginsManagerConfiguration = type(of: self).makeConfiguration(pluginsPaths: pluginsPaths,
                                                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                                                            defaults: defaults,
+                                                                           fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
                                                                            userPluginsPath: userPluginsPath,
                                                                            builtInPluginsPath: builtInPluginsPath)
         self.init(configuration: pluginsManagerConfiguration)

@@ -35,6 +35,10 @@ extension TempUserPluginsDirectoryType {
         return temporaryApplicationSupportDirectoryURL.path
     }
 
+    public var fallbackDefaultNewPluginName: String {
+        return testPluginNameDefault
+    }
+    
     public var temporaryUserPluginsDirectoryURL: URL {
         return temporaryApplicationSupportDirectoryURL
             .appendingPathComponent(testAppName)
@@ -61,6 +65,7 @@ public protocol PluginsManagerDependenciesType: TempCopyTempURLType, TempUserPlu
     var pluginsDirectoryPaths: [String] { get }
     var copyTempDirectoryURL: URL { get }
     var defaults: DefaultsType { get } // Must be supplied by the `superclass`
+    var fallbackDefaultNewPluginName: String { get }
     var userPluginsPath: String { get }
     var builtInPluginsPath: String { get }
 }
@@ -89,6 +94,7 @@ extension PluginsManagerFactoryType {
         let configuration = pluginsManagerType.self.makeConfiguration(pluginsPaths: pluginsDirectoryPaths,
                                                                       copyTempDirectoryURL: copyTempDirectoryURL,
                                                                       defaults: defaults,
+                                                                      fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
                                                                       userPluginsPath: userPluginsPath,
                                                                       builtInPluginsPath: builtInPluginsPath)
         let pluginsManager = pluginsManagerType.init(configuration: configuration)

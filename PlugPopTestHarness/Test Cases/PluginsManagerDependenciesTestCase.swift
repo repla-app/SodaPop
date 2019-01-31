@@ -18,7 +18,6 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public var pluginsDirectoryPaths: [String] {
         return [
             builtInPluginsPath,
-            TestBundles.testPluginsDirectoryPath,
             userPluginsPath
         ]
     }

@@ -34,20 +34,6 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         }
     }
 
-    public var sharedResourcesPath: String? {
-        guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
-            return nil
-        }
-        return plugin.resourcePath
-    }
-
-    public var sharedResourcesURL: URL? {
-        guard let plugin = self.plugin(withName: sharedResourcesPluginName) else {
-            return nil
-        }
-        return plugin.resourceURL
-    }
-
     // MARK: Init
 
     public class func makeConfiguration(pluginsPaths: [String],

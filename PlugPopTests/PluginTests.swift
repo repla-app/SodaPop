@@ -11,21 +11,6 @@ import PlugPopTestHarness
 import XCTest
 
 class PluginTests: PluginTestCase {
-    func testSharedResources() {
-        let testSharedResourcesPath = pluginsManager.sharedResourcesPath!
-            .appendingPathComponent(testSharedResourcePathComponent)
-        var isDir: ObjCBool = false
-        var fileExists = FileManager.default.fileExists(atPath: testSharedResourcesPath, isDirectory: &isDir)
-        XCTAssertTrue(fileExists)
-        XCTAssertFalse(isDir.boolValue)
-
-        let testSharedResourcesURL = pluginsManager.sharedResourcesURL!
-            .appendingPathComponent(testSharedResourcePathComponent)
-        fileExists = FileManager.default.fileExists(atPath: testSharedResourcesURL.path, isDirectory: &isDir)
-        XCTAssertTrue(fileExists)
-        XCTAssertFalse(isDir.boolValue)
-    }
-
     func testPlugin() {
         var isDir: ObjCBool = false
         let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)

@@ -38,7 +38,7 @@ extension TempUserPluginsDirectoryType {
     public var fallbackDefaultNewPluginName: String {
         return testPluginNameDefault
     }
-    
+
     public var temporaryUserPluginsDirectoryURL: URL {
         return temporaryApplicationSupportDirectoryURL
             .appendingPathComponent(testAppName)

@@ -197,11 +197,11 @@ class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginCon
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: directoryURL.path,
                                                     isDirectory: &isDir)
-        if exists && isDir.boolValue {
+        if exists, isDir.boolValue {
             return
         }
 
-        if exists && !isDir.boolValue {
+        if exists, !isDir.boolValue {
             throw FileSystemError.fileExistsForDirectoryError
         }
 

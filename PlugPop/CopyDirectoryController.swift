@@ -123,7 +123,7 @@ class CopyDirectoryController {
         }
 
         NSWorkspace.shared.recycle([directoryToTrashURL]) { _, error in
-            return completion?(error)
+            completion?(error)
         }
     }
 

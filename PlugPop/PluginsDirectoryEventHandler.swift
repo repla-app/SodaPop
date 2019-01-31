@@ -103,7 +103,7 @@ class PluginsDirectoryEventHandler {
         let filePaths = pluginPathToCreatedOrModifiedFilePaths[pluginPath]
         let directoryPaths = pluginPathToCreatedOrModifiedDirectoryPaths[pluginPath]
 
-        if filePaths == nil && directoryPaths == nil {
+        if filePaths == nil, directoryPaths == nil {
             return
         }
 

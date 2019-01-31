@@ -73,7 +73,8 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         let pluginsManagerConfiguration = type(of: self).makeConfiguration(pluginsPaths: pluginsPaths,
                                                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                                                            defaults: defaults,
-                                                                           fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
+                                                                           fallbackDefaultNewPluginName:
+                                                                           fallbackDefaultNewPluginName,
                                                                            userPluginsPath: userPluginsPath,
                                                                            builtInPluginsPath: builtInPluginsPath)
         self.init(configuration: pluginsManagerConfiguration)

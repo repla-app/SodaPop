@@ -37,7 +37,8 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
         }
 
         let defaultNewPluginManager = POPDefaultNewPluginManager(defaults: defaults,
-                                                                 fallbackDefaultNewPluginName: fallbackDefaultNewPluginName)
+                                                                 fallbackDefaultNewPluginName:
+                                                                 fallbackDefaultNewPluginName)
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
                                                           defaultNewPluginManager: defaultNewPluginManager,
@@ -59,7 +60,8 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
 
     func testExistingPlugins() {
         let defaultNewPluginManager = POPDefaultNewPluginManager(defaults: defaults,
-                                                                 fallbackDefaultNewPluginName: fallbackDefaultNewPluginName)
+                                                                 fallbackDefaultNewPluginName:
+                                                                 fallbackDefaultNewPluginName)
         let pluginsDataController = PluginsDataController(pluginsPaths: pluginsDirectoryPaths,
                                                           copyTempDirectoryURL: tempCopyTempDirectoryURL,
                                                           defaultNewPluginManager: defaultNewPluginManager,

@@ -14,7 +14,7 @@ public class MultiCollectionController: NSObject {
     private let nameToObjectController: POPKeyToObjectController
     private var mutableObjects = NSMutableArray()
 
-    @objc public init(objects: [AnyObject], key: String) {
+    public init(objects: [AnyObject], key: String) {
         nameToObjectController = POPKeyToObjectController(key: key, objects: objects)
         mutableObjects.addObjects(from: nameToObjectController.allObjects())
         super.init()

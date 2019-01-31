@@ -94,7 +94,8 @@ extension PluginsManagerFactoryType {
         let configuration = pluginsManagerType.self.makeConfiguration(pluginsPaths: pluginsDirectoryPaths,
                                                                       copyTempDirectoryURL: copyTempDirectoryURL,
                                                                       defaults: defaults,
-                                                                      fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
+                                                                      fallbackDefaultNewPluginName:
+                                                                      fallbackDefaultNewPluginName,
                                                                       userPluginsPath: userPluginsPath,
                                                                       builtInPluginsPath: builtInPluginsPath)
         let pluginsManager = pluginsManagerType.init(configuration: configuration)

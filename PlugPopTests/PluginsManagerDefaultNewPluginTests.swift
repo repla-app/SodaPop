@@ -19,7 +19,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         defaults.set(UUIDString, forKey: defaultNewPluginIdentifierKey)
 
         let defaultNewPlugin = pluginsManager.defaultNewPlugin!
-        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: testPluginNameDefault)!
         XCTAssertEqual(defaultNewPlugin, initialDefaultNewPlugin)
 
         let identifier = defaults.string(forKey: defaultNewPluginIdentifierKey)
@@ -48,7 +48,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         let defaultNewPluginTwo = pluginsManager.defaultNewPlugin!
-        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: testPluginNameDefault)!
         XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin)
 
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)
@@ -64,7 +64,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
     }
 
     func testDefaultNewPlugin() {
-        XCTAssertNotEqual(testPluginNameNotDefault, initialDefaultNewPluginName)
+        XCTAssertNotEqual(testPluginNameNotDefault, testPluginNameDefault)
 
         let createdPlugin = newPluginWithConfirmation()
 
@@ -109,7 +109,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
         pluginsManager.defaultNewPlugin = nil
 
         let defaultNewPluginTwo = pluginsManager.defaultNewPlugin!
-        let initialDefaultNewPlugin = pluginsManager.plugin(withName: initialDefaultNewPluginName)!
+        let initialDefaultNewPlugin = pluginsManager.plugin(withName: testPluginNameDefault)!
         XCTAssertEqual(defaultNewPluginTwo, initialDefaultNewPlugin)
 
         let defaultNewPluginIdentifierTwo = defaults.string(forKey: defaultNewPluginIdentifierKey)

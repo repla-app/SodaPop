@@ -27,13 +27,14 @@ public let testPluginSuffixesEmpty = [String]()
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
 public let testPluginFileExtension = "wcplugin"
-public let testPluginName = TestBundles.testPluginNameIRB
-public let testPluginNameTwo = TestBundles.testPluginNameHTML
+public let testPluginName = TestBundles.testPluginName
+public let testPluginNameTwo = TestBundles.testPluginNameTwo
 public let testPluginExtension = TestBundles.testPluginFileExtension
-public let testPluginCommand = TestBundles.testPluginCommandIRB
-public let testPluginCommandTwo = TestBundles.testPluginCommandHTML
-public let testPluginNameNotDefault = TestBundles.testPluginNameIRB
-public let testPluginCommandNotDefault = TestBundles.testPluginCommandIRB
+public let testPluginCommand = TestBundles.testPluginCommand
+public let testPluginCommandTwo = TestBundles.testPluginCommandTwo
+public let testPluginNameDefault = TestBundles.testPluginNameCat
+public let testPluginNameNotDefault = TestBundles.testPluginNamePrint
+public let testPluginCommandNotDefault = TestBundles.testPluginCommandPrint
 public let testPluginDirectoryName = testPluginName.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNameTwo = testPluginNameTwo.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNoPluginName = "No Plugin".appendingPathExtension(testPluginFileExtension)!

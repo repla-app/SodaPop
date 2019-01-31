@@ -18,13 +18,13 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     public var pluginsDirectoryPaths: [String] {
         return [
             builtInPluginsPath,
-            TestBundles.rootTestBundlePluginsDirectoryPath,
+            TestBundles.testPluginsDirectoryPath,
             userPluginsPath
         ]
     }
 
     public var builtInPluginsPath: String {
-        return TestBundles.rootPluginsDirectoryPath
+        return TestBundles.testPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

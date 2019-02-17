@@ -40,7 +40,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
 
         // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL = SodaTaster.urlForPlugin(withName: testPluginName)!
+        let bundleResourcesPluginURL = TestBundles.urlForPlugin(withName: testPluginName)!
         let filename = testPluginName.appendingPathExtension(testPluginExtension)!
 
         tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)

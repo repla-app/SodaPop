@@ -28,7 +28,8 @@ NS_ASSUME_NONNULL_END
 
 NS_ASSUME_NONNULL_BEGIN
 @interface POPDefaultNewPluginManager : NSObject <DefaultPluginDataSource>
-- (instancetype)initWithDefaults:(_Nonnull id<DefaultsType>)defaults;
+- (instancetype)initWithDefaults:(_Nonnull id<DefaultsType>)defaults
+    fallbackDefaultNewPluginName:(NSString *)defaultNewPluginName;
 @property (nonatomic, strong, nullable) id<POPDefaultNewPluginManagerDataSource> dataSource;
 @property (nonatomic, strong, nullable) POPPlugin *defaultNewPlugin;
 @end

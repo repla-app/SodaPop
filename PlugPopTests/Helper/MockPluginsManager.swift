@@ -22,6 +22,7 @@ class MockPluginsManager: PluginsManager {
     override class func makeConfiguration(pluginsPaths: [String],
                                           copyTempDirectoryURL: URL,
                                           defaults: DefaultsType,
+                                          fallbackDefaultNewPluginName: String,
                                           userPluginsPath: String,
                                           builtInPluginsPath: String?) -> PluginsManagerConfiguration {
         let types = PluginsManagerConfigurationTypes(defaultNewPluginManagerType: POPDefaultNewPluginManager.self,
@@ -31,6 +32,7 @@ class MockPluginsManager: PluginsManager {
                                            pluginsPaths: pluginsPaths,
                                            copyTempDirectoryURL: copyTempDirectoryURL,
                                            defaults: defaults,
+                                           fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
                                            userPluginsPath: userPluginsPath,
                                            builtInPluginsPath: builtInPluginsPath)
     }

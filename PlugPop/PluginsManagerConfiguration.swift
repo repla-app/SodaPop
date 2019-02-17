@@ -28,12 +28,14 @@ public class PluginsManagerConfiguration {
     public convenience init(pluginsPaths: [String],
                             copyTempDirectoryURL: URL,
                             defaults: DefaultsType,
+                            fallbackDefaultNewPluginName: String,
                             userPluginsPath: String,
                             builtInPluginsPath: String?) {
         self.init(types: PluginsManagerConfigurationTypes.makeDefault(),
                   pluginsPaths: pluginsPaths,
                   copyTempDirectoryURL: copyTempDirectoryURL,
                   defaults: defaults,
+                  fallbackDefaultNewPluginName: fallbackDefaultNewPluginName,
                   userPluginsPath: userPluginsPath,
                   builtInPluginsPath: builtInPluginsPath)
     }
@@ -42,9 +44,12 @@ public class PluginsManagerConfiguration {
                          pluginsPaths: [String],
                          copyTempDirectoryURL: URL,
                          defaults: DefaultsType,
+                         fallbackDefaultNewPluginName: String,
                          userPluginsPath: String,
                          builtInPluginsPath: String?) {
-        let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults)
+        let defaultNewPluginManager = types.defaultNewPluginManagerType.init(defaults: defaults,
+                                                                             fallbackDefaultNewPluginName:
+                                                                             fallbackDefaultNewPluginName)
         let pluginsDataController = types.pluginsDataControllerType.init(pluginsPaths: pluginsPaths,
                                                                          copyTempDirectoryURL: copyTempDirectoryURL,
                                                                          defaultNewPluginManager:

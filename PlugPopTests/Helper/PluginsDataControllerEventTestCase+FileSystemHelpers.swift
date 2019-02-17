@@ -67,7 +67,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             if path.hasPrefix(destinationPluginPath) {
                 newPlugin = addedPlugin
                 pluginWasAdded = true
-                guard pluginWasAdded && pluginWasCopied else {
+                guard pluginWasAdded, pluginWasCopied else {
                     return
                 }
 
@@ -85,7 +85,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             XCTAssertNil(standardError)
             XCTAssert(exitStatus == 0)
             pluginWasCopied = true
-            guard pluginWasAdded && pluginWasCopied else {
+            guard pluginWasAdded, pluginWasCopied else {
                 return
             }
             XCTAssertNotNil(newPlugin)

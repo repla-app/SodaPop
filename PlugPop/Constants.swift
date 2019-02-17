@@ -9,7 +9,5 @@
 public let pluginNameKey = kPluginNameKey
 
 let defaultNewPluginIdentifierKey = kDefaultNewPluginIdentifierKey
-let initialDefaultNewPluginName = "HTML"
 let pluginFileExtension = "wcplugin"
-let sharedResourcesPluginName = "Shared Resources"
 let duplicatePluginsWithCounterMax = kDuplicatePluginsWithCounterMax

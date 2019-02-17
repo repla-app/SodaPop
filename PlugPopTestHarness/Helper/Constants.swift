@@ -26,7 +26,7 @@ public let testPluginSuffixesEmpty = [String]()
 
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
-public let testPluginFileExtension = "wcplugin"
+public let testPluginFileExtension = "replabundle"
 public let testPluginName = TestBundles.testPluginName
 public let testPluginNameTwo = TestBundles.testPluginNameTwo
 public let testPluginExtension = TestBundles.testPluginFileExtension

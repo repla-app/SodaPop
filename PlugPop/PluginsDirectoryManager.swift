@@ -291,4 +291,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     func isSubpathOfPluginsDirectory(_ path: String) -> Bool {
         return PluginsPathHelper.contains(path, subpath: pluginsDirectoryURL.path)
     }
+
+    override var description: String {
+        return "pluginsDirectoryURL.path = \(pluginsDirectoryURL.path)"
+    }
 }

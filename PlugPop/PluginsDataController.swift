@@ -27,7 +27,9 @@ protocol PluginsDataControllerDelegate: class {
 // `Plugin` directory. It's also responsible for the performing file-system
 // level operations related to `Plugin`, such as duplicating `Plugin` files and
 // moving `Plugin` files to the trash.
-class PluginsDataController: PluginsDirectoryManagerDelegate, DuplicatePluginControllerDelegate, CustomStringConvertible {
+class PluginsDataController: PluginsDirectoryManagerDelegate,
+                             DuplicatePluginControllerDelegate,
+                             CustomStringConvertible {
     weak var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]
     var pluginPathToPluginDictionary: [String: Plugin]

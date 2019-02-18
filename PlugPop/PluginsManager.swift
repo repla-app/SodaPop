@@ -148,4 +148,8 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
                                for plugin: Plugin) -> String? {
         return pluginsController.uniquePluginName(fromName: name, for: plugin)
     }
+
+    public override var description: String {
+        return "pluginsDataController = \(pluginsDataController)"
+    }
 }

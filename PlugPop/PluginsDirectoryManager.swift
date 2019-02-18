@@ -293,6 +293,6 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     override var description: String {
-        return "pluginsDirectoryURL = \(pluginsDirectoryURL.path)"
+        return "pluginsDirectoryURL.path = \(pluginsDirectoryURL.path)"
     }
 }

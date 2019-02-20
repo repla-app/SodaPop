@@ -33,6 +33,7 @@ extension Plugin {
         case invalidHiddenError(infoDictionary: [AnyHashable: Any])
         case invalidEditableError(infoDictionary: [AnyHashable: Any])
         case invalidDebugModeEnabledError(infoDictionary: [AnyHashable: Any])
+        case invalidPromptInterruptError(infoDictionary: [AnyHashable: Any])
     }
 
     struct InfoDictionaryKeys {
@@ -43,6 +44,7 @@ extension Plugin {
         static let hidden = "WCHidden"
         static let editable = "WCEditable"
         static let debugModeEnabled = "WCDebugModeEnabled"
+        static let promptInterrupt = "WCPromptInterrupt"
     }
 
     @objc public class func makePlugin(url: URL) -> Plugin? {
@@ -73,6 +75,8 @@ extension Plugin {
             print("Plugin hidden is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidEditableError(infoDictionary) {
             print("Plugin editable is invalid \(infoDictionary).")
+        } catch let PluginLoadError.invalidPromptInterruptError(infoDictionary) {
+            print("Plugin prompt interrupt is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
             print("Plugin debug mode enabled is invalid \(infoDictionary).")
         } catch {
@@ -94,6 +98,7 @@ extension Plugin {
                 let hidden = try validHidden(infoDictionary: infoDictionary)
                 let editable = try validEditable(infoDictionary: infoDictionary)
                 let debugModeEnabled = try validDebugModeEnabled(infoDictionary: infoDictionary)
+                let promptInterrupt = try validPromptInterrupt(infoDictionary: infoDictionary)
 
                 // Plugin
                 return Plugin(bundle: bundle,
@@ -105,7 +110,8 @@ extension Plugin {
                               suffixes: suffixes,
                               hidden: hidden,
                               editable: editable,
-                              debugModeEnabled: debugModeEnabled)
+                              debugModeEnabled: debugModeEnabled,
+                              promptInterrupt: promptInterrupt)
             }
         } catch let error as NSError {
             throw error
@@ -206,6 +212,19 @@ extension Plugin {
         }
 
         return true
+    }
+
+    class func validPromptInterrupt(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+        if let promptInterrupt = infoDictionary[InfoDictionaryKeys.promptInterrupt] as? Int {
+            return NSNumber(value: promptInterrupt as Int).boolValue
+        }
+
+        if let _: AnyObject = infoDictionary[InfoDictionaryKeys.promptInterrupt] as AnyObject? {
+            // A missing editable is valid, but an existing malformed one is not
+            throw PluginLoadError.invalidPromptInterruptError(infoDictionary: infoDictionary)
+        }
+
+        return nil
     }
 
     class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool? {

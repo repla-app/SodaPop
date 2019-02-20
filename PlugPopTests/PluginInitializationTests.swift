@@ -23,6 +23,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.command, "hello_world.rb")
         XCTAssertEqual(helloWorldPlugin.hidden, false)
         XCTAssertEqual(helloWorldPlugin.editable, false)
+        XCTAssertEqual(helloWorldPlugin.promptInterrupt, false)
         XCTAssertNil(helloWorldPlugin.debugModeEnabled)
     }
 
@@ -39,6 +40,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.hidden, false)
         XCTAssertEqual(logPlugin.editable, false)
         XCTAssertEqual(logPlugin.debugModeEnabled, true)
+        XCTAssertEqual(logPlugin.promptInterrupt, false)
     }
 
     func testPrintPlugin() {

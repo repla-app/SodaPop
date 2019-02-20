@@ -57,8 +57,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
             XCTAssertTrue(false)
             return
         }
-        
+
         XCTAssertEqual(plugin.debugModeEnabled, false)
     }
-
 }

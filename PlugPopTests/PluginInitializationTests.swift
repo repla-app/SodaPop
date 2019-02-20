@@ -43,12 +43,22 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.promptInterrupt, false)
     }
 
-    func testPrintPlugin() {
-        guard let logPlugin = pluginsManager.plugin(withName: testPluginNamePrint) else {
+    func testPromptInterruptPlugin() {
+        guard let plugin = pluginsManager.plugin(withName: testPluginNamePromptInterrupt) else {
             XCTAssertTrue(false)
             return
         }
 
-        XCTAssertEqual(logPlugin.debugModeEnabled, false)
+        XCTAssertEqual(plugin.promptInterrupt, true)
     }
+
+    func testPrintPlugin() {
+        guard let plugin = pluginsManager.plugin(withName: testPluginNamePrint) else {
+            XCTAssertTrue(false)
+            return
+        }
+        
+        XCTAssertEqual(plugin.debugModeEnabled, false)
+    }
+
 }

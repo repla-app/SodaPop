@@ -43,6 +43,7 @@ public let testPluginNameHelloWorld = TestBundles.testPluginNameHelloWorld
 public let testPluginNameCat = TestBundles.testPluginNameCat
 public let testPluginNameLog = TestBundles.testPluginNameTestLog
 public let testPluginNamePrint = TestBundles.testPluginNamePrint
+public let testPluginNamePromptInterrupt = TestBundles.testPluginNameTestPromptInterrupt
 
 // MARK: Directories & Files
 

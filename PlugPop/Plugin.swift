@@ -20,6 +20,7 @@ public class Plugin: POPPlugin {
 
     let bundle: Bundle
     let hidden: Bool
+    public let promptInterrupt: Bool
     public let debugModeEnabled: Bool?
     let pluginType: PluginType
 
@@ -32,7 +33,8 @@ public class Plugin: POPPlugin {
          suffixes: [String]?,
          hidden: Bool,
          editable: Bool,
-         debugModeEnabled: Bool?) {
+         debugModeEnabled: Bool?,
+         promptInterrupt: Bool?) {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType
         self.bundle = bundle
@@ -40,13 +42,18 @@ public class Plugin: POPPlugin {
         self.identifier = identifier
         self.hidden = hidden
         self.editable = editable
-        self.debugModeEnabled = debugModeEnabled
 
         // Optional
         self.command = command
         self.suffixes = [String]()
         if let suffixes = suffixes {
             self.suffixes += suffixes
+        }
+        self.debugModeEnabled = debugModeEnabled
+        if let promptInterrupt = promptInterrupt {
+            self.promptInterrupt = promptInterrupt
+        } else {
+            self.promptInterrupt = false
         }
     }
 

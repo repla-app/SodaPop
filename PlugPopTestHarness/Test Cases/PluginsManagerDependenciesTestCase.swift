@@ -35,6 +35,10 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     }()
 
     public var defaults: DefaultsType {
+        guard privateDefaults == nil else {
+            return privateDefaults
+        }
+        privateDefaults = UserDefaults(suiteName: defaultsSuiteName)!
         return privateDefaults
     }
 
@@ -42,7 +46,6 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
 
     open override func setUp() {
         super.setUp()
-        privateDefaults = UserDefaults(suiteName: defaultsSuiteName)!
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()
             return

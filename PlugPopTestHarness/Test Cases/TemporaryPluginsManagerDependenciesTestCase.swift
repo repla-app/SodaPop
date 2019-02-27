@@ -25,8 +25,12 @@ open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase
         return temporaryUserPluginsDirectoryPath
     }
 
+    public lazy var defaultsSuiteName = {
+        testMockUserDefaultsSuiteName
+    }()
+
     public lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: testMockUserDefaultsSuiteName)!
+        UserDefaults(suiteName: defaultsSuiteName)!
     }()
 
     open override func setUp() {
@@ -35,8 +39,8 @@ open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase
             XCTFail()
             return
         }
-        userDefaults.removePersistentDomain(forName: testMockUserDefaultsSuiteName)
-        XCTAssertNil(userDefaults.persistentDomain(forName: testMockUserDefaultsSuiteName))
+        userDefaults.removePersistentDomain(forName: defaultsSuiteName)
+        XCTAssertNil(userDefaults.persistentDomain(forName: defaultsSuiteName))
     }
 
     open override func tearDown() {
@@ -45,7 +49,7 @@ open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase
             XCTFail()
             return
         }
-        userDefaults.removePersistentDomain(forName: testMockUserDefaultsSuiteName)
+        userDefaults.removePersistentDomain(forName: defaultsSuiteName)
         XCTAssertNil(userDefaults.persistentDomain(forName: testMockUserDefaultsSuiteName))
     }
 }

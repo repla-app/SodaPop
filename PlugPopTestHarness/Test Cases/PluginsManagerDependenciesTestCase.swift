@@ -41,7 +41,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
         privateDefaults = UserDefaults(suiteName: defaultsSuiteName)!
         return privateDefaults
     }
-    
+
     private var privateDefaults: DefaultsType!
 
     open override func setUp() {

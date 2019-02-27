@@ -34,18 +34,22 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
         testMockUserDefaultsSuiteName
     }()
 
-    public lazy var defaults: DefaultsType = {
-        UserDefaults(suiteName: defaultsSuiteName)!
-    }()
+    public var defaults: DefaultsType {
+        return privateDefaults
+    }
+
+    private var privateDefaults: DefaultsType!
 
     open override func setUp() {
         super.setUp()
+        privateDefaults = UserDefaults(suiteName: defaultsSuiteName)!
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()
             return
         }
         userDefaults.removePersistentDomain(forName: defaultsSuiteName)
         XCTAssertNil(userDefaults.persistentDomain(forName: defaultsSuiteName))
+        XCTAssertFalse(userDefaults.dictionaryRepresentation().keys.contains(defaultsSuiteName))
     }
 
     open override func tearDown() {
@@ -56,5 +60,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
         }
         userDefaults.removePersistentDomain(forName: defaultsSuiteName)
         XCTAssertNil(userDefaults.persistentDomain(forName: defaultsSuiteName))
+        XCTAssertFalse(userDefaults.dictionaryRepresentation().keys.contains(defaultsSuiteName))
+        privateDefaults = nil
     }
 }

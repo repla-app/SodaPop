@@ -22,6 +22,7 @@ public class Plugin: POPPlugin {
     let hidden: Bool
     public let promptInterrupt: Bool
     public let debugModeEnabled: Bool?
+    public let autoShowLog: Bool?
     let pluginType: PluginType
 
     init(bundle: Bundle,
@@ -34,6 +35,7 @@ public class Plugin: POPPlugin {
          hidden: Bool,
          editable: Bool,
          debugModeEnabled: Bool?,
+         autoShowLog: Bool?,
          promptInterrupt: Bool?) {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType
@@ -50,6 +52,7 @@ public class Plugin: POPPlugin {
             self.suffixes += suffixes
         }
         self.debugModeEnabled = debugModeEnabled
+        self.autoShowLog = autoShowLog
         if let promptInterrupt = promptInterrupt {
             self.promptInterrupt = promptInterrupt
         } else {
@@ -175,9 +178,14 @@ public class Plugin: POPPlugin {
     public override var description: String {
         let description = super.description
         return """
-        \(description), Plugin name = \(name),  identifier = \(identifier),
-        defaultNewPlugin = \(isDefaultNewPlugin), hidden = \(hidden), editable
-        = \(editable), debugModeEnabled = \(String(describing: debugModeEnabled))
+        \(description),
+        Plugin name = \(name),
+        identifier = \(identifier),
+        defaultNewPlugin = \(isDefaultNewPlugin),
+        hidden = \(hidden),
+        editable = \(editable),
+        debugModeEnabled = \(String(describing: debugModeEnabled)),
+        autoShowLog = \(String(describing: autoShowLog))
         """
     }
 }

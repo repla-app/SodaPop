@@ -25,6 +25,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.editable, false)
         XCTAssertEqual(helloWorldPlugin.promptInterrupt, false)
         XCTAssertNil(helloWorldPlugin.debugModeEnabled)
+        XCTAssertNil(helloWorldPlugin.autoShowLog)
     }
 
     func testLogPlugin() {
@@ -40,6 +41,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.hidden, false)
         XCTAssertEqual(logPlugin.editable, false)
         XCTAssertEqual(logPlugin.debugModeEnabled, true)
+        XCTAssertEqual(logPlugin.autoShowLog, true)
         XCTAssertEqual(logPlugin.promptInterrupt, false)
     }
 
@@ -59,5 +61,6 @@ class PluginInitializationTests: PluginsManagerTestCase {
         }
 
         XCTAssertEqual(plugin.debugModeEnabled, false)
+        XCTAssertEqual(plugin.autoShowLog, false)
     }
 }

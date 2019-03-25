@@ -54,7 +54,7 @@ public class Plugin: POPPlugin {
             self.suffixes += suffixes
         }
         self.debugModeEnabled = debugModeEnabled
-        self.transparentBackground = debugModeEnabled
+        self.transparentBackground = transparentBackground
         self.autoShowLog = autoShowLog
         if let promptInterrupt = promptInterrupt {
             self.promptInterrupt = promptInterrupt

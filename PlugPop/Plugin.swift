@@ -23,6 +23,7 @@ public class Plugin: POPPlugin {
     public let promptInterrupt: Bool
     public let debugModeEnabled: Bool?
     public let autoShowLog: Bool?
+    public let transparentBackground: Bool?
     let pluginType: PluginType
 
     init(bundle: Bundle,
@@ -35,6 +36,7 @@ public class Plugin: POPPlugin {
          hidden: Bool,
          editable: Bool,
          debugModeEnabled: Bool?,
+         transparentBackground: Bool?,
          autoShowLog: Bool?,
          promptInterrupt: Bool?) {
         self.infoDictionary = infoDictionary
@@ -52,6 +54,7 @@ public class Plugin: POPPlugin {
             self.suffixes += suffixes
         }
         self.debugModeEnabled = debugModeEnabled
+        self.transparentBackground = debugModeEnabled
         self.autoShowLog = autoShowLog
         if let promptInterrupt = promptInterrupt {
             self.promptInterrupt = promptInterrupt
@@ -185,6 +188,7 @@ public class Plugin: POPPlugin {
         hidden = \(hidden),
         editable = \(editable),
         debugModeEnabled = \(String(describing: debugModeEnabled)),
+        transparentBackground = \(String(describing: transparentBackground)),
         autoShowLog = \(String(describing: autoShowLog))
         """
     }

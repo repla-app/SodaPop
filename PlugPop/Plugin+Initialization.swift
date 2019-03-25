@@ -34,6 +34,7 @@ extension Plugin {
         case invalidEditableError(infoDictionary: [AnyHashable: Any])
         case invalidDebugModeEnabledError(infoDictionary: [AnyHashable: Any])
         case invalidAutoShowLogError(infoDictionary: [AnyHashable: Any])
+        case invalidTransparentBackgroundError(infoDictionary: [AnyHashable: Any])
         case invalidPromptInterruptError(infoDictionary: [AnyHashable: Any])
     }
 
@@ -45,6 +46,7 @@ extension Plugin {
         static let hidden = "WCHidden"
         static let editable = "WCEditable"
         static let debugModeEnabled = "WCDebugModeEnabled"
+        static let transparentBackground = "WCTransparentBackground"
         static let autoShowLog = "WCAutoShowLog"
         static let promptInterrupt = "WCPromptInterrupt"
     }
@@ -81,6 +83,8 @@ extension Plugin {
             print("Plugin prompt interrupt is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
             print("Plugin debug mode enabled is invalid \(infoDictionary).")
+        } catch let PluginLoadError.invalidTransparentBackgroundError(infoDictionary) {
+            print("Plugin debug mode enabled is invalid \(infoDictionary).")
         } catch {
             print("Failed to load plugin at path \(path).")
         }
@@ -100,6 +104,7 @@ extension Plugin {
                 let hidden = try validHidden(infoDictionary: infoDictionary)
                 let editable = try validEditable(infoDictionary: infoDictionary)
                 let debugModeEnabled = try validDebugModeEnabled(infoDictionary: infoDictionary)
+                let transparentBackground = try validDebugModeEnabled(infoDictionary: infoDictionary)
                 let autoShowLog = try validAutoShowLog(infoDictionary: infoDictionary)
                 let promptInterrupt = try validPromptInterrupt(infoDictionary: infoDictionary)
 
@@ -114,6 +119,7 @@ extension Plugin {
                               hidden: hidden,
                               editable: editable,
                               debugModeEnabled: debugModeEnabled,
+                              transparentBackground: transparentBackground,
                               autoShowLog: autoShowLog,
                               promptInterrupt: promptInterrupt)
             }
@@ -211,7 +217,6 @@ extension Plugin {
         }
 
         if let _: AnyObject = infoDictionary[InfoDictionaryKeys.editable] as AnyObject? {
-            // A missing editable is valid, but an existing malformed one is not
             throw PluginLoadError.invalidEditableError(infoDictionary: infoDictionary)
         }
 
@@ -224,7 +229,6 @@ extension Plugin {
         }
 
         if let _: AnyObject = infoDictionary[InfoDictionaryKeys.promptInterrupt] as AnyObject? {
-            // A missing editable is valid, but an existing malformed one is not
             throw PluginLoadError.invalidPromptInterruptError(infoDictionary: infoDictionary)
         }
 
@@ -237,8 +241,19 @@ extension Plugin {
         }
 
         if let _: AnyObject = infoDictionary[InfoDictionaryKeys.debugModeEnabled] as AnyObject? {
-            // A missing editable is valid, but an existing malformed one is not
             throw PluginLoadError.invalidDebugModeEnabledError(infoDictionary: infoDictionary)
+        }
+
+        return nil
+    }
+
+    class func validTransparentBackground(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+        if let transparentBackground = infoDictionary[InfoDictionaryKeys.transparentBackground] as? Int {
+            return NSNumber(value: transparentBackground as Int).boolValue
+        }
+
+        if let _: AnyObject = infoDictionary[InfoDictionaryKeys.transparentBackground] as AnyObject? {
+            throw PluginLoadError.invalidTransparentBackgroundError(infoDictionary: infoDictionary)
         }
 
         return nil

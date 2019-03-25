@@ -267,7 +267,6 @@ extension Plugin {
         }
 
         if let _: AnyObject = infoDictionary[InfoDictionaryKeys.autoShowLog] as AnyObject? {
-            // A missing editable is valid, but an existing malformed one is not
             throw PluginLoadError.invalidAutoShowLogError(infoDictionary: infoDictionary)
         }
 

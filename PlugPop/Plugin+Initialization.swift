@@ -83,8 +83,10 @@ extension Plugin {
             print("Plugin prompt interrupt is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
             print("Plugin debug mode enabled is invalid \(infoDictionary).")
+        } catch let PluginLoadError.invalidAutoShowLogError(infoDictionary) {
+            print("Plugin auto-show log is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidTransparentBackgroundError(infoDictionary) {
-            print("Plugin debug mode enabled is invalid \(infoDictionary).")
+            print("Plugin transparent background is invalid \(infoDictionary).")
         } catch {
             print("Failed to load plugin at path \(path).")
         }
@@ -104,7 +106,7 @@ extension Plugin {
                 let hidden = try validHidden(infoDictionary: infoDictionary)
                 let editable = try validEditable(infoDictionary: infoDictionary)
                 let debugModeEnabled = try validDebugModeEnabled(infoDictionary: infoDictionary)
-                let transparentBackground = try validDebugModeEnabled(infoDictionary: infoDictionary)
+                let transparentBackground = try validTransparentBackground(infoDictionary: infoDictionary)
                 let autoShowLog = try validAutoShowLog(infoDictionary: infoDictionary)
                 let promptInterrupt = try validPromptInterrupt(infoDictionary: infoDictionary)
 

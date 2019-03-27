@@ -27,7 +27,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
     }
 
     func testLogPlugin() {
-        guard let logPlugin = pluginsManager.plugin(withName: testPluginNamePrint) else {
+        guard let logPlugin = pluginsManager.plugin(withName: testPluginNameLog) else {
             XCTAssertTrue(false)
             return
         }
@@ -35,7 +35,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.pluginType, PluginType.builtIn)
         XCTAssertEqual(logPlugin.identifier, "7A95638E-798D-437C-9404-08E7DC68655B")
         XCTAssertEqual(logPlugin.name, "TestLog")
-        XCTAssertEqual(logPlugin.command, "test_log.rb")
+        XCTAssertEqual(logPlugin.command, "echo.sh")
         XCTAssertEqual(logPlugin.hidden, false)
         XCTAssertEqual(logPlugin.editable, false)
         XCTAssertEqual(logPlugin.promptInterrupt, false)

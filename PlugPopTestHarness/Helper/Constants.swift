@@ -44,6 +44,9 @@ public let testPluginNameCat = TestBundles.testPluginNameCat
 public let testPluginNameLog = TestBundles.testPluginNameTestLog
 public let testPluginNamePrint = TestBundles.testPluginNamePrint
 public let testPluginNamePromptInterrupt = TestBundles.testPluginNameTestPromptInterrupt
+public let testPluginOptionsDisabledName = TestBundles.testPluginOptionsDisabledName
+public let testPluginOptionsEnabledName = TestBundles.testPluginOptionsEnabledName
+public let testPluginOptionsNilName = TestBundles.testPluginOptionsNilName
 
 // MARK: Directories & Files
 

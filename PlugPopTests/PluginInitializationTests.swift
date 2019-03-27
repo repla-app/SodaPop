@@ -24,9 +24,6 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.hidden, false)
         XCTAssertEqual(helloWorldPlugin.editable, false)
         XCTAssertEqual(helloWorldPlugin.promptInterrupt, false)
-        XCTAssertNil(helloWorldPlugin.debugModeEnabled)
-        XCTAssertNil(helloWorldPlugin.autoShowLog)
-        XCTAssertNil(helloWorldPlugin.transparentBackground)
     }
 
     func testLogPlugin() {
@@ -38,12 +35,9 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.pluginType, PluginType.builtIn)
         XCTAssertEqual(logPlugin.identifier, "7A95638E-798D-437C-9404-08E7DC68655B")
         XCTAssertEqual(logPlugin.name, "TestLog")
-        XCTAssertEqual(logPlugin.command, "test_log.rb")
+        XCTAssertEqual(logPlugin.command, "echo.sh")
         XCTAssertEqual(logPlugin.hidden, false)
         XCTAssertEqual(logPlugin.editable, false)
-        XCTAssertEqual(logPlugin.debugModeEnabled, true)
-        XCTAssertEqual(logPlugin.autoShowLog, true)
-        XCTAssertEqual(logPlugin.transparentBackground, true)
         XCTAssertEqual(logPlugin.promptInterrupt, false)
     }
 
@@ -56,14 +50,29 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(plugin.promptInterrupt, true)
     }
 
-    func testPrintPlugin() {
-        guard let plugin = pluginsManager.plugin(withName: testPluginNamePrint) else {
+    func testOptionsPlugins() {
+        guard let optionsDisabledPlugin = pluginsManager.plugin(withName: testPluginOptionsDisabledName) else {
             XCTAssertTrue(false)
             return
         }
+        XCTAssertEqual(optionsDisabledPlugin.debugModeEnabled, false)
+        XCTAssertEqual(optionsDisabledPlugin.autoShowLog, false)
+        XCTAssertEqual(optionsDisabledPlugin.transparentBackground, false)
 
-        XCTAssertEqual(plugin.debugModeEnabled, false)
-        XCTAssertEqual(plugin.autoShowLog, false)
-        XCTAssertEqual(plugin.transparentBackground, false)
+        guard let optionsNilPlugin = pluginsManager.plugin(withName: testPluginOptionsNilName) else {
+            XCTAssertTrue(false)
+            return
+        }
+        XCTAssertNil(optionsNilPlugin.debugModeEnabled)
+        XCTAssertNil(optionsNilPlugin.autoShowLog)
+        XCTAssertNil(optionsNilPlugin.transparentBackground)
+
+        guard let optionsEnabledPlugin = pluginsManager.plugin(withName: testPluginOptionsEnabledName) else {
+            XCTAssertTrue(false)
+            return
+        }
+        XCTAssertEqual(optionsEnabledPlugin.debugModeEnabled, true)
+        XCTAssertEqual(optionsEnabledPlugin.autoShowLog, true)
+        XCTAssertEqual(optionsEnabledPlugin.transparentBackground, true)
     }
 }

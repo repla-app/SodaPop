@@ -48,7 +48,6 @@ public let testPluginOptionsDisabledName = TestBundles.testPluginOptionsDisabled
 public let testPluginOptionsEnabledName = TestBundles.testPluginOptionsEnabledName
 public let testPluginOptionsNilName = TestBundles.testPluginOptionsNilName
 
-
 // MARK: Directories & Files
 
 public let testApplicationSupportDirectoryName = "Application Support"

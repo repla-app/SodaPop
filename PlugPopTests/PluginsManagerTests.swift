@@ -11,7 +11,7 @@ import Cocoa
 import PlugPopTestHarness
 import XCTest
 
-class PluginsManagerTests: PluginsManagerTestCase {
+class PluginsManagerTests: ArrayControllerTestCase {
     func testDuplicateAndTrashPlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 

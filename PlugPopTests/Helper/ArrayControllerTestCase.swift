@@ -19,7 +19,7 @@ class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestC
         super.setUp()
         arrayController = NSArrayController()
         arrayController.bind(NSBindingName(rawValue: "contentArray"),
-                             to: pluginsManager,
+                             to: pluginsManager.pluginsSource,
                              withKeyPath: "plugins",
                              options: nil)
     }
@@ -30,8 +30,8 @@ class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestC
             return
         }
         let arrayControllerPluginsSet = Set(arrayControllerPlugins)
-        let pluginsManagerPluginsSet = Set(pluginsManager.plugins)
-        XCTAssertEqual(arrayControllerPluginsSet, pluginsManagerPluginsSet)
+        let pluginsSourcePluginsSet = Set(pluginsManager.plugins)
+        XCTAssertEqual(arrayControllerPluginsSet, pluginsSourcePluginsSet)
         super.tearDown()
     }
 }
@@ -43,7 +43,7 @@ class ArrayControllerTestCase: PluginsManagerTestCase {
         super.setUp()
         arrayController = NSArrayController()
         arrayController.bind(NSBindingName(rawValue: "contentArray"),
-                             to: pluginsManager,
+                             to: pluginsManager.pluginsSource,
                              withKeyPath: "plugins",
                              options: nil)
     }
@@ -54,8 +54,8 @@ class ArrayControllerTestCase: PluginsManagerTestCase {
             return
         }
         let arrayControllerPluginsSet = Set(arrayControllerPlugins)
-        let pluginsManagerPluginsSet = Set(pluginsManager.plugins)
-        XCTAssertEqual(arrayControllerPluginsSet, pluginsManagerPluginsSet)
+        let pluginsSourcePluginsSet = Set(pluginsManager.plugins)
+        XCTAssertEqual(arrayControllerPluginsSet, pluginsSourcePluginsSet)
         super.tearDown()
     }
 }

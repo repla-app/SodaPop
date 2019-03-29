@@ -6,11 +6,11 @@
 //  Copyright © 2019 Roben Kleene. All rights reserved.
 //
 
-import Foundation
 import AppKit
-import XCTest
-import PlugPopTestHarness
+import Foundation
 @testable import PlugPop
+import PlugPopTestHarness
+import XCTest
 
 class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestCase {
     var arrayController: NSArrayController!
@@ -23,7 +23,7 @@ class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestC
                              withKeyPath: "plugins",
                              options: nil)
     }
-    
+
     override func tearDown() {
         guard let arrayControllerPlugins = arrayController.arrangedObjects as? [Plugin] else {
             XCTFail()
@@ -38,7 +38,7 @@ class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestC
 
 class ArrayControllerTestCase: PluginsManagerTestCase {
     var arrayController: NSArrayController!
-    
+
     override func setUp() {
         super.setUp()
         arrayController = NSArrayController()
@@ -47,7 +47,7 @@ class ArrayControllerTestCase: PluginsManagerTestCase {
                              withKeyPath: "plugins",
                              options: nil)
     }
-    
+
     override func tearDown() {
         guard let arrayControllerPlugins = arrayController.arrangedObjects as? [Plugin] else {
             XCTFail()

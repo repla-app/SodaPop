@@ -102,10 +102,14 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         let destinationPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: plugin.identifier)
         let newPlugin = Plugin.makePlugin(url: destinationPluginURL)!
         multiCollectionController.addObject(newPlugin)
+        guard let plugins = multiCollectionController.objects() as? [Plugin] else {
+            XCTFail()
+            return
+        }
         XCTAssertEqual(multiCollectionController.objects().count, 1, "The plugins count should be one")
         XCTAssertEqual(multiCollectionController.object(forKey: newPlugin.name)! as? Plugin, newPlugin)
         XCTAssertTrue(multiCollectionController.objects().contains(newPlugin))
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
+        XCTAssertFalse(plugins.contains(plugin))
 
         // Clean up
         do {
@@ -146,10 +150,14 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
         // Test New Plugins
+        guard let plugins = multiCollectionController.objects() as? [Plugin] else {
+            XCTFail()
+            return
+        }
         XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
+        XCTAssertFalse(plugins.contains(plugin))
 
         // Test New Plugins Changed Name
         XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,

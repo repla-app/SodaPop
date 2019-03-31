@@ -12,8 +12,8 @@ import PlugPopTestHarness
 import XCTest
 
 class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
-    func plugins() -> NSArray {
-        return pluginsManager.plugins as NSArray
+    func plugins() -> [Plugin] {
+        return pluginsManager.plugins
     }
 
     // MARK: File System Tests

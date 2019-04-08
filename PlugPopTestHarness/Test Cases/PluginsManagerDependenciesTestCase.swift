@@ -23,7 +23,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     }
 
     public var builtInPluginsPath: String {
-        return TestBundles.testPluginsDirectoryPath
+        return TestPlugins.testPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

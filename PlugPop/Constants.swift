@@ -9,5 +9,5 @@
 public let pluginNameKey = kPluginNameKey
 
 let defaultNewPluginIdentifierKey = kDefaultNewPluginIdentifierKey
-let pluginFileExtension = "replabundle"
+let pluginFileExtension = "replaplugin"
 let duplicatePluginsWithCounterMax = kDuplicatePluginsWithCounterMax

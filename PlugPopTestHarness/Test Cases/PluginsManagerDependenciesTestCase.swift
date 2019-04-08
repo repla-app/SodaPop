@@ -9,7 +9,7 @@
 import Foundation
 import PlainBagel
 import PlugPop
-import SodaTaster
+import SodaFountain
 import XCTest
 import XCTestTemp
 

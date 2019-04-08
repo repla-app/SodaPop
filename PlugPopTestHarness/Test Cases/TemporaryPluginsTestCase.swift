@@ -8,7 +8,7 @@
 
 import Foundation
 import PlugPop
-import SodaTaster
+import SodaFountain
 import XCTest
 import XCTestTemp
 

@@ -7,7 +7,7 @@
 //
 
 import PlugPop
-import SodaTaster
+import SodaFountain
 
 // MARK: Directories
 
@@ -22,7 +22,7 @@ public let testPluginSuffixes: [String] = [testPluginSuffix]
 public let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 public let testPluginSuffixesEmpty = [String]()
 
-// MARK: `SodaTaster`
+// MARK: `SodaFountain`
 
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.

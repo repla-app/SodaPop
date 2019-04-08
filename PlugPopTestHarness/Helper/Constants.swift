@@ -7,7 +7,7 @@
 //
 
 import PlugPop
-import SodaTaster
+import SodaFountain
 
 // MARK: Directories
 
@@ -22,31 +22,31 @@ public let testPluginSuffixes: [String] = [testPluginSuffix]
 public let testPluginSuffixesTwo: [String] = ["html", "md", "js"]
 public let testPluginSuffixesEmpty = [String]()
 
-// MARK: `SodaTaster`
+// MARK: `SodaFountain`
 
 // `IRB` is significantly smaller than `HTML`, some of tests copy the plugin,
 // so smaller is better.
-public let testPluginFileExtension = "replabundle"
-public let testPluginName = TestBundles.testPluginName
-public let testPluginNameTwo = TestBundles.testPluginNameTwo
-public let testPluginExtension = TestBundles.testPluginFileExtension
-public let testPluginCommand = TestBundles.testPluginCommand
-public let testPluginCommandTwo = TestBundles.testPluginCommandTwo
-public let testPluginNameDefault = TestBundles.testPluginNameCat
-public let testPluginNameNotDefault = TestBundles.testPluginNamePrint
-public let testPluginCommandNotDefault = TestBundles.testPluginCommandPrint
+public let testPluginFileExtension = "replaplugin"
+public let testPluginName = TestPlugins.testPluginName
+public let testPluginNameTwo = TestPlugins.testPluginNameTwo
+public let testPluginExtension = TestPlugins.testPluginFileExtension
+public let testPluginCommand = TestPlugins.testPluginCommand
+public let testPluginCommandTwo = TestPlugins.testPluginCommandTwo
+public let testPluginNameDefault = TestPlugins.testPluginNameCat
+public let testPluginNameNotDefault = TestPlugins.testPluginNamePrint
+public let testPluginCommandNotDefault = TestPlugins.testPluginCommandPrint
 public let testPluginDirectoryName = testPluginName.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNameTwo = testPluginNameTwo.appendingPathExtension(testPluginFileExtension)!
 public let testPluginDirectoryNoPluginName = "No Plugin".appendingPathExtension(testPluginFileExtension)!
-public let testPluginNameNonexistent = TestBundles.testPluginNameNonexistent
-public let testPluginNameHelloWorld = TestBundles.testPluginNameHelloWorld
-public let testPluginNameCat = TestBundles.testPluginNameCat
-public let testPluginNameLog = TestBundles.testPluginNameTestLog
-public let testPluginNamePrint = TestBundles.testPluginNamePrint
-public let testPluginNamePromptInterrupt = TestBundles.testPluginNameTestPromptInterrupt
-public let testPluginOptionsDisabledName = TestBundles.testPluginOptionsDisabledName
-public let testPluginOptionsEnabledName = TestBundles.testPluginOptionsEnabledName
-public let testPluginOptionsNilName = TestBundles.testPluginOptionsNilName
+public let testPluginNameNonexistent = TestPlugins.testPluginNameNonexistent
+public let testPluginNameHelloWorld = TestPlugins.testPluginNameHelloWorld
+public let testPluginNameCat = TestPlugins.testPluginNameCat
+public let testPluginNameLog = TestPlugins.testPluginNameTestLog
+public let testPluginNamePrint = TestPlugins.testPluginNamePrint
+public let testPluginNamePromptInterrupt = TestPlugins.testPluginNameTestPromptInterrupt
+public let testPluginOptionsDisabledName = TestPlugins.testPluginOptionsDisabledName
+public let testPluginOptionsEnabledName = TestPlugins.testPluginOptionsEnabledName
+public let testPluginOptionsNilName = TestPlugins.testPluginOptionsNilName
 
 // MARK: Directories & Files
 

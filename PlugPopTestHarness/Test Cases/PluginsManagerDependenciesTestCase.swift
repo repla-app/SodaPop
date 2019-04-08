@@ -9,7 +9,7 @@
 import Foundation
 import PlainBagel
 import PlugPop
-import SodaTaster
+import SodaFountain
 import XCTest
 import XCTestTemp
 
@@ -23,7 +23,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
     }
 
     public var builtInPluginsPath: String {
-        return TestBundles.testPluginsDirectoryPath
+        return TestPlugins.testPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

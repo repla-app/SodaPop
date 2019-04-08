@@ -8,7 +8,7 @@
 
 import Foundation
 import PlugPop
-import SodaTaster
+import SodaFountain
 import XCTest
 import XCTestTemp
 
@@ -40,7 +40,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
 
         // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL = TestBundles.urlForPlugin(withName: testPluginName)!
+        let bundleResourcesPluginURL = TestPlugins.urlForPlugin(withName: testPluginName)!
         let filename = testPluginName.appendingPathExtension(testPluginExtension)!
 
         tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)

@@ -2,4 +2,4 @@ github "robenkleene/BubbleUp" ~> 1.1
 github "robenkleene/StringPlusPath" ~> 1.1
 github "robenkleene/PlainBagel" ~> 0.2
 github "robenkleene/XCTestTemp" ~> 1.2
-github "repla-app/SodaTaster" ~> 3.3
+github "repla-app/SodaFountain" ~> 3.4

@@ -49,6 +49,7 @@ extension Plugin {
         static let transparentBackground = "WCTransparentBackground"
         static let autoShowLog = "WCAutoShowLog"
         static let promptInterrupt = "WCPromptInterrupt"
+        static let usesEnvironment = "WCUsesEnvironment"
     }
 
     @objc public class func makePlugin(url: URL) -> Plugin? {

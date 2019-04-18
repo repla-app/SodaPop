@@ -36,6 +36,7 @@ extension Plugin {
         case invalidAutoShowLogError(infoDictionary: [AnyHashable: Any])
         case invalidTransparentBackgroundError(infoDictionary: [AnyHashable: Any])
         case invalidPromptInterruptError(infoDictionary: [AnyHashable: Any])
+        case invalidUsesEnvironmentError(infoDictionary: [AnyHashable: Any])
     }
 
     struct InfoDictionaryKeys {
@@ -49,6 +50,7 @@ extension Plugin {
         static let transparentBackground = "WCTransparentBackground"
         static let autoShowLog = "WCAutoShowLog"
         static let promptInterrupt = "WCPromptInterrupt"
+        static let usesEnvironment = "WCUsesEnvironment"
     }
 
     @objc public class func makePlugin(url: URL) -> Plugin? {
@@ -81,6 +83,8 @@ extension Plugin {
             print("Plugin editable is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidPromptInterruptError(infoDictionary) {
             print("Plugin prompt interrupt is invalid \(infoDictionary).")
+        } catch let PluginLoadError.invalidUsesEnvironmentError(infoDictionary) {
+            print("Plugin uses environment is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
             print("Plugin debug mode enabled is invalid \(infoDictionary).")
         } catch let PluginLoadError.invalidAutoShowLogError(infoDictionary) {
@@ -109,6 +113,7 @@ extension Plugin {
                 let transparentBackground = try validTransparentBackground(infoDictionary: infoDictionary)
                 let autoShowLog = try validAutoShowLog(infoDictionary: infoDictionary)
                 let promptInterrupt = try validPromptInterrupt(infoDictionary: infoDictionary)
+                let usesEnvironment = try validUsesEnvironment(infoDictionary: infoDictionary)
 
                 // Plugin
                 return Plugin(bundle: bundle,
@@ -123,7 +128,8 @@ extension Plugin {
                               debugModeEnabled: debugModeEnabled,
                               transparentBackground: transparentBackground,
                               autoShowLog: autoShowLog,
-                              promptInterrupt: promptInterrupt)
+                              promptInterrupt: promptInterrupt,
+                              usesEnvironment: usesEnvironment)
             }
         } catch let error as NSError {
             throw error
@@ -232,6 +238,18 @@ extension Plugin {
 
         if let _: AnyObject = infoDictionary[InfoDictionaryKeys.promptInterrupt] as AnyObject? {
             throw PluginLoadError.invalidPromptInterruptError(infoDictionary: infoDictionary)
+        }
+
+        return nil
+    }
+
+    class func validUsesEnvironment(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+        if let usesEnvironment = infoDictionary[InfoDictionaryKeys.usesEnvironment] as? Int {
+            return NSNumber(value: usesEnvironment as Int).boolValue
+        }
+
+        if let _: AnyObject = infoDictionary[InfoDictionaryKeys.usesEnvironment] as AnyObject? {
+            throw PluginLoadError.invalidUsesEnvironmentError(infoDictionary: infoDictionary)
         }
 
         return nil

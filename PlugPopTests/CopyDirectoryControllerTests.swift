@@ -142,7 +142,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
                                              options: [
                                                  .skipsHiddenFiles,
                                                  .skipsSubdirectoryDescendants
-                ])
+                                             ])
             XCTAssertFalse(contents.isEmpty, "The contents should not be empty")
         } catch {
             XCTAssertTrue(false, "Getting the contents should succeed")

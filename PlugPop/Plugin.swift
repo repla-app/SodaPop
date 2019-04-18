@@ -20,7 +20,8 @@ public class Plugin: POPPlugin {
 
     let bundle: Bundle
     let hidden: Bool
-    public let promptInterrupt: Bool
+    public let promptInterrupt: Bool?
+    public let usesEnvironment: Bool?
     public let debugModeEnabled: Bool?
     public let autoShowLog: Bool?
     public let transparentBackground: Bool?
@@ -38,7 +39,8 @@ public class Plugin: POPPlugin {
          debugModeEnabled: Bool?,
          transparentBackground: Bool?,
          autoShowLog: Bool?,
-         promptInterrupt: Bool?) {
+         promptInterrupt: Bool?,
+         usesEnvironment: Bool?) {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType
         self.bundle = bundle
@@ -56,11 +58,8 @@ public class Plugin: POPPlugin {
         self.debugModeEnabled = debugModeEnabled
         self.transparentBackground = transparentBackground
         self.autoShowLog = autoShowLog
-        if let promptInterrupt = promptInterrupt {
-            self.promptInterrupt = promptInterrupt
-        } else {
-            self.promptInterrupt = false
-        }
+        self.promptInterrupt = promptInterrupt
+        self.usesEnvironment = usesEnvironment
     }
 
     // MARK: Paths

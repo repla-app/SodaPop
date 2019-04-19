@@ -20,11 +20,11 @@ public class Plugin: POPPlugin {
 
     let bundle: Bundle
     let hidden: Bool
-    public let promptInterrupt: Bool?
-    public let usesEnvironment: Bool?
-    public let debugModeEnabled: Bool?
-    public let autoShowLog: Bool?
-    public let transparentBackground: Bool?
+    public let promptInterrupt: Bool
+    public let usesEnvironment: Bool
+    public let debugModeEnabled: Bool
+    public let autoShowLog: Bool
+    public let transparentBackground: Bool
     let pluginType: PluginType
 
     init(bundle: Bundle,
@@ -36,11 +36,11 @@ public class Plugin: POPPlugin {
          suffixes: [String]?,
          hidden: Bool,
          editable: Bool,
-         debugModeEnabled: Bool?,
-         transparentBackground: Bool?,
-         autoShowLog: Bool?,
-         promptInterrupt: Bool?,
-         usesEnvironment: Bool?) {
+         debugModeEnabled: Bool,
+         transparentBackground: Bool,
+         autoShowLog: Bool,
+         promptInterrupt: Bool,
+         usesEnvironment: Bool) {
         self.infoDictionary = infoDictionary
         self.pluginType = pluginType
         self.bundle = bundle

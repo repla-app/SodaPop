@@ -231,7 +231,7 @@ extension Plugin {
         return true
     }
 
-    class func validPromptInterrupt(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+    class func validPromptInterrupt(infoDictionary: [AnyHashable: Any]) throws -> Bool {
         if let promptInterrupt = infoDictionary[InfoDictionaryKeys.promptInterrupt] as? Int {
             return NSNumber(value: promptInterrupt as Int).boolValue
         }
@@ -240,10 +240,10 @@ extension Plugin {
             throw PluginLoadError.invalidPromptInterruptError(infoDictionary: infoDictionary)
         }
 
-        return nil
+        return false
     }
 
-    class func validUsesEnvironment(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+    class func validUsesEnvironment(infoDictionary: [AnyHashable: Any]) throws -> Bool {
         if let usesEnvironment = infoDictionary[InfoDictionaryKeys.usesEnvironment] as? Int {
             return NSNumber(value: usesEnvironment as Int).boolValue
         }
@@ -252,10 +252,10 @@ extension Plugin {
             throw PluginLoadError.invalidUsesEnvironmentError(infoDictionary: infoDictionary)
         }
 
-        return nil
+        return false
     }
 
-    class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+    class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool {
         if let debugModeEnabled = infoDictionary[InfoDictionaryKeys.debugModeEnabled] as? Int {
             return NSNumber(value: debugModeEnabled as Int).boolValue
         }
@@ -264,10 +264,10 @@ extension Plugin {
             throw PluginLoadError.invalidDebugModeEnabledError(infoDictionary: infoDictionary)
         }
 
-        return nil
+        return false
     }
 
-    class func validTransparentBackground(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+    class func validTransparentBackground(infoDictionary: [AnyHashable: Any]) throws -> Bool {
         if let transparentBackground = infoDictionary[InfoDictionaryKeys.transparentBackground] as? Int {
             return NSNumber(value: transparentBackground as Int).boolValue
         }
@@ -276,10 +276,10 @@ extension Plugin {
             throw PluginLoadError.invalidTransparentBackgroundError(infoDictionary: infoDictionary)
         }
 
-        return nil
+        return false
     }
 
-    class func validAutoShowLog(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
+    class func validAutoShowLog(infoDictionary: [AnyHashable: Any]) throws -> Bool {
         if let autoShowLog = infoDictionary[InfoDictionaryKeys.autoShowLog] as? Int {
             return NSNumber(value: autoShowLog as Int).boolValue
         }
@@ -288,6 +288,6 @@ extension Plugin {
             throw PluginLoadError.invalidAutoShowLogError(infoDictionary: infoDictionary)
         }
 
-        return nil
+        return false
     }
 }

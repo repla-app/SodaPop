@@ -23,7 +23,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.command, "hello_world.rb")
         XCTAssertEqual(helloWorldPlugin.hidden, false)
         XCTAssertEqual(helloWorldPlugin.editable, false)
-        XCTAssertEqual(helloWorldPlugin.promptInterrupt, nil)
+        XCTAssertEqual(helloWorldPlugin.promptInterrupt, false)
         XCTAssertEqual(helloWorldPlugin.usesEnvironment, true)
     }
 
@@ -39,7 +39,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(logPlugin.command, "echo.sh")
         XCTAssertEqual(logPlugin.hidden, false)
         XCTAssertEqual(logPlugin.editable, false)
-        XCTAssertEqual(logPlugin.promptInterrupt, nil)
+        XCTAssertEqual(logPlugin.promptInterrupt, false)
         XCTAssertEqual(logPlugin.usesEnvironment, false)
     }
 
@@ -65,9 +65,9 @@ class PluginInitializationTests: PluginsManagerTestCase {
             XCTAssertTrue(false)
             return
         }
-        XCTAssertNil(optionsNilPlugin.debugModeEnabled)
-        XCTAssertNil(optionsNilPlugin.autoShowLog)
-        XCTAssertNil(optionsNilPlugin.transparentBackground)
+        XCTAssertFalse(optionsNilPlugin.debugModeEnabled)
+        XCTAssertFalse(optionsNilPlugin.autoShowLog)
+        XCTAssertFalse(optionsNilPlugin.transparentBackground)
 
         guard let optionsEnabledPlugin = pluginsManager.plugin(withName: testPluginOptionsEnabledName) else {
             XCTAssertTrue(false)

@@ -255,7 +255,7 @@ extension Plugin {
         return false
     }
 
-    class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool {
+    class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
         if let debugModeEnabled = infoDictionary[InfoDictionaryKeys.debugModeEnabled] as? Int {
             return NSNumber(value: debugModeEnabled as Int).boolValue
         }
@@ -264,7 +264,7 @@ extension Plugin {
             throw PluginLoadError.invalidDebugModeEnabledError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return nil
     }
 
     class func validTransparentBackground(infoDictionary: [AnyHashable: Any]) throws -> Bool {
@@ -279,7 +279,7 @@ extension Plugin {
         return false
     }
 
-    class func validAutoShowLog(infoDictionary: [AnyHashable: Any]) throws -> Bool {
+    class func validAutoShowLog(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
         if let autoShowLog = infoDictionary[InfoDictionaryKeys.autoShowLog] as? Int {
             return NSNumber(value: autoShowLog as Int).boolValue
         }
@@ -288,6 +288,6 @@ extension Plugin {
             throw PluginLoadError.invalidAutoShowLogError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return nil
     }
 }

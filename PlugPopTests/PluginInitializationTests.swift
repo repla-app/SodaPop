@@ -65,8 +65,8 @@ class PluginInitializationTests: PluginsManagerTestCase {
             XCTAssertTrue(false)
             return
         }
-        XCTAssertFalse(optionsNilPlugin.debugModeEnabled)
-        XCTAssertFalse(optionsNilPlugin.autoShowLog)
+        XCTAssertNil(optionsNilPlugin.debugModeEnabled)
+        XCTAssertNil(optionsNilPlugin.autoShowLog)
         XCTAssertFalse(optionsNilPlugin.transparentBackground)
 
         guard let optionsEnabledPlugin = pluginsManager.plugin(withName: testPluginOptionsEnabledName) else {

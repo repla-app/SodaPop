@@ -22,8 +22,10 @@ public class Plugin: POPPlugin {
     let hidden: Bool
     public let promptInterrupt: Bool
     public let usesEnvironment: Bool
-    public let debugModeEnabled: Bool
-    public let autoShowLog: Bool
+    // `debugModeEnabled` is three state, `nil` means use the user prefrence
+    public let debugModeEnabled: Bool?
+    // `autoShowLog` is three state, `nil` means use the user prefrence
+    public let autoShowLog: Bool?
     public let transparentBackground: Bool
     let pluginType: PluginType
 
@@ -36,9 +38,9 @@ public class Plugin: POPPlugin {
          suffixes: [String]?,
          hidden: Bool,
          editable: Bool,
-         debugModeEnabled: Bool,
+         debugModeEnabled: Bool?,
          transparentBackground: Bool,
-         autoShowLog: Bool,
+         autoShowLog: Bool?,
          promptInterrupt: Bool,
          usesEnvironment: Bool) {
         self.infoDictionary = infoDictionary

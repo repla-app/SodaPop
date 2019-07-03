@@ -1,4 +1,4 @@
-SCHEME = PlugPop
+SCHEME = SodaPop
 
 .PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat
 

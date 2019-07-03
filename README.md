@@ -1,1 +1,1 @@
-# `PlugPop` [![Build Status](https://travis-ci.org/repla-app/PlugPop.svg?branch=master)](https://travis-ci.org/repla-app/PlugPop)
+# `SodaPop` [![Build Status](https://travis-ci.org/repla-app/SodaPop.svg?branch=master)](https://travis-ci.org/repla-app/SodaPop)

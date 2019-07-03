@@ -1,0 +1,984 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */; };
+		450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */; };
+		450CA0811EBACDAC00D08D2A /* MultiCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */; };
+		450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06F1EBACDAC00D08D2A /* Plugin.swift */; };
+		450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */; };
+		450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */; };
+		450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */; };
+		450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */; };
+		450CA0881EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */; };
+		450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0761EBACDAC00D08D2A /* PluginsDirectoryManager.swift */; };
+		450CA08A1EBACDAC00D08D2A /* PluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0771EBACDAC00D08D2A /* PluginsManager.swift */; };
+		450CA08B1EBACDAC00D08D2A /* POPKeyToObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CA0781EBACDAC00D08D2A /* POPKeyToObjectController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		450CA08C1EBACDAC00D08D2A /* POPKeyToObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0791EBACDAC00D08D2A /* POPKeyToObjectController.m */; };
+		450CA08D1EBACDAC00D08D2A /* POPPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CA07A1EBACDAC00D08D2A /* POPPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		450CA08E1EBACDAC00D08D2A /* POPPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 450CA07B1EBACDAC00D08D2A /* POPPlugin.m */; };
+		450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */; };
+		450CA0AD1EBACDF000D08D2A /* DuplicatePluginControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0941EBACDF000D08D2A /* DuplicatePluginControllerTests.swift */; };
+		450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */; };
+		450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */; };
+		450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */; };
+		450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */; };
+		450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09D1EBACDF000D08D2A /* PluginsDataControllerTests.swift */; };
+		450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */; };
+		450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */; };
+		450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */; };
+		450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */; };
+		450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */; };
+		450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A41EBACDF000D08D2A /* PluginTests.swift */; };
+		4518471E1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4518471F1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518471D1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m */; };
+		451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
+		451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
+		453126941EC93BEA00248FA9 /* POPDefaultNewPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		453126951EC93BEA00248FA9 /* POPDefaultNewPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */; };
+		45355CB01F2E3BA00003127D /* StringPlusPath.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45355CB11F2E64C50003127D /* BubbleUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; };
+		45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 451847211EBE8AC60004FCAE /* BubbleUp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; };
+		453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4536957F1ED259EB00BDA37F /* OutOfTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4538283421582DB200552088 /* SodaPopTestHarness.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538283221582DB200552088 /* SodaPopTestHarness.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4538286E215830A900552088 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285D215830A900552088 /* Constants.swift */; };
+		4538286F215830A900552088 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538285E215830A900552088 /* XCTestCase+BundleResources.swift */; };
+		45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45382871215830A900552088 /* PluginsManagerFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382860215830A900552088 /* PluginsManagerFactoryType.swift */; };
+		45382872215830A900552088 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382861215830A900552088 /* TestConstants.swift */; };
+		45382873215830A900552088 /* PluginsManagerOwnerType+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */; };
+		45382874215830A900552088 /* POPKeyValueObservingTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */; };
+		45382875215830A900552088 /* PluginsManagerOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382865215830A900552088 /* PluginsManagerOwnerType.swift */; };
+		45382876215830A900552088 /* TemporaryPluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */; };
+		45382877215830A900552088 /* PluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */; };
+		45382878215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */; };
+		45382879215830A900552088 /* PluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45382869215830A900552088 /* PluginTestCase.swift */; };
+		4538287A215830A900552088 /* PluginOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286A215830A900552088 /* PluginOwnerType.swift */; };
+		4538287B215830A900552088 /* TemporaryPluginsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */; };
+		4538287C215830A900552088 /* TemporaryPluginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286C215830A900552088 /* TemporaryPluginTestCase.swift */; };
+		4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538286D215830A900552088 /* PluginsManagerTestCase.swift */; };
+		4538287E215831C000552088 /* SodaPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* SodaPop.framework */; };
+		4538287F215831D900552088 /* SodaPopTestHarness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4538283021582DB100552088 /* SodaPopTestHarness.framework */; };
+		45382882215832DF00552088 /* SodaFountain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* SodaFountain.framework */; };
+		45382883215832F200552088 /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
+		453828842158330F00552088 /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
+		4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
+		456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* POPPluginsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		456783041EBFDC7600C9EC4A /* POPPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* POPPluginsController.m */; };
+		456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456783051EBFE5D100C9EC4A /* PluginMaker.swift */; };
+		4568A65F20143164002E248C /* PlainBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; };
+		4568A66220143897002E248C /* PlainBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; };
+		4568A66320143958002E248C /* PlainBagel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4568A65D20143157002E248C /* PlainBagel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45753DD61E9AF75B00823315 /* SodaPop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753DCC1E9AF75B00823315 /* SodaPop.framework */; };
+		45753DDD1E9AF75B00823315 /* SodaPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753DCF1E9AF75B00823315 /* SodaPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758ED1F7353C90028619D /* MockPluginsManager.swift */; };
+		45A452011FF84C7400687BEA /* MockPluginsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C758EB1F734FC80028619D /* MockPluginsController.swift */; };
+		45A47C9B2169722B008897C5 /* POPPlugin+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A47C992169722B008897C5 /* POPPlugin+Validation.m */; };
+		45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A47C9A2169722B008897C5 /* POPPlugin+Validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45A47C9E2169723D008897C5 /* PluginValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A47C9D2169723D008897C5 /* PluginValidationTests.swift */; };
+		45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */; };
+		45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */; };
+		45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DA31B31FF71FFB00531D9E /* TestConstants.swift */; };
+		45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */; };
+		45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */; };
+		45E555501ED9FF880093D234 /* SodaFountain.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45E5554E1ED9FF640093D234 /* SodaFountain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45F0A386224D900000E12298 /* ArrayControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0A385224D900000E12298 /* ArrayControllerTestCase.swift */; };
+		45FCE6311FF6DC4C00CCBA6B /* StringPlusPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451847231EBE8AC80004FCAE /* StringPlusPath.framework */; };
+		45FCE6331FF6DC6C00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */; };
+		45FCE6341FF6DC7000CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */; };
+		45FCE63A1FF6DFE700CCBA6B /* XCTestTemp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; };
+		45FCF9EF1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4530BD9121601F3D00A256AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4538282F21582DB100552088;
+			remoteInfo = SodaPopTestHarness;
+		};
+		4530BD9321601F4300A256AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45753DCB1E9AF75B00823315;
+			remoteInfo = SodaPop;
+		};
+		45753DD71E9AF75B00823315 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45753DC31E9AF75B00823315 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45753DCB1E9AF75B00823315;
+			remoteInfo = SodaPop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		454D4C981ED1FC60007ABBD7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4568A66320143958002E248C /* PlainBagel.framework in CopyFiles */,
+				45355CB21F2E64D60003127D /* BubbleUp.framework in CopyFiles */,
+				45355CB01F2E3BA00003127D /* StringPlusPath.framework in CopyFiles */,
+				45E555501ED9FF880093D234 /* SodaFountain.framework in CopyFiles */,
+				453695811ED259F300BDA37F /* OutOfTouch.framework in CopyFiles */,
+				454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyDirectoryController.swift; sourceTree = "<group>"; };
+		450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuplicatePluginController.swift; sourceTree = "<group>"; };
+		450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiCollectionController.swift; sourceTree = "<group>"; };
+		450CA06F1EBACDAC00D08D2A /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Equality.swift"; sourceTree = "<group>"; };
+		450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Initialization.swift"; sourceTree = "<group>"; };
+		450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataController.swift; sourceTree = "<group>"; };
+		450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsDataController+Paths.swift"; sourceTree = "<group>"; };
+		450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDirectoryEventHandler.swift; sourceTree = "<group>"; };
+		450CA0761EBACDAC00D08D2A /* PluginsDirectoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDirectoryManager.swift; sourceTree = "<group>"; };
+		450CA0771EBACDAC00D08D2A /* PluginsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManager.swift; sourceTree = "<group>"; };
+		450CA0781EBACDAC00D08D2A /* POPKeyToObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPKeyToObjectController.h; sourceTree = "<group>"; };
+		450CA0791EBACDAC00D08D2A /* POPKeyToObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPKeyToObjectController.m; sourceTree = "<group>"; };
+		450CA07A1EBACDAC00D08D2A /* POPPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPlugin.h; sourceTree = "<group>"; };
+		450CA07B1EBACDAC00D08D2A /* POPPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPPlugin.m; sourceTree = "<group>"; };
+		450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyDirectoryControllerTests.swift; sourceTree = "<group>"; };
+		450CA0941EBACDF000D08D2A /* DuplicatePluginControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuplicatePluginControllerTests.swift; sourceTree = "<group>"; };
+		450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesAndPluginsDirectoryManagerTests.swift; sourceTree = "<group>"; };
+		450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiCollectionControllerTests.swift; sourceTree = "<group>"; };
+		450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginInitializationTests.swift; sourceTree = "<group>"; };
+		450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsDataControllerEventTestCase.swift; sourceTree = "<group>"; };
+		450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsDataControllerEventTestCase+FileSystemHelpers.swift"; sourceTree = "<group>"; };
+		450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataControllerFileSystemTests.swift; sourceTree = "<group>"; };
+		450CA09D1EBACDF000D08D2A /* PluginsDataControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataControllerTests.swift; sourceTree = "<group>"; };
+		450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDirectoryManagerTests.swift; sourceTree = "<group>"; };
+		450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerDefaultNewPluginTests.swift; sourceTree = "<group>"; };
+		450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerFileSystemTests.swift; sourceTree = "<group>"; };
+		450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerTests.swift; sourceTree = "<group>"; };
+		450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsPathHelperTests.swift; sourceTree = "<group>"; };
+		450CA0A41EBACDF000D08D2A /* PluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTests.swift; sourceTree = "<group>"; };
+		4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POPPluginsController+UniquePluginName.h"; sourceTree = "<group>"; };
+		4518471D1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POPPluginsController+UniquePluginName.m"; sourceTree = "<group>"; };
+		451847211EBE8AC60004FCAE /* BubbleUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BubbleUp.framework; path = Carthage/Build/Mac/BubbleUp.framework; sourceTree = "<group>"; };
+		451847231EBE8AC80004FCAE /* StringPlusPath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StringPlusPath.framework; path = Carthage/Build/Mac/StringPlusPath.framework; sourceTree = "<group>"; };
+		453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDefaultNewPluginManager.h; sourceTree = "<group>"; };
+		453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPDefaultNewPluginManager.m; sourceTree = "<group>"; };
+		4536957F1ED259EB00BDA37F /* OutOfTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OutOfTouch.framework; path = Carthage/Build/Mac/OutOfTouch.framework; sourceTree = "<group>"; };
+		4538283021582DB100552088 /* SodaPopTestHarness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SodaPopTestHarness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4538283221582DB200552088 /* SodaPopTestHarness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SodaPopTestHarness.h; sourceTree = "<group>"; };
+		4538283321582DB200552088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4538285D215830A900552088 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4538285E215830A900552088 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
+		4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPKeyValueObservingTestsHelper.h; sourceTree = "<group>"; };
+		45382860215830A900552088 /* PluginsManagerFactoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerFactoryType.swift; sourceTree = "<group>"; };
+		45382861215830A900552088 /* TestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsManagerOwnerType+Trash.swift"; sourceTree = "<group>"; };
+		45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPKeyValueObservingTestsHelper.m; sourceTree = "<group>"; };
+		45382865215830A900552088 /* PluginsManagerOwnerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerOwnerType.swift; sourceTree = "<group>"; };
+		45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsManagerTestCase.swift; sourceTree = "<group>"; };
+		45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerDependenciesTestCase.swift; sourceTree = "<group>"; };
+		45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsManagerDependenciesTestCase.swift; sourceTree = "<group>"; };
+		45382869215830A900552088 /* PluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTestCase.swift; sourceTree = "<group>"; };
+		4538286A215830A900552088 /* PluginOwnerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginOwnerType.swift; sourceTree = "<group>"; };
+		4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginsTestCase.swift; sourceTree = "<group>"; };
+		4538286C215830A900552088 /* TemporaryPluginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryPluginTestCase.swift; sourceTree = "<group>"; };
+		4538286D215830A900552088 /* PluginsManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerTestCase.swift; sourceTree = "<group>"; };
+		4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POPPluginsSource.h; sourceTree = "<group>"; };
+		454D4C941ED1F6F7007ABBD7 /* POPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPConstants.h; sourceTree = "<group>"; };
+		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
+		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		456783011EBFDC7600C9EC4A /* POPPluginsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPluginsController.h; sourceTree = "<group>"; };
+		456783021EBFDC7600C9EC4A /* POPPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPPluginsController.m; sourceTree = "<group>"; };
+		456783051EBFE5D100C9EC4A /* PluginMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginMaker.swift; sourceTree = "<group>"; };
+		4568A65D20143157002E248C /* PlainBagel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlainBagel.framework; path = Carthage/Build/Mac/PlainBagel.framework; sourceTree = "<group>"; };
+		45753DCC1E9AF75B00823315 /* SodaPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SodaPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45753DCF1E9AF75B00823315 /* SodaPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SodaPop.h; sourceTree = "<group>"; };
+		45753DD01E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45753DD51E9AF75B00823315 /* SodaPopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SodaPopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45753DDC1E9AF75B00823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45A47C992169722B008897C5 /* POPPlugin+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POPPlugin+Validation.m"; sourceTree = "<group>"; };
+		45A47C9A2169722B008897C5 /* POPPlugin+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POPPlugin+Validation.h"; sourceTree = "<group>"; };
+		45A47C9D2169723D008897C5 /* PluginValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginValidationTests.swift; sourceTree = "<group>"; };
+		45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginDataEventManager.swift; sourceTree = "<group>"; };
+		45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsDataControllerEventTestCase.swift; sourceTree = "<group>"; };
+		45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsManagerConfiguration.swift; sourceTree = "<group>"; };
+		45C758EB1F734FC80028619D /* MockPluginsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPluginsController.swift; sourceTree = "<group>"; };
+		45C758ED1F7353C90028619D /* MockPluginsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPluginsManager.swift; sourceTree = "<group>"; };
+		45DA31B31FF71FFB00531D9E /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		45E5554E1ED9FF640093D234 /* SodaFountain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaFountain.framework; path = Carthage/Build/Mac/SodaFountain.framework; sourceTree = "<group>"; };
+		45F0A385224D900000E12298 /* ArrayControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayControllerTestCase.swift; sourceTree = "<group>"; };
+		45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POPPluginsController+POPDefaultNewPluginManagerDataSource.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4538282C21582DB100552088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4538287E215831C000552088 /* SodaPop.framework in Frameworks */,
+				45382882215832DF00552088 /* SodaFountain.framework in Frameworks */,
+				45382883215832F200552088 /* XCTestTemp.framework in Frameworks */,
+				453828842158330F00552088 /* StringPlusPath.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DC81E9AF75B00823315 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				451847221EBE8AC60004FCAE /* BubbleUp.framework in Frameworks */,
+				451847241EBE8AC80004FCAE /* StringPlusPath.framework in Frameworks */,
+				4568A65F20143164002E248C /* PlainBagel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DD21E9AF75B00823315 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4538287F215831D900552088 /* SodaPopTestHarness.framework in Frameworks */,
+				45753DD61E9AF75B00823315 /* SodaPop.framework in Frameworks */,
+				453695801ED259EB00BDA37F /* OutOfTouch.framework in Frameworks */,
+				45355CB11F2E64C50003127D /* BubbleUp.framework in Frameworks */,
+				45FCE6311FF6DC4C00CCBA6B /* StringPlusPath.framework in Frameworks */,
+				45FCE63A1FF6DFE700CCBA6B /* XCTestTemp.framework in Frameworks */,
+				4568A66220143897002E248C /* PlainBagel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		451847201EBE8AC50004FCAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4568A65D20143157002E248C /* PlainBagel.framework */,
+				45E5554E1ED9FF640093D234 /* SodaFountain.framework */,
+				4536957F1ED259EB00BDA37F /* OutOfTouch.framework */,
+				454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */,
+				451847231EBE8AC80004FCAE /* StringPlusPath.framework */,
+				451847211EBE8AC60004FCAE /* BubbleUp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4538283121582DB100552088 /* SodaPopTestHarness */ = {
+			isa = PBXGroup;
+			children = (
+				4538285C215830A900552088 /* Helper */,
+				45382864215830A900552088 /* Test Cases */,
+				4538283221582DB200552088 /* SodaPopTestHarness.h */,
+				4538283321582DB200552088 /* Info.plist */,
+			);
+			path = SodaPopTestHarness;
+			sourceTree = "<group>";
+		};
+		4538285C215830A900552088 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4538285D215830A900552088 /* Constants.swift */,
+				4538285E215830A900552088 /* XCTestCase+BundleResources.swift */,
+				4538285F215830A900552088 /* POPKeyValueObservingTestsHelper.h */,
+				45382860215830A900552088 /* PluginsManagerFactoryType.swift */,
+				45382861215830A900552088 /* TestConstants.swift */,
+				45382862215830A900552088 /* PluginsManagerOwnerType+Trash.swift */,
+				45382863215830A900552088 /* POPKeyValueObservingTestsHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		45382864215830A900552088 /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				45382865215830A900552088 /* PluginsManagerOwnerType.swift */,
+				45382866215830A900552088 /* TemporaryPluginsManagerTestCase.swift */,
+				45382867215830A900552088 /* PluginsManagerDependenciesTestCase.swift */,
+				45382868215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift */,
+				45382869215830A900552088 /* PluginTestCase.swift */,
+				4538286A215830A900552088 /* PluginOwnerType.swift */,
+				4538286B215830A900552088 /* TemporaryPluginsTestCase.swift */,
+				4538286C215830A900552088 /* TemporaryPluginTestCase.swift */,
+				4538286D215830A900552088 /* PluginsManagerTestCase.swift */,
+			);
+			path = "Test Cases";
+			sourceTree = "<group>";
+		};
+		45753DC21E9AF75B00823315 = {
+			isa = PBXGroup;
+			children = (
+				45753DCE1E9AF75B00823315 /* SodaPop */,
+				45753DD91E9AF75B00823315 /* SodaPopTests */,
+				4538283121582DB100552088 /* SodaPopTestHarness */,
+				45753DCD1E9AF75B00823315 /* Products */,
+				451847201EBE8AC50004FCAE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		45753DCD1E9AF75B00823315 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45753DCC1E9AF75B00823315 /* SodaPop.framework */,
+				45753DD51E9AF75B00823315 /* SodaPopTests.xctest */,
+				4538283021582DB100552088 /* SodaPopTestHarness.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45753DCE1E9AF75B00823315 /* SodaPop */ = {
+			isa = PBXGroup;
+			children = (
+				45A47C9A2169722B008897C5 /* POPPlugin+Validation.h */,
+				45A47C992169722B008897C5 /* POPPlugin+Validation.m */,
+				45753DCF1E9AF75B00823315 /* SodaPop.h */,
+				454D4C941ED1F6F7007ABBD7 /* POPConstants.h */,
+				45FCF9EE1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift */,
+				453126911EC93BEA00248FA9 /* POPDefaultNewPluginManager.h */,
+				453126921EC93BEA00248FA9 /* POPDefaultNewPluginManager.m */,
+				456782FF1EBFD2B000C9EC4A /* Constants.swift */,
+				450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */,
+				450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */,
+				450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */,
+				450CA06F1EBACDAC00D08D2A /* Plugin.swift */,
+				450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */,
+				450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */,
+				450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */,
+				450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */,
+				450CA0751EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift */,
+				450CA0761EBACDAC00D08D2A /* PluginsDirectoryManager.swift */,
+				450CA0771EBACDAC00D08D2A /* PluginsManager.swift */,
+				45C079021F73466C0050A8E4 /* PluginsManagerConfiguration.swift */,
+				450CA0781EBACDAC00D08D2A /* POPKeyToObjectController.h */,
+				450CA0791EBACDAC00D08D2A /* POPKeyToObjectController.m */,
+				450CA07A1EBACDAC00D08D2A /* POPPlugin.h */,
+				450CA07B1EBACDAC00D08D2A /* POPPlugin.m */,
+				45753DD01E9AF75B00823315 /* Info.plist */,
+				456783051EBFE5D100C9EC4A /* PluginMaker.swift */,
+				4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */,
+				4518471D1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m */,
+				4543EFE71FEC3ADD00C1D969 /* POPPluginsSource.h */,
+				456783011EBFDC7600C9EC4A /* POPPluginsController.h */,
+				456783021EBFDC7600C9EC4A /* POPPluginsController.m */,
+				45BC26A41F6F22A1006647D7 /* FileManagerHelper.swift */,
+			);
+			path = SodaPop;
+			sourceTree = "<group>";
+		};
+		45753DD91E9AF75B00823315 /* SodaPopTests */ = {
+			isa = PBXGroup;
+			children = (
+				45A47C9D2169723D008897C5 /* PluginValidationTests.swift */,
+				45FCE62D1FF6D81B00CCBA6B /* Helper */,
+				450CA0931EBACDF000D08D2A /* CopyDirectoryControllerTests.swift */,
+				450CA0941EBACDF000D08D2A /* DuplicatePluginControllerTests.swift */,
+				450CA0951EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift */,
+				450CA0961EBACDF000D08D2A /* MultiCollectionControllerTests.swift */,
+				450CA0971EBACDF000D08D2A /* PluginInitializationTests.swift */,
+				450CA09C1EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift */,
+				450CA09D1EBACDF000D08D2A /* PluginsDataControllerTests.swift */,
+				450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */,
+				450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */,
+				450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */,
+				450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */,
+				450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */,
+				450CA0A41EBACDF000D08D2A /* PluginTests.swift */,
+				45753DDC1E9AF75B00823315 /* Info.plist */,
+			);
+			path = SodaPopTests;
+			sourceTree = "<group>";
+		};
+		45FCE62D1FF6D81B00CCBA6B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				45C758EB1F734FC80028619D /* MockPluginsController.swift */,
+				45C758ED1F7353C90028619D /* MockPluginsManager.swift */,
+				45BD4DC31FDC7E1200FA13E2 /* PluginsDataControllerEventTestCase.swift */,
+				450CA09B1EBACDF000D08D2A /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift */,
+				450CA09A1EBACDF000D08D2A /* TemporaryPluginsDataControllerEventTestCase.swift */,
+				45BD4DC11FDC7DD600FA13E2 /* PluginDataEventManager.swift */,
+				45DA31B31FF71FFB00531D9E /* TestConstants.swift */,
+				45F0A385224D900000E12298 /* ArrayControllerTestCase.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4538282D21582DB100552088 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45382870215830A900552088 /* POPKeyValueObservingTestsHelper.h in Headers */,
+				4538283421582DB200552088 /* SodaPopTestHarness.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DC91E9AF75B00823315 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45753DDD1E9AF75B00823315 /* SodaPop.h in Headers */,
+				4518471E1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h in Headers */,
+				450CA08D1EBACDAC00D08D2A /* POPPlugin.h in Headers */,
+				453126941EC93BEA00248FA9 /* POPDefaultNewPluginManager.h in Headers */,
+				456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */,
+				454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */,
+				450CA08B1EBACDAC00D08D2A /* POPKeyToObjectController.h in Headers */,
+				45A47C9C2169722B008897C5 /* POPPlugin+Validation.h in Headers */,
+				4543EFE81FEC3BC900C1D969 /* POPPluginsSource.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4538282F21582DB100552088 /* SodaPopTestHarness */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4538283721582DB200552088 /* Build configuration list for PBXNativeTarget "SodaPopTestHarness" */;
+			buildPhases = (
+				4538282B21582DB100552088 /* Sources */,
+				4538282C21582DB100552088 /* Frameworks */,
+				4538282D21582DB100552088 /* Headers */,
+				4538282E21582DB100552088 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4530BD9421601F4300A256AE /* PBXTargetDependency */,
+			);
+			name = SodaPopTestHarness;
+			productName = SodaPopTestHarness;
+			productReference = 4538283021582DB100552088 /* SodaPopTestHarness.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		45753DCB1E9AF75B00823315 /* SodaPop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45753DE01E9AF75B00823315 /* Build configuration list for PBXNativeTarget "SodaPop" */;
+			buildPhases = (
+				45753DC71E9AF75B00823315 /* Sources */,
+				45753DC81E9AF75B00823315 /* Frameworks */,
+				45753DC91E9AF75B00823315 /* Headers */,
+				45753DCA1E9AF75B00823315 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SodaPop;
+			productName = SodaPop;
+			productReference = 45753DCC1E9AF75B00823315 /* SodaPop.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		45753DD41E9AF75B00823315 /* SodaPopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45753DE31E9AF75B00823315 /* Build configuration list for PBXNativeTarget "SodaPopTests" */;
+			buildPhases = (
+				45753DD11E9AF75B00823315 /* Sources */,
+				45753DD21E9AF75B00823315 /* Frameworks */,
+				45753DD31E9AF75B00823315 /* Resources */,
+				454D4C981ED1FC60007ABBD7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45753DD81E9AF75B00823315 /* PBXTargetDependency */,
+				4530BD9221601F3D00A256AE /* PBXTargetDependency */,
+			);
+			name = SodaPopTests;
+			productName = SodaPopTests;
+			productReference = 45753DD51E9AF75B00823315 /* SodaPopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		45753DC31E9AF75B00823315 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Roben Kleene";
+				TargetAttributes = {
+					4538282F21582DB100552088 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					45753DCB1E9AF75B00823315 = {
+						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					45753DD41E9AF75B00823315 = {
+						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 45753DC61E9AF75B00823315 /* Build configuration list for PBXProject "SodaPop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 45753DC21E9AF75B00823315;
+			productRefGroup = 45753DCD1E9AF75B00823315 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45753DCB1E9AF75B00823315 /* SodaPop */,
+				45753DD41E9AF75B00823315 /* SodaPopTests */,
+				4538282F21582DB100552088 /* SodaPopTestHarness */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4538282E21582DB100552088 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DCA1E9AF75B00823315 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DD31E9AF75B00823315 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4538282B21582DB100552088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45382875215830A900552088 /* PluginsManagerOwnerType.swift in Sources */,
+				4538287D215830A900552088 /* PluginsManagerTestCase.swift in Sources */,
+				45382871215830A900552088 /* PluginsManagerFactoryType.swift in Sources */,
+				45382873215830A900552088 /* PluginsManagerOwnerType+Trash.swift in Sources */,
+				45382879215830A900552088 /* PluginTestCase.swift in Sources */,
+				45382878215830A900552088 /* TemporaryPluginsManagerDependenciesTestCase.swift in Sources */,
+				45382877215830A900552088 /* PluginsManagerDependenciesTestCase.swift in Sources */,
+				4538286F215830A900552088 /* XCTestCase+BundleResources.swift in Sources */,
+				45382876215830A900552088 /* TemporaryPluginsManagerTestCase.swift in Sources */,
+				4538287A215830A900552088 /* PluginOwnerType.swift in Sources */,
+				4538287B215830A900552088 /* TemporaryPluginsTestCase.swift in Sources */,
+				45382874215830A900552088 /* POPKeyValueObservingTestsHelper.m in Sources */,
+				4538286E215830A900552088 /* Constants.swift in Sources */,
+				4538287C215830A900552088 /* TemporaryPluginTestCase.swift in Sources */,
+				45382872215830A900552088 /* TestConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DC71E9AF75B00823315 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */,
+				4518471F1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.m in Sources */,
+				450CA08C1EBACDAC00D08D2A /* POPKeyToObjectController.m in Sources */,
+				45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */,
+				450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */,
+				456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */,
+				453126951EC93BEA00248FA9 /* POPDefaultNewPluginManager.m in Sources */,
+				450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */,
+				450CA08E1EBACDAC00D08D2A /* POPPlugin.m in Sources */,
+				450CA08A1EBACDAC00D08D2A /* PluginsManager.swift in Sources */,
+				450CA0881EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift in Sources */,
+				450CA0811EBACDAC00D08D2A /* MultiCollectionController.swift in Sources */,
+				450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */,
+				450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */,
+				450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */,
+				45FCF9EF1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift in Sources */,
+				450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */,
+				45A47C9B2169722B008897C5 /* POPPlugin+Validation.m in Sources */,
+				45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */,
+				450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */,
+				456783041EBFDC7600C9EC4A /* POPPluginsController.m in Sources */,
+				456783001EBFD2B000C9EC4A /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45753DD11E9AF75B00823315 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */,
+				450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */,
+				450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */,
+				450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */,
+				45A47C9E2169723D008897C5 /* PluginValidationTests.swift in Sources */,
+				450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */,
+				450CA0AD1EBACDF000D08D2A /* DuplicatePluginControllerTests.swift in Sources */,
+				45A452001FF84C4200687BEA /* MockPluginsManager.swift in Sources */,
+				450CA0B41EBACDF000D08D2A /* PluginsDataControllerFileSystemTests.swift in Sources */,
+				450CA0B51EBACDF000D08D2A /* PluginsDataControllerTests.swift in Sources */,
+				45DA31B51FF7275800531D9E /* PluginsDataControllerEventTestCase.swift in Sources */,
+				450CA0B01EBACDF000D08D2A /* PluginInitializationTests.swift in Sources */,
+				450CA0AF1EBACDF000D08D2A /* MultiCollectionControllerTests.swift in Sources */,
+				450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */,
+				45A452011FF84C7400687BEA /* MockPluginsController.swift in Sources */,
+				45DA31B41FF71FFB00531D9E /* TestConstants.swift in Sources */,
+				45FCE6341FF6DC7000CCBA6B /* TemporaryPluginsDataControllerEventTestCase.swift in Sources */,
+				45F0A386224D900000E12298 /* ArrayControllerTestCase.swift in Sources */,
+				450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */,
+				45DA31B61FF7277F00531D9E /* PluginDataEventManager.swift in Sources */,
+				45FCE6331FF6DC6C00CCBA6B /* PluginsDataControllerEventTestCase+FileSystemHelpers.swift in Sources */,
+				450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4530BD9221601F3D00A256AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4538282F21582DB100552088 /* SodaPopTestHarness */;
+			targetProxy = 4530BD9121601F3D00A256AE /* PBXContainerItemProxy */;
+		};
+		4530BD9421601F4300A256AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45753DCB1E9AF75B00823315 /* SodaPop */;
+			targetProxy = 4530BD9321601F4300A256AE /* PBXContainerItemProxy */;
+		};
+		45753DD81E9AF75B00823315 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45753DCB1E9AF75B00823315 /* SodaPop */;
+			targetProxy = 45753DD71E9AF75B00823315 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4538283521582DB200552088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SodaPopTestHarness/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPopTestHarness;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4538283621582DB200552088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SodaPopTestHarness/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPopTestHarness;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		45753DDE1E9AF75B00823315 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		45753DDF1E9AF75B00823315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		45753DE11E9AF75B00823315 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SodaPop/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		45753DE21E9AF75B00823315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SodaPop/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		45753DE41E9AF75B00823315 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SodaPopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		45753DE51E9AF75B00823315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SodaPopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = app.repla.SodaPopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4538283721582DB200552088 /* Build configuration list for PBXNativeTarget "SodaPopTestHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4538283521582DB200552088 /* Debug */,
+				4538283621582DB200552088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45753DC61E9AF75B00823315 /* Build configuration list for PBXProject "SodaPop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45753DDE1E9AF75B00823315 /* Debug */,
+				45753DDF1E9AF75B00823315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45753DE01E9AF75B00823315 /* Build configuration list for PBXNativeTarget "SodaPop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45753DE11E9AF75B00823315 /* Debug */,
+				45753DE21E9AF75B00823315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45753DE31E9AF75B00823315 /* Build configuration list for PBXNativeTarget "SodaPopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45753DE41E9AF75B00823315 /* Debug */,
+				45753DE51E9AF75B00823315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 45753DC31E9AF75B00823315 /* Project object */;
+}

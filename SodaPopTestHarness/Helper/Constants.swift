@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-import SodaPop
 import SodaFountain
+import SodaPop
 
 // MARK: Directories
 

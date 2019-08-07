@@ -8,8 +8,8 @@
 
 import Foundation
 import PlainBagel
-import SodaPop
 import SodaFountain
+import SodaPop
 import XCTest
 import XCTestTemp
 

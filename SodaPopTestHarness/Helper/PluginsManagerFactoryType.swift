@@ -91,13 +91,13 @@ public protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
 
 extension PluginsManagerFactoryType {
     public func makePluginsManager() -> PluginsManager {
-        let configuration = pluginsManagerType.self.makeConfiguration(pluginsPaths: pluginsDirectoryPaths,
-                                                                      copyTempDirectoryURL: copyTempDirectoryURL,
-                                                                      defaults: defaults,
-                                                                      fallbackDefaultNewPluginName:
-                                                                      fallbackDefaultNewPluginName,
-                                                                      userPluginsPath: userPluginsPath,
-                                                                      builtInPluginsPath: builtInPluginsPath)
+        let configuration = pluginsManagerType.makeConfiguration(pluginsPaths: pluginsDirectoryPaths,
+                                                                 copyTempDirectoryURL: copyTempDirectoryURL,
+                                                                 defaults: defaults,
+                                                                 fallbackDefaultNewPluginName:
+                                                                 fallbackDefaultNewPluginName,
+                                                                 userPluginsPath: userPluginsPath,
+                                                                 builtInPluginsPath: builtInPluginsPath)
         let pluginsManager = pluginsManagerType.init(configuration: configuration)
 
         return pluginsManager

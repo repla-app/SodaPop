@@ -99,6 +99,10 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         add(plugin)
     }
 
+    public func removeUnwatched(_ plugin: Plugin) {
+        remove(plugin)
+    }
+
     private func add(_ plugin: Plugin) {
         pluginsController.add(plugin)
     }

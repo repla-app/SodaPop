@@ -48,6 +48,12 @@ public let testPluginOptionsDisabledName = TestPlugins.testPluginOptionsDisabled
 public let testPluginOptionsEnabledName = TestPlugins.testPluginOptionsEnabledName
 public let testPluginOptionsNilName = TestPlugins.testPluginOptionsNilName
 
+// Special
+public let testPluginOutsideName = TestPlugins.testPluginNameOutside
+public let testPluginOutsidePath = TestPlugins.testOutsidePluginPath
+public let testPluginOutsideURL = TestPlugins.testOutsidePluginURL
+
+
 // MARK: Directories & Files
 
 public let testApplicationSupportDirectoryName = "Application Support"

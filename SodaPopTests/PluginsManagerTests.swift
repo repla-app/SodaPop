@@ -102,4 +102,20 @@ class PluginsManagerTests: ArrayControllerTestCase {
             XCTFail()
         }
     }
+
+    func testUnwatched() {
+        guard let plugin = Plugin.makePlugin(url: testPluginOutsideURL) else {
+            XCTFail()
+            return
+        }
+        XCTAssertNil(pluginsManager.plugin(withName: testPluginOutsideName))
+        pluginsManager.addUnwatched(plugin)
+        XCTAssertNotNil(pluginsManager.plugin(withName: testPluginOutsideName))
+        pluginsManager.removeUnwatched(plugin)
+        XCTAssertNil(pluginsManager.plugin(withName: testPluginOutsideName))
+        pluginsManager.addUnwatched(plugin)
+        XCTAssertNotNil(pluginsManager.plugin(withName: testPluginOutsideName))
+        pluginsManager.removeUnwatched(plugin)
+        XCTAssertNil(pluginsManager.plugin(withName: testPluginOutsideName))
+    }
 }

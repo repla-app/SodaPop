@@ -99,8 +99,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         // Remove the plugin first in case it has already been added
         if
             let existingPlugin = self.plugin(withName: plugin.name),
-            existingPlugin.resourceURL == plugin.resourceURL
-        {
+            existingPlugin.resourceURL == plugin.resourceURL {
             remove(existingPlugin)
         }
         add(plugin)

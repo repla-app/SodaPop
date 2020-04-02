@@ -97,9 +97,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         // the file system for example, that the loaded plugin will be
         // out-of-date.
         // Remove the plugin first in case it has already been added
-        if
-            let existingPlugin = self.plugin(withName: plugin.name),
-            existingPlugin.resourceURL == plugin.resourceURL {
+        if let existingPlugin = self.plugin(withName: plugin.name) {
             remove(existingPlugin)
         }
         add(plugin)

@@ -23,7 +23,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         return tempPluginURL.path
     }
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
 
         // Create the plugins directory
@@ -52,7 +52,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         tempPluginsDirectoryURL = nil
         tempPluginURL = nil
 

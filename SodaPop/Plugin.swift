@@ -179,7 +179,7 @@ public class Plugin: POPPlugin {
 
     // MARK: Description
 
-    public override var description: String {
+    override public var description: String {
         let description = super.description
         return """
         \(description),

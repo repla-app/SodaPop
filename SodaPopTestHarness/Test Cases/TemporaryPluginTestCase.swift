@@ -15,7 +15,7 @@ open class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase, PluginOwner
         return tempPlugin
     }
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
 
         // Set the plugin
@@ -26,7 +26,7 @@ open class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase, PluginOwner
         tempPlugin.isDefaultNewPlugin = true
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         tempPlugin.isDefaultNewPlugin = false
         tempPlugin = nil
         super.tearDown()

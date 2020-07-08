@@ -15,7 +15,7 @@ open class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
         return privatePlugin
     }
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
 
         // Set the plugin
@@ -24,7 +24,7 @@ open class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
         privatePlugin.isDefaultNewPlugin = true
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         privatePlugin.isDefaultNewPlugin = false
         privatePlugin = nil
         super.tearDown()

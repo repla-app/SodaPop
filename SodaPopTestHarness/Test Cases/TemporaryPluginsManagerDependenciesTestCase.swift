@@ -33,7 +33,7 @@ open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase
         UserDefaults(suiteName: defaultsSuiteName)!
     }()
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()
@@ -43,7 +43,7 @@ open class TemporaryPluginsManagerDependenciesTestCase: TemporaryPluginsTestCase
         XCTAssertNil(userDefaults.persistentDomain(forName: defaultsSuiteName))
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         super.tearDown()
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()

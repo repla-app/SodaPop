@@ -14,14 +14,14 @@ import XCTest
 open class TemporaryPluginsDataControllerEventTestCase: TemporaryPluginTestCase {
     var pluginDataEventManager: PluginDataEventManager!
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
         pluginDataEventManager = PluginDataEventManager()
         pluginDataEventManager.delegate = pluginsManager
         pluginsManager.pluginsDataController.delegate = pluginDataEventManager
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         pluginsManager.pluginsDataController.delegate = pluginsManager
         pluginDataEventManager.delegate = nil
         pluginDataEventManager = nil

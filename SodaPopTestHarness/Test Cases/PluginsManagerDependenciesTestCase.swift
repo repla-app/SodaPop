@@ -44,7 +44,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
 
     private var privateDefaults: DefaultsType!
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()
@@ -55,7 +55,7 @@ open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, Plugi
         XCTAssertFalse(userDefaults.dictionaryRepresentation().keys.contains(defaultsSuiteName))
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         super.tearDown()
         guard let userDefaults = defaults as? UserDefaults else {
             XCTFail()

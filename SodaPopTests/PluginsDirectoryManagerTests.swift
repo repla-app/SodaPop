@@ -165,7 +165,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
     var pluginsDirectoryEventManager: PluginsDirectoryEventManager!
     var pluginInfoDictionaryPath: String!
 
-    public override func setUp() {
+    override public func setUp() {
         super.setUp()
         pluginsDirectoryManager = PluginsDirectoryManager(pluginsDirectoryURL: tempPluginsDirectoryURL)
         pluginsDirectoryEventManager = PluginsDirectoryEventManager()
@@ -173,7 +173,7 @@ class PluginsDirectoryManagerTests: TemporaryPluginsTestCase {
         pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(forPluginAt: tempPluginURL).path
     }
 
-    public override func tearDown() {
+    override public func tearDown() {
         pluginsDirectoryManager.delegate = nil
         pluginsDirectoryEventManager = nil
         pluginsDirectoryManager = nil // Make sure this happens after setting its delegate to nil

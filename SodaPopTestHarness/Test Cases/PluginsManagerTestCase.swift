@@ -16,12 +16,12 @@ open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsMa
         return privatePluginsManager
     }
 
-    open override func setUp() {
+    override open func setUp() {
         super.setUp()
         privatePluginsManager = makePluginsManager()
     }
 
-    open override func tearDown() {
+    override open func tearDown() {
         privatePluginsManager = nil
         // Making a `pluginsManager` will implicitly create the
         // `userPluginsURL`. So that needs to be cleaned up here.

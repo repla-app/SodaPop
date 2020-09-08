@@ -32,7 +32,7 @@
 		450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */; };
 		450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */; };
 		450CA0B81EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */; };
-		450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */; };
+		450CA0BA1EBACDF000D08D2A /* PluginsManagerDuplicatePluginsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A21EBACDF000D08D2A /* PluginsManagerDuplicatePluginsTests.swift */; };
 		450CA0BB1EBACDF000D08D2A /* PluginsPathHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */; };
 		450CA0BC1EBACDF000D08D2A /* PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0A41EBACDF000D08D2A /* PluginTests.swift */; };
 		4518471E1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h in Headers */ = {isa = PBXBuildFile; fileRef = 4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -169,7 +169,7 @@
 		450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDirectoryManagerTests.swift; sourceTree = "<group>"; };
 		450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerDefaultNewPluginTests.swift; sourceTree = "<group>"; };
 		450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerFileSystemTests.swift; sourceTree = "<group>"; };
-		450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerTests.swift; sourceTree = "<group>"; };
+		450CA0A21EBACDF000D08D2A /* PluginsManagerDuplicatePluginsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsManagerDuplicatePluginsTests.swift; sourceTree = "<group>"; };
 		450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsPathHelperTests.swift; sourceTree = "<group>"; };
 		450CA0A41EBACDF000D08D2A /* PluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginTests.swift; sourceTree = "<group>"; };
 		4518471C1EBE851D0004FCAE /* POPPluginsController+UniquePluginName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POPPluginsController+UniquePluginName.h"; sourceTree = "<group>"; };
@@ -394,7 +394,7 @@
 				450CA09E1EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift */,
 				450CA09F1EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift */,
 				450CA0A01EBACDF000D08D2A /* PluginsManagerFileSystemTests.swift */,
-				450CA0A21EBACDF000D08D2A /* PluginsManagerTests.swift */,
+				450CA0A21EBACDF000D08D2A /* PluginsManagerDuplicatePluginsTests.swift */,
 				450CA0A31EBACDF000D08D2A /* PluginsPathHelperTests.swift */,
 				450CA0A41EBACDF000D08D2A /* PluginTests.swift */,
 				45753DDC1E9AF75B00823315 /* Info.plist */,
@@ -633,7 +633,7 @@
 			files = (
 				450CA0AE1EBACDF000D08D2A /* FilesAndPluginsDirectoryManagerTests.swift in Sources */,
 				450CA0B61EBACDF000D08D2A /* PluginsDirectoryManagerTests.swift in Sources */,
-				450CA0BA1EBACDF000D08D2A /* PluginsManagerTests.swift in Sources */,
+				450CA0BA1EBACDF000D08D2A /* PluginsManagerDuplicatePluginsTests.swift in Sources */,
 				450CA0B71EBACDF000D08D2A /* PluginsManagerDefaultNewPluginTests.swift in Sources */,
 				45A47C9E2169723D008897C5 /* PluginValidationTests.swift in Sources */,
 				450CA0AC1EBACDF000D08D2A /* CopyDirectoryControllerTests.swift in Sources */,

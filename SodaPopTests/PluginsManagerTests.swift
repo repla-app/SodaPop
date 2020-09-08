@@ -6,9 +6,9 @@
 //  Copyright © 2020 Roben Kleene. All rights reserved.
 //
 
-import XCTest
 @testable import SodaPop
 import SodaPopTestHarness
+import XCTest
 
 class PluginsManagerTests: PluginsManagerTestCase {
     func testMultiplePluginsDirectories() {

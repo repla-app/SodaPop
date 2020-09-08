@@ -26,11 +26,11 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     }
 
     public var defaultNewPlugin: Plugin? {
-        set {
-            defaultNewPluginManager.defaultNewPlugin = newValue
-        }
         get {
             return defaultNewPluginManager.defaultNewPlugin as? Plugin
+        }
+        set {
+            defaultNewPluginManager.defaultNewPlugin = newValue
         }
     }
 
@@ -145,7 +145,8 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
                                didRemovePlugin plugin: Plugin) {
         if
             let defaultNewPlugin = defaultNewPluginManager.defaultNewPlugin as? Plugin,
-            defaultNewPlugin == plugin {
+            defaultNewPlugin == plugin
+        {
             defaultNewPluginManager.defaultNewPlugin = nil
         }
         remove(plugin)

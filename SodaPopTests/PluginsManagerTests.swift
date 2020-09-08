@@ -12,6 +12,11 @@ import SodaPopTestHarness
 
 class PluginsManagerTests: PluginsManagerTestCase {
     func testMultiplePluginsDirectories() {
-        
+        guard let plugin = pluginsManager.plugin(withName: testPluginNameTestNode) else {
+            XCTFail()
+            return
+        }
+        XCTAssertNotNil(plugin)
+        XCTAssertEqual(testPluginCommandTestNode, plugin.command)
     }
 }

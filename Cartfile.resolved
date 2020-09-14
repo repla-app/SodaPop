@@ -1,4 +1,4 @@
-github "repla-app/SodaFountain" "3ce1fdbf71766a04a658f13fc520ab9c0b1794c7"
+github "repla-app/SodaFountain" "3.7.0"
 github "robenkleene/BubbleUp" "1.2.0"
 github "robenkleene/OutOfTouch" "2.2.0"
 github "robenkleene/PlainBagel" "0.3.0"

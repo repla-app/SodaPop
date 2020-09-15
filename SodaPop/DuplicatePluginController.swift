@@ -114,6 +114,6 @@ class DuplicatePluginController {
                                              }
 
                                              handler(plugin, error)
-        })
+                                         })
     }
 }

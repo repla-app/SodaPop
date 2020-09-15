@@ -16,14 +16,11 @@ import XCTestTemp
 open class PluginsManagerDependenciesTestCase: TemporaryDirectoryTestCase, PluginsManagerFactoryType {
     public var pluginsManagerType = PluginsManager.self
     public var pluginsDirectoryPaths: [String] {
-        return [
-            builtInPluginsPath,
-            userPluginsPath
-        ]
+        return TestPlugins.testPluginsDirectoryPaths + [userPluginsPath]
     }
 
     public var builtInPluginsPath: String {
-        return TestPlugins.testPluginsDirectoryPath
+        return TestPlugins.testBuiltInPluginsDirectoryPath
     }
 
     public var userPluginsPath: String {

@@ -48,38 +48,44 @@ extension Plugin {
 
     class func makePlugin(path: String, pluginType: PluginType = .other) -> Plugin? {
         do {
-            let plugin = try XMLPlugin.validPlugin(path: path, pluginType: pluginType)
+            let plugin = try JSONPlugin.validPlugin(path: path, pluginType: pluginType)
             return plugin
+        } catch let JSONPluginLoadError.missingConfiguration(path) {
+            do {
+                let plugin = try XMLPlugin.validPlugin(path: path, pluginType: pluginType)
+                return plugin
+            }  catch let XMLPluginLoadError.invalidInfoDictionaryError(URL) {
+                print("Info.plist is invalid at URL \(URL).")
+            } catch let XMLPluginLoadError.invalidFileExtensionsError(infoDictionary) {
+                print("Plugin file extensions are invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidCommandError(infoDictionary) {
+                print("Plugin command is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidNameError(infoDictionary) {
+                print("Plugin name is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidIdentifierError(infoDictionary) {
+                print("Plugin UUID is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidHiddenError(infoDictionary) {
+                print("Plugin hidden is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidEditableError(infoDictionary) {
+                print("Plugin editable is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidPromptInterruptError(infoDictionary) {
+                print("Plugin prompt interrupt is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidUsesEnvironmentError(infoDictionary) {
+                print("Plugin uses environment is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
+                print("Plugin debug mode enabled is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidAutoShowLogError(infoDictionary) {
+                print("Plugin auto-show log is invalid \(infoDictionary).")
+            } catch let XMLPluginLoadError.invalidTransparentBackgroundError(infoDictionary) {
+                print("Plugin transparent background is invalid \(infoDictionary).")
+            } catch {
+                print("Failed to load plugin at path \(path).")
+            }
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")
-        } catch let XMLPluginLoadError.invalidInfoDictionaryError(URL) {
-            print("Info.plist is invalid at URL \(URL).")
-        } catch let XMLPluginLoadError.invalidFileExtensionsError(infoDictionary) {
-            print("Plugin file extensions are invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidCommandError(infoDictionary) {
-            print("Plugin command is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidNameError(infoDictionary) {
-            print("Plugin name is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidIdentifierError(infoDictionary) {
-            print("Plugin UUID is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidHiddenError(infoDictionary) {
-            print("Plugin hidden is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidEditableError(infoDictionary) {
-            print("Plugin editable is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidPromptInterruptError(infoDictionary) {
-            print("Plugin prompt interrupt is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidUsesEnvironmentError(infoDictionary) {
-            print("Plugin uses environment is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidDebugModeEnabledError(infoDictionary) {
-            print("Plugin debug mode enabled is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidAutoShowLogError(infoDictionary) {
-            print("Plugin auto-show log is invalid \(infoDictionary).")
-        } catch let XMLPluginLoadError.invalidTransparentBackgroundError(infoDictionary) {
-            print("Plugin transparent background is invalid \(infoDictionary).")
         } catch {
             print("Failed to load plugin at path \(path).")
         }
-
         return nil
     }
 }

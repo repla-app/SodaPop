@@ -42,17 +42,17 @@ extension Plugin {
         return makePlugin(path: url.path)
     }
 
-    class func makePlugin(url: URL, pluginType: PluginKind = .other) -> Plugin? {
-        return makePlugin(path: url.path, pluginType: pluginType)
+    class func makePlugin(url: URL, pluginKind: PluginKind = .other) -> Plugin? {
+        return makePlugin(path: url.path, pluginKind: pluginKind)
     }
 
-    class func makePlugin(path: String, pluginType: PluginKind = .other) -> Plugin? {
+    class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
         do {
-            let plugin = try JSONPlugin.validPlugin(path: path, pluginType: pluginType)
+            let plugin = try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             return plugin
         } catch let JSONPluginLoadError.missingConfiguration(path) {
             do {
-                let plugin = try XMLPlugin.validPlugin(path: path, pluginType: pluginType)
+                let plugin = try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
                 return plugin
             }  catch let XMLPluginLoadError.invalidInfoDictionaryError(URL) {
                 print("Info.plist is invalid at URL \(URL).")

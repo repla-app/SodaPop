@@ -25,7 +25,7 @@ enum XMLPluginLoadError: Error {
 }
 
 class XMLPlugin: Plugin {
-    class func validPlugin(path: String, pluginType: PluginKind) throws -> Plugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
                 let infoDictionary = try validInfoDictionary(bundle: bundle),
@@ -45,7 +45,7 @@ class XMLPlugin: Plugin {
                 // Plugin
                 return Plugin(bundle: bundle,
                               infoDictionary: infoDictionary,
-                              pluginType: pluginType,
+                              pluginKind: pluginKind,
                               identifier: identifier,
                               name: name,
                               command: command,

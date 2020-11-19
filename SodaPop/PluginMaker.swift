@@ -23,8 +23,8 @@ class PluginMaker {
     }
 
     func makePlugin(path: String) -> Plugin? {
-        let pluginType = self.pluginType(for: path)
-        guard let plugin = Plugin.makePlugin(path: path, pluginType: pluginType) else {
+        let pluginKind = self.pluginKind(for: path)
+        guard let plugin = Plugin.makePlugin(path: path, pluginKind: pluginKind) else {
             return nil
         }
         plugin.uniqueNameDataSource = pluginsController
@@ -38,7 +38,7 @@ class PluginMaker {
 
     // MARK: Private
 
-    private func pluginType(for path: String) -> PluginKind {
+    private func pluginKind(for path: String) -> PluginKind {
         let pluginContainerDirectory = path.deletingLastPathComponent
         switch pluginContainerDirectory {
         case let path where path == userPluginsPath:

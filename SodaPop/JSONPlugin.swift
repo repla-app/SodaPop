@@ -13,7 +13,7 @@ enum JSONPluginLoadError: Error {
 }
 
 class JSONPlugin: Plugin {
-    class func validPlugin(path: String, pluginType: PluginKind) throws -> Plugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             throw JSONPluginLoadError.missingConfiguration(path: path)
         } catch let error as NSError {

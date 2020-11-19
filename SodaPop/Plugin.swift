@@ -27,11 +27,11 @@ public class Plugin: POPPlugin {
     // `autoShowLog` is three state, `nil` means use the user prefrence
     public let autoShowLog: Bool?
     public let transparentBackground: Bool
-    let pluginType: PluginKind
+    let pluginKind: PluginKind
 
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
-         pluginType: PluginKind,
+         pluginKind: PluginKind,
          identifier: String,
          name: String,
          command: String?,
@@ -44,7 +44,7 @@ public class Plugin: POPPlugin {
          promptInterrupt: Bool,
          usesEnvironment: Bool) {
         self.infoDictionary = infoDictionary
-        self.pluginType = pluginType
+        self.pluginKind = pluginKind
         self.bundle = bundle
         self.name = name
         self.identifier = identifier
@@ -142,7 +142,7 @@ public class Plugin: POPPlugin {
     }
 
     public dynamic var type: String {
-        return pluginType.name()
+        return pluginKind.name()
     }
 
     public dynamic var editable: Bool {

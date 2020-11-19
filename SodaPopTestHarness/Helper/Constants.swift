@@ -30,6 +30,7 @@ public let testPluginFileExtension = "replaplugin"
 public let testPluginName = TestPlugins.testPluginName
 public let testPluginNameTwo = TestPlugins.testPluginNameTwo
 public let testPluginNameTestNode = TestPlugins.testPluginNameTestNode
+public let testPluginNameJSON = TestPlugins.testPluginNameJSON
 public let testPluginExtension = TestPlugins.testPluginFileExtension
 public let testPluginCommand = TestPlugins.testPluginCommand
 public let testPluginCommandTwo = TestPlugins.testPluginCommandTwo

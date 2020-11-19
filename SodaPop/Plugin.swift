@@ -27,11 +27,11 @@ public class Plugin: POPPlugin {
     // `autoShowLog` is three state, `nil` means use the user prefrence
     public let autoShowLog: Bool?
     public let transparentBackground: Bool
-    let pluginType: PluginType
+    let pluginType: PluginKind
 
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
-         pluginType: PluginType,
+         pluginType: PluginKind,
          identifier: String,
          name: String,
          command: String?,

@@ -38,15 +38,15 @@ class PluginMaker {
 
     // MARK: Private
 
-    private func pluginType(for path: String) -> PluginType {
+    private func pluginType(for path: String) -> PluginKind {
         let pluginContainerDirectory = path.deletingLastPathComponent
         switch pluginContainerDirectory {
         case let path where path == userPluginsPath:
-            return PluginType.user
+            return PluginKind.user
         case let path where path == builtInPluginsPath:
-            return PluginType.builtIn
+            return PluginKind.builtIn
         default:
-            return PluginType.other
+            return PluginKind.other
         }
     }
 }

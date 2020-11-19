@@ -8,7 +8,7 @@
 
 import StringPlusPath
 
-enum PluginType {
+enum PluginKind {
     case builtIn, user, other
     func name() -> String {
         switch self {
@@ -42,11 +42,11 @@ extension Plugin {
         return makePlugin(path: url.path)
     }
 
-    class func makePlugin(url: URL, pluginType: PluginType = .other) -> Plugin? {
+    class func makePlugin(url: URL, pluginType: PluginKind = .other) -> Plugin? {
         return makePlugin(path: url.path, pluginType: pluginType)
     }
 
-    class func makePlugin(path: String, pluginType: PluginType = .other) -> Plugin? {
+    class func makePlugin(path: String, pluginType: PluginKind = .other) -> Plugin? {
         do {
             let plugin = try JSONPlugin.validPlugin(path: path, pluginType: pluginType)
             return plugin

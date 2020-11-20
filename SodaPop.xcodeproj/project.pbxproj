@@ -74,6 +74,7 @@
 		454A940A25083539005C4C77 /* PluginsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A940925083539005C4C77 /* PluginsManagerTests.swift */; };
 		454D4C951ED1F6F7007ABBD7 /* POPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 454D4C941ED1F6F7007ABBD7 /* POPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		454D4C991ED1FC84007ABBD7 /* XCTestTemp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		455D802A256731EA0085AB8F /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455D8029256731EA0085AB8F /* PluginType.swift */; };
 		456783001EBFD2B000C9EC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456782FF1EBFD2B000C9EC4A /* Constants.swift */; };
 		456783031EBFDC7600C9EC4A /* POPPluginsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 456783011EBFDC7600C9EC4A /* POPPluginsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		456783041EBFDC7600C9EC4A /* POPPluginsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 456783021EBFDC7600C9EC4A /* POPPluginsController.m */; };
@@ -207,6 +208,7 @@
 		454A940925083539005C4C77 /* PluginsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsManagerTests.swift; sourceTree = "<group>"; };
 		454D4C941ED1F6F7007ABBD7 /* POPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPConstants.h; sourceTree = "<group>"; };
 		454D4C961ED1FC3C007ABBD7 /* XCTestTemp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestTemp.framework; path = Carthage/Build/Mac/XCTestTemp.framework; sourceTree = "<group>"; };
+		455D8029256731EA0085AB8F /* PluginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginType.swift; sourceTree = "<group>"; };
 		456782FF1EBFD2B000C9EC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		456783011EBFDC7600C9EC4A /* POPPluginsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPluginsController.h; sourceTree = "<group>"; };
 		456783021EBFDC7600C9EC4A /* POPPluginsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPPluginsController.m; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */,
 				450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */,
 				450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */,
+				455D8029256731EA0085AB8F /* PluginType.swift */,
 				450CA06F1EBACDAC00D08D2A /* Plugin.swift */,
 				450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */,
 				450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */,
@@ -631,6 +634,7 @@
 				45FCF9EF1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift in Sources */,
 				450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */,
 				45A47C9B2169722B008897C5 /* POPPlugin+Validation.m in Sources */,
+				455D802A256731EA0085AB8F /* PluginType.swift in Sources */,
 				45BC26A51F6F22A1006647D7 /* FileManagerHelper.swift in Sources */,
 				450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */,
 				456783041EBFDC7600C9EC4A /* POPPluginsController.m in Sources */,

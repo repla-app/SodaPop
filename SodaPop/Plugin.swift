@@ -10,15 +10,6 @@ import Cocoa
 
 @objcMembers
 public class Plugin: POPPlugin {
-    enum PluginWriteError: Error {
-        case failToWriteDictionaryError(URL: URL)
-    }
-
-    struct ClassConstants {
-        static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
-    }
-
-    let bundle: Bundle
     let hidden: Bool
     public let promptInterrupt: Bool
     public let usesEnvironment: Bool
@@ -29,168 +20,26 @@ public class Plugin: POPPlugin {
     public let transparentBackground: Bool
     let pluginKind: PluginKind
 
-    init(bundle: Bundle,
-         infoDictionary: [AnyHashable: Any],
-         pluginKind: PluginKind,
-         identifier: String,
-         name: String,
-         command: String?,
-         suffixes: [String]?,
-         hidden: Bool,
-         editable: Bool,
-         debugModeEnabled: Bool?,
-         transparentBackground: Bool,
-         autoShowLog: Bool?,
+    init(hidden: Bool,
          promptInterrupt: Bool,
-         usesEnvironment: Bool) {
-        self.infoDictionary = infoDictionary
-        self.pluginKind = pluginKind
-        self.bundle = bundle
-        self.name = name
-        self.identifier = identifier
+         usesEnvironment: Bool,
+         debugModeEnabled: Bool,
+         autoShowLog: Bool,
+         transparentBackground: Bool,
+         pluginKind: PluginKind) {
         self.hidden = hidden
-        self.editable = editable
-
-        // Optional
-        self.command = command
-        self.suffixes = [String]()
-        if let suffixes = suffixes {
-            self.suffixes += suffixes
-        }
-        self.debugModeEnabled = debugModeEnabled
-        self.transparentBackground = transparentBackground
-        self.autoShowLog = autoShowLog
         self.promptInterrupt = promptInterrupt
         self.usesEnvironment = usesEnvironment
+        self.debugModeEnabled = debugModeEnabled
+        self.autoShowLog = autoShowLog
+        self.transparentBackground = transparentBackground
+        self.pluginKind = pluginKind
     }
 
-    // MARK: Paths
+    dynamic var name: String
+    var identifier: String
+    dynamic var editable: Bool
+    dynamic var command: String? { }
+    var commandPath: String?
 
-    public var resourcePath: String? {
-        return bundle.resourcePath
-    }
-
-    public var resourceURL: URL? {
-        if let path = resourcePath {
-            return URL(fileURLWithPath: path)
-        }
-        return nil
-    }
-
-    internal var infoDictionary: [AnyHashable: Any]
-    internal var infoDictionaryURL: URL {
-        return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
-    }
-
-    class func urlForInfoDictionary(for plugin: Plugin) -> URL {
-        return urlForInfoDictionary(forPluginAt: plugin.bundle.bundleURL)
-    }
-
-    class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {
-        return pluginURL.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
-    }
-
-    // MARK: Properties
-
-    public dynamic var name: String {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.name] = name
-            save()
-        }
-    }
-
-    public var identifier: String {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.identifier] = identifier
-            save()
-        }
-    }
-
-    public dynamic var command: String? {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.command] = command
-            save()
-        }
-    }
-
-    public var commandPath: String? {
-        if let resourcePath = resourcePath {
-            if let command = command {
-                return resourcePath.appendingPathComponent(command)
-            }
-        }
-        return nil
-    }
-
-    public dynamic var suffixes: [String] {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.suffixes] = suffixes
-            save()
-        }
-    }
-
-    public dynamic var type: String {
-        return pluginKind.name()
-    }
-
-    public dynamic var editable: Bool {
-        didSet {
-            if !editable {
-                infoDictionary[InfoDictionaryKeys.editable] = editable
-            } else {
-                infoDictionary[InfoDictionaryKeys.editable] = nil
-            }
-            save()
-        }
-    }
-
-    // MARK: Save
-
-    private func save() {
-        let infoDictionaryURL = self.infoDictionaryURL
-        do {
-            try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
-        } catch let PluginWriteError.failToWriteDictionaryError(URL) {
-            print("Failed to write an info dictionary at URL \(URL)")
-        } catch let error as NSError {
-            print("Failed to write an info dictionary \(error)")
-        }
-    }
-
-    class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
-        let writableDictionary = NSDictionary(dictionary: dictionary)
-        let success = writableDictionary.write(to: URL, atomically: true)
-        if !success {
-            throw PluginWriteError.failToWriteDictionaryError(URL: URL)
-        }
-    }
-
-    // MARK: Description
-
-    override public var description: String {
-        let description = super.description
-        return """
-        \(description),
-        Plugin name = \(name),
-        identifier = \(identifier),
-        defaultNewPlugin = \(isDefaultNewPlugin),
-        hidden = \(hidden),
-        editable = \(editable),
-        debugModeEnabled = \(String(describing: debugModeEnabled)),
-        transparentBackground = \(String(describing: transparentBackground)),
-        autoShowLog = \(String(describing: autoShowLog))
-        """
-    }
 }

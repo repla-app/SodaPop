@@ -30,7 +30,11 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
             return defaultNewPluginManager.defaultNewPlugin as? Plugin
         }
         set {
-            defaultNewPluginManager.defaultNewPlugin = newValue
+            guard let newValue = plugin as? POPPlugin {
+                assertionFailure("The plugin should always be a `POPPlugin`")
+                return
+            }
+            defaultNewPluginManager.defaultNewPlugin = plugin
         }
     }
 

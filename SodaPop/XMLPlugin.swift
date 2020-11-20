@@ -219,7 +219,7 @@ extension XMLPlugin {
     }
 }
 
-class XMLPlugin: Plugin {
+class XMLPlugin: BasePlugin {
     let bundle: Bundle
 
     enum PluginWriteError: Error {
@@ -272,6 +272,10 @@ class XMLPlugin: Plugin {
         return nil
     }
 
+    public var directoryURL: URL? {
+        return bundle.bundleURL
+    }
+    
     internal var infoDictionary: [AnyHashable: Any]
     internal var infoDictionaryURL: URL {
         return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)

@@ -34,7 +34,7 @@ extension Plugin {
             return false
         }
 
-        if infoDictionaryURL != plugin.infoDictionaryURL {
+        if resourceURL != plugin.resourceURL {
             return false
         }
 

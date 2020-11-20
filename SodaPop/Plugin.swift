@@ -1,45 +1,42 @@
 //
-//  Plugin.swift
-//  PluginManagerPrototype
+//  PluginType.swift
+//  SodaPop
 //
-//  Created by Roben Kleene on 9/13/14.
-//  Copyright (c) 2014 Roben Kleene. All rights reserved.
+//  Created by Roben Kleene on 11/19/20.
+//  Copyright © 2020 Roben Kleene. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-@objcMembers
-public class Plugin: POPPlugin {
-    let hidden: Bool
-    public let promptInterrupt: Bool
-    public let usesEnvironment: Bool
+public protocol Plugin {
+    var hidden: Bool { get }
+    var promptInterrupt: Bool { get }
+    var usesEnvironment: Bool { get }
     // `debugModeEnabled` is three state, `nil` means use the user prefrence
-    public let debugModeEnabled: Bool?
+    var debugModeEnabled: Bool? { get }
     // `autoShowLog` is three state, `nil` means use the user prefrence
-    public let autoShowLog: Bool?
-    public let transparentBackground: Bool
-    let pluginKind: PluginKind
+    var autoShowLog: Bool? { get }
+    var transparentBackground: Bool { get }
+    var pluginKind: PluginKind { get }
 
-    init(hidden: Bool,
-         promptInterrupt: Bool,
-         usesEnvironment: Bool,
-         debugModeEnabled: Bool,
-         autoShowLog: Bool,
-         transparentBackground: Bool,
-         pluginKind: PluginKind) {
-        self.hidden = hidden
-        self.promptInterrupt = promptInterrupt
-        self.usesEnvironment = usesEnvironment
-        self.debugModeEnabled = debugModeEnabled
-        self.autoShowLog = autoShowLog
-        self.transparentBackground = transparentBackground
-        self.pluginKind = pluginKind
-    }
+    var resourcePath: String? { get }
+    var resourceURL: URL? { get }
+    var directoryURL: URL? { get }
 
-    dynamic var name: String
-    var identifier: String
-    dynamic var editable: Bool
-    dynamic var command: String? { }
-    var commandPath: String?
+    // MARK: Properties
 
+    dynamic var name: String { get }
+    dynamic var identifier: String { get }
+
+    dynamic var command: String? { get }
+
+    var commandPath: String? { get }
+
+    dynamic var suffixes: [String] { get }
+
+    dynamic var type: String { get }
+
+    dynamic var editable: Bool { get }
+
+    var description: String { get }
 }

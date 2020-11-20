@@ -8,7 +8,7 @@
 
 import StringPlusPath
 
-enum PluginKind {
+public enum PluginKind {
     case builtIn, user, other
     func name() -> String {
         switch self {
@@ -22,7 +22,7 @@ enum PluginKind {
     }
 }
 
-extension Plugin {
+extension BasePlugin {
 
     struct InfoDictionaryKeys {
         static let name = "WCName"
@@ -38,7 +38,7 @@ extension Plugin {
         static let usesEnvironment = "WCUsesEnvironment"
     }
 
-    @objc public class func makePlugin(url: URL) -> Plugin? {
+    public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }
 

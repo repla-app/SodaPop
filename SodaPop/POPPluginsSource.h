@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class BasePlugin;
+@class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol POPPluginsSource <NSObject>
-- (void)addPlugin:(BasePlugin *)plugin;
-- (void)removePlugin:(BasePlugin *)plugin;
-- (nullable BasePlugin *)pluginWithName:(NSString *)name;
-- (nullable BasePlugin *)pluginWithIdentifier:(NSString *)identifier;
+- (void)addPlugin:(Plugin *)plugin;
+- (void)removePlugin:(Plugin *)plugin;
+- (nullable Plugin *)pluginWithName:(NSString *)name;
+- (nullable Plugin *)pluginWithIdentifier:(NSString *)identifier;
 #pragma mark Required Key-Value Coding To-Many Relationship Compliance
-- (NSArray<BasePlugin *> *)plugins;
-- (void)insertObject:(BasePlugin *)plugin inPluginsAtIndex:(NSUInteger)index;
+- (NSArray<Plugin *> *)plugins;
+- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index;
 - (void)insertPlugins:(NSArray *)pluginsArray atIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectFromPluginsAtIndex:(NSUInteger)index;
 - (void)removePluginsAtIndexes:(NSIndexSet *)indexes;

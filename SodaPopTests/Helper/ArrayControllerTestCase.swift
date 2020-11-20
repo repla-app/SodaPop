@@ -25,7 +25,7 @@ class TemporaryArrayControllerTestCase: TemporaryPluginsDataControllerEventTestC
     }
 
     override func tearDown() {
-        guard let arrayControllerPlugins = arrayController.arrangedObjects as? [BasePlugin] else {
+        guard let arrayControllerPlugins = arrayController.arrangedObjects as? [Plugin] else {
             XCTFail()
             return
         }
@@ -49,7 +49,7 @@ class ArrayControllerTestCase: PluginsManagerTestCase {
     }
 
     override func tearDown() {
-        guard let arrayControllerPlugins = arrayController.arrangedObjects as? [BasePlugin] else {
+        guard let arrayControllerPlugins = arrayController.arrangedObjects as? [Plugin] else {
             XCTFail()
             return
         }

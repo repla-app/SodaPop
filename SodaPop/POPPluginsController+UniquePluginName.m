@@ -15,7 +15,7 @@
     return [self uniquePluginNameFromName:name forPlugin:nil];
 }
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(BasePlugin *)plugin {
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin {
     if ([self isUniqueName:name forPlugin:plugin]) {
         return name;
     }
@@ -29,8 +29,8 @@
     return newName;
 }
 
-- (BOOL)isUniqueName:(NSString *)name forPlugin:(BasePlugin *)plugin {
-    BasePlugin *existingPlugin = [self pluginWithName:name];
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin {
+    Plugin *existingPlugin = [self pluginWithName:name];
 
     if (!existingPlugin) {
         return YES;
@@ -48,7 +48,7 @@
 
 #pragma mark Name Private
 
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(BasePlugin *)plugin index:(NSUInteger)index {
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(Plugin *)plugin index:(NSUInteger)index {
     if (index > kDuplicatePluginsWithCounterMax) {
         return nil;
     }

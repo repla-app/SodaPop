@@ -29,28 +29,28 @@ extension EasyDuplicateType {
 
 class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicateType {
     func testInitPlugins() {
-        let plugin = BasePlugin.makePlugin(url: tempPluginURL)!
+        let plugin = Plugin.makePlugin(url: tempPluginURL)!
         plugin.editable = true
 
         let newPluginFilename = testDirectoryName
         let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
-        let newPlugin = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPlugin = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginTwoFilename = testDirectoryNameTwo
         let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginTwoFilename)
-        let newPluginTwo = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginChangedNameFilename = testDirectoryNameThree
         let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL,
                                                            withFilenameForDuplicate: newPluginChangedNameFilename)
-        let newPluginChangedName = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
         let changedName = testDirectoryName
         newPluginChangedName.name = changedName
 
         let newPluginChangedNameTwoFilename = testDirectoryNameFour
         let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
                                                               withFilenameForDuplicate: newPluginChangedNameTwoFilename)
-        let newPluginChangedNameTwo = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedNameTwo.name = changedName
 
         let plugins = [plugin, newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
@@ -61,13 +61,13 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
         XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
         // Test New Plugins
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? BasePlugin, newPluginTwo)
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
         XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? BasePlugin,
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
                        newPluginChangedNameTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
@@ -85,11 +85,11 @@ class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicat
 
 class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateType {
     var multiCollectionController: MultiCollectionController!
-    var plugin: BasePlugin!
+    var plugin: Plugin!
 
     override func setUp() {
         super.setUp()
-        plugin = BasePlugin.makePlugin(url: tempPluginURL)!
+        plugin = Plugin.makePlugin(url: tempPluginURL)!
         multiCollectionController = MultiCollectionController(objects: [plugin], key: pluginNameKey)
     }
 
@@ -100,14 +100,14 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
 
     func testAddPlugin() {
         let destinationPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: plugin.identifier)
-        let newPlugin = BasePlugin.makePlugin(url: destinationPluginURL)!
+        let newPlugin = Plugin.makePlugin(url: destinationPluginURL)!
         multiCollectionController.addObject(newPlugin)
-        guard let plugins = multiCollectionController.objects() as? [BasePlugin] else {
+        guard let plugins = multiCollectionController.objects() as? [Plugin] else {
             XCTFail()
             return
         }
         XCTAssertEqual(multiCollectionController.objects().count, 1, "The plugins count should be one")
-        XCTAssertEqual(multiCollectionController.object(forKey: newPlugin.name)! as? BasePlugin, newPlugin)
+        XCTAssertEqual(multiCollectionController.object(forKey: newPlugin.name)! as? Plugin, newPlugin)
         XCTAssertTrue(multiCollectionController.objects().contains(newPlugin))
         XCTAssertFalse(plugins.contains(plugin))
 
@@ -122,16 +122,16 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
     func testAddPlugins() {
         let newPluginFilename = testDirectoryName
         let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
-        let newPlugin = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPlugin = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginTwoFilename = testDirectoryNameTwo
         let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginTwoFilename)
-        let newPluginTwo = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
         let newPluginChangedNameFilename = testDirectoryNameThree
         let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL,
                                                            withFilenameForDuplicate: newPluginChangedNameFilename)
-        let newPluginChangedName = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedName.editable = true
         let changedName = testDirectoryName
         newPluginChangedName.name = changedName
@@ -139,7 +139,7 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         let newPluginChangedNameTwoFilename = testDirectoryNameFour
         let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
                                                               withFilenameForDuplicate: newPluginChangedNameTwoFilename)
-        let newPluginChangedNameTwo = BasePlugin.makePlugin(url: newPluginURL)!
+        let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
         newPluginChangedNameTwo.name = changedName
 
         let newPlugins = [newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
@@ -150,17 +150,17 @@ class MultiCollectionControllerTests: TemporaryPluginsTestCase, EasyDuplicateTyp
         XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
         // Test New Plugins
-        guard let plugins = multiCollectionController.objects() as? [BasePlugin] else {
+        guard let plugins = multiCollectionController.objects() as? [Plugin] else {
             XCTFail()
             return
         }
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? BasePlugin, newPluginTwo)
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
         XCTAssertFalse(plugins.contains(plugin))
 
         // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? BasePlugin,
+        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
                        newPluginChangedNameTwo)
         XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
         XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))

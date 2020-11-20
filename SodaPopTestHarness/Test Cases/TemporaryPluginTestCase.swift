@@ -10,8 +10,8 @@ import SodaPop
 import XCTest
 
 open class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase, PluginOwnerType {
-    var tempPlugin: BasePlugin!
-    public var plugin: BasePlugin {
+    var tempPlugin: Plugin!
+    public var plugin: Plugin {
         return tempPlugin
     }
 

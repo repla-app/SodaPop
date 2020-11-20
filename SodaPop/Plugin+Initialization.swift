@@ -22,7 +22,7 @@ enum PluginKind {
     }
 }
 
-extension BasePlugin {
+extension Plugin {
 
     struct InfoDictionaryKeys {
         static let name = "WCName"
@@ -38,15 +38,15 @@ extension BasePlugin {
         static let usesEnvironment = "WCUsesEnvironment"
     }
 
-    @objc public class func makePlugin(url: URL) -> BasePlugin? {
+    @objc public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }
 
-    class func makePlugin(url: URL, pluginKind: PluginKind = .other) -> BasePlugin? {
+    class func makePlugin(url: URL, pluginKind: PluginKind = .other) -> Plugin? {
         return makePlugin(path: url.path, pluginKind: pluginKind)
     }
 
-    class func makePlugin(path: String, pluginKind: PluginKind = .other) -> BasePlugin? {
+    class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
         do {
             let plugin = try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             return plugin

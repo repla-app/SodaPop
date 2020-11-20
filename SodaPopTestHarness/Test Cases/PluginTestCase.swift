@@ -10,8 +10,8 @@ import SodaPop
 import XCTest
 
 open class PluginTestCase: PluginsManagerTestCase, PluginOwnerType {
-    private var privatePlugin: BasePlugin!
-    public var plugin: BasePlugin {
+    private var privatePlugin: Plugin!
+    public var plugin: Plugin {
         return privatePlugin
     }
 

@@ -25,7 +25,7 @@ enum XMLPluginLoadError: Error {
 }
 
 extension XMLPlugin {
-    class func validPlugin(path: String, pluginKind: PluginKind) throws -> BasePlugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
                 let infoDictionary = try validInfoDictionary(bundle: bundle),
@@ -43,7 +43,7 @@ extension XMLPlugin {
                 let usesEnvironment = try validUsesEnvironment(infoDictionary: infoDictionary)
 
                 // Plugin
-                return BasePlugin(bundle: bundle,
+                return Plugin(bundle: bundle,
                               infoDictionary: infoDictionary,
                               pluginKind: pluginKind,
                               identifier: identifier,
@@ -219,7 +219,7 @@ extension XMLPlugin {
     }
 }
 
-class XMLPlugin: BasePlugin {
+class XMLPlugin: Plugin {
     let bundle: Bundle
 
     enum PluginWriteError: Error {
@@ -277,7 +277,7 @@ class XMLPlugin: BasePlugin {
         return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
     }
 
-    class func urlForInfoDictionary(for plugin: BasePlugin) -> URL {
+    class func urlForInfoDictionary(for plugin: Plugin) -> URL {
         return urlForInfoDictionary(forPluginAt: plugin.bundle.bundleURL)
     }
 

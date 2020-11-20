@@ -8,12 +8,12 @@
 
 extension POPPluginsController: POPDefaultNewPluginManagerDataSource {
     public func defaultNewPluginManager(_: POPDefaultNewPluginManager,
-                                        pluginWithName name: String) -> BasePlugin? {
+                                        pluginWithName name: String) -> Plugin? {
         return plugin(withName: name)
     }
 
     public func defaultNewPluginManager(_: POPDefaultNewPluginManager,
-                                        pluginWithIdentifier identifier: String) -> BasePlugin? {
+                                        pluginWithIdentifier identifier: String) -> Plugin? {
         return plugin(withIdentifier: identifier)
     }
 }

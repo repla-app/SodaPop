@@ -14,12 +14,12 @@ enum FileSystemError: Error {
 
 protocol PluginsDataControllerDelegate: class {
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
-                               didAddPlugin plugin: BasePlugin)
+                               didAddPlugin plugin: Plugin)
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
-                               didRemovePlugin plugin: BasePlugin)
+                               didRemovePlugin plugin: Plugin)
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
                                uniquePluginNameFromName name: String,
-                               for plugin: BasePlugin) -> String?
+                               for plugin: Plugin) -> String?
 }
 
 // `PluginsDataController`: The `PluginsDataController` abstracts away the
@@ -32,7 +32,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     CustomStringConvertible {
     weak var delegate: PluginsDataControllerDelegate?
     var pluginDirectoryManagers: [PluginsDirectoryManager]
-    var pluginPathToPluginDictionary: [String: BasePlugin]
+    var pluginPathToPluginDictionary: [String: Plugin]
     lazy var duplicatePluginController: DuplicatePluginController = {
         let duplicatePluginController = DuplicatePluginController(pluginMaker: self.pluginMaker,
                                                                   copyTempDirectoryURL: self.copyTempDirectoryURL)
@@ -43,7 +43,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     let pluginMaker: PluginMaker
     let duplicatePluginDestinationDirectoryURL: URL
     let copyTempDirectoryURL: URL
-    var plugins: [BasePlugin] {
+    var plugins: [Plugin] {
         return Array(pluginPathToPluginDictionary.values)
     }
 
@@ -65,7 +65,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
                                   userPluginsPath: userPluginsPath,
                                   builtInPluginsPath: builtInPluginsPath)
         pluginDirectoryManagers = [PluginsDirectoryManager]()
-        pluginPathToPluginDictionary = [String: BasePlugin]()
+        pluginPathToPluginDictionary = [String: Plugin]()
         duplicatePluginDestinationDirectoryURL = URL(fileURLWithPath: userPluginsPath)
         self.copyTempDirectoryURL = copyTempDirectoryURL
 
@@ -109,7 +109,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 // If there is an existing plugin and a new plugin, remove the old plugin and add the new plugin
                 if !oldPlugin.isEqual(to: newPlugin) {
                     remove(oldPlugin)
@@ -118,7 +118,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
             }
         } else {
             // If there is only a new plugin, add it
-            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 add(newPlugin)
             }
         }
@@ -135,7 +135,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func duplicatePluginController(_: DuplicatePluginController,
                                    uniquePluginNameFromName name: String,
-                                   for plugin: BasePlugin) -> String? {
+                                   for plugin: Plugin) -> String? {
         return delegate?.pluginsDataController(self,
                                                uniquePluginNameFromName: name,
                                                for: plugin)
@@ -143,25 +143,25 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     // MARK: Add & Remove Helpers
 
-    func add(_ plugin: BasePlugin) {
+    func add(_ plugin: Plugin) {
         let pluginPath = plugin.bundle.bundlePath
         pluginPathToPluginDictionary[pluginPath] = plugin
         delegate?.pluginsDataController(self, didAddPlugin: plugin)
     }
 
-    func remove(_ plugin: BasePlugin) {
+    func remove(_ plugin: Plugin) {
         let pluginPath = plugin.bundle.bundlePath
         pluginPathToPluginDictionary.removeValue(forKey: pluginPath)
         delegate?.pluginsDataController(self, didRemovePlugin: plugin)
     }
 
-    func plugin(atPluginPath pluginPath: String) -> BasePlugin? {
+    func plugin(atPluginPath pluginPath: String) -> Plugin? {
         return pluginPathToPluginDictionary[pluginPath]
     }
 
     // MARK: Duplicate and Remove
 
-    func moveToTrash(_ plugin: BasePlugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
+    func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         assert(plugin.editable, "The plugin should be editable")
         let bundeURL = plugin.bundle.bundleURL
         NSWorkspace.shared.recycle([bundeURL]) { [weak self] dictionary, error in
@@ -177,8 +177,8 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         }
     }
 
-    func duplicate(_ plugin: BasePlugin,
-                   handler: ((_ plugin: BasePlugin?, _ error: NSError?) -> Void)?) {
+    func duplicate(_ plugin: Plugin,
+                   handler: ((_ plugin: Plugin?, _ error: NSError?) -> Void)?) {
         do {
             try type(of: self).createDirectoryIfMissing(at: duplicatePluginDestinationDirectoryURL)
         } catch let error as NSError {

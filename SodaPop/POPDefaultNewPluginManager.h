@@ -12,13 +12,13 @@
 #define kDefaultNewPluginIdentifierKey @"POPDefaultNewPluginIdentifier"
 
 @class POPDefaultNewPluginManager;
-@class BasePlugin;
+@class Plugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol POPDefaultNewPluginManagerDataSource
-- (nullable BasePlugin *)defaultNewPluginManager:(POPDefaultNewPluginManager *)defaultNewPluginManager
+- (nullable Plugin *)defaultNewPluginManager:(POPDefaultNewPluginManager *)defaultNewPluginManager
                         pluginWithIdentifier:(NSString *)identifier;
-- (nullable BasePlugin *)defaultNewPluginManager:(POPDefaultNewPluginManager *)defaultNewPluginManager
+- (nullable Plugin *)defaultNewPluginManager:(POPDefaultNewPluginManager *)defaultNewPluginManager
                               pluginWithName:(NSString *)name;
 @end
 NS_ASSUME_NONNULL_END

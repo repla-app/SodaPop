@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension BasePlugin {
-    func isEqual(toOther plugin: BasePlugin) -> Bool {
+extension Plugin {
+    func isEqual(toOther plugin: Plugin) -> Bool {
         if name != plugin.name {
             return false
         }

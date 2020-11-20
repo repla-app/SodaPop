@@ -14,7 +14,7 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
     // MARK: File System Tests
 
     func testAddAndDeletePlugin() {
-        var newPlugin: BasePlugin!
+        var newPlugin: Plugin!
         let copyExpectation = expectation(description: "Copy")
         copyWithConfirmation(plugin,
                              destinationPluginPath: userPluginsPath) { (copiedPlugin) -> Void in
@@ -37,7 +37,7 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
             .appendingPathComponent(destinationPluginFilename)
 
         // Move the plugin
-        var newPlugin: BasePlugin!
+        var newPlugin: Plugin!
         moveWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
             newPlugin = plugin
         })
@@ -46,7 +46,7 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
         XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin))
 
         // Move the plugin back
-        var newPluginTwo: BasePlugin!
+        var newPluginTwo: Plugin!
         moveWithConfirmation(newPlugin, destinationPluginPath: pluginPath, handler: { (movedPlugin) -> Void in
             newPluginTwo = movedPlugin
         })
@@ -56,7 +56,7 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
     }
 
     func testEditPlugin() {
-        var newPlugin: BasePlugin!
+        var newPlugin: Plugin!
         modifyWithConfirmation(plugin, handler: { (modifiedPlugin) -> Void in
             newPlugin = modifiedPlugin
         })

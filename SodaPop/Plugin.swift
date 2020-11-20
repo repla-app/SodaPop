@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Plugin {
+public protocol Plugin: Equatable {
     var hidden: Bool { get }
     var promptInterrupt: Bool { get }
     var usesEnvironment: Bool { get }
@@ -25,18 +25,18 @@ public protocol Plugin {
 
     // MARK: Properties
 
-    dynamic var name: String { get }
-    dynamic var identifier: String { get }
+    dynamic var name: String { get set }
+    dynamic var identifier: String { get set }
 
-    dynamic var command: String? { get }
+    dynamic var command: String? { get set }
 
-    var commandPath: String? { get }
+    var commandPath: String? { get set }
 
-    dynamic var suffixes: [String] { get }
+    dynamic var suffixes: [String] { get set }
 
     dynamic var type: String { get }
 
-    dynamic var editable: Bool { get }
+    dynamic var editable: Bool { get set }
 
     var description: String { get }
 }

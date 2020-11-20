@@ -9,7 +9,7 @@
 import Cocoa
 
 @objcMembers
-public class Plugin: POPPlugin {
+public class BasePlugin: POPPlugin {
     let hidden: Bool
     public let promptInterrupt: Bool
     public let usesEnvironment: Bool

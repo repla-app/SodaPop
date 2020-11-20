@@ -21,13 +21,13 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     let pluginsController: POPPluginsController
     let defaultNewPluginManager: POPDefaultNewPluginManager
-    public var plugins: [Plugin] {
+    public var plugins: [BasePlugin] {
         return pluginsController.plugins()
     }
 
-    public var defaultNewPlugin: Plugin? {
+    public var defaultNewPlugin: BasePlugin? {
         get {
-            return defaultNewPluginManager.defaultNewPlugin as? Plugin
+            return defaultNewPluginManager.defaultNewPlugin as? BasePlugin
         }
         set {
             defaultNewPluginManager.defaultNewPlugin = newValue
@@ -77,21 +77,21 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     // MARK: Plugins
 
-    public func plugin(withName name: String) -> Plugin? {
+    public func plugin(withName name: String) -> BasePlugin? {
         return pluginsController.plugin(withName: name)
     }
 
-    public func plugin(withIdentifier identifier: String) -> Plugin? {
+    public func plugin(withIdentifier identifier: String) -> BasePlugin? {
         return pluginsController.plugin(withIdentifier: identifier)
     }
 
-    public func isUnique(name: String, for plugin: Plugin) -> Bool {
+    public func isUnique(name: String, for plugin: BasePlugin) -> Bool {
         return pluginsController.isUniqueName(name, for: plugin)
     }
 
     // MARK: Convenience
 
-    public func addUnwatched(_ plugin: Plugin) {
+    public func addUnwatched(_ plugin: BasePlugin) {
         // TODO: For now this is a big hack, this adds a plugin that isn't
         // managed by the PluginDataManager. This means if the plugin moves on
         // the file system for example, that the loaded plugin will be
@@ -103,33 +103,33 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
         add(plugin)
     }
 
-    public func removeUnwatched(_ plugin: Plugin) {
+    public func removeUnwatched(_ plugin: BasePlugin) {
         remove(plugin)
     }
 
-    private func add(_ plugin: Plugin) {
+    private func add(_ plugin: BasePlugin) {
         pluginsController.add(plugin)
     }
 
-    private func remove(_ plugin: Plugin) {
+    private func remove(_ plugin: BasePlugin) {
         pluginsController.remove(plugin)
     }
 
     // MARK: Adding and Removing Plugins
 
-    public func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
+    public func moveToTrash(_ plugin: BasePlugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         pluginsDataController.moveToTrash(plugin, handler: handler)
     }
 
-    public func duplicate(_ plugin: Plugin, handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
+    public func duplicate(_ plugin: BasePlugin, handler: ((_ newPlugin: BasePlugin?, _ error: NSError?) -> Void)?) {
         pluginsDataController.duplicate(plugin, handler: handler)
     }
 
-    public func newPlugin(handler: ((_ newPlugin: Plugin?, _ error: NSError?) -> Void)?) {
+    public func newPlugin(handler: ((_ newPlugin: BasePlugin?, _ error: NSError?) -> Void)?) {
         // TODO: Handle when the `defaultNewPlugin` is nil. This isn't an issue
         // right now only because it's impossible to run the app that way
         // without tampering with the bundle contents.
-        if let plugin = defaultNewPluginManager.defaultNewPlugin as? Plugin {
+        if let plugin = defaultNewPluginManager.defaultNewPlugin as? BasePlugin {
             duplicate(plugin, handler: handler)
         }
     }
@@ -137,14 +137,14 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     // MARK: PluginsDataControllerDelegate
 
     func pluginsDataController(_: PluginsDataController,
-                               didAddPlugin plugin: Plugin) {
+                               didAddPlugin plugin: BasePlugin) {
         add(plugin)
     }
 
     func pluginsDataController(_: PluginsDataController,
-                               didRemovePlugin plugin: Plugin) {
+                               didRemovePlugin plugin: BasePlugin) {
         if
-            let defaultNewPlugin = defaultNewPluginManager.defaultNewPlugin as? Plugin,
+            let defaultNewPlugin = defaultNewPluginManager.defaultNewPlugin as? BasePlugin,
             defaultNewPlugin == plugin
         {
             defaultNewPluginManager.defaultNewPlugin = nil
@@ -154,7 +154,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
 
     func pluginsDataController(_: PluginsDataController,
                                uniquePluginNameFromName name: String,
-                               for plugin: Plugin) -> String? {
+                               for plugin: BasePlugin) -> String? {
         return pluginsController.uniquePluginName(fromName: name, for: plugin)
     }
 

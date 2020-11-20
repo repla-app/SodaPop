@@ -22,9 +22,9 @@ class PluginMaker {
         self.userPluginsPath = userPluginsPath
     }
 
-    func makePlugin(path: String) -> Plugin? {
+    func makePlugin(path: String) -> BasePlugin? {
         let pluginKind = self.pluginKind(for: path)
-        guard let plugin = Plugin.makePlugin(path: path, pluginKind: pluginKind) else {
+        guard let plugin = BasePlugin.makePlugin(path: path, pluginKind: pluginKind) else {
             return nil
         }
         plugin.uniqueNameDataSource = pluginsController
@@ -32,7 +32,7 @@ class PluginMaker {
         return plugin
     }
 
-    func makePlugin(url: URL) -> Plugin? {
+    func makePlugin(url: URL) -> BasePlugin? {
         return makePlugin(path: url.path)
     }
 

@@ -12,7 +12,7 @@ import SodaPopTestHarness
 import XCTest
 
 class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
-    func plugins() -> [Plugin] {
+    func plugins() -> [BasePlugin] {
         return pluginsManager.plugins
     }
 
@@ -20,7 +20,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
 
     func testAddAndDeletePlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
-        var newPlugin: Plugin!
+        var newPlugin: BasePlugin!
         let copyExpectation = expectation(description: "Copy")
         copyWithConfirmation(plugin,
                              destinationPluginPath: userPluginsPath) { plugin in
@@ -52,7 +52,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount - 1)
 
         // Test that the original plugin can be reloaded by modifying it
-        var originalPlugin: Plugin!
+        var originalPlugin: BasePlugin!
         modifyWithConfirmation(plugin) { (plugin) -> Void in
             originalPlugin = plugin
         }
@@ -72,7 +72,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let pluginParentDirectory = pluginPath.deletingLastPathComponent
         let destinationPluginPath = pluginParentDirectory.appendingPathComponent(destinationPluginFilename)
-        var newPlugin: Plugin!
+        var newPlugin: BasePlugin!
 
         moveWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
             newPlugin = plugin
@@ -83,7 +83,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
 
         // Move the plugin back
-        var originalPlugin: Plugin!
+        var originalPlugin: BasePlugin!
         moveWithConfirmation(newPlugin, destinationPluginPath: pluginPath, handler: { (plugin) -> Void in
             originalPlugin = plugin
         })
@@ -95,7 +95,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
 
     func testEditPlugin() {
         // Move the plugin
-        var newPlugin: Plugin!
+        var newPlugin: BasePlugin!
         modifyWithConfirmation(plugin) { (plugin) -> Void in
             newPlugin = plugin
         }

@@ -10,13 +10,13 @@ import Foundation
 @testable import SodaPop
 
 class MockPluginsController: POPPluginsController {
-    var overrideNameToPlugin = [String: Plugin]()
+    var overrideNameToPlugin = [String: BasePlugin]()
 
-    func override(name: String, with plugin: Plugin) {
+    func override(name: String, with plugin: BasePlugin) {
         overrideNameToPlugin[name] = plugin
     }
 
-    override func plugin(withName name: String) -> Plugin? {
+    override func plugin(withName name: String) -> BasePlugin? {
         if let plugin = overrideNameToPlugin[name] {
             return plugin
         }

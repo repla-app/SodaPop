@@ -10,7 +10,7 @@
 		450CA07F1EBACDAC00D08D2A /* CopyDirectoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */; };
 		450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */; };
 		450CA0811EBACDAC00D08D2A /* MultiCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */; };
-		450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06F1EBACDAC00D08D2A /* Plugin.swift */; };
+		450CA0821EBACDAC00D08D2A /* BasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */; };
 		450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */; };
 		450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */; };
 		450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */; };
@@ -149,7 +149,7 @@
 		450CA06C1EBACDAC00D08D2A /* CopyDirectoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyDirectoryController.swift; sourceTree = "<group>"; };
 		450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuplicatePluginController.swift; sourceTree = "<group>"; };
 		450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiCollectionController.swift; sourceTree = "<group>"; };
-		450CA06F1EBACDAC00D08D2A /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePlugin.swift; sourceTree = "<group>"; };
 		450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Equality.swift"; sourceTree = "<group>"; };
 		450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Initialization.swift"; sourceTree = "<group>"; };
 		450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataController.swift; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 				450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */,
 				450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */,
 				455D8029256731EA0085AB8F /* PluginType.swift */,
-				450CA06F1EBACDAC00D08D2A /* Plugin.swift */,
+				450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */,
 				450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */,
 				450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */,
 				45278EAA255F48570038A741 /* XMLPlugin.swift */,
@@ -629,7 +629,7 @@
 				450CA0881EBACDAC00D08D2A /* PluginsDirectoryEventHandler.swift in Sources */,
 				450CA0811EBACDAC00D08D2A /* MultiCollectionController.swift in Sources */,
 				450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */,
-				450CA0821EBACDAC00D08D2A /* Plugin.swift in Sources */,
+				450CA0821EBACDAC00D08D2A /* BasePlugin.swift in Sources */,
 				450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */,
 				45FCF9EF1ED1E6C00039B3A0 /* POPPluginsController+POPDefaultNewPluginManagerDataSource.swift in Sources */,
 				450CA0891EBACDAC00D08D2A /* PluginsDirectoryManager.swift in Sources */,

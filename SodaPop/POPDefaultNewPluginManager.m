@@ -54,7 +54,7 @@
     return _defaultNewPlugin;
 }
 
-- (void)setDefaultNewPlugin:(Plugin *)defaultNewPlugin {
+- (void)setDefaultNewPlugin:(BasePlugin *)defaultNewPlugin {
     if (self.defaultNewPlugin == defaultNewPlugin) {
         return;
     }
@@ -74,7 +74,7 @@
 
     if (_defaultNewPlugin) {
         _defaultNewPlugin.defaultNewPlugin = YES;
-        [self.defaults setObject:[(Plugin *)_defaultNewPlugin identifier] forKey:kDefaultNewPluginIdentifierKey];
+        [self.defaults setObject:[(BasePlugin *)_defaultNewPlugin identifier] forKey:kDefaultNewPluginIdentifierKey];
     }
 }
 

@@ -104,11 +104,11 @@ class PluginsManagerDuplicatePluginsTests: ArrayControllerTestCase {
     }
 
     func testUnwatchedSameURL() {
-        guard let plugin = Plugin.makePlugin(url: testPluginOutsideURL) else {
+        guard let plugin = BasePlugin.makePlugin(url: testPluginOutsideURL) else {
             XCTFail()
             return
         }
-        guard let pluginTwo = Plugin.makePlugin(url: testPluginOutsideURL) else {
+        guard let pluginTwo = BasePlugin.makePlugin(url: testPluginOutsideURL) else {
             XCTFail()
             return
         }
@@ -120,7 +120,7 @@ class PluginsManagerDuplicatePluginsTests: ArrayControllerTestCase {
     }
 
     func testUnwatched() {
-        guard let plugin = Plugin.makePlugin(url: testPluginOutsideURL) else {
+        guard let plugin = BasePlugin.makePlugin(url: testPluginOutsideURL) else {
             XCTFail()
             return
         }

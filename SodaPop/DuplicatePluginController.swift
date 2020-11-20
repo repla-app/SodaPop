@@ -11,7 +11,7 @@ import Foundation
 protocol DuplicatePluginControllerDelegate: class {
     func duplicatePluginController(_ duplicatePluginController: DuplicatePluginController,
                                    uniquePluginNameFromName name: String,
-                                   for plugin: Plugin) -> String?
+                                   for plugin: BasePlugin) -> String?
 }
 
 class DuplicatePluginController {
@@ -42,9 +42,9 @@ class DuplicatePluginController {
         return name.appendingPathExtension(pluginFileExtension)!
     }
 
-    func duplicate(_ plugin: Plugin,
+    func duplicate(_ plugin: BasePlugin,
                    to destinationDirectoryURL: URL,
-                   completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
+                   completionHandler handler: @escaping (_ plugin: BasePlugin?, _ error: NSError?) -> Void) {
         let pluginFileURL = plugin.bundle.bundleURL
         copyDirectoryController.copyItem(at: pluginFileURL,
                                          completionHandler: { [weak self] (URL, error) -> Void in

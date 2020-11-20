@@ -41,7 +41,7 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         plugin.suffixes = testPluginSuffixesTwo
         let contentsFive = contentsOfInfoDictionaryWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
-        let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
+        let newPlugin: BasePlugin! = BasePlugin.makePlugin(url: tempPluginURL)
 
         XCTAssertEqual(plugin.name, newPlugin.name, "The names should be equal")
         XCTAssertEqual(plugin.command!, newPlugin.command!, "The commands should be equal")
@@ -79,8 +79,8 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
 
     // MARK: Helper
 
-    func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
+    func contentsOfInfoDictionaryWithConfirmation(for plugin: BasePlugin) -> String {
+        let pluginInfoDictionaryPath = BasePlugin.urlForInfoDictionary(for: plugin).path
         var infoDictionaryContents: String!
         do {
             infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,

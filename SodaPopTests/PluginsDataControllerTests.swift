@@ -27,9 +27,9 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
         }
 
         // Test plugins can be created from all paths
-        var plugins = [Plugin]()
+        var plugins = [BasePlugin]()
         for pluginPath in pluginPaths {
-            if let plugin = Plugin.makePlugin(path: pluginPath) {
+            if let plugin = BasePlugin.makePlugin(path: pluginPath) {
                 plugins.append(plugin)
             } else {
                 XCTAssert(false, "The plugin should exist")
@@ -275,7 +275,7 @@ class PluginsDataControllerEventTests: PluginsDataControllerEventTestCase {
     func testDuplicateAndTrashPlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
 
-        var newPlugin: Plugin!
+        var newPlugin: BasePlugin!
 
         let addedExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (_) -> Void in

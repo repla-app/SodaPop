@@ -15,8 +15,8 @@ public protocol PluginsManagerOwnerType {
 }
 
 extension PluginsManagerOwnerType where Self: XCTestCase {
-    public func newPluginWithConfirmation() -> Plugin {
-        var createdPlugin: Plugin!
+    public func newPluginWithConfirmation() -> BasePlugin {
+        var createdPlugin: BasePlugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.newPlugin { (newPlugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
@@ -27,8 +27,8 @@ extension PluginsManagerOwnerType where Self: XCTestCase {
         return createdPlugin
     }
 
-    public func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
-        var createdPlugin: Plugin!
+    public func duplicateWithConfirmation(_ plugin: BasePlugin) -> BasePlugin {
+        var createdPlugin: BasePlugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.duplicate(plugin) { (newPlugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")

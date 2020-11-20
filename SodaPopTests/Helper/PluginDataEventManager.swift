@@ -10,19 +10,19 @@ import Foundation
 @testable import SodaPop
 
 class PluginDataEventManager: PluginsDataControllerDelegate {
-    var pluginWasAddedHandlers: [(Plugin) -> Void]
-    var pluginWasRemovedHandlers: [(Plugin) -> Void]
+    var pluginWasAddedHandlers: [(BasePlugin) -> Void]
+    var pluginWasRemovedHandlers: [(BasePlugin) -> Void]
     weak var delegate: PluginsDataControllerDelegate?
 
     init() {
-        pluginWasAddedHandlers = [(Plugin) -> Void]()
-        pluginWasRemovedHandlers = [(Plugin) -> Void]()
+        pluginWasAddedHandlers = [(BasePlugin) -> Void]()
+        pluginWasRemovedHandlers = [(BasePlugin) -> Void]()
     }
 
     // MARK: `PluginsDataControllerDelegate`
 
     public func pluginsDataController(_ pluginsDataController: PluginsDataController,
-                                      didAddPlugin plugin: Plugin) {
+                                      didAddPlugin plugin: BasePlugin) {
         delegate?.pluginsDataController(pluginsDataController, didAddPlugin: plugin)
 
         assert(pluginWasAddedHandlers.count > 0, "There should be at least one handler")
@@ -34,7 +34,7 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
     }
 
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
-                               didRemovePlugin plugin: Plugin) {
+                               didRemovePlugin plugin: BasePlugin) {
         delegate?.pluginsDataController(pluginsDataController,
                                         didRemovePlugin: plugin)
 
@@ -48,7 +48,7 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
 
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
                                uniquePluginNameFromName name: String,
-                               for plugin: Plugin) -> String? {
+                               for plugin: BasePlugin) -> String? {
         return delegate?.pluginsDataController(pluginsDataController,
                                                uniquePluginNameFromName: name,
                                                for: plugin)
@@ -56,11 +56,11 @@ class PluginDataEventManager: PluginsDataControllerDelegate {
 
     // MARK: Handlers
 
-    func add(pluginWasAddedHandler handler: @escaping (_ plugin: Plugin) -> Void) {
+    func add(pluginWasAddedHandler handler: @escaping (_ plugin: BasePlugin) -> Void) {
         pluginWasAddedHandlers.append(handler)
     }
 
-    func add(pluginWasRemovedHandler handler: @escaping (_ plugin: Plugin) -> Void) {
+    func add(pluginWasRemovedHandler handler: @escaping (_ plugin: BasePlugin) -> Void) {
         pluginWasRemovedHandlers.append(handler)
     }
 }

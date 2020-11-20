@@ -13,7 +13,7 @@ import XCTest
 
 class DuplicatePluginControllerTests: PluginsManagerTestCase {
     var duplicatePluginController: DuplicatePluginController!
-    lazy var plugin: Plugin = {
+    lazy var plugin: BasePlugin = {
         self.pluginsManager.defaultNewPlugin!
     }()
 
@@ -32,7 +32,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         // Test that the plugin starts not editable
         XCTAssertFalse(plugin.editable, "The plugin should not be editable")
 
-        var pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(for: plugin)
+        var pluginInfoDictionaryURL = BasePlugin.urlForInfoDictionary(for: plugin)
         var pluginInfoDictionaryContents: String!
         do {
             pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
@@ -42,11 +42,11 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         var pluginInfoDictionaryContentsAsNSString: NSString = pluginInfoDictionaryContents as NSString
-        var range = pluginInfoDictionaryContentsAsNSString.range(of: Plugin.InfoDictionaryKeys.editable)
+        var range = pluginInfoDictionaryContentsAsNSString.range(of: BasePlugin.InfoDictionaryKeys.editable)
         XCTAssertFalse(range.location == NSNotFound, "The string should have been found")
 
         // Duplicate the plugin
-        var duplicatePlugin: Plugin!
+        var duplicatePlugin: BasePlugin!
         let duplicateExpectation = expectation(description: "Duplicate")
         duplicatePluginController.duplicate(plugin, to: temporaryUserPluginsDirectoryURL) { (plugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")
@@ -66,7 +66,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
 
         // Test that the new plugin is editable
         XCTAssertTrue(duplicatePlugin.editable, "The duplicated plugin should be editable")
-        pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: duplicatePlugin.bundle.bundleURL)
+        pluginInfoDictionaryURL = BasePlugin.urlForInfoDictionary(forPluginAt: duplicatePlugin.bundle.bundleURL)
 
         do {
             pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
@@ -76,7 +76,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         pluginInfoDictionaryContentsAsNSString = pluginInfoDictionaryContents as NSString
-        range = pluginInfoDictionaryContentsAsNSString.range(of: Plugin.InfoDictionaryKeys.editable)
+        range = pluginInfoDictionaryContentsAsNSString.range(of: BasePlugin.InfoDictionaryKeys.editable)
         XCTAssertTrue(range.location == NSNotFound, "The string should not have been found")
 
         // Test the plugins properties are accurate
@@ -112,7 +112,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         // Function to create a blocking folder for a plugin with the provided name
-        let makeBlockingFolderWithName: ((String, Plugin, PluginsManager, URL) -> Void) = {
+        let makeBlockingFolderWithName: ((String, BasePlugin, PluginsManager, URL) -> Void) = {
             name, plugin, pluginsManager, destinationDirectoryURL in
             let uniqueName = pluginsManager.pluginsController.uniquePluginName(fromName: name,
                                                                                for: plugin)
@@ -147,7 +147,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         // Perform the duplicate
-        var duplicatePlugin: Plugin!
+        var duplicatePlugin: BasePlugin!
         let duplicateExpectation = expectation(description: "Duplicate")
         duplicatePluginController.duplicate(plugin, to: temporaryUserPluginsDirectoryURL) { (plugin, error) -> Void in
             XCTAssertNil(error, "The error should be nil")

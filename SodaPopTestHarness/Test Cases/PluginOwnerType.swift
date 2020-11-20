@@ -10,5 +10,5 @@ import Foundation
 import SodaPop
 
 public protocol PluginOwnerType: PluginsManagerOwnerType {
-    var plugin: Plugin { get }
+    var plugin: BasePlugin { get }
 }

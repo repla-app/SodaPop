@@ -10,7 +10,7 @@ import Foundation
 import SodaPop
 
 extension PluginsManagerOwnerType {
-    public func moveToTrashAndCleanUpWithConfirmation(_ plugin: Plugin,
+    public func moveToTrashAndCleanUpWithConfirmation(_ plugin: BasePlugin,
                                                       handler: (() -> Void)?) {
         // Trash the plugin
         pluginsManager.moveToTrash(plugin) { url, error in

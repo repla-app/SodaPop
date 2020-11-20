@@ -11,12 +11,12 @@
 
 #define kDuplicatePluginsWithCounterMax 99
 
-@class Plugin;
+@class BasePlugin;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPluginsController (UniquePluginName) <UniqueNameDataSource>
 - (NSString *)uniquePluginNameFromName:(NSString *)name;
-- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable Plugin *)plugin;
-- (BOOL)isUniqueName:(NSString *)name forPlugin:(Plugin *)plugin;
+- (NSString *)uniquePluginNameFromName:(NSString *)name forPlugin:(nullable BasePlugin *)plugin;
+- (BOOL)isUniqueName:(NSString *)name forPlugin:(BasePlugin *)plugin;
 @end
 NS_ASSUME_NONNULL_END

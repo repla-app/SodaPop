@@ -12,8 +12,8 @@ enum JSONPluginLoadError: Error {
     case missingConfiguration(path: String)
 }
 
-class JSONPlugin: Plugin {
-    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
+class JSONPlugin: BasePlugin {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> BasePlugin? {
         do {
             throw JSONPluginLoadError.missingConfiguration(path: path)
         } catch let error as NSError {

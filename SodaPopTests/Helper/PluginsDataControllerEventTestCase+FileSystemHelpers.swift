@@ -14,9 +14,9 @@ import XCTest
 extension TemporaryPluginsDataControllerEventTestCase {
     // MARK: Move Helpers
 
-    func moveWithConfirmation(_ plugin: Plugin,
+    func moveWithConfirmation(_ plugin: BasePlugin,
                               destinationPluginPath: String,
-                              handler: @escaping (_ plugin: Plugin?) -> Void) {
+                              handler: @escaping (_ plugin: BasePlugin?) -> Void) {
         let pluginPath = plugin.bundle.bundlePath
         guard isTemporaryItem(atPath: pluginPath) else {
             XCTFail("Tried to move a plugin that is not in a temporary directory.")
@@ -30,7 +30,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        var newPlugin: Plugin?
+        var newPlugin: BasePlugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
             let path = addedPlugin.bundle.bundlePath
@@ -55,13 +55,13 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: Copy Helpers
 
-    func copyWithConfirmation(_ plugin: Plugin,
+    func copyWithConfirmation(_ plugin: BasePlugin,
                               destinationPluginPath: String,
-                              handler: @escaping (_ plugin: Plugin?) -> Void) {
+                              handler: @escaping (_ plugin: BasePlugin?) -> Void) {
         var pluginWasAdded = false
         var pluginWasCopied = false
 
-        var newPlugin: Plugin?
+        var newPlugin: BasePlugin?
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
             let path = addedPlugin.bundle.bundlePath
             if path.hasPrefix(destinationPluginPath) {
@@ -95,7 +95,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: Remove Helpers
 
-    func removeWithConfirmation(_ plugin: Plugin) {
+    func removeWithConfirmation(_ plugin: BasePlugin) {
         let removeExpectation = expectation(description: "Plugin was removed")
         pluginDataEventManager.add(pluginWasRemovedHandler: { (removedPlugin) -> Void in
             if plugin == removedPlugin {
@@ -116,10 +116,10 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     // MARK: Modify Helpers
 
-    func modifyWithConfirmation(_ plugin: Plugin, handler: @escaping (_ plugin: Plugin?) -> Void) {
+    func modifyWithConfirmation(_ plugin: BasePlugin, handler: @escaping (_ plugin: BasePlugin?) -> Void) {
         // Get the old identifier
         let infoDictionary = NSDictionary(contentsOf: plugin.infoDictionaryURL)! as Dictionary
-        let identifier: String = infoDictionary[Plugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
+        let identifier: String = infoDictionary[BasePlugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
 
         // Make a new identifier
         let UUID = Foundation.UUID()
@@ -146,7 +146,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
         })
 
         let pluginPath = plugin.bundle.bundlePath
-        var newPlugin: Plugin?
+        var newPlugin: BasePlugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
             let path = addedPlugin.bundle.bundlePath

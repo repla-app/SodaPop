@@ -23,30 +23,30 @@
     return self;
 }
 
-- (void)addPlugin:(Plugin *)plugin {
+- (void)addPlugin:(BasePlugin *)plugin {
     [self insertObject:plugin inPluginsAtIndex:0];
 }
 
-- (void)removePlugin:(Plugin *)plugin {
+- (void)removePlugin:(BasePlugin *)plugin {
     NSUInteger index = [self indexOfObject:plugin];
     if (index != NSNotFound) {
         [self removeObjectFromPluginsAtIndex:index];
     }
 }
 
-- (Plugin *)pluginWithName:(NSString *)name {
+- (BasePlugin *)pluginWithName:(NSString *)name {
     id object = [self.multiCollectionController objectForKey:name];
-    if ([object isKindOfClass:[Plugin class]]) {
+    if ([object isKindOfClass:[BasePlugin class]]) {
         return object;
     }
     return nil;
 }
 
-- (Plugin *)pluginWithIdentifier:(NSString *)identifier {
+- (BasePlugin *)pluginWithIdentifier:(NSString *)identifier {
     // TODO: This should obviously be optimized by creating a key value
     // collection to retrieve `Plugin` by key.
     NSArray *plugins = self.plugins;
-    for (Plugin *plugin in plugins) {
+    for (BasePlugin *plugin in plugins) {
         if ([plugin.identifier isEqualToString:identifier]) {
             return plugin;
         }
@@ -54,7 +54,7 @@
     return nil;
 }
 
-- (NSUInteger)indexOfObject:(Plugin *)plugin {
+- (NSUInteger)indexOfObject:(BasePlugin *)plugin {
     return [self.multiCollectionController indexOfObject:plugin];
 }
 
@@ -64,7 +64,7 @@
     return [self.multiCollectionController objects];
 }
 
-- (void)insertObject:(Plugin *)plugin inPluginsAtIndex:(NSUInteger)index {
+- (void)insertObject:(BasePlugin *)plugin inPluginsAtIndex:(NSUInteger)index {
     [self.multiCollectionController insertObject:plugin inObjectsAtIndex:index];
 }
 

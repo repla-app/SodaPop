@@ -11,7 +11,6 @@
 		450CA0801EBACDAC00D08D2A /* DuplicatePluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */; };
 		450CA0811EBACDAC00D08D2A /* MultiCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */; };
 		450CA0821EBACDAC00D08D2A /* BasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */; };
-		450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */; };
 		450CA0841EBACDAC00D08D2A /* Plugin+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */; };
 		450CA0861EBACDAC00D08D2A /* PluginsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */; };
 		450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */; };
@@ -150,7 +149,6 @@
 		450CA06D1EBACDAC00D08D2A /* DuplicatePluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuplicatePluginController.swift; sourceTree = "<group>"; };
 		450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiCollectionController.swift; sourceTree = "<group>"; };
 		450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePlugin.swift; sourceTree = "<group>"; };
-		450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Equality.swift"; sourceTree = "<group>"; };
 		450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Plugin+Initialization.swift"; sourceTree = "<group>"; };
 		450CA0731EBACDAC00D08D2A /* PluginsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginsDataController.swift; sourceTree = "<group>"; };
 		450CA0741EBACDAC00D08D2A /* PluginsDataController+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PluginsDataController+Paths.swift"; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 				450CA06E1EBACDAC00D08D2A /* MultiCollectionController.swift */,
 				455D8029256731EA0085AB8F /* Plugin.swift */,
 				450CA06F1EBACDAC00D08D2A /* BasePlugin.swift */,
-				450CA0701EBACDAC00D08D2A /* Plugin+Equality.swift */,
 				450CA0711EBACDAC00D08D2A /* Plugin+Initialization.swift */,
 				45278EAA255F48570038A741 /* XMLPlugin.swift */,
 				45278EAE255F48690038A741 /* JSONPlugin.swift */,
@@ -619,7 +616,6 @@
 				450CA08C1EBACDAC00D08D2A /* POPKeyToObjectController.m in Sources */,
 				45C079031F73466C0050A8E4 /* PluginsManagerConfiguration.swift in Sources */,
 				45278EAF255F48690038A741 /* JSONPlugin.swift in Sources */,
-				450CA0831EBACDAC00D08D2A /* Plugin+Equality.swift in Sources */,
 				456783061EBFE5D100C9EC4A /* PluginMaker.swift in Sources */,
 				453126951EC93BEA00248FA9 /* POPDefaultNewPluginManager.m in Sources */,
 				450CA0871EBACDAC00D08D2A /* PluginsDataController+Paths.swift in Sources */,

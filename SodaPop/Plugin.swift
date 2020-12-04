@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Plugin: Equatable {
+public protocol Plugin {
     var hidden: Bool { get }
     var promptInterrupt: Bool { get }
     var usesEnvironment: Bool { get }
@@ -18,25 +18,52 @@ public protocol Plugin: Equatable {
     var autoShowLog: Bool? { get }
     var transparentBackground: Bool { get }
     var pluginKind: PluginKind { get }
-
-    var resourcePath: String? { get }
-    var resourceURL: URL? { get }
+    var path: String? { get }
+    var url: URL? { get }
     var directoryURL: URL? { get }
-
-    // MARK: Properties
-
-    dynamic var name: String { get set }
-    dynamic var identifier: String { get set }
-
-    dynamic var command: String? { get set }
-
+    var directoryPath: String? { get }
+    var name: String { get set }
+    var identifier: String { get set }
+    var command: String? { get set }
     var commandPath: String? { get set }
+    var suffixes: [String] { get set }
+    var type: String { get }
+    var editable: Bool { get set }
 
-    dynamic var suffixes: [String] { get set }
+    static func == (lhs: Plugin, rhs: Plugin) -> Bool
+    static func != (lhs: Plugin, rhs: Plugin) -> Bool
+}
 
-    dynamic var type: String { get }
+extension Plugin {
+    func isEqual(toOther plugin: Plugin) -> Bool {
+        if name != plugin.name {
+            return false
+        }
 
-    dynamic var editable: Bool { get set }
+        if identifier != plugin.identifier {
+            return false
+        }
 
-    var description: String { get }
+        if editable != plugin.editable {
+            return false
+        }
+
+        if type != plugin.type {
+            return false
+        }
+
+        if command != plugin.command {
+            return false
+        }
+
+        if commandPath != plugin.commandPath {
+            return false
+        }
+
+        if url != plugin.url {
+            return false
+        }
+
+        return true
+    }
 }

@@ -25,6 +25,21 @@ enum XMLPluginLoadError: Error {
 }
 
 extension XMLPlugin {
+    enum InfoDictionaryKeys {
+        static let name = "WCName"
+        static let identifier = "WCUUID"
+        static let command = "WCCommand"
+        static let suffixes = "WCFileExtensions"
+        static let hidden = "WCHidden"
+        static let editable = "WCEditable"
+        static let debugModeEnabled = "WCDebugModeEnabled"
+        static let transparentBackground = "WCTransparentBackground"
+        static let autoShowLog = "WCAutoShowLog"
+        static let promptInterrupt = "WCPromptInterrupt"
+        static let usesEnvironment = "WCUsesEnvironment"
+    }
+
+
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),

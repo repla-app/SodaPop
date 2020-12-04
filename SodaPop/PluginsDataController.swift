@@ -51,6 +51,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         didSet {
             pluginMaker.pluginsController = pluginsController
             for plugin in plugins {
+                guard let plugin = plugin as? POPPlugin else {
+                    assertionFailure("Casing to a `POPPlugin` should always succeed")
+                }
                 plugin.uniqueNameDataSource = pluginsController
             }
         }
@@ -95,7 +98,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {
-                pluginPathToPluginDictionary[plugin.bundle.bundlePath] = plugin
+                pluginPathToPluginDictionary[plugin.directoryPath] = plugin
             }
             let pluginsDirectoryURL = URL(fileURLWithPath: path)
             let pluginDirectoryManager = PluginsDirectoryManager(pluginsDirectoryURL: pluginsDirectoryURL)

@@ -18,10 +18,10 @@ public protocol Plugin {
     var autoShowLog: Bool? { get }
     var transparentBackground: Bool { get }
     var pluginKind: PluginKind { get }
-    var path: String? { get }
-    var url: URL? { get }
-    var directoryURL: URL? { get }
-    var directoryPath: String? { get }
+    var path: String { get }
+    var url: URL { get }
+    var directoryURL: URL { get }
+    var directoryPath: String { get }
     var name: String { get set }
     var identifier: String { get set }
     var command: String? { get set }

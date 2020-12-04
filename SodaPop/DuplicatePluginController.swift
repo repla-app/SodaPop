@@ -45,10 +45,7 @@ class DuplicatePluginController {
     func duplicate(_ plugin: Plugin,
                    to destinationDirectoryURL: URL,
                    completionHandler handler: @escaping (_ plugin: Plugin?, _ error: NSError?) -> Void) {
-        guard let pluginFileURL = plugin.directoryURL else {
-            assertionFailure("The plugin should always have a `directoryURL`")
-            return
-        }
+        let pluginFileURL = plugin.directoryURL
         copyDirectoryController.copyItem(at: pluginFileURL,
                                          completionHandler: { [weak self] (URL, error) -> Void in
                                              guard let `self` = self else { return }

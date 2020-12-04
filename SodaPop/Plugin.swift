@@ -27,43 +27,8 @@ public protocol Plugin {
     var command: String? { get set }
     var commandPath: String? { get set }
     var suffixes: [String] { get set }
-    var type: String { get }
     var editable: Bool { get set }
 
     static func == (lhs: Plugin, rhs: Plugin) -> Bool
     static func != (lhs: Plugin, rhs: Plugin) -> Bool
-}
-
-extension Plugin {
-    func isEqual(toOther plugin: Plugin) -> Bool {
-        if name != plugin.name {
-            return false
-        }
-
-        if identifier != plugin.identifier {
-            return false
-        }
-
-        if editable != plugin.editable {
-            return false
-        }
-
-        if type != plugin.type {
-            return false
-        }
-
-        if command != plugin.command {
-            return false
-        }
-
-        if commandPath != plugin.commandPath {
-            return false
-        }
-
-        if url != plugin.url {
-            return false
-        }
-
-        return true
-    }
 }

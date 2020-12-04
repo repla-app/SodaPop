@@ -287,17 +287,13 @@ class XMLPlugin: BasePlugin {
         return nil
     }
 
-    public var directoryURL: URL? {
-        return bundle.bundleURL
-    }
-    
     internal var infoDictionary: [AnyHashable: Any]
     internal var infoDictionaryURL: URL {
         return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
     }
 
     class func urlForInfoDictionary(for plugin: Plugin) -> URL {
-        return urlForInfoDictionary(forPluginAt: plugin.bundle.bundleURL)
+        return urlForInfoDictionary(forPluginAt: plugin.directoryURL)
     }
 
     class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {
@@ -336,7 +332,7 @@ class XMLPlugin: BasePlugin {
         }
     }
 
-    public var commandPath: String? {
+    override public var commandPath: String? {
         if let resourcePath = resourcePath {
             if let command = command {
                 return resourcePath.appendingPathComponent(command)
@@ -345,7 +341,7 @@ class XMLPlugin: BasePlugin {
         return nil
     }
 
-    public dynamic var suffixes: [String] {
+    override public dynamic var suffixes: [String] {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -355,11 +351,11 @@ class XMLPlugin: BasePlugin {
         }
     }
 
-    public dynamic var type: String {
+    public dynamic var kindName: String {
         return pluginKind.name()
     }
 
-    public dynamic var editable: Bool {
+    override public dynamic var editable: Bool {
         didSet {
             if !editable {
                 infoDictionary[InfoDictionaryKeys.editable] = editable

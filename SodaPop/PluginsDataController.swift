@@ -112,16 +112,16 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
+            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
                 // If there is an existing plugin and a new plugin, remove the old plugin and add the new plugin
-                if !oldPlugin.isEqual(to: newPlugin) {
+                if oldPlugin != newPlugin {
                     remove(oldPlugin)
                     add(newPlugin)
                 }
             }
         } else {
             // If there is only a new plugin, add it
-            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
+            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
                 add(newPlugin)
             }
         }
@@ -147,13 +147,13 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     // MARK: Add & Remove Helpers
 
     func add(_ plugin: Plugin) {
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         pluginPathToPluginDictionary[pluginPath] = plugin
         delegate?.pluginsDataController(self, didAddPlugin: plugin)
     }
 
     func remove(_ plugin: Plugin) {
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         pluginPathToPluginDictionary.removeValue(forKey: pluginPath)
         delegate?.pluginsDataController(self, didRemovePlugin: plugin)
     }
@@ -166,7 +166,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         assert(plugin.editable, "The plugin should be editable")
-        let bundeURL = plugin.bundle.bundleURL
+        let bundeURL = plugin.url
         NSWorkspace.shared.recycle([bundeURL]) { [weak self] dictionary, error in
             guard let strongSelf = self else {
                 return

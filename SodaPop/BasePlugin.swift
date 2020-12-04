@@ -66,10 +66,12 @@ public class BasePlugin: POPPlugin, Plugin {
         self.type = type
         self.url = url
     }
-}
 
-extension BasePlugin {
-    func isEqual(toOther plugin: XMLPlugin) -> Bool {
+//    public static func == (lhs: BasePlugin, rhs: BasePlugin) -> Bool {
+//
+//    }
+
+    func isEqual(toOther plugin: Plugin) -> Bool {
         if name != plugin.name {
             return false
         }
@@ -82,7 +84,7 @@ extension BasePlugin {
             return false
         }
 
-        if type != plugin.type {
+        if kind != plugin.kind {
             return false
         }
 
@@ -94,10 +96,20 @@ extension BasePlugin {
             return false
         }
 
-        if resourceURL != plugin.resourceURL {
+        if url != plugin.url {
+            return false
+        }
+
+        
+        if type(of: plugin) != type(of: self) {
             return false
         }
 
         return true
+    }
+}
+
+extension BasePlugin {
+    func isEqual(toOther plugin: XMLPlugin) -> Bool {
     }
 }

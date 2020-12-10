@@ -27,12 +27,8 @@ class PluginMaker {
         guard let plugin = Plugin.makePlugin(path: path, pluginKind: pluginKind) else {
             return nil
         }
-        if let basePlugin = plugin as? Plugin {
-            basePlugin.uniqueNameDataSource = pluginsController
-            basePlugin.defaultPluginDataSource = defaultNewPluginManager
-        } else {
-            assertionFailure("The plugin should always be a `BasePlugin`")
-        }
+        plugin.uniqueNameDataSource = pluginsController
+        plugin.defaultPluginDataSource = defaultNewPluginManager
         return plugin
     }
 

@@ -9,7 +9,7 @@
 import Cocoa
 
 @objcMembers
-public class Plugin: POPPlugin, Equatable {
+public class Plugin: POPPlugin {
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool

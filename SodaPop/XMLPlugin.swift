@@ -234,7 +234,7 @@ extension XMLPlugin {
     }
 }
 
-class XMLPlugin: BasePlugin {
+class XMLPlugin: Plugin {
     let bundle: Bundle
 
     enum PluginWriteError: Error {

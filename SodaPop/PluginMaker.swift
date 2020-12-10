@@ -24,10 +24,10 @@ class PluginMaker {
 
     func makePlugin(path: String) -> Plugin? {
         let pluginKind = self.pluginKind(for: path)
-        guard let plugin = BasePlugin.makePlugin(path: path, pluginKind: pluginKind) else {
+        guard let plugin = Plugin.makePlugin(path: path, pluginKind: pluginKind) else {
             return nil
         }
-        if let basePlugin = plugin as? BasePlugin {
+        if let basePlugin = plugin as? Plugin {
             basePlugin.uniqueNameDataSource = pluginsController
             basePlugin.defaultPluginDataSource = defaultNewPluginManager
         } else {

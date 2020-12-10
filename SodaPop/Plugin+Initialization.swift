@@ -22,7 +22,7 @@ public enum PluginKind {
     }
 }
 
-extension BasePlugin {
+extension Plugin {
     public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }

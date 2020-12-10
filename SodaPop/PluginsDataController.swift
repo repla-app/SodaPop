@@ -112,7 +112,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 // If there is an existing plugin and a new plugin, remove the old plugin and add the new plugin
                 if oldPlugin != newPlugin {
                     remove(oldPlugin)
@@ -121,7 +121,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
             }
         } else {
             // If there is only a new plugin, add it
-            if let newPlugin = BasePlugin.makePlugin(path: pluginPath) {
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 add(newPlugin)
             }
         }

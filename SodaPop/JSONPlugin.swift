@@ -12,7 +12,7 @@ enum JSONPluginLoadError: Error {
     case missingConfiguration(path: String)
 }
 
-class JSONPlugin: BasePlugin {
+class JSONPlugin: Plugin {
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             throw JSONPluginLoadError.missingConfiguration(path: path)

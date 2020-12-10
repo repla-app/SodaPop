@@ -26,7 +26,7 @@ public class BasePlugin: POPPlugin, Plugin {
     public var name: String
     public var path: String
     public var suffixes: [String]
-    public let type: String
+    public let kind: String
     public var url: URL
 
     init(autoShowLog: Bool?,
@@ -45,7 +45,7 @@ public class BasePlugin: POPPlugin, Plugin {
          name: String,
          path: String,
          suffixes: [String],
-         type: String,
+         kind: String,
          url: URL) {
         self.autoShowLog = autoShowLog
         self.debugModeEnabled = debugModeEnabled
@@ -63,7 +63,7 @@ public class BasePlugin: POPPlugin, Plugin {
         self.name = name
         self.path = path
         self.suffixes = suffixes
-        self.type = type
+        self.kind = kind
         self.url = url
     }
 

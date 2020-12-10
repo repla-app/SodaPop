@@ -58,7 +58,7 @@ extension XMLPlugin {
                 let usesEnvironment = try validUsesEnvironment(infoDictionary: infoDictionary)
 
                 // Plugin
-                return Plugin(bundle: bundle,
+                return XMLPlugin(bundle: bundle,
                               infoDictionary: infoDictionary,
                               pluginKind: pluginKind,
                               identifier: identifier,
@@ -271,7 +271,7 @@ class XMLPlugin: Plugin {
         if let suffixes = suffixes {
             self.suffixes += suffixes
         }
-        super.init(bundle: bundle, hidden: hidden, promptInterrupt: promptInterrupt, usesEnvironment: usesEnvironment, debugModeEnabled: debugModeEnabled, autoShowLog: autoShowLog, transparentBackground: transparent, pluginKind: pluginKind)
+        super.init(bundle: bundle, hidden: hidden, promptInterrupt: promptInterrupt, usesEnvironment: usesEnvironment, debugModeEnabled: debugModeEnabled, autoShowLog: autoShowLog, transparentBackground: transparentBackground, pluginKind: pluginKind)
     }
 
     // MARK: Paths

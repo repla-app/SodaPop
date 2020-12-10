@@ -51,9 +51,6 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         didSet {
             pluginMaker.pluginsController = pluginsController
             for plugin in plugins {
-                guard let plugin = plugin as? POPPlugin else {
-                    assertionFailure("Casing to a `POPPlugin` should always succeed")
-                }
                 plugin.uniqueNameDataSource = pluginsController
             }
         }

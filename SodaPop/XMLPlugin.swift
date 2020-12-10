@@ -271,7 +271,7 @@ class XMLPlugin: Plugin {
         if let suffixes = suffixes {
             self.suffixes += suffixes
         }
-        super.init(bundle: bundle, hidden: hidden, promptInterrupt: promptInterrupt, usesEnvironment: usesEnvironment, debugModeEnabled: debugModeEnabled, autoShowLog: autoShowLog, transparentBackground: transparentBackground, pluginKind: pluginKind)
+        super.init(autoShowLog: autoShowLog, debugModeEnabled: debugModeEnabled, hidden: hidden, pluginKind: pluginKind, promptInterrupt: promptInterrupt, transparentBackground: transparentBackground, usesEnvironment: usesEnvironment, command: command, commandPath: commandPath, directoryPath: directoryPath, directoryURL: directoryURL, editable: editable, identifier: identifier, name: name, path: path, suffixes: suffixes, kind: kind, url: url)
     }
 
     // MARK: Paths

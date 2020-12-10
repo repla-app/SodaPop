@@ -267,10 +267,7 @@ class XMLPlugin: Plugin {
 
         // Optional
         self.command = command
-        self.suffixes = [String]()
-        if let suffixes = suffixes {
-            self.suffixes += suffixes
-        }
+        self.suffixes = suffixes
         super.init(autoShowLog: autoShowLog, debugModeEnabled: debugModeEnabled, hidden: hidden, pluginKind: pluginKind, promptInterrupt: promptInterrupt, transparentBackground: transparentBackground, usesEnvironment: usesEnvironment, command: command, commandPath: commandPath, directoryPath: directoryPath, directoryURL: directoryURL, editable: editable, identifier: identifier, name: name, path: path, suffixes: suffixes, kind: kind, url: url)
     }
 
@@ -341,7 +338,7 @@ class XMLPlugin: Plugin {
         return nil
     }
 
-    override public dynamic var suffixes: [String] {
+    override public dynamic var suffixes: [String]? {
         willSet {
             assert(editable, "The plugin should be editable")
         }

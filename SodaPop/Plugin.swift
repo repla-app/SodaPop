@@ -25,7 +25,7 @@ public class Plugin: POPPlugin {
     public var identifier: String
     public var name: String
     public var path: String
-    public var suffixes: [String]
+    public var suffixes: [String]?
     public let kind: String
     public var url: URL
 

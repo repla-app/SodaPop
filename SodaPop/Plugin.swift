@@ -96,7 +96,6 @@ public class Plugin: POPPlugin {
             return false
         }
 
-        
         if type(of: plugin) != type(of: self) {
             return false
         }

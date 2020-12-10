@@ -39,7 +39,7 @@ extension Plugin {
             do {
                 let plugin = try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
                 return plugin
-            }  catch let XMLPluginLoadError.invalidInfoDictionaryError(URL) {
+            } catch let XMLPluginLoadError.invalidInfoDictionaryError(URL) {
                 print("Info.plist is invalid at URL \(URL).")
             } catch let XMLPluginLoadError.invalidFileExtensionsError(infoDictionary) {
                 print("Plugin file extensions are invalid \(infoDictionary).")

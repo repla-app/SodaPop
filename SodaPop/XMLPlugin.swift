@@ -39,7 +39,6 @@ extension XMLPlugin {
         static let usesEnvironment = "WCUsesEnvironment"
     }
 
-
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
@@ -59,19 +58,19 @@ extension XMLPlugin {
 
                 // Plugin
                 return XMLPlugin(bundle: bundle,
-                              infoDictionary: infoDictionary,
-                              pluginKind: pluginKind,
-                              identifier: identifier,
-                              name: name,
-                              command: command,
-                              suffixes: suffixes,
-                              hidden: hidden,
-                              editable: editable,
-                              debugModeEnabled: debugModeEnabled,
-                              transparentBackground: transparentBackground,
-                              autoShowLog: autoShowLog,
-                              promptInterrupt: promptInterrupt,
-                              usesEnvironment: usesEnvironment)
+                                 infoDictionary: infoDictionary,
+                                 pluginKind: pluginKind,
+                                 identifier: identifier,
+                                 name: name,
+                                 command: command,
+                                 suffixes: suffixes,
+                                 hidden: hidden,
+                                 editable: editable,
+                                 debugModeEnabled: debugModeEnabled,
+                                 transparentBackground: transparentBackground,
+                                 autoShowLog: autoShowLog,
+                                 promptInterrupt: promptInterrupt,
+                                 usesEnvironment: usesEnvironment)
             }
         } catch let error as NSError {
             throw error
@@ -299,7 +298,7 @@ class XMLPlugin: Plugin {
 
     // MARK: Properties
 
-    public dynamic override var name: String {
+    override public dynamic var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -309,7 +308,7 @@ class XMLPlugin: Plugin {
         }
     }
 
-    public override var identifier: String {
+    override public var identifier: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -319,7 +318,7 @@ class XMLPlugin: Plugin {
         }
     }
 
-    public dynamic override var command: String? {
+    override public dynamic var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
         }
@@ -400,5 +399,4 @@ class XMLPlugin: Plugin {
         autoShowLog = \(String(describing: autoShowLog))
         """
     }
-
 }

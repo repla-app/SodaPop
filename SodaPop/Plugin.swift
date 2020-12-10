@@ -36,15 +36,15 @@ public class Plugin: POPPlugin {
          promptInterrupt: Bool,
          transparentBackground: Bool,
          usesEnvironment: Bool,
-         command: String,
-         commandPath: String,
+         command: String?,
+         commandPath: String?,
          directoryPath: String,
          directoryURL: URL,
          editable: Bool,
          identifier: String,
          name: String,
          path: String,
-         suffixes: [String],
+         suffixes: [String]?,
          kind: String,
          url: URL) {
         self.autoShowLog = autoShowLog

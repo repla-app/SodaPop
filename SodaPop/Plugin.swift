@@ -18,7 +18,7 @@ public class Plugin: POPPlugin {
     public let transparentBackground: Bool
     public let usesEnvironment: Bool
     public var command: String?
-    public var commandPath: String?
+    public private(set) var commandPath: String?
     public let directoryPath: String
     public let directoryURL: URL
     public var editable: Bool

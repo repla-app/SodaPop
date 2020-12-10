@@ -59,7 +59,7 @@ extension XMLPlugin {
                 // Plugin
                 return XMLPlugin(bundle: bundle,
                                  infoDictionary: infoDictionary,
-                                 pluginKind: pluginKind,
+                                 kind: pluginKind,
                                  identifier: identifier,
                                  name: name,
                                  command: command,
@@ -246,7 +246,7 @@ class XMLPlugin: Plugin {
 
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
-         pluginKind: PluginKind,
+         kind: PluginKind,
          identifier: String,
          name: String,
          command: String?,
@@ -258,6 +258,7 @@ class XMLPlugin: Plugin {
          autoShowLog: Bool?,
          promptInterrupt: Bool,
          usesEnvironment: Bool) {
+        super.init(autoShowLog: autoShowLog, debugModeEnabled: debugModeEnabled, hidden: hidden, promptInterrupt: promptInterrupt, transparentBackground: transparentBackground, usesEnvironment: usesEnvironment, directoryPath: directoryPath, directoryURL: directoryURL, path: path, kind: kind, url: url)
         self.infoDictionary = infoDictionary
         self.bundle = bundle
         self.name = name
@@ -267,7 +268,6 @@ class XMLPlugin: Plugin {
         // Optional
         self.command = command
         self.suffixes = suffixes
-        super.init(autoShowLog: autoShowLog, debugModeEnabled: debugModeEnabled, hidden: hidden, pluginKind: pluginKind, promptInterrupt: promptInterrupt, transparentBackground: transparentBackground, usesEnvironment: usesEnvironment, command: command, commandPath: commandPath, directoryPath: directoryPath, directoryURL: directoryURL, editable: editable, identifier: identifier, name: name, path: path, suffixes: suffixes, kind: kind, url: url)
     }
 
     // MARK: Paths
@@ -348,7 +348,7 @@ class XMLPlugin: Plugin {
     }
 
     public dynamic var kindName: String {
-        return pluginKind.name()
+        return kind.name()
     }
 
     override public dynamic var editable: Bool {

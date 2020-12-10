@@ -13,56 +13,88 @@ public class Plugin: POPPlugin {
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool
-    public let pluginKind: PluginKind
     public let promptInterrupt: Bool
     public let transparentBackground: Bool
     public let usesEnvironment: Bool
-    public var command: String?
-    public private(set) var commandPath: String?
     public let directoryPath: String
     public let directoryURL: URL
-    public var editable: Bool
-    public var identifier: String
-    public var name: String
+    public let kind: PluginKind
+
     public var path: String
-    public var suffixes: [String]?
-    public let kind: String
     public var url: URL
+    
+    public var command: String? {
+        get {
+            assertionFailure("Subclasses must override")
+            return nil
+        }
+        set {
+            assertionFailure("Subclasses must override")
+        }
+    }
+    public var commandPath: String? {
+        get {
+            assertionFailure("Subclasses must override")
+            return nil
+        }
+    }
+    public var editable: Bool {
+        get {
+            assertionFailure("Subclasses must override")
+            return false
+        }
+        set {
+            assertionFailure("Subclasses must override")
+        }
+    }
+    public var identifier: String {
+        get {
+            assertionFailure("Subclasses must override")
+            return ""
+        }
+        set {
+            assertionFailure("Subclasses must override")
+        }
+    }
+    public var name: String {
+        get {
+            assertionFailure("Subclasses must override")
+            return ""
+        }
+        set {
+            assertionFailure("Subclasses must override")
+        }
+    }
+    public var suffixes: [String]? {
+        get {
+            assertionFailure("Subclasses must override")
+            return [String]()
+        }
+        set {
+            assertionFailure("Subclasses must override")
+        }
+    }
 
     init(autoShowLog: Bool?,
          debugModeEnabled: Bool?,
          hidden: Bool,
-         pluginKind: PluginKind,
          promptInterrupt: Bool,
          transparentBackground: Bool,
          usesEnvironment: Bool,
-         command: String?,
-         commandPath: String?,
          directoryPath: String,
          directoryURL: URL,
-         editable: Bool,
-         identifier: String,
-         name: String,
          path: String,
-         suffixes: [String]?,
-         kind: String,
+         kind: PluginKind,
          url: URL) {
         self.autoShowLog = autoShowLog
         self.debugModeEnabled = debugModeEnabled
         self.hidden = hidden
-        self.pluginKind = pluginKind
         self.promptInterrupt = promptInterrupt
         self.transparentBackground = transparentBackground
         self.usesEnvironment = usesEnvironment
-        self.command = command
-        self.commandPath = commandPath
         self.directoryPath = directoryPath
         self.directoryURL = directoryURL
-        self.editable = editable
-        self.identifier = identifier
-        self.name = name
         self.path = path
-        self.suffixes = suffixes
         self.kind = kind
         self.url = url
     }

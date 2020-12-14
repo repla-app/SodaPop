@@ -258,7 +258,6 @@ class XMLPlugin: Plugin {
          autoShowLog: Bool?,
          promptInterrupt: Bool,
          usesEnvironment: Bool) {
-        super.init(autoShowLog: autoShowLog, debugModeEnabled: debugModeEnabled, hidden: hidden, promptInterrupt: promptInterrupt, transparentBackground: transparentBackground, usesEnvironment: usesEnvironment, directoryPath: directoryPath, directoryURL: directoryURL, path: path, kind: kind, url: url)
         self.infoDictionary = infoDictionary
         self.bundle = bundle
         self.name = name
@@ -268,6 +267,17 @@ class XMLPlugin: Plugin {
         // Optional
         self.command = command
         self.suffixes = suffixes
+        super.init(autoShowLog: autoShowLog,
+                   debugModeEnabled: debugModeEnabled,
+                   hidden: hidden,
+                   promptInterrupt: promptInterrupt,
+                   transparentBackground: transparentBackground,
+                   usesEnvironment: usesEnvironment,
+                   directoryPath: directoryPath,
+                   directoryURL: directoryURL,
+                   path: path,
+                   kind: kind,
+                   url: url)
     }
 
     // MARK: Paths

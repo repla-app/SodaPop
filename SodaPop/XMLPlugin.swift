@@ -283,11 +283,11 @@ class XMLPlugin: Plugin {
 
     // MARK: Paths
 
-    public var resourcePath: String? {
+    override public var resourcePath: String {
         return bundle.resourcePath
     }
 
-    public var resourceURL: URL? {
+    override public var resourceURL: URL {
         if let path = resourcePath {
             return URL(fileURLWithPath: path)
         }
@@ -300,7 +300,7 @@ class XMLPlugin: Plugin {
     }
 
     class func urlForInfoDictionary(for plugin: Plugin) -> URL {
-        return urlForInfoDictionary(forPluginAt: plugin.directoryURL)
+        return urlForInfoDictionary(forPluginAt: plugin.url)
     }
 
     class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {

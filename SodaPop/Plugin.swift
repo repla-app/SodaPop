@@ -16,12 +16,12 @@ public class Plugin: POPPlugin {
     public let promptInterrupt: Bool
     public let transparentBackground: Bool
     public let usesEnvironment: Bool
-    public let directoryPath: String
-    public let directoryURL: URL
+    public let path: String
+    public let url: URL
     public let kind: PluginKind
 
-    public var path: String
-    public var url: URL
+    public var resourcePath: String
+    public var resourceURL: URL
     
     public var command: String? {
         get {
@@ -92,11 +92,11 @@ public class Plugin: POPPlugin {
         self.promptInterrupt = promptInterrupt
         self.transparentBackground = transparentBackground
         self.usesEnvironment = usesEnvironment
-        self.directoryPath = directoryPath
-        self.directoryURL = directoryURL
-        self.path = path
+        self.path = directoryPath
+        self.url = directoryURL
+        self.resourcePath = path
         self.kind = kind
-        self.url = url
+        self.resourceURL = url
     }
 
     func isEqual(toOther plugin: Plugin) -> Bool {
@@ -124,7 +124,7 @@ public class Plugin: POPPlugin {
             return false
         }
 
-        if url != plugin.url {
+        if resourceURL != plugin.resourceURL {
             return false
         }
 

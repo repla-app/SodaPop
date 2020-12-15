@@ -95,7 +95,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {
-                pluginPathToPluginDictionary[plugin.directoryPath] = plugin
+                pluginPathToPluginDictionary[plugin.path] = plugin
             }
             let pluginsDirectoryURL = URL(fileURLWithPath: path)
             let pluginDirectoryManager = PluginsDirectoryManager(pluginsDirectoryURL: pluginsDirectoryURL)
@@ -144,13 +144,13 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     // MARK: Add & Remove Helpers
 
     func add(_ plugin: Plugin) {
-        let pluginPath = plugin.path
+        let pluginPath = plugin.resourcePath
         pluginPathToPluginDictionary[pluginPath] = plugin
         delegate?.pluginsDataController(self, didAddPlugin: plugin)
     }
 
     func remove(_ plugin: Plugin) {
-        let pluginPath = plugin.path
+        let pluginPath = plugin.resourcePath
         pluginPathToPluginDictionary.removeValue(forKey: pluginPath)
         delegate?.pluginsDataController(self, didRemovePlugin: plugin)
     }
@@ -163,7 +163,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         assert(plugin.editable, "The plugin should be editable")
-        let bundeURL = plugin.url
+        let bundeURL = plugin.resourceURL
         NSWorkspace.shared.recycle([bundeURL]) { [weak self] dictionary, error in
             guard let strongSelf = self else {
                 return

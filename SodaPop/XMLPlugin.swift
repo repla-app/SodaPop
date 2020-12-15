@@ -267,17 +267,18 @@ class XMLPlugin: Plugin {
         // Optional
         self.command = command
         self.suffixes = suffixes
+        // FIXME: Add asserts for `nil` `bundle.resourcePath` and `bundle.resourceURL`
         super.init(autoShowLog: autoShowLog,
                    debugModeEnabled: debugModeEnabled,
                    hidden: hidden,
                    promptInterrupt: promptInterrupt,
                    transparentBackground: transparentBackground,
                    usesEnvironment: usesEnvironment,
-                   directoryPath: directoryPath,
-                   directoryURL: directoryURL,
-                   path: path,
+                   directoryPath: bundle.bundlePath,
+                   directoryURL: bundle.bundleURL,
+                   path: bundle.resourcePath ?? "",
                    kind: kind,
-                   url: url)
+                   url: bundle.resourceURL ?? URL(string: "")!)
     }
 
     // MARK: Paths

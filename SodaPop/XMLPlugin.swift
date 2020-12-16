@@ -272,7 +272,11 @@ class XMLPlugin: Plugin {
                    resourcePath: bundle.resourcePath ?? "",
                    kind: kind,
                    resourceURL: bundle.resourceURL ?? URL(string: "")!,
-                   editable: editable)
+                   editable: editable,
+                   command: command,
+                   identifier: identifier,
+                   name: name,
+                   suffixes: suffixes)
         self.name = name
         self.identifier = identifier
 
@@ -299,9 +303,6 @@ class XMLPlugin: Plugin {
     // MARK: Properties
 
     override public dynamic var name: String {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
         didSet {
             infoDictionary[InfoDictionaryKeys.name] = name
             save()
@@ -309,9 +310,6 @@ class XMLPlugin: Plugin {
     }
 
     override public var identifier: String {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
         didSet {
             infoDictionary[InfoDictionaryKeys.identifier] = identifier
             save()
@@ -319,9 +317,6 @@ class XMLPlugin: Plugin {
     }
 
     override public dynamic var command: String? {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
         didSet {
             infoDictionary[InfoDictionaryKeys.command] = command
             save()
@@ -329,9 +324,6 @@ class XMLPlugin: Plugin {
     }
 
     override public dynamic var suffixes: [String]? {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
         didSet {
             infoDictionary[InfoDictionaryKeys.suffixes] = suffixes
             save()

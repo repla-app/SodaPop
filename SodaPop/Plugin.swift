@@ -10,7 +10,8 @@ import Cocoa
 
 @objcMembers
 public class Plugin: POPPlugin {
-    // Constants
+    // MARK: Constants
+    
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool
@@ -23,10 +24,8 @@ public class Plugin: POPPlugin {
     public let url: URL
     public let usesEnvironment: Bool
 
-    // Variables
-    public var editable: Bool
-    
-    // Computed
+    // MARK: Computed
+
     public var commandPath: String? {
         if let command = command {
             return resourcePath.appendingPathComponent(command)
@@ -34,60 +33,41 @@ public class Plugin: POPPlugin {
         return nil
     }
 
-    // MARK: Requires Override
-
-    public var command: String? {
-        get {
-            assertionFailure("Subclasses must override")
-            return nil
-        }
-        set {
-            assertionFailure("Subclasses must override")
-        }
-    }
-//    public var editable: Bool {
-//        get {
-//            assertionFailure("Subclasses must override")
-//            return false
-//        }
-//        set {
-//            assertionFailure("Subclasses must override")
-//        }
-//    }
-    public var identifier: String {
-        get {
-            assertionFailure("Subclasses must override")
-            return ""
-        }
-        set {
-            assertionFailure("Subclasses must override")
-        }
-    }
-    public var name: String {
-        get {
-            assertionFailure("Subclasses must override")
-            return ""
-        }
-        set {
-            assertionFailure("Subclasses must override")
-        }
-    }
-    public var suffixes: [String]? {
-        get {
-            assertionFailure("Subclasses must override")
-            return [String]()
-        }
-        set {
-            assertionFailure("Subclasses must override")
-        }
-    }
-
     public dynamic var kindName: String {
         return kind.name()
     }
+
+    // MARK: Variables
     
-    init(// Constant
-         autoShowLog: Bool?,
+    public var editable: Bool {
+        willSet {
+            assert(editable, "The plugin should be editable")
+        }
+    }
+
+    public var command: String? {
+        willSet {
+            assert(editable, "The plugin should be editable")
+        }
+    }
+
+    public var identifier: String {
+        willSet {
+            assert(editable, "The plugin should be editable")
+        }
+    }
+    public var name: String {
+        willSet {
+            assert(editable, "The plugin should be editable")
+        }
+    }
+    public var suffixes: [String]? {
+        willSet {
+            assert(editable, "The plugin should be editable")
+        }
+    }
+
+    init(autoShowLog: Bool?,
          debugModeEnabled: Bool?,
          hidden: Bool,
          promptInterrupt: Bool,
@@ -99,7 +79,11 @@ public class Plugin: POPPlugin {
          kind: PluginKind,
          resourceURL: URL,
          // Variable
-         editable: Bool) {
+         editable: Bool,
+         command: String?,
+         identifier: String,
+         name: String,
+         suffixes: [String]?) {
         self.autoShowLog = autoShowLog
         self.debugModeEnabled = debugModeEnabled
         self.hidden = hidden
@@ -112,6 +96,11 @@ public class Plugin: POPPlugin {
         self.kind = kind
         self.resourceURL = resourceURL
         self.editable = editable
+        self.command = command
+        self.identifier = identifier
+        self.name = name
+        self.suffixes = suffixes
+
     }
 
     func isEqual(toOther plugin: Plugin) -> Bool {

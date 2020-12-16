@@ -22,7 +22,16 @@ public class Plugin: POPPlugin {
 
     public var resourcePath: String
     public var resourceURL: URL
-    
+
+    public var commandPath: String? {
+        if let command = command {
+            return resourcePath.appendingPathComponent(command)
+        }
+        return nil
+    }
+
+    // MARK: Requires Override
+
     public var command: String? {
         get {
             assertionFailure("Subclasses must override")
@@ -30,12 +39,6 @@ public class Plugin: POPPlugin {
         }
         set {
             assertionFailure("Subclasses must override")
-        }
-    }
-    public var commandPath: String? {
-        get {
-            assertionFailure("Subclasses must override")
-            return nil
         }
     }
     public var editable: Bool {

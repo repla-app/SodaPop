@@ -328,13 +328,6 @@ class XMLPlugin: Plugin {
         }
     }
 
-    override public var commandPath: String? {
-        if let command = command {
-            return resourcePath.appendingPathComponent(command)
-        }
-        return nil
-    }
-
     override public dynamic var suffixes: [String]? {
         willSet {
             assert(editable, "The plugin should be editable")

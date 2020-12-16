@@ -271,10 +271,10 @@ class XMLPlugin: Plugin {
                    url: bundle.bundleURL,
                    resourcePath: bundle.resourcePath ?? "",
                    kind: kind,
-                   resourceURL: bundle.resourceURL ?? URL(string: "")!)
+                   resourceURL: bundle.resourceURL ?? URL(string: "")!,
+                   editable: editable)
         self.name = name
         self.identifier = identifier
-        self.editable = editable
 
         // Optional
         self.command = command

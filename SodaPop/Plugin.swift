@@ -14,16 +14,17 @@ public class Plugin: POPPlugin {
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool
-    public let promptInterrupt: Bool
-    public let transparentBackground: Bool
-    public let usesEnvironment: Bool
-    public let path: String
-    public let url: URL
     public let kind: PluginKind
+    public let path: String
+    public let promptInterrupt: Bool
     public let resourcePath: String
     public let resourceURL: URL
+    public let transparentBackground: Bool
+    public let url: URL
+    public let usesEnvironment: Bool
 
     // Variables
+    public var editable: Bool
     
     // Computed
     public var commandPath: String? {
@@ -44,15 +45,15 @@ public class Plugin: POPPlugin {
             assertionFailure("Subclasses must override")
         }
     }
-    public var editable: Bool {
-        get {
-            assertionFailure("Subclasses must override")
-            return false
-        }
-        set {
-            assertionFailure("Subclasses must override")
-        }
-    }
+//    public var editable: Bool {
+//        get {
+//            assertionFailure("Subclasses must override")
+//            return false
+//        }
+//        set {
+//            assertionFailure("Subclasses must override")
+//        }
+//    }
     public var identifier: String {
         get {
             assertionFailure("Subclasses must override")
@@ -85,7 +86,8 @@ public class Plugin: POPPlugin {
         return kind.name()
     }
     
-    init(autoShowLog: Bool?,
+    init(// Constant
+         autoShowLog: Bool?,
          debugModeEnabled: Bool?,
          hidden: Bool,
          promptInterrupt: Bool,
@@ -95,7 +97,9 @@ public class Plugin: POPPlugin {
          url: URL,
          resourcePath: String,
          kind: PluginKind,
-         resourceURL: URL) {
+         resourceURL: URL,
+         // Variable
+         editable: Bool) {
         self.autoShowLog = autoShowLog
         self.debugModeEnabled = debugModeEnabled
         self.hidden = hidden
@@ -107,6 +111,7 @@ public class Plugin: POPPlugin {
         self.resourcePath = resourcePath
         self.kind = kind
         self.resourceURL = resourceURL
+        self.editable = editable
     }
 
     func isEqual(toOther plugin: Plugin) -> Bool {

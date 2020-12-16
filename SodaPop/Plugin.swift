@@ -10,6 +10,7 @@ import Cocoa
 
 @objcMembers
 public class Plugin: POPPlugin {
+    // Constants
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool
@@ -19,10 +20,12 @@ public class Plugin: POPPlugin {
     public let path: String
     public let url: URL
     public let kind: PluginKind
+    public let resourcePath: String
+    public let resourceURL: URL
 
-    public var resourcePath: String
-    public var resourceURL: URL
-
+    // Variables
+    
+    // Computed
     public var commandPath: String? {
         if let command = command {
             return resourcePath.appendingPathComponent(command)

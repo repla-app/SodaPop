@@ -283,17 +283,6 @@ class XMLPlugin: Plugin {
 
     // MARK: Paths
 
-    override public var resourcePath: String {
-        return bundle.resourcePath
-    }
-
-    override public var resourceURL: URL {
-        if let path = resourcePath {
-            return URL(fileURLWithPath: path)
-        }
-        return nil
-    }
-
     internal var infoDictionary: [AnyHashable: Any]
     internal var infoDictionaryURL: URL {
         return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
@@ -340,10 +329,8 @@ class XMLPlugin: Plugin {
     }
 
     override public var commandPath: String? {
-        if let resourcePath = resourcePath {
-            if let command = command {
-                return resourcePath.appendingPathComponent(command)
-            }
+        if let command = command {
+            return resourcePath.appendingPathComponent(command)
         }
         return nil
     }

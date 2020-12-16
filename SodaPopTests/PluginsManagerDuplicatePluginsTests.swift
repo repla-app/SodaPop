@@ -80,7 +80,7 @@ class PluginsManagerDuplicatePluginsTests: ArrayControllerTestCase {
                 continue
             }
             XCTAssertEqual(plugin.kind, .builtIn)
-            XCTAssertEqual(plugin.type, PluginKind.builtIn.name())
+            XCTAssertEqual(plugin.kindName, PluginKind.builtIn.name())
             builtInPluginsTested += 1
         }
 

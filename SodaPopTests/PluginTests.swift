@@ -13,7 +13,7 @@ import XCTest
 class PluginTests: PluginTestCase {
     func testPlugin() {
         var isDir: ObjCBool = false
-        let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)
+        let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertTrue(isDir.boolValue)
         XCTAssertEqual(plugin.resourcePath, plugin.resourceURL.path)

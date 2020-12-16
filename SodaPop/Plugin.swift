@@ -75,6 +75,10 @@ public class Plugin: POPPlugin {
         }
     }
 
+    public dynamic var kindName: String {
+        return kind.name()
+    }
+    
     init(autoShowLog: Bool?,
          debugModeEnabled: Bool?,
          hidden: Bool,

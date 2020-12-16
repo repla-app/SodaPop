@@ -345,10 +345,6 @@ class XMLPlugin: Plugin {
         }
     }
 
-    public dynamic var kindName: String {
-        return kind.name()
-    }
-
     override public dynamic var editable: Bool {
         didSet {
             if !editable {

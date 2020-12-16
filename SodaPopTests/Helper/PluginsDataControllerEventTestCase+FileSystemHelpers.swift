@@ -118,15 +118,18 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     func modifyWithConfirmation(_ plugin: Plugin, handler: @escaping (_ plugin: Plugin?) -> Void) {
         // Get the old identifier
-        let infoDictionary = NSDictionary(contentsOf: plugin.infoDictionaryURL)! as Dictionary
-        let identifier: String = infoDictionary[Plugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
+        guard let xmlPlugin = plugin as? XMLPlugin else {
+            XCTFail()
+            return
+        }
+        let infoDictionary = NSDictionary(contentsOf: xmlPlugin.infoDictionaryURL)! as Dictionary
+        let identifier: String = infoDictionary[XMLPlugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
+        // Get the info dictionary contents
+        let infoDictionaryPath = xmlPlugin.infoDictionaryURL.path
 
         // Make a new identifier
         let UUID = Foundation.UUID()
         let newIdentifier = UUID.uuidString
-
-        // Get the info dictionary contents
-        let infoDictionaryPath = plugin.infoDictionaryURL.path
 
         var infoDictionaryContents: String!
         do {

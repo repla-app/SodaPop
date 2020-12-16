@@ -33,7 +33,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
             return
         }
 
-        XCTAssertEqual(logPlugin.pluginKind, PluginKind.builtIn)
+        XCTAssertEqual(logPlugin.kind, PluginKind.builtIn)
         XCTAssertEqual(logPlugin.identifier, "7A95638E-798D-437C-9404-08E7DC68655B")
         XCTAssertEqual(logPlugin.name, "TestLog")
         XCTAssertEqual(logPlugin.command, "run.sh")

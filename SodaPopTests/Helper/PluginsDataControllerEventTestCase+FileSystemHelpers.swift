@@ -33,7 +33,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
         var newPlugin: Plugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
-            let path = addedPlugin.bundle.bundlePath
+            let path = addedPlugin.path
             if path == destinationPluginPath {
                 newPlugin = addedPlugin
                 handler(newPlugin)
@@ -78,7 +78,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         OutOfTouch.copyDirectory(atPath: pluginPath,
                                  toPath: destinationPluginPath) { standardOutput, standardError, exitStatus in
             XCTAssertNil(standardOutput)
@@ -145,7 +145,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         var newPlugin: Plugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in

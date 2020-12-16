@@ -68,7 +68,7 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         // # Move One
         // Move the plugin to a filename based on its identifier
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let pluginParentDirectory = pluginPath.deletingLastPathComponent
         let destinationPluginPath = pluginParentDirectory.appendingPathComponent(destinationPluginFilename)

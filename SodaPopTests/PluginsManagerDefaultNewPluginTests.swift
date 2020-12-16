@@ -79,7 +79,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         XCTAssertEqual(createdPlugin.suffixes, createdPluginTwo.suffixes)
 
-        guard let bundlePath = (createdPluginTwo as? XMLPlugin)?.bundle.bundlePath else {
+        guard let bundlePath = (createdPluginTwo as? XMLPlugin)?.path else {
             XCTFail()
             return
         }

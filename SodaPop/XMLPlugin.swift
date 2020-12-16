@@ -267,11 +267,11 @@ class XMLPlugin: Plugin {
                    promptInterrupt: promptInterrupt,
                    transparentBackground: transparentBackground,
                    usesEnvironment: usesEnvironment,
-                   directoryPath: bundle.bundlePath,
-                   directoryURL: bundle.bundleURL,
-                   path: bundle.resourcePath ?? "",
+                   path: bundle.bundlePath,
+                   url: bundle.bundleURL,
+                   resourcePath: bundle.resourcePath ?? "",
                    kind: kind,
-                   url: bundle.resourceURL ?? URL(string: "")!)
+                   resourceURL: bundle.resourceURL ?? URL(string: "")!)
         self.name = name
         self.identifier = identifier
         self.editable = editable

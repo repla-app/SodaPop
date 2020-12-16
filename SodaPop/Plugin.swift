@@ -81,22 +81,22 @@ public class Plugin: POPPlugin {
          promptInterrupt: Bool,
          transparentBackground: Bool,
          usesEnvironment: Bool,
-         directoryPath: String,
-         directoryURL: URL,
          path: String,
+         url: URL,
+         resourcePath: String,
          kind: PluginKind,
-         url: URL) {
+         resourceURL: URL) {
         self.autoShowLog = autoShowLog
         self.debugModeEnabled = debugModeEnabled
         self.hidden = hidden
         self.promptInterrupt = promptInterrupt
         self.transparentBackground = transparentBackground
         self.usesEnvironment = usesEnvironment
-        self.path = directoryPath
-        self.url = directoryURL
-        self.resourcePath = path
+        self.path = path
+        self.url = url
+        self.resourcePath = resourcePath
         self.kind = kind
-        self.resourceURL = url
+        self.resourceURL = resourceURL
     }
 
     func isEqual(toOther plugin: Plugin) -> Bool {

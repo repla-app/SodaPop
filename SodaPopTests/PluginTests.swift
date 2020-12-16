@@ -16,7 +16,7 @@ class PluginTests: PluginTestCase {
         let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertTrue(isDir.boolValue)
-        XCTAssertEqual(plugin.resourcePath, plugin.resourceURL!.path)
+        XCTAssertEqual(plugin.resourcePath, plugin.resourceURL.path)
     }
 }
 

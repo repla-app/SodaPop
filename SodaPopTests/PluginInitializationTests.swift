@@ -17,7 +17,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
             return
         }
 
-        XCTAssertEqual(helloWorldPlugin.pluginKind, PluginKind.builtIn)
+        XCTAssertEqual(helloWorldPlugin.kind, PluginKind.builtIn)
         XCTAssertEqual(helloWorldPlugin.identifier, "9DF1F4D6-16BA-4D18-88D2-155CF262035F")
         XCTAssertEqual(helloWorldPlugin.name, "HelloWorld")
         XCTAssertEqual(helloWorldPlugin.command, "hello_world.rb")

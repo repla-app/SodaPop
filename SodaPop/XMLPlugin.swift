@@ -258,16 +258,8 @@ class XMLPlugin: Plugin {
          autoShowLog: Bool?,
          promptInterrupt: Bool,
          usesEnvironment: Bool) {
-        self.infoDictionary = infoDictionary
         self.bundle = bundle
-        self.name = name
-        self.identifier = identifier
-        self.editable = editable
-
-        // Optional
-        self.command = command
-        self.suffixes = suffixes
-        // FIXME: Add asserts for `nil` `bundle.resourcePath` and `bundle.resourceURL`
+        self.infoDictionary = infoDictionary
         super.init(autoShowLog: autoShowLog,
                    debugModeEnabled: debugModeEnabled,
                    hidden: hidden,
@@ -279,6 +271,14 @@ class XMLPlugin: Plugin {
                    path: bundle.resourcePath ?? "",
                    kind: kind,
                    url: bundle.resourceURL ?? URL(string: "")!)
+        self.name = name
+        self.identifier = identifier
+        self.editable = editable
+
+        // Optional
+        self.command = command
+        self.suffixes = suffixes
+        // FIXME: Add asserts for `nil` `bundle.resourcePath` and `bundle.resourceURL`
     }
 
     // MARK: Paths

@@ -72,7 +72,7 @@ class DuplicatePluginController {
                                                      return
                                                  }
 
-                                                 if var movedPlugin = self.pluginMaker
+                                                 if let movedPlugin = self.pluginMaker
                                                      .makePlugin(url: movedDestinationURL) {
                                                      movedPlugin.editable = true
                                                      movedPlugin.identifier = UUID.uuidString

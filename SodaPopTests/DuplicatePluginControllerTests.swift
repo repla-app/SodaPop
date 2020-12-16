@@ -80,7 +80,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertTrue(range.location == NSNotFound, "The string should not have been found")
 
         // Test the plugins properties are accurate
-        XCTAssertNotEqual(plugin.bundle.bundleURL, duplicatePlugin.bundle.bundleURL, "The URLs should not be equal")
+        XCTAssertNotEqual(plugin.url, duplicatePlugin.url, "The URLs should not be equal")
         XCTAssertNotEqual(plugin.identifier, duplicatePlugin.identifier, "The identifiers should not be equal")
         XCTAssertNotEqual(plugin.name, duplicatePlugin.name, "The names should not be equal")
         XCTAssertEqual(plugin.hidden, duplicatePlugin.hidden, "The hidden should equal the plugin's hidden")

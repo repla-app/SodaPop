@@ -80,7 +80,7 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
     // MARK: Helper
 
     func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
+        let pluginInfoDictionaryPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
         var infoDictionaryContents: String!
         do {
             infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,

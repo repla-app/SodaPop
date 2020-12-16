@@ -260,6 +260,7 @@ class XMLPlugin: Plugin {
          usesEnvironment: Bool) {
         self.bundle = bundle
         self.infoDictionary = infoDictionary
+        // FIXME: Add asserts for `nil` `bundle.resourcePath` and `bundle.resourceURL`
         super.init(autoShowLog: autoShowLog,
                    debugModeEnabled: debugModeEnabled,
                    hidden: hidden,
@@ -278,7 +279,6 @@ class XMLPlugin: Plugin {
         // Optional
         self.command = command
         self.suffixes = suffixes
-        // FIXME: Add asserts for `nil` `bundle.resourcePath` and `bundle.resourceURL`
     }
 
     // MARK: Paths

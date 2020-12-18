@@ -277,12 +277,6 @@ class XMLPlugin: Plugin {
                    identifier: identifier,
                    name: name,
                    suffixes: suffixes)
-        self.name = name
-        self.identifier = identifier
-
-        // Optional
-        self.command = command
-        self.suffixes = suffixes
     }
 
     // MARK: Paths

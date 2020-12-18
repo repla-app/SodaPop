@@ -39,11 +39,7 @@ public class Plugin: POPPlugin {
 
     // MARK: Variables
     
-    public var editable: Bool {
-        willSet {
-            assert(editable, "The plugin should be editable")
-        }
-    }
+    public var editable: Bool
 
     public var command: String? {
         willSet {

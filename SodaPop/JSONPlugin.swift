@@ -12,6 +12,19 @@ enum JSONPluginLoadError: Error {
     case missingConfiguration(path: String)
 }
 
+struct PluginInfo: Codable {
+    let name: String
+    let command: String
+    let uuid: String
+    let editoable: Bool
+    let fileExtensions: [String]?
+    let debugEnabled: Bool?
+    let autoShowLog: Bool?
+    let transparentBackground: Bool?
+    let usesEnvironment: Bool?
+    let promptInterrupt: Bool?
+}
+
 class JSONPlugin: Plugin {
     class func validPlugin(path: String, pluginKind _: PluginKind) throws -> Plugin? {
         do {
@@ -22,4 +35,8 @@ class JSONPlugin: Plugin {
 
 //        return nil
     }
+
+//    init(pluginInfo: PluginInfo) {
+//
+//    }
 }

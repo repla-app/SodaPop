@@ -10,7 +10,7 @@
 import SodaPopTestHarness
 import XCTest
 
-class PluginInitializationTests: PluginsManagerTestCase {
+class PluginManagerInitializationTests: PluginsManagerTestCase {
     func testHelloWorldPlugin() {
         guard let helloWorldPlugin = pluginsManager.plugin(withName: testPluginNameHelloWorld) else {
             XCTAssertTrue(false)
@@ -77,4 +77,7 @@ class PluginInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(optionsEnabledPlugin.autoShowLog, true)
         XCTAssertEqual(optionsEnabledPlugin.transparentBackground, true)
     }
+}
+
+class PluginInitializationTests: XCTestCase {
 }

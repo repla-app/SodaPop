@@ -349,6 +349,7 @@ class XMLPlugin: Plugin {
     }
 
     class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
+        assert(Thread.isMainThread)
         let writableDictionary = NSDictionary(dictionary: dictionary)
         let success = writableDictionary.write(to: URL, atomically: true)
         if !success {

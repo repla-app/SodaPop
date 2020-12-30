@@ -37,11 +37,9 @@ class JSONPlugin: Plugin {
         } catch let error as NSError {
             throw error
         }
-
-//        return nil
     }
 
-//    init(pluginInfo: PluginInfo) {
-//
-//    }
+    init(pluginInfo: PluginInfo) {
+        super.init(autoShowLog: pluginInfo.autoShowLog, debugModeEnabled: pluginInfo.debugEnabled, hidden: , promptInterrupt: pluginInfo.promptInterrupt, transparentBackground: pluginInfo.transparentBackground, usesEnvironment: pluginInfo.usesEnvironment, path: , url: , resourcePath: , kind: , resourceURL: , editable: pluginInfo.editable, command: pluginInfo.command, identifier: pluginInfo.uuid, name: pluginInfo.name, suffixes: nil)
+    }
 }

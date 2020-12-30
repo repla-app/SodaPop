@@ -35,7 +35,7 @@ extension Plugin {
         do {
             let plugin = try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             return plugin
-        } catch let JSONPluginLoadError.missingConfiguration(path) {
+        } catch let JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: _) {
             do {
                 let plugin = try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
                 return plugin

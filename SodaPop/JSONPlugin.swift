@@ -9,7 +9,7 @@
 import Cocoa
 
 enum JSONPluginLoadError: Error {
-    case missingConfiguration(path: String)
+    case loadPluginInfoFailed(path: String, underlyingError: NSError?)
 }
 
 struct PluginInfo: Codable {
@@ -25,19 +25,26 @@ struct PluginInfo: Codable {
     let usesEnvironment: Bool?
     let promptInterrupt: Bool?
 
-    static func load(from url: URL) throws -> PluginInfo {
+    static func load(from path: String) throws -> PluginInfo {
+        let url = URL(fileURLWithPath: path)
         let data = try Data(contentsOf: url)
         return try JSONDecoder().decode(PluginInfo.self, from: data)
+    }
+
+    static func load(from url: URL) throws -> PluginInfo {
+        return try load(from: url.path)
     }
 }
 
 class JSONPlugin: Plugin {
     class func validPlugin(path: String, pluginKind _: PluginKind) throws -> Plugin? {
         do {
-            throw JSONPluginLoadError.missingConfiguration(path: path)
+            let _ = try PluginInfo.load(from: path)
         } catch let error as NSError {
             throw error
         }
+
+        return nil
     }
 
     init(pluginInfo: PluginInfo, fileURL: URL, pluginKind: PluginKind) {

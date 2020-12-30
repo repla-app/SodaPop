@@ -40,7 +40,22 @@ class JSONPlugin: Plugin {
         }
     }
 
-    init(pluginInfo: PluginInfo) {
-        super.init(autoShowLog: pluginInfo.autoShowLog, debugModeEnabled: pluginInfo.debugEnabled, hidden: , promptInterrupt: pluginInfo.promptInterrupt, transparentBackground: pluginInfo.transparentBackground, usesEnvironment: pluginInfo.usesEnvironment, path: , url: , resourcePath: , kind: , resourceURL: , editable: pluginInfo.editable, command: pluginInfo.command, identifier: pluginInfo.uuid, name: pluginInfo.name, suffixes: nil)
+    init(pluginInfo: PluginInfo, fileURL: URL, pluginKind: PluginKind) {
+        super.init(autoShowLog: pluginInfo.autoShowLog,
+                   debugModeEnabled: pluginInfo.debugEnabled,
+                   hidden: pluginInfo.hidden ?? defaultPluginHidden,
+                   promptInterrupt: pluginInfo.promptInterrupt ?? defaultPluginPromptInterrupt,
+                   transparentBackground: pluginInfo.transparentBackground ?? defaultPluginTransparentBackground,
+                   usesEnvironment: pluginInfo.usesEnvironment ?? defaultPluginUsesEnvironment,
+                   path: fileURL.path,
+                   url: fileURL,
+                   resourcePath: fileURL.path,
+                   kind: pluginKind,
+                   resourceURL: fileURL,
+                   editable: pluginInfo.editable,
+                   command: pluginInfo.command,
+                   identifier: pluginInfo.uuid,
+                   name: pluginInfo.name,
+                   suffixes: nil)
     }
 }

@@ -157,7 +157,7 @@ extension XMLPlugin {
             throw XMLPluginLoadError.invalidHiddenError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return defaultPluginHidden
     }
 
     class func validEditable(infoDictionary: [AnyHashable: Any]) throws -> Bool {
@@ -169,7 +169,7 @@ extension XMLPlugin {
             throw XMLPluginLoadError.invalidEditableError(infoDictionary: infoDictionary)
         }
 
-        return true
+        return defaultPluginEditable
     }
 
     class func validPromptInterrupt(infoDictionary: [AnyHashable: Any]) throws -> Bool {
@@ -181,7 +181,7 @@ extension XMLPlugin {
             throw XMLPluginLoadError.invalidPromptInterruptError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return defaultPluginPromptInterrupt
     }
 
     class func validUsesEnvironment(infoDictionary: [AnyHashable: Any]) throws -> Bool {
@@ -193,7 +193,7 @@ extension XMLPlugin {
             throw XMLPluginLoadError.invalidUsesEnvironmentError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return defaultPluginUsesEnvironment
     }
 
     class func validDebugModeEnabled(infoDictionary: [AnyHashable: Any]) throws -> Bool? {
@@ -217,7 +217,7 @@ extension XMLPlugin {
             throw XMLPluginLoadError.invalidTransparentBackgroundError(infoDictionary: infoDictionary)
         }
 
-        return false
+        return defaultPluginTransparentBackground
     }
 
     class func validAutoShowLog(infoDictionary: [AnyHashable: Any]) throws -> Bool? {

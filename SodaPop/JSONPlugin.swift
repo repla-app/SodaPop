@@ -16,7 +16,7 @@ struct PluginInfo: Codable {
     let name: String
     let command: String
     let uuid: String
-    let editoable: Bool
+    let editable: Bool
     let fileExtensions: [String]?
     let debugEnabled: Bool?
     let autoShowLog: Bool?

@@ -84,7 +84,8 @@ class PluginInitializationTests: XCTestCase {
         var pluginInfo: PluginInfo!
         do {
             pluginInfo = try PluginInfo.load(from: testPluginJSONURLJSON)
-        } catch {
+        } catch let error as NSError {
+            XCTAssertNil(error)
             XCTFail()
         }
         XCTAssertNotNil(pluginInfo)

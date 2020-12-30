@@ -11,7 +11,7 @@ import Cocoa
 @objcMembers
 public class Plugin: POPPlugin {
     // MARK: Constants
-    
+
     public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
     public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
     public let hidden: Bool
@@ -38,7 +38,7 @@ public class Plugin: POPPlugin {
     }
 
     // MARK: Variables
-    
+
     public var editable: Bool
 
     public var command: String? {
@@ -52,11 +52,13 @@ public class Plugin: POPPlugin {
             assert(editable, "The plugin should be editable")
         }
     }
+
     public var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
     }
+
     public var suffixes: [String]? {
         willSet {
             assert(editable, "The plugin should be editable")
@@ -96,7 +98,6 @@ public class Plugin: POPPlugin {
         self.identifier = identifier
         self.name = name
         self.suffixes = suffixes
-
     }
 
     func isEqual(toOther plugin: Plugin) -> Bool {

@@ -80,4 +80,13 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 }
 
 class PluginInitializationTests: XCTestCase {
+    func testLoadPluginInfo() {
+        var pluginInfo: PluginInfo!
+        do {
+            pluginInfo = try PluginInfo.load(from: testPluginJSONURLJSON)
+        } catch {
+            XCTFail()
+        }
+        XCTAssertNotNil(pluginInfo)
+    }
 }

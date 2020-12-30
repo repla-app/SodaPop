@@ -23,6 +23,11 @@ struct PluginInfo: Codable {
     let transparentBackground: Bool?
     let usesEnvironment: Bool?
     let promptInterrupt: Bool?
+
+    static func load(from url: URL) throws -> PluginInfo {
+        let data = try Data(contentsOf: url)
+        return try JSONDecoder().decode(PluginInfo.self, from: data)
+    }
 }
 
 class JSONPlugin: Plugin {

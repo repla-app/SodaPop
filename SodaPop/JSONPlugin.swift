@@ -37,17 +37,20 @@ struct PluginInfo: Codable {
 }
 
 class JSONPlugin: Plugin {
-    class func validPlugin(path: String, pluginKind _: PluginKind) throws -> Plugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
-            let _ = try PluginInfo.load(from: path)
+            let pluginInfo = try PluginInfo.load(from: path)
+            return JSONPlugin(pluginInfo: pluginInfo, pluginKind: pluginKind, path: path)
         } catch let error as NSError {
             throw error
         }
-
-        return nil
     }
 
-    init(pluginInfo: PluginInfo, fileURL: URL, pluginKind: PluginKind) {
+    convenience init(pluginInfo: PluginInfo, pluginKind: PluginKind, path: String) {
+        self.init(pluginInfo: pluginInfo, pluginKind: pluginKind, fileURL: URL(fileURLWithPath: path))
+    }
+    
+    init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
         super.init(autoShowLog: pluginInfo.autoShowLog,
                    debugModeEnabled: pluginInfo.debugEnabled,
                    hidden: pluginInfo.hidden ?? defaultPluginHidden,

@@ -36,7 +36,6 @@ struct PluginInfo: Codable {
         } catch {
             throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: nil)
         }
-
     }
 
     static func load(from url: URL) throws -> PluginInfo {
@@ -58,7 +57,7 @@ class JSONPlugin: Plugin {
     convenience init(pluginInfo: PluginInfo, pluginKind: PluginKind, path: String) {
         self.init(pluginInfo: pluginInfo, pluginKind: pluginKind, fileURL: URL(fileURLWithPath: path))
     }
-    
+
     init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
         super.init(autoShowLog: pluginInfo.autoShowLog,
                    debugModeEnabled: pluginInfo.debugEnabled,

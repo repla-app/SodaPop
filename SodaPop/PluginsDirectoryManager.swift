@@ -100,10 +100,6 @@ class PluginsPathHelper {
 }
 
 class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDirectoryEventHandlerDelegate {
-    struct ClassConstants {
-        static let infoDictionaryPathComponent = "Contents/Info.plist"
-    }
-
     weak var delegate: PluginsDirectoryManagerDelegate?
     let pluginsDirectoryEventHandler: PluginsDirectoryEventHandler
     let directoryWatcher: BBUDirectoryWatcher
@@ -241,10 +237,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
                     let pluginSubpath = NSString.path(withComponents: pluginSubpathComponents)
 
                     if requireExactInfoDictionaryMatch {
-                        return PluginsPathHelper.does(pathComponent: ClassConstants.infoDictionaryPathComponent,
+                        return PluginsPathHelper.does(pathComponent: infoDictionaryPathComponent,
                                                       matchPathComponent: pluginSubpath)
                     } else {
-                        return PluginsPathHelper.contains(ClassConstants.infoDictionaryPathComponent,
+                        return PluginsPathHelper.contains(infoDictionaryPathComponent,
                                                           subpathComponent: pluginSubpath)
                     }
                 }
@@ -254,7 +250,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func doesInfoDictionaryExist(atPluginPath pluginPath: String) -> Bool {
-        let infoDictionaryPath = pluginPath.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
+        let infoDictionaryPath = pluginPath.appendingPathComponent(infoDictionaryPathComponent)
         var isDir: ObjCBool = false
         let fileExists = FileManager.default.fileExists(atPath: infoDictionaryPath, isDirectory: &isDir)
         return fileExists && !isDir.boolValue

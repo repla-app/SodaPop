@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import StringPlusPath
 
 enum JSONPluginLoadError: Error {
     case loadPluginInfoFailed(path: String, underlyingError: NSError?)
@@ -27,8 +28,15 @@ struct PluginInfo: Codable {
 
     static func load(from path: String) throws -> PluginInfo {
         let url = URL(fileURLWithPath: path)
-        let data = try Data(contentsOf: url)
-        return try JSONDecoder().decode(PluginInfo.self, from: data)
+        do {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode(PluginInfo.self, from: data)
+        } catch let error as NSError {
+            throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: error)
+        } catch {
+            throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: nil)
+        }
+
     }
 
     static func load(from url: URL) throws -> PluginInfo {
@@ -39,7 +47,8 @@ struct PluginInfo: Codable {
 class JSONPlugin: Plugin {
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
         do {
-            let pluginInfo = try PluginInfo.load(from: path)
+            let infoPath = path.appendingPathComponent(infoPathComponent)
+            let pluginInfo = try PluginInfo.load(from: infoPath)
             return JSONPlugin(pluginInfo: pluginInfo, pluginKind: pluginKind, path: path)
         } catch let error as NSError {
             throw error

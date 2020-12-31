@@ -64,12 +64,12 @@ extension Plugin {
             } catch let XMLPluginLoadError.invalidTransparentBackgroundError(infoDictionary) {
                 print("Plugin transparent background is invalid \(infoDictionary).")
             } catch {
-                print("Failed to load plugin at path \(path).")
+                print("Failed to load XML plugin at path \(path).")
             }
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")
         } catch {
-            print("Failed to load plugin at path \(path).")
+            print("Failed to load JSON plugin at path \(path).")
         }
         return nil
     }

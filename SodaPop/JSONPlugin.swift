@@ -58,7 +58,20 @@ class JSONPlugin: Plugin {
         self.init(pluginInfo: pluginInfo, pluginKind: pluginKind, fileURL: URL(fileURLWithPath: path))
     }
 
+    static func getResourceFileURL(for fileURL: URL) -> URL {
+        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(infoDictionaryPathComponent)) else {
+            return fileURL
+        }
+        var isDir: ObjCBool = false
+        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(resourcePathComponent), isDirectory: &isDir) && isDir.boolValue else {
+            return fileURL
+        }
+        return fileURL.appendingPathComponent(resourcePathComponent)
+    }
+    
     init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
+        let resourceURL = type(of: self).getResourceFileURL(for: fileURL)
+        let resourcePath = fileURL.path
         super.init(autoShowLog: pluginInfo.autoShowLog,
                    debugModeEnabled: pluginInfo.debugEnabled,
                    hidden: pluginInfo.hidden ?? defaultPluginHidden,
@@ -67,9 +80,9 @@ class JSONPlugin: Plugin {
                    usesEnvironment: pluginInfo.usesEnvironment ?? defaultPluginUsesEnvironment,
                    path: fileURL.path,
                    url: fileURL,
-                   resourcePath: fileURL.path,
+                   resourcePath: resourcePath,
                    kind: pluginKind,
-                   resourceURL: fileURL,
+                   resourceURL: resourceURL,
                    editable: pluginInfo.editable,
                    command: pluginInfo.command,
                    identifier: pluginInfo.uuid,

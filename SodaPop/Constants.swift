@@ -18,4 +18,5 @@ let defaultPluginUsesEnvironment = false
 let defaultPluginTransparentBackground = false
 
 let infoDictionaryPathComponent = "Contents/Info.plist"
+let resourcePathComponent = "Contents/Resources"
 let infoPathComponent = "repla.json"

@@ -13,7 +13,7 @@ import XCTest
 class PluginManagerInitializationTests: PluginsManagerTestCase {
     func testHelloWorldPlugin() {
         guard let helloWorldPlugin = pluginsManager.plugin(withName: testPluginNameHelloWorld) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
 
@@ -29,7 +29,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 
     func testFileExtensionsPlugin() {
         guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
 
@@ -42,7 +42,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 
     func testLogPlugin() {
         guard let logPlugin = pluginsManager.plugin(withName: testPluginNameLog) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
 
@@ -58,7 +58,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 
     func testPromptInterruptPlugin() {
         guard let plugin = pluginsManager.plugin(withName: testPluginNamePromptInterrupt) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
 
@@ -67,7 +67,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 
     func testOptionsPlugins() {
         guard let optionsDisabledPlugin = pluginsManager.plugin(withName: testPluginOptionsDisabledName) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
         XCTAssertEqual(optionsDisabledPlugin.debugModeEnabled, false)
@@ -75,7 +75,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(optionsDisabledPlugin.transparentBackground, false)
 
         guard let optionsNilPlugin = pluginsManager.plugin(withName: testPluginOptionsNilName) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
         XCTAssertNil(optionsNilPlugin.debugModeEnabled)
@@ -83,7 +83,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
         XCTAssertFalse(optionsNilPlugin.transparentBackground)
 
         guard let optionsEnabledPlugin = pluginsManager.plugin(withName: testPluginOptionsEnabledName) else {
-            XCTAssertTrue(false)
+            XCTFail()
             return
         }
         XCTAssertEqual(optionsEnabledPlugin.debugModeEnabled, true)

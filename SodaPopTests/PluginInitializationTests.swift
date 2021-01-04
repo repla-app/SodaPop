@@ -38,6 +38,8 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
             return
         }
         XCTAssert(suffixes.count > 0)
+
+        // TODO: Verify the actual suffixes that the plugin should have
     }
 
     func testLogPlugin() {

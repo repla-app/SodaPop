@@ -51,6 +51,7 @@ public let testPluginNamePromptInterrupt = TestPlugins.testPluginNameTestPromptI
 public let testPluginOptionsDisabledName = TestPlugins.testPluginOptionsDisabledName
 public let testPluginOptionsEnabledName = TestPlugins.testPluginOptionsEnabledName
 public let testPluginOptionsNilName = TestPlugins.testPluginOptionsNilName
+public let testPluginNameFileExtension = TestPlugins.testPluginNameTestFileExtension
 
 // Special
 public let testPluginOutsideName = TestPlugins.testPluginNameOutside

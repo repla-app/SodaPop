@@ -27,6 +27,19 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.usesEnvironment, true)
     }
 
+    func testFileExtensionsPlugin() {
+        guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
+            XCTAssertTrue(false)
+            return
+        }
+
+        guard let suffixes = plugin.suffixes else {
+            XCTFail()
+            return
+        }
+        XCTAssert(suffixes.count > 0)
+    }
+
     func testLogPlugin() {
         guard let logPlugin = pluginsManager.plugin(withName: testPluginNameLog) else {
             XCTAssertTrue(false)

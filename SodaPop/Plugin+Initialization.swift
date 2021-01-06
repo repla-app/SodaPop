@@ -23,7 +23,7 @@ public enum PluginKind {
 }
 
 extension Plugin {
-    static var forceXML: Bool = true
+    static var forceXML: Bool = true // FIXME: Switch this to `true` by default after all tests have been setup
     public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }
@@ -35,15 +35,17 @@ extension Plugin {
     class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
         do {
             guard !forceXML else {
-                return makeXMLPlugin(path: path, pluginKind: pluginKind)
+                return try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
             }
-            let plugin = try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
-            return plugin
+            return try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
         } catch JSONPluginLoadError.loadPluginInfoFailed(path: _, underlyingError: _) {
             return makeXMLPlugin(path: path, pluginKind: pluginKind)
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")
         } catch {
+            guard !forceXML else {
+                return try? JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
+            }
             print("Failed to load JSON plugin at path \(path).")
         }
         return nil

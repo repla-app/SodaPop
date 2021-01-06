@@ -44,7 +44,7 @@ struct PluginInfo: Codable {
 }
 
 class JSONPlugin: Plugin {
-    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> JSONPlugin? {
         do {
             let infoPath = path.appendingPathComponent(infoPathComponent)
             let pluginInfo = try PluginInfo.load(from: infoPath)

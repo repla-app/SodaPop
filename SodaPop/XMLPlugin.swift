@@ -39,7 +39,7 @@ extension XMLPlugin {
         static let usesEnvironment = "WCUsesEnvironment"
     }
 
-    class func validPlugin(path: String, pluginKind: PluginKind) throws -> Plugin? {
+    class func validPlugin(path: String, pluginKind: PluginKind) throws -> XMLPlugin? {
         do {
             if let bundle = try validBundle(path: path),
                 let infoDictionary = try validInfoDictionary(bundle: bundle),

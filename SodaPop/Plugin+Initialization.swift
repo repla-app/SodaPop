@@ -27,12 +27,15 @@ extension Plugin {
         return makePlugin(path: url.path)
     }
 
-    class func makePlugin(url: URL, pluginKind: PluginKind = .other, forceXML: Bool = false) -> Plugin? {
+    class func makePlugin(url: URL, pluginKind: PluginKind = .other) -> Plugin? {
         return makePlugin(path: url.path, pluginKind: pluginKind)
     }
 
-    class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
+    class func makePlugin(path: String, pluginKind: PluginKind = .other, forceXML: Bool = false) -> Plugin? {
         do {
+            guard !forceXML else {
+                return makeXMLPlugin(path: path, pluginKind: pluginKind)
+            }
             let plugin = try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             return plugin
         } catch JSONPluginLoadError.loadPluginInfoFailed(path: _, underlyingError: _) {

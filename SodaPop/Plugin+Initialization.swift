@@ -23,7 +23,7 @@ public enum PluginKind {
 }
 
 extension Plugin {
-    static var forceXML: Bool = true // FIXME: Switch this to `true` by default after all tests have been setup
+    static var forceXML: Bool = defaultForceXML
     public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }

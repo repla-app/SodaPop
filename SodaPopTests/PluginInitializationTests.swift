@@ -28,18 +28,25 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
     }
 
     func testFileExtensionsPlugin() {
-        guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
-            XCTFail()
-            return
+        let states = [true, false]
+        for state in states {
+            Plugin.forceXML = state
+            guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
+
+            guard let suffixes = plugin.suffixes else {
+                XCTFail()
+                return
+            }
+            XCTAssert(suffixes.count > 0)
+            // TODO: Verify the actual suffixes that the plugin should have
         }
 
-        guard let suffixes = plugin.suffixes else {
-            XCTFail()
-            return
-        }
-        XCTAssert(suffixes.count > 0)
-
-        // TODO: Verify the actual suffixes that the plugin should have
+        // Clean Up
+        Plugin.forceXML = defaultForceXML
     }
 
     func testLogPlugin() {

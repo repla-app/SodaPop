@@ -23,6 +23,7 @@ public enum PluginKind {
 }
 
 extension Plugin {
+    static var forceXML: Bool = true
     public class func makePlugin(url: URL) -> Plugin? {
         return makePlugin(path: url.path)
     }
@@ -31,7 +32,7 @@ extension Plugin {
         return makePlugin(path: url.path, pluginKind: pluginKind)
     }
 
-    class func makePlugin(path: String, pluginKind: PluginKind = .other, forceXML: Bool = false) -> Plugin? {
+    class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
         do {
             guard !forceXML else {
                 return makeXMLPlugin(path: path, pluginKind: pluginKind)

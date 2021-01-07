@@ -51,6 +51,8 @@ class JSONPlugin: Plugin {
             return JSONPlugin(pluginInfo: pluginInfo, pluginKind: pluginKind, path: path)
         } catch let error as NSError {
             throw error
+        } catch {
+            throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: nil)
         }
     }
 

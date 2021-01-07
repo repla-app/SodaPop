@@ -27,28 +27,6 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(helloWorldPlugin.usesEnvironment, true)
     }
 
-    func testFileExtensionsPlugin() {
-        let states = [true, false]
-        for state in states {
-            Plugin.forceXML = state
-            guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
-                XCTFail()
-                return
-            }
-            XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
-
-            guard let suffixes = plugin.suffixes else {
-                XCTFail()
-                return
-            }
-            XCTAssert(suffixes.count > 0)
-            // TODO: Verify the actual suffixes that the plugin should have
-        }
-
-        // Clean Up
-        Plugin.forceXML = defaultForceXML
-    }
-
     func testLogPlugin() {
         guard let logPlugin = pluginsManager.plugin(withName: testPluginNameLog) else {
             XCTFail()
@@ -98,6 +76,43 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
         XCTAssertEqual(optionsEnabledPlugin.debugModeEnabled, true)
         XCTAssertEqual(optionsEnabledPlugin.autoShowLog, true)
         XCTAssertEqual(optionsEnabledPlugin.transparentBackground, true)
+    }
+}
+
+class MakePluginManagerTests: PluginsManagerDependenciesTestCase {
+
+    func testFileExtensionsPlugin() {
+        let states = [true, false]
+        for state in states {
+            Plugin.forceXML = state
+            let pluginsManager = makePluginsManager()
+            guard let plugin = pluginsManager.plugin(withName: testPluginNameFileExtension) else {
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
+
+            guard let suffixes = plugin.suffixes else {
+                XCTFail()
+                return
+            }
+            XCTAssert(suffixes.count > 0)
+            // TODO: Verify the actual suffixes that the plugin should have
+        }
+
+        // Clean Up
+        Plugin.forceXML = defaultForceXML
+    }
+    
+    override open func tearDown() {
+        // Making a `pluginsManager` will implicitly create the
+        // `userPluginsURL`. So that needs to be cleaned up here.
+        do {
+            try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+        } catch {
+            XCTFail()
+        }
+        super.tearDown()
     }
 }
 

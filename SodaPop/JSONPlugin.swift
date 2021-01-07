@@ -15,9 +15,9 @@ enum JSONPluginLoadError: Error {
 
 struct PluginInfo: Codable {
     let name: String
-    let command: String
+    let command: String?
     let uuid: String
-    let editable: Bool
+    let editable: Bool?
     let hidden: Bool?
     let fileExtensions: [String]?
     let debugEnabled: Bool?
@@ -85,7 +85,7 @@ class JSONPlugin: Plugin {
                    resourcePath: resourcePath,
                    kind: pluginKind,
                    resourceURL: resourceURL,
-                   editable: pluginInfo.editable,
+                   editable: pluginInfo.editable ?? defaultPluginEditable,
                    command: pluginInfo.command,
                    identifier: pluginInfo.uuid,
                    name: pluginInfo.name,

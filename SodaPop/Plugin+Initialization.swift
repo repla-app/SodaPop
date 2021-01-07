@@ -34,7 +34,7 @@ extension Plugin {
 
     class func makePlugin(path: String, pluginKind: PluginKind = .other) -> Plugin? {
         do {
-            guard !forceXML else {
+            if forceXML {
                 return try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
             }
             return try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
@@ -44,7 +44,7 @@ extension Plugin {
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")
         } catch {
-            guard !forceXML else {
+            if forceXML {
                 return try? JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             }
             print("Failed to load JSON plugin at path \(path).")

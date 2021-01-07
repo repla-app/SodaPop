@@ -97,7 +97,7 @@ class MakePluginManagerTests: PluginsManagerDependenciesTestCase {
                 return
             }
             XCTAssert(suffixes.count > 0)
-            // TODO: Verify the actual suffixes that the plugin should have
+            XCTAssertEqual(suffixes, testPluginFileExtensions)
         }
 
         // Clean Up

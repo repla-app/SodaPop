@@ -52,6 +52,7 @@ public let testPluginOptionsDisabledName = TestPlugins.testPluginOptionsDisabled
 public let testPluginOptionsEnabledName = TestPlugins.testPluginOptionsEnabledName
 public let testPluginOptionsNilName = TestPlugins.testPluginOptionsNilName
 public let testPluginNameFileExtension = TestPlugins.testPluginNameTestFileExtension
+public let testPluginFileExtensions = TestPlugins.testPluginFileExtensions
 
 // Special
 public let testPluginOutsideName = TestPlugins.testPluginNameOutside

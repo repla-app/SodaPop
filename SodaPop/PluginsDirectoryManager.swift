@@ -76,6 +76,9 @@ class PluginsPathHelper {
     }
 
     class func does(pathComponent: String, matchPathComponent: String) -> Bool {
+        // Breaking the path components up into an array removes path
+        // separators like slashes from being part of the comparison.
+        // E.g., `Contents/` is equal to `Contents`
         let pathComponents = pathComponent.pathComponents
         let matchPathComponents = matchPathComponent.pathComponents
         if pathComponents.count != matchPathComponents.count {

@@ -89,6 +89,6 @@ class JSONPlugin: Plugin {
                    command: pluginInfo.command,
                    identifier: pluginInfo.uuid,
                    name: pluginInfo.name,
-                   suffixes: nil)
+                   suffixes: pluginInfo.fileExtensions)
     }
 }

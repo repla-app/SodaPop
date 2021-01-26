@@ -17,8 +17,9 @@ let defaultPluginEditable = true
 let defaultPluginUsesEnvironment = false
 let defaultPluginTransparentBackground = false
 
-let infoDictionaryPathComponent = "Contents/Info.plist"
 let resourcePathComponent = "Contents/Resources"
+let infoDictionaryPathComponent = "Contents/Info.plist"
 let infoPathComponent = "repla.json"
+let infoPathComponents = [infoDictionaryPathComponent, infoPathComponent]
 
 let defaultForceXML = true // FIXME: Switch this to `true` by default after all tests have been setup

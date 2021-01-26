@@ -495,6 +495,28 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         removeDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
     }
 
+    func testDirectoryForInfoJSON() {
+        // Create a directory in the plugins directory, this should not cause a callback
+        let testPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
+        createDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
+
+        // Create a directory for the info dictionary, this should not cause a callback
+        let testPluginInfoDictionaryDirectoryPath =
+            testPluginDirectoryPath.appendingPathComponent(infoPathComponent)
+        createDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
+
+        // Clean up
+
+        // Create a directory for the info dictionary, this should cause a callback
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
+
+        // Remove the directory in the plugins directory, this should cause a callback
+        // because this could be the delete after move of a valid plugin
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
+    }
+
     func testMoveResourcesDirectory() {
         createValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
 

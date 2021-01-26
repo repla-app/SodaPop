@@ -240,10 +240,6 @@ class XMLPlugin: Plugin {
         case failToWriteDictionaryError(URL: URL)
     }
 
-    struct ClassConstants {
-        static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
-    }
-
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
          kind: PluginKind,
@@ -291,7 +287,7 @@ class XMLPlugin: Plugin {
     }
 
     class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {
-        return pluginURL.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
+        return pluginURL.appendingPathComponent(infoDictionaryPathComponent)
     }
 
     // MARK: Properties

@@ -190,32 +190,17 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
                                                       forDirectoryCreatedOrModifiedAtPath path: String) -> Bool {
-        if containsValidInfoDictionarySubpath(path) {
-            if doesInfoDictionaryExist(atPluginPath: pluginPath) {
-                return true
-            }
-        }
-        return false
+        return containsValidInfoDictionarySubpath(path) && doesInfoDictionaryExist(atPluginPath: pluginPath)
     }
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
                                                       forFileCreatedOrModifiedAtPath path: String) -> Bool {
-        if isValidInfoDictionary(atPath: path) {
-            if doesInfoDictionaryExist(atPluginPath: pluginPath) {
-                return true
-            }
-        }
-        return false
+        return isValidInfoDictionary(atPath: path) && doesInfoDictionaryExist(atPluginPath: pluginPath)
     }
 
     func shouldFireInfoDictionaryWasRemoved(atPluginPath pluginPath: String,
                                             forItemRemovedAtPath path: String) -> Bool {
-        if containsValidInfoDictionarySubpath(path) {
-            if !doesInfoDictionaryExist(atPluginPath: pluginPath) {
-                return true
-            }
-        }
-        return false
+        return containsValidInfoDictionarySubpath(path) && !doesInfoDictionaryExist(atPluginPath: pluginPath)
     }
 
     // MARK: Helpers

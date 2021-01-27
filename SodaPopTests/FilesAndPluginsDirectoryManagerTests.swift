@@ -500,23 +500,31 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         let testPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
         createDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
 
-        // Create a directory for the info dictionary, this should not cause a callback
+        // Create a directory for the info JSON, this should not cause a callback
         let testPluginInfoDictionaryDirectoryPath =
             testPluginDirectoryPath.appendingPathComponent(infoPathComponent)
         createDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
 
-        // Clean up
-
-        // Create a directory for the info dictionary, this should cause a callback
+        // Clean Up Directory
+        // Remove info JSON directory, this should cause a callback
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
+        
+        // Create the file at the correct path
+        // Create a file for the info JSON, this should cause a callback
+        createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
+        createFileWithConfirmation(atPath: infoPathComponent)
 
+        // Clean up
+        // Create a file for the info JSON, this should cause a callback
+        createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeFileWithConfirmation(atPath: infoPathComponent)
+        
         // Remove the directory in the plugins directory, this should cause a callback
         // because this could be the delete after move of a valid plugin
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
     }
-
     func testMoveResourcesDirectory() {
         createValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
 

@@ -18,17 +18,17 @@ enum JSONPluginWriteError: Error {
 }
 
 struct PluginInfo: Codable {
-    let name: String
-    let command: String?
-    let uuid: String
-    let editable: Bool?
-    let hidden: Bool?
-    let fileExtensions: [String]?
-    let debugEnabled: Bool?
-    let autoShowLog: Bool?
-    let transparentBackground: Bool?
-    let usesEnvironment: Bool?
-    let promptInterrupt: Bool?
+    var name: String
+    var command: String?
+    var uuid: String
+    var editable: Bool?
+    var hidden: Bool?
+    var fileExtensions: [String]?
+    var debugEnabled: Bool?
+    var autoShowLog: Bool?
+    var transparentBackground: Bool?
+    var usesEnvironment: Bool?
+    var promptInterrupt: Bool?
 
     static func load(from path: String) throws -> PluginInfo {
         let url = URL(fileURLWithPath: path)
@@ -59,6 +59,7 @@ struct PluginInfo: Codable {
 }
 
 class JSONPlugin: Plugin {
+    var pluginInfo: PluginInfo
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> JSONPlugin? {
         do {
             let infoPath = path.appendingPathComponent(infoPathComponent)
@@ -89,6 +90,7 @@ class JSONPlugin: Plugin {
     init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
         let resourceURL = type(of: self).getResourceFileURL(for: fileURL)
         let resourcePath = fileURL.path
+        self.pluginInfo = pluginInfo
         super.init(autoShowLog: pluginInfo.autoShowLog,
                    debugModeEnabled: pluginInfo.debugEnabled,
                    hidden: pluginInfo.hidden ?? defaultPluginHidden,
@@ -106,4 +108,67 @@ class JSONPlugin: Plugin {
                    name: pluginInfo.name,
                    suffixes: pluginInfo.fileExtensions)
     }
+
+    // MARK: Properties
+
+    override public dynamic var name: String {
+        didSet {
+            pluginInfo.name = name
+            save()
+        }
+    }
+
+    override public var identifier: String {
+        didSet {
+            pluginInfo.uuid = identifier
+            save()
+        }
+    }
+
+    override public dynamic var command: String? {
+        didSet {
+            pluginInfo.command = command
+            save()
+        }
+    }
+
+    override public dynamic var suffixes: [String]? {
+        didSet {
+            pluginInfo.fileExtensions = suffixes
+            save()
+        }
+    }
+
+    override public dynamic var editable: Bool {
+        didSet {
+            if !editable {
+                pluginInfo.editable = editable
+            } else {
+                pluginInfo.editable = nil
+            }
+            save()
+        }
+    }
+
+    // MARK: Save
+
+    private func save() {
+//        let infoDictionaryURL = self.infoDictionaryURL
+//        do {
+//            try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
+//        } catch let XMLPluginWriteError.failToWriteDictionaryError(URL) {
+//            print("Failed to write an info dictionary at URL \(URL)")
+//        } catch let error as NSError {
+//            print("Failed to write an info dictionary \(error)")
+//        }
+    }
+
+//    class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
+//        assert(Thread.isMainThread)
+//        let writableDictionary = NSDictionary(dictionary: dictionary)
+//        let success = writableDictionary.write(to: URL, atomically: true)
+//        if !success {
+//            throw XMLPluginWriteError.failToWriteDictionaryError(URL: URL)
+//        }
+//    }
 }

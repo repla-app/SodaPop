@@ -13,6 +13,10 @@ enum JSONPluginLoadError: Error {
     case loadPluginInfoFailed(path: String, underlyingError: NSError?)
 }
 
+enum JSONPluginWriteError: Error {
+    case failToWriteDictionaryError(URL: URL, underlyingError: NSError?)
+}
+
 struct PluginInfo: Codable {
     let name: String
     let command: String?
@@ -37,7 +41,18 @@ struct PluginInfo: Codable {
             throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: nil)
         }
     }
-
+    
+    func write(to url: URL) throws {
+        do {
+            let data = try JSONEncoder().encode(self)
+            try data.write(to: url)
+        } catch let error as NSError {
+            throw JSONPluginWriteError.failToWriteDictionaryError(URL: url, underlyingError: error)
+        } catch {
+            throw JSONPluginWriteError.failToWriteDictionaryError(URL: url, underlyingError: nil)
+        }
+    }
+    
     static func load(from url: URL) throws -> PluginInfo {
         return try load(from: url.path)
     }

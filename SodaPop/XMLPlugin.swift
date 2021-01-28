@@ -24,6 +24,10 @@ enum XMLPluginLoadError: Error {
     case invalidUsesEnvironmentError(infoDictionary: [AnyHashable: Any])
 }
 
+enum XMLPluginWriteError: Error {
+    case failToWriteDictionaryError(URL: URL)
+}
+
 extension XMLPlugin {
     enum InfoDictionaryKeys {
         static let name = "WCName"
@@ -236,10 +240,6 @@ extension XMLPlugin {
 class XMLPlugin: Plugin {
     let bundle: Bundle
 
-    enum PluginWriteError: Error {
-        case failToWriteDictionaryError(URL: URL)
-    }
-
     init(bundle: Bundle,
          infoDictionary: [AnyHashable: Any],
          kind: PluginKind,
@@ -337,7 +337,7 @@ class XMLPlugin: Plugin {
         let infoDictionaryURL = self.infoDictionaryURL
         do {
             try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
-        } catch let PluginWriteError.failToWriteDictionaryError(URL) {
+        } catch let XMLPluginWriteError.failToWriteDictionaryError(URL) {
             print("Failed to write an info dictionary at URL \(URL)")
         } catch let error as NSError {
             print("Failed to write an info dictionary \(error)")
@@ -349,7 +349,7 @@ class XMLPlugin: Plugin {
         let writableDictionary = NSDictionary(dictionary: dictionary)
         let success = writableDictionary.write(to: URL, atomically: true)
         if !success {
-            throw PluginWriteError.failToWriteDictionaryError(URL: URL)
+            throw XMLPluginWriteError.failToWriteDictionaryError(URL: URL)
         }
     }
 

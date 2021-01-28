@@ -525,6 +525,7 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
     }
+
     func testMoveResourcesDirectory() {
         createValidPluginHierarchyWithConfirmation(atPath: baseDirectoryPath)
 

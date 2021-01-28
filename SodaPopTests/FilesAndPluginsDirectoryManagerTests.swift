@@ -517,24 +517,24 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
 
         // Create a directory for the info JSON, this should not cause a callback
-        let testPluginInfoDictionaryDirectoryPath =
+        let testPluginInfoPath =
             testPluginDirectoryPath.appendingPathComponent(infoPathComponent)
-        createDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
+        createDirectoryWithConfirmation(atPath: testPluginInfoPath)
 
         // Clean Up Directory
         // Remove info JSON directory, this should cause a callback
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
-        removeDirectoryWithConfirmation(atPath: testPluginInfoDictionaryDirectoryPath)
-        
+        removeDirectoryWithConfirmation(atPath: testPluginInfoPath)
+
         // Create the file at the correct path
         // Create a file for the info JSON, this should cause a callback
         createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
-        createFileWithConfirmation(atPath: infoPathComponent)
+        createFileWithConfirmation(atPath: testPluginInfoPath)
 
         // Clean up
         // Create a file for the info JSON, this should cause a callback
         createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
-        removeFileWithConfirmation(atPath: infoPathComponent)
+        removeFileWithConfirmation(atPath: testPluginInfoPath)
         
         // Remove the directory in the plugins directory, this should cause a callback
         // because this could be the delete after move of a valid plugin

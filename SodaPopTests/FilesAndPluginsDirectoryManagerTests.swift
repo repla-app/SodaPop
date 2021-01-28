@@ -131,6 +131,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasCreatedOrModifiedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.createFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -142,6 +146,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasCreatedOrModifiedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.createDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -155,6 +163,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasRemovedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.removeFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -166,6 +178,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasRemovedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.removeDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }

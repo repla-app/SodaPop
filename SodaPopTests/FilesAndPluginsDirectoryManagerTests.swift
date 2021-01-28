@@ -532,8 +532,8 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         createFileWithConfirmation(atPath: testPluginInfoPath)
 
         // Clean up
-        // Create a file for the info JSON, this should cause a callback
-        createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
+        // Remove info JSON info dictionary, this should cause a callback
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeFileWithConfirmation(atPath: testPluginInfoPath)
         
         // Remove the directory in the plugins directory, this should cause a callback

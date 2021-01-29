@@ -44,7 +44,9 @@ struct PluginInfo: Codable {
     
     func write(to url: URL) throws {
         do {
-            let data = try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(self)
             try data.write(to: url)
         } catch let error as NSError {
             throw JSONPluginWriteError.failToWriteDictionaryError(URL: url, underlyingError: error)

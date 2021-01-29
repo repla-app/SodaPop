@@ -30,26 +30,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         tempPluginsDirectoryURL = temporaryDirectoryURL
             .appendingPathComponent(testPluginsDirectoryPathComponent)
 
-        do {
-            try FileManager.default
-                .createDirectory(at: tempPluginsDirectoryURL,
-                                 withIntermediateDirectories: false,
-                                 attributes: nil)
-        } catch let error as NSError {
-            XCTAssertTrue(false, "Creating the directory should succeed \(error)")
-        }
-
-        // Copy the bundle resources plugin to the plugins directory
-        let bundleResourcesPluginURL = TestPlugins.urlForPlugin(withName: testPluginName)!
-        let filename = testPluginName.appendingPathExtension(testPluginExtension)!
-
-        tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)
-        do {
-            try FileManager.default.copyItem(at: bundleResourcesPluginURL,
-                                             to: tempPluginURL)
-        } catch let error as NSError {
-            XCTAssertTrue(false, "Moving the directory should succeed \(error)")
-        }
+        tempPluginURL = makeDuplicatePlugin(fromPluginNamed: testPluginName)
     }
 
     override open func tearDown() {
@@ -64,5 +45,30 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         }
 
         super.tearDown()
+    }
+
+    func makeDuplicatePlugin(fromPluginNamed pluginName: String) -> URL {
+        do {
+            try FileManager.default
+                .createDirectory(at: tempPluginsDirectoryURL,
+                                 withIntermediateDirectories: false,
+                                 attributes: nil)
+        } catch let error as NSError {
+            XCTAssertTrue(false, "Creating the directory should succeed \(error)")
+        }
+
+        // Copy the bundle resources plugin to the plugins directory
+        let bundleResourcesPluginURL = TestPlugins.urlForPlugin(withName: pluginName)!
+        let filename = testPluginName.appendingPathExtension(testPluginExtension)!
+
+        let tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)
+        do {
+            try FileManager.default.copyItem(at: bundleResourcesPluginURL,
+                                             to: tempPluginURL)
+        } catch let error as NSError {
+            XCTAssertTrue(false, "Moving the directory should succeed \(error)")
+        }
+
+        return tempPluginURL
     }
 }

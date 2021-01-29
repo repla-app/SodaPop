@@ -27,57 +27,59 @@ extension EasyDuplicateType {
     }
 }
 
-class MultiCollectionControllerInitTests: TemporaryPluginsTestCase, EasyDuplicateType {
+class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDuplicateType {
     func testInitPlugins() {
-        let plugin = Plugin.makePlugin(url: tempPluginURL)!
-        plugin.editable = true
+        for tempPluginURL in tempPluginURLs {
+            let plugin = Plugin.makePlugin(url: tempPluginURL)!
+            plugin.editable = true
 
-        let newPluginFilename = testDirectoryName
-        let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
-        let newPlugin = Plugin.makePlugin(url: newPluginURL)!
+            let newPluginFilename = testDirectoryName
+            let newPluginURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginFilename)
+            let newPlugin = Plugin.makePlugin(url: newPluginURL)!
 
-        let newPluginTwoFilename = testDirectoryNameTwo
-        let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginTwoFilename)
-        let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
+            let newPluginTwoFilename = testDirectoryNameTwo
+            let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginTwoFilename)
+            let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
-        let newPluginChangedNameFilename = testDirectoryNameThree
-        let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL,
-                                                           withFilenameForDuplicate: newPluginChangedNameFilename)
-        let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
-        let changedName = testDirectoryName
-        newPluginChangedName.name = changedName
+            let newPluginChangedNameFilename = testDirectoryNameThree
+            let newPluginChangedNameURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                               withFilenameForDuplicate: newPluginChangedNameFilename)
+            let newPluginChangedName = Plugin.makePlugin(url: newPluginURL)!
+            let changedName = testDirectoryName
+            newPluginChangedName.name = changedName
 
-        let newPluginChangedNameTwoFilename = testDirectoryNameFour
-        let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
-                                                              withFilenameForDuplicate: newPluginChangedNameTwoFilename)
-        let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
-        newPluginChangedNameTwo.name = changedName
+            let newPluginChangedNameTwoFilename = testDirectoryNameFour
+            let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                                  withFilenameForDuplicate: newPluginChangedNameTwoFilename)
+            let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
+            newPluginChangedNameTwo.name = changedName
 
-        let plugins = [plugin, newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
-        let newPluginURLs = [newPluginURL, newPluginTwoURL, newPluginChangedNameURL, newPluginChangedNameTwoURL]
+            let plugins = [plugin, newPlugin, newPluginTwo, newPluginChangedName, newPluginChangedNameTwo]
+            let newPluginURLs = [newPluginURL, newPluginTwoURL, newPluginChangedNameURL, newPluginChangedNameTwoURL]
 
-        let multiCollectionController = MultiCollectionController(objects: plugins, key: pluginNameKey)
+            let multiCollectionController = MultiCollectionController(objects: plugins, key: pluginNameKey)
 
-        XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
+            XCTAssertEqual(multiCollectionController.objects().count, 2, "The plugins count should be one")
 
-        // Test New Plugins
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
-        XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
-        XCTAssertFalse(multiCollectionController.objects().contains(plugin))
+            // Test New Plugins
+            XCTAssertEqual(multiCollectionController.object(forKey: newPluginTwo.name)! as? Plugin, newPluginTwo)
+            XCTAssertTrue(multiCollectionController.objects().contains(newPluginTwo))
+            XCTAssertFalse(multiCollectionController.objects().contains(newPlugin))
+            XCTAssertFalse(multiCollectionController.objects().contains(plugin))
 
-        // Test New Plugins Changed Name
-        XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
-                       newPluginChangedNameTwo)
-        XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
-        XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
+            // Test New Plugins Changed Name
+            XCTAssertEqual(multiCollectionController.object(forKey: newPluginChangedNameTwo.name)! as? Plugin,
+                           newPluginChangedNameTwo)
+            XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
+            XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
 
-        for pluginURL: URL in newPluginURLs {
-            // Clean up
-            do {
-                try FileManager.default.removeItem(at: pluginURL)
-            } catch {
-                XCTAssertTrue(false, "The remove should succeed")
+            for pluginURL: URL in newPluginURLs {
+                // Clean up
+                do {
+                    try FileManager.default.removeItem(at: pluginURL)
+                } catch {
+                    XCTAssertTrue(false, "The remove should succeed")
+                }
             }
         }
     }

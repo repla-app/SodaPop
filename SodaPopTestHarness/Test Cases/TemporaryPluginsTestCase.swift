@@ -59,7 +59,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
 
         // Copy the bundle resources plugin to the plugins directory
         let bundleResourcesPluginURL = TestPlugins.urlForPlugin(withName: pluginName)!
-        let filename = testPluginName.appendingPathExtension(testPluginExtension)!
+        let filename = pluginName.appendingPathExtension(testPluginExtension)!
 
         let tempPluginURL = tempPluginsDirectoryURL.appendingPathComponent(filename)
         do {

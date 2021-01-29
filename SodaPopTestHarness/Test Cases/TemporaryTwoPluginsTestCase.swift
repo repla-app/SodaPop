@@ -13,14 +13,16 @@ import XCTest
 import XCTestTemp
 
 open class TemporaryTwoPluginsTestCase: TemporaryPluginsTestCase {
-    var tempPlugins: [Plugin] {
-        return [tempXMLPlugin, tempJSONPlugin]
+    var tempPlugins: [URL] {
+        return [tempXMLPluginURL, tempJSONPluginURL]
     }
-    var tempXMLPlugin: Plugin!
-    var tempJSONPlugin: Plugin!
+    var tempXMLPluginURL: URL!
+    var tempJSONPluginURL: URL!
     
     open override func setUp() {
         super.setUp()
+        tempXMLPluginURL = tempPluginURL
+        tempJSONPluginURL = makeDuplicatePlugin(fromPluginNamed: testPluginNameJSON)
     }
     
     open override func tearDown() {

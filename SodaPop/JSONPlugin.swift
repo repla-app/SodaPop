@@ -14,7 +14,7 @@ enum JSONPluginLoadError: Error {
 }
 
 enum JSONPluginWriteError: Error {
-    case failToWriteDictionaryError(URL: URL, underlyingError: NSError?)
+    case failedToWriteInfoError(url: URL, underlyingError: NSError?)
 }
 
 struct PluginInfo: Codable {
@@ -49,9 +49,9 @@ struct PluginInfo: Codable {
             let data = try encoder.encode(self)
             try data.write(to: url)
         } catch let error as NSError {
-            throw JSONPluginWriteError.failToWriteDictionaryError(URL: url, underlyingError: error)
+            throw JSONPluginWriteError.failedToWriteInfoError(url: url, underlyingError: error)
         } catch {
-            throw JSONPluginWriteError.failToWriteDictionaryError(URL: url, underlyingError: nil)
+            throw JSONPluginWriteError.failedToWriteInfoError(url: url, underlyingError: nil)
         }
     }
     
@@ -62,10 +62,20 @@ struct PluginInfo: Codable {
 
 class JSONPlugin: Plugin {
     var pluginInfo: PluginInfo
+    var infoPath: String {
+        type(of: self).infoPath(fromPath: path)
+    }
+    var infoURL: URL {
+        URL(fileURLWithPath: infoPath)
+    }
+
+    class func infoPath(fromPath path: String) -> String {
+        path.appendingPathComponent(infoPathComponent)
+    }
+
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> JSONPlugin? {
         do {
-            let infoPath = path.appendingPathComponent(infoPathComponent)
-            let pluginInfo = try PluginInfo.load(from: infoPath)
+            let pluginInfo = try PluginInfo.load(from: JSONPlugin.infoPath(fromPath: path))
             return JSONPlugin(pluginInfo: pluginInfo, pluginKind: pluginKind, path: path)
         } catch let error as NSError {
             throw error
@@ -153,24 +163,14 @@ class JSONPlugin: Plugin {
     }
 
     // MARK: Save
-
     private func save() {
-//        let infoDictionaryURL = self.infoDictionaryURL
-//        do {
-//            try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
-//        } catch let XMLPluginWriteError.failToWriteDictionaryError(URL) {
-//            print("Failed to write an info dictionary at URL \(URL)")
-//        } catch let error as NSError {
-//            print("Failed to write an info dictionary \(error)")
-//        }
+        assert(Thread.isMainThread)
+        do {
+            try pluginInfo.write(to: infoURL)
+        } catch let JSONPluginWriteError.failedToWriteInfoError(url: url, underlyingError: error) {
+            print("Faile to write info JSON at URL \(url), error \(error?.description ?? "nil").")
+        } catch let error as NSError {
+            print("Failed to write an info dictionary \(error)")
+        }
     }
-
-//    class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
-//        assert(Thread.isMainThread)
-//        let writableDictionary = NSDictionary(dictionary: dictionary)
-//        let success = writableDictionary.write(to: URL, atomically: true)
-//        if !success {
-//            throw XMLPluginWriteError.failToWriteDictionaryError(URL: URL)
-//        }
-//    }
 }

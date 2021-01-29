@@ -31,6 +31,11 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
     func testInitPlugins() {
         for tempPluginURL in tempPluginURLs {
             let plugin = Plugin.makePlugin(url: tempPluginURL)!
+            if tempPluginURL == tempXMLPluginURL {
+                XCTAssertTrue(XMLPlugin.self == type(of: plugin))
+            } else {
+                XCTAssertTrue(JSONPlugin.self == type(of: plugin))
+            }
             plugin.editable = true
 
             let newPluginFilename = testDirectoryName
@@ -72,7 +77,7 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
                            newPluginChangedNameTwo)
             XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
             XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
-
+            
             for pluginURL: URL in newPluginURLs {
                 // Clean up
                 do {

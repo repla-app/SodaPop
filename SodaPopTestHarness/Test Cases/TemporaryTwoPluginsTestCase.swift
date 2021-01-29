@@ -7,7 +7,23 @@
 //
 
 import Foundation
+import SodaFountain
+import SodaPop
+import XCTest
+import XCTestTemp
 
 open class TemporaryTwoPluginsTestCase: TemporaryPluginsTestCase {
-
+    var tempPlugins: [Plugin] {
+        return [tempXMLPlugin, tempJSONPlugin]
+    }
+    var tempXMLPlugin: Plugin!
+    var tempJSONPlugin: Plugin!
+    
+    open override func setUp() {
+        super.setUp()
+    }
+    
+    open override func tearDown() {
+        super.tearDown()
+    }
 }

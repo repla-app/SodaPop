@@ -29,7 +29,15 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         // Create the plugins directory
         tempPluginsDirectoryURL = temporaryDirectoryURL
             .appendingPathComponent(testPluginsDirectoryPathComponent)
-
+        do {
+            try FileManager.default
+                .createDirectory(at: tempPluginsDirectoryURL,
+                                 withIntermediateDirectories: false,
+                                 attributes: nil)
+        } catch let error as NSError {
+            XCTAssertTrue(false, "Creating the directory should succeed \(error)")
+        }
+        
         tempPluginURL = makeDuplicatePlugin(fromPluginNamed: testPluginName)
     }
 
@@ -48,15 +56,6 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
     }
 
     func makeDuplicatePlugin(fromPluginNamed pluginName: String) -> URL {
-        do {
-            try FileManager.default
-                .createDirectory(at: tempPluginsDirectoryURL,
-                                 withIntermediateDirectories: false,
-                                 attributes: nil)
-        } catch let error as NSError {
-            XCTAssertTrue(false, "Creating the directory should succeed \(error)")
-        }
-
         // Copy the bundle resources plugin to the plugins directory
         let bundleResourcesPluginURL = TestPlugins.urlForPlugin(withName: pluginName)!
         let filename = pluginName.appendingPathExtension(testPluginExtension)!

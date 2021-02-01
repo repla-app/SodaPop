@@ -44,6 +44,8 @@ extension Plugin {
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")
         } catch {
+            // Even if `forceXML` is true still fallback to a JSON plugin to
+            // support plugins that only have one type plugin info
             if forceXML {
                 return try? JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
             }

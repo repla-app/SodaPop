@@ -22,7 +22,7 @@ class PluginTests: PluginTestCase {
 
 class TemporaryPluginTests: TemporaryPluginTestCase {
     func testEditPluginProperties() {
-        let states = [true]
+        let states = [true, false]
         for state in states {
             Plugin.forceXML = state
             let contents = contentsOfPluginInfoWithConfirmation(for: plugin)
@@ -51,6 +51,9 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
             XCTAssertEqual(plugin.identifier, newPlugin.identifier, "The identifiers should be equal")
             XCTAssertEqual(plugin.suffixes, newPlugin.suffixes, "The file extensions should be equal")
         }
+
+        // Clean Up
+        Plugin.forceXML = defaultForceXML
     }
 
     func testEquality() {

@@ -22,24 +22,24 @@ class PluginTests: PluginTestCase {
 
 class TemporaryPluginTests: TemporaryPluginTestCase {
     func testEditPluginProperties() {
-        let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+        let contents = contentsOfPluginInfoWithConfirmation(for: plugin)
 
         plugin.name = testPluginNameTwo
-        let contentsTwo = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+        let contentsTwo = contentsOfPluginInfoWithConfirmation(for: plugin)
         XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
 
         plugin.command = testPluginCommandTwo
-        let contentsThree = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+        let contentsThree = contentsOfPluginInfoWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
 
         let uuid = UUID()
         let uuidString = uuid.uuidString
         plugin.identifier = uuidString
-        let contentsFour = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+        let contentsFour = contentsOfPluginInfoWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsThree, contentsFour, "The contents should not be equal")
 
         plugin.suffixes = testPluginSuffixesTwo
-        let contentsFive = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+        let contentsFive = contentsOfPluginInfoWithConfirmation(for: plugin)
         XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
         let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
 
@@ -79,11 +79,20 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
 
     // MARK: Helper
 
-    func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoDictionaryPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
+    func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String {
+        let pluginInfoPath: String
+        if type(of: plugin) == XMLPlugin.self {
+            pluginInfoPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
+        } else if let plugin = plugin as? JSONPlugin {
+            pluginInfoPath = plugin.infoPath
+        } else {
+            XCTFail()
+            pluginInfoPath = ""
+        }
+
         var infoDictionaryContents: String!
         do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoPath,
                                                 encoding: String.Encoding.utf8)
         } catch {
             XCTAssertTrue(false, "Getting the info dictionary contents should succeed")

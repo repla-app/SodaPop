@@ -25,6 +25,8 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         let states = [true, false]
         for state in states {
             Plugin.forceXML = state
+            XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
+
             let contents = contentsOfPluginInfoWithConfirmation(for: plugin)
 
             plugin.name = testPluginNameTwo

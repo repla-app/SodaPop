@@ -195,7 +195,7 @@ extension Plugin {
 
     class func validIdentifier(infoDictionary: [AnyHashable: Any]) throws -> String? {
         guard let uuidString = infoDictionary[InfoDictionaryKeys.identifier] as? String,
-              let _ = UUID(uuidString: uuidString)
+              UUID(uuidString: uuidString) != nil
         else {
             throw PluginLoadError.invalidIdentifierError(infoDictionary: infoDictionary)
         }

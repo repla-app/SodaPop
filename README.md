@@ -18,8 +18,8 @@ let pluginsManager = PluginsManager(pluginsPaths: [Directory.builtInPlugins.path
                                     builtInPluginsPath: Directory.builtInPlugins.path())
 ```
 
-- `pluginsPath`: All paths to load plugins from
-- `copyTempDirectoryURL`: Temporary directory to use for duplicating plugins
+- `pluginsPath`: Paths to load plugins from
+- `copyTempDirectoryURL`: Temporary directory for duplicating plugins
 - `defaults`: Storage for plugin preferences
 - `fallbackDefaultNewPluginName`: Default new plugin if no user preference is found
 - `userPluginsPath`: Path for plugins defined as user plugins (mutable plugins)

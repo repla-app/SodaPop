@@ -20,31 +20,64 @@ class PluginTests: PluginTestCase {
     }
 }
 
-class TemporaryPluginTests: TemporaryPluginTestCase {
+extension PluginInfoContentsType {
+    static func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String {
+        let pluginInfoPath: String
+        if type(of: plugin) == XMLPlugin.self {
+            pluginInfoPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
+        } else if let plugin = plugin as? JSONPlugin {
+            pluginInfoPath = plugin.infoPath
+        } else {
+            XCTFail()
+            pluginInfoPath = ""
+        }
+
+        var infoDictionaryContents: String!
+        do {
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoPath,
+                                                encoding: String.Encoding.utf8)
+        } catch {
+            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
+        }
+
+        return infoDictionaryContents
+    }
+}
+
+protocol PluginInfoContentsType {
+    static func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String
+}
+
+class MakeTemporaryPluginsManagerTests: TemporaryPluginsManagerDependenciesTestCase, PluginInfoContentsType {
     func testEditPluginProperties() {
         let states = [true, false]
         for state in states {
             Plugin.forceXML = state
+            let pluginsManager = makePluginsManager()
+            guard let plugin = pluginsManager.plugin(withName: testPluginName) else {
+                XCTFail()
+                return
+            }
             XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
 
-            let contents = contentsOfPluginInfoWithConfirmation(for: plugin)
+            let contents = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
 
             plugin.name = testPluginNameTwo
-            let contentsTwo = contentsOfPluginInfoWithConfirmation(for: plugin)
+            let contentsTwo = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
             XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
 
             plugin.command = testPluginCommandTwo
-            let contentsThree = contentsOfPluginInfoWithConfirmation(for: plugin)
+            let contentsThree = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
             XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
 
             let uuid = UUID()
             let uuidString = uuid.uuidString
             plugin.identifier = uuidString
-            let contentsFour = contentsOfPluginInfoWithConfirmation(for: plugin)
+            let contentsFour = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
             XCTAssertNotEqual(contentsThree, contentsFour, "The contents should not be equal")
 
             plugin.suffixes = testPluginSuffixesTwo
-            let contentsFive = contentsOfPluginInfoWithConfirmation(for: plugin)
+            let contentsFive = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
             XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
             let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
 
@@ -57,7 +90,9 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         // Clean Up
         Plugin.forceXML = defaultForceXML
     }
+}
 
+class TemporaryPluginTests: TemporaryPluginTestCase, PluginInfoContentsType {
     func testEquality() {
         let pluginMaker = pluginsManager.pluginsDataController.pluginMaker
         let samePlugin = pluginMaker.makePlugin(url: tempPluginURL)!
@@ -84,30 +119,6 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         // TODO: It would be nice to test modifying properties, but there isn't
         // a way to do that because with two separate plugin directories the
         // command paths and info dictionary URLs will be different
-    }
-
-    // MARK: Helper
-
-    func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoPath: String
-        if type(of: plugin) == XMLPlugin.self {
-            pluginInfoPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
-        } else if let plugin = plugin as? JSONPlugin {
-            pluginInfoPath = plugin.infoPath
-        } else {
-            XCTFail()
-            pluginInfoPath = ""
-        }
-
-        var infoDictionaryContents: String!
-        do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoPath,
-                                                encoding: String.Encoding.utf8)
-        } catch {
-            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
-        }
-
-        return infoDictionaryContents
     }
 }
 

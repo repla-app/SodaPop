@@ -79,7 +79,7 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
     }
 }
 
-class MakePluginManagerTests: PluginsManagerDependenciesTestCase {
+class MakePluginsManagerTests: PluginsManagerDependenciesTestCase {
 
     func testFileExtensionsPlugin() {
         let states = [true, false]

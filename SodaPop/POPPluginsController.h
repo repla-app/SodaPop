@@ -10,6 +10,10 @@
 
 #import "POPPluginsSource.h"
 
+// The `POPPluginsController` manages the in memory `Plugin` objects. It
+// provides standard methods for operating on a collection of `Plugin` objects
+// compatible with Cocoa bindings.
+
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPluginsController : NSObject <POPPluginsSource>
 - (instancetype)initWithPlugins:(NSArray *)plugins;

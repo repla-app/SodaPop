@@ -61,7 +61,7 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
         var copiedPluginURL: URL!
         copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (url, error) -> Void in
-            XCTAssertNotNil(URL, "The URL should not be nil")
+            XCTAssertNotNil(url, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
             guard let url = url else {
                 return

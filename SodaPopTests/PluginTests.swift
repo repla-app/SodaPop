@@ -87,6 +87,14 @@ class MakeTemporaryPluginsManagerTests: TemporaryPluginsManagerDependenciesTestC
             XCTAssertEqual(plugin.command!, newPlugin.command!, "The commands should be equal")
             XCTAssertEqual(plugin.identifier, newPlugin.identifier, "The identifiers should be equal")
             XCTAssertEqual(plugin.suffixes, newPlugin.suffixes, "The file extensions should be equal")
+
+            // Making a `pluginsManager` will implicitly create the
+            // `userPluginsURL`. So that needs to be cleaned up here.
+            do {
+                try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+            } catch {
+                XCTFail()
+            }
         }
 
         // Clean Up

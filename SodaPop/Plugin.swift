@@ -135,4 +135,22 @@ public class Plugin: POPPlugin {
 
         return true
     }
+
+    // MARK: Description
+
+    override public var description: String {
+        let description = super.description
+        return """
+        \(description),
+        url = \(url),
+        Plugin name = \(name),
+        identifier = \(identifier),
+        defaultNewPlugin = \(isDefaultNewPlugin),
+        hidden = \(hidden),
+        editable = \(editable),
+        debugModeEnabled = \(String(describing: debugModeEnabled)),
+        transparentBackground = \(String(describing: transparentBackground)),
+        autoShowLog = \(String(describing: autoShowLog))
+        """
+    }
 }

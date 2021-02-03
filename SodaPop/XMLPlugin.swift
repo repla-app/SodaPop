@@ -352,21 +352,4 @@ class XMLPlugin: Plugin {
             throw XMLPluginWriteError.failToWriteDictionaryError(URL: URL)
         }
     }
-
-    // MARK: Description
-
-    override public var description: String {
-        let description = super.description
-        return """
-        \(description),
-        Plugin name = \(name),
-        identifier = \(identifier),
-        defaultNewPlugin = \(isDefaultNewPlugin),
-        hidden = \(hidden),
-        editable = \(editable),
-        debugModeEnabled = \(String(describing: debugModeEnabled)),
-        transparentBackground = \(String(describing: transparentBackground)),
-        autoShowLog = \(String(describing: autoShowLog))
-        """
-    }
 }

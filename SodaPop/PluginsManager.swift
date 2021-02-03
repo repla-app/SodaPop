@@ -9,9 +9,6 @@
 import Cocoa
 import PlainBagel
 
-// The `POPPluginsController` manages the in memory `Plugin` objects. It
-// provides standard methods for operating on a collection of `Plugin` objects.
-
 @objcMembers
 public class PluginsManager: NSObject, PluginsDataControllerDelegate {
     let pluginsDataController: PluginsDataController

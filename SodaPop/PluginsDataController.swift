@@ -69,7 +69,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         duplicatePluginDestinationDirectoryURL = URL(fileURLWithPath: userPluginsPath)
         self.copyTempDirectoryURL = copyTempDirectoryURL
 
-        // TODO: This is a hack that assures the `userPluginsPath` exsits
+        // TODO: This is a hack that assures the `userPluginsPath` exists
         // and is a directory. Really this should work like this:
         //
         // 1. If the directory does not exist, then it is ignored here

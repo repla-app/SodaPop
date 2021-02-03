@@ -59,6 +59,8 @@ class MakeTemporaryPluginsManagerTests: TemporaryPluginsManagerDependenciesTestC
                 return
             }
             XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
+            XCTAssertTrue(isTemporaryItem(at: plugin.resourceURL))
+            plugin.editable = true
 
             let contents = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
 

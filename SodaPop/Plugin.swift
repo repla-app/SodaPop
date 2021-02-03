@@ -14,7 +14,7 @@ public class Plugin: POPPlugin {
         case failToWriteDictionaryError(URL: URL)
     }
 
-    struct ClassConstants {
+    enum ClassConstants {
         static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
     }
 
@@ -124,7 +124,8 @@ public class Plugin: POPPlugin {
 
     public var commandPath: String? {
         guard let resourcePath = resourcePath,
-            let command = command else {
+              let command = command
+        else {
             return nil
         }
         return resourcePath.appendingPathComponent(command)

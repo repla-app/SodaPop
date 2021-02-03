@@ -14,8 +14,8 @@ public protocol PluginsManagerOwnerType {
     var pluginsManager: PluginsManager { get }
 }
 
-extension PluginsManagerOwnerType where Self: XCTestCase {
-    public func newPluginWithConfirmation() -> Plugin {
+public extension PluginsManagerOwnerType where Self: XCTestCase {
+    func newPluginWithConfirmation() -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.newPlugin { (newPlugin, error) -> Void in
@@ -27,7 +27,7 @@ extension PluginsManagerOwnerType where Self: XCTestCase {
         return createdPlugin
     }
 
-    public func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
+    func duplicateWithConfirmation(_ plugin: Plugin) -> Plugin {
         var createdPlugin: Plugin!
         let createdPluginExpectation = expectation(description: "Create new plugin")
         pluginsManager.duplicate(plugin) { (newPlugin, error) -> Void in

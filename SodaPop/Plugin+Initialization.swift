@@ -39,7 +39,7 @@ extension Plugin {
         case invalidUsesEnvironmentError(infoDictionary: [AnyHashable: Any])
     }
 
-    struct InfoDictionaryKeys {
+    enum InfoDictionaryKeys {
         static let name = "WCName"
         static let identifier = "WCUUID"
         static let command = "WCCommand"
@@ -101,9 +101,9 @@ extension Plugin {
     class func validPlugin(path: String, pluginType: PluginType) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
-                let infoDictionary = try validInfoDictionary(bundle: bundle),
-                let identifier = try validIdentifier(infoDictionary: infoDictionary),
-                let name = try validName(infoDictionary: infoDictionary) {
+               let infoDictionary = try validInfoDictionary(bundle: bundle),
+               let identifier = try validIdentifier(infoDictionary: infoDictionary),
+               let name = try validName(infoDictionary: infoDictionary) {
                 // Optional Keys
                 let command = try validCommand(infoDictionary: infoDictionary)
                 let suffixes = try validSuffixes(infoDictionary: infoDictionary)
@@ -195,7 +195,8 @@ extension Plugin {
 
     class func validIdentifier(infoDictionary: [AnyHashable: Any]) throws -> String? {
         guard let uuidString = infoDictionary[InfoDictionaryKeys.identifier] as? String,
-           let _ = UUID(uuidString: uuidString) else {
+              let _ = UUID(uuidString: uuidString)
+        else {
             throw PluginLoadError.invalidIdentifierError(infoDictionary: infoDictionary)
         }
 

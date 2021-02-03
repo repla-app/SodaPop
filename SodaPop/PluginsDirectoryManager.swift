@@ -100,7 +100,7 @@ class PluginsPathHelper {
 }
 
 class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDirectoryEventHandlerDelegate {
-    struct ClassConstants {
+    enum ClassConstants {
         static let infoDictionaryPathComponent = "Contents/Info.plist"
     }
 

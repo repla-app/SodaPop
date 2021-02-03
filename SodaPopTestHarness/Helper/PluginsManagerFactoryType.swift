@@ -25,27 +25,27 @@ public protocol TempUserPluginsDirectoryType: TemporaryDirectoryType {
     var temporaryUserPluginsDirectoryPath: String { get }
 }
 
-extension TempUserPluginsDirectoryType {
-    public var temporaryApplicationSupportDirectoryURL: URL {
+public extension TempUserPluginsDirectoryType {
+    var temporaryApplicationSupportDirectoryURL: URL {
         return temporaryDirectoryURL
             .appendingPathComponent(testApplicationSupportDirectoryName)
     }
 
-    public var temporaryApplicationSupportDirectoryPath: String {
+    var temporaryApplicationSupportDirectoryPath: String {
         return temporaryApplicationSupportDirectoryURL.path
     }
 
-    public var fallbackDefaultNewPluginName: String {
+    var fallbackDefaultNewPluginName: String {
         return testPluginNameDefault
     }
 
-    public var temporaryUserPluginsDirectoryURL: URL {
+    var temporaryUserPluginsDirectoryURL: URL {
         return temporaryApplicationSupportDirectoryURL
             .appendingPathComponent(testAppName)
             .appendingPathComponent(testPluginsDirectoryPathComponent)
     }
 
-    public var temporaryUserPluginsDirectoryPath: String {
+    var temporaryUserPluginsDirectoryPath: String {
         return temporaryUserPluginsDirectoryURL.path
     }
 }
@@ -54,8 +54,8 @@ public protocol TempCopyTempURLType: TemporaryDirectoryType {
     var tempCopyTempDirectoryURL: URL { get }
 }
 
-extension TempCopyTempURLType {
-    public var tempCopyTempDirectoryURL: URL {
+public extension TempCopyTempURLType {
+    var tempCopyTempDirectoryURL: URL {
         return temporaryDirectoryURL
             .appendingPathComponent(testCopyTempDirectoryName)
     }
@@ -70,16 +70,16 @@ public protocol PluginsManagerDependenciesType: TempCopyTempURLType, TempUserPlu
     var builtInPluginsPath: String { get }
 }
 
-extension PluginsManagerDependenciesType {
-    public var copyTempDirectoryURL: URL {
+public extension PluginsManagerDependenciesType {
+    var copyTempDirectoryURL: URL {
         return tempCopyTempDirectoryURL
     }
 
-    public var userPluginsURL: URL {
+    var userPluginsURL: URL {
         return URL(fileURLWithPath: userPluginsPath)
     }
 
-    public var builtInPluginsURL: URL {
+    var builtInPluginsURL: URL {
         return URL(fileURLWithPath: builtInPluginsPath)
     }
 }
@@ -89,8 +89,8 @@ public protocol PluginsManagerFactoryType: PluginsManagerDependenciesType {
     func makePluginsManager() -> PluginsManager
 }
 
-extension PluginsManagerFactoryType {
-    public func makePluginsManager() -> PluginsManager {
+public extension PluginsManagerFactoryType {
+    func makePluginsManager() -> PluginsManager {
         let configuration = pluginsManagerType.makeConfiguration(pluginsPaths: pluginsDirectoryPaths,
                                                                  copyTempDirectoryURL: copyTempDirectoryURL,
                                                                  defaults: defaults,

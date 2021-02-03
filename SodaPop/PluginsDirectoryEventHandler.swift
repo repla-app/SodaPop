@@ -36,7 +36,7 @@ class PluginsDirectoryEventHandler {
     var pluginPathToRemovedItemPaths: [String: [String]]
     weak var delegate: PluginsDirectoryEventHandlerDelegate?
 
-    struct ClassConstants {
+    enum ClassConstants {
         static let fileEventDelay = 0.3
     }
 

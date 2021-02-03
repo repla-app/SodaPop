@@ -117,11 +117,12 @@ class PluginsDirectoryEventHandler {
     }
 
     func fireRemovedEvents(for pluginPath: String) {
-        if let itemPaths = pluginPathToRemovedItemPaths[pluginPath] {
-            delegate?.pluginsDirectoryEventHandler(self,
-                                                   handleRemovedEventsAtPluginPath: pluginPath,
-                                                   removedItemPaths: itemPaths)
-            pluginPathToRemovedItemPaths[pluginPath] = nil
+        guard let itemPaths = pluginPathToRemovedItemPaths[pluginPath] else {
+            return
         }
+        delegate?.pluginsDirectoryEventHandler(self,
+                                               handleRemovedEventsAtPluginPath: pluginPath,
+                                               removedItemPaths: itemPaths)
+        pluginPathToRemovedItemPaths[pluginPath] = nil
     }
 }

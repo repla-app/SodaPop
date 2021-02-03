@@ -273,12 +273,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func pluginPathComponent(fromPath path: String) -> String? {
-        if let pathComponents = PluginsPathHelper.pathComponents(ofPath: path, afterSubpath: pluginsDirectoryURL.path) {
-            if pathComponents.count > 0 {
-                let pluginSubpathComponents = pathComponents as Array
-                let pathComponent = pluginSubpathComponents[0]
-                return pathComponent
-            }
+        if let pathComponents = PluginsPathHelper.pathComponents(ofPath: path, afterSubpath: pluginsDirectoryURL.path), pathComponents.count > 0 {
+            let pluginSubpathComponents = pathComponents as Array
+            let pathComponent = pluginSubpathComponents[0]
+            return pathComponent
         }
         return nil
     }

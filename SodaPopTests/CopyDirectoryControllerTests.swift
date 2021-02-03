@@ -60,24 +60,25 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
         let copyExpectation = expectation(description: "Copy")
 
         var copiedPluginURL: URL!
-        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
+        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (url, error) -> Void in
             XCTAssertNotNil(URL, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
-
-            if let URL = URL {
-                let movedFilename = testDirectoryName
-                let movedDestinationURL = self.tempPluginsDirectoryURL.appendingPathComponent(movedFilename)
-
-                do {
-                    try FileManager.default.moveItem(at: URL,
-                                                     to: movedDestinationURL)
-                } catch {
-                    XCTAssertTrue(false, "The move should succeed")
-                }
-
-                copiedPluginURL = movedDestinationURL
-                copyExpectation.fulfill()
+            guard let url = url else {
+                return
             }
+
+            let movedFilename = testDirectoryName
+            let movedDestinationURL = self.tempPluginsDirectoryURL.appendingPathComponent(movedFilename)
+
+            do {
+                try FileManager.default.moveItem(at: url,
+                                                 to: movedDestinationURL)
+            } catch {
+                XCTAssertTrue(false, "The move should succeed")
+            }
+
+            copiedPluginURL = movedDestinationURL
+            copyExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
@@ -113,24 +114,24 @@ class CopyDirectoryControllerTests: TemporaryPluginsTestCase, TempCopyTempURLTyp
 
     func testCleanUpOnInit() {
         let copyExpectation = expectation(description: "Copy")
-        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (URL, error) -> Void in
-            XCTAssertNotNil(URL, "The URL should not be nil")
+        copyDirectoryController.copyItem(at: tempPluginURL, completionHandler: { (url, error) -> Void in
+            XCTAssertNotNil(url, "The URL should not be nil")
             XCTAssertNil(error, "The error should be nil")
-
-            if let URL = URL {
-                let movedFilename = testDirectoryName
-                let movedDirectoryURL = URL.deletingLastPathComponent()
-                let movedDestinationURL = movedDirectoryURL.appendingPathComponent(movedFilename)
-
-                do {
-                    try FileManager.default.moveItem(at: URL,
-                                                     to: movedDestinationURL)
-                } catch {
-                    XCTAssertTrue(false, "The move should succeed")
-                }
-
-                copyExpectation.fulfill()
+            guard let url = url else {
+                return
             }
+            let movedFilename = testDirectoryName
+            let movedDirectoryURL = url.deletingLastPathComponent()
+            let movedDestinationURL = movedDirectoryURL.appendingPathComponent(movedFilename)
+
+            do {
+                try FileManager.default.moveItem(at: url,
+                                                 to: movedDestinationURL)
+            } catch {
+                XCTAssertTrue(false, "The move should succeed")
+            }
+
+            copyExpectation.fulfill()
         })
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 

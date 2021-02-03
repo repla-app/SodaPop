@@ -108,17 +108,15 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
+        guard let newPlugin = Plugin.makePlugin(path: pluginPath) else {
+            return
+        }
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
+            if !oldPlugin.isEqual(to: newPlugin) {
                 // If there is an existing plugin and a new plugin, remove the old plugin and add the new plugin
-                if !oldPlugin.isEqual(to: newPlugin) {
-                    remove(oldPlugin)
-                    add(newPlugin)
-                }
-            }
-        } else {
-            // If there is only a new plugin, add it
-            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
+                remove(oldPlugin)
+                add(newPlugin)
+            } else {
                 add(newPlugin)
             }
         }
@@ -126,9 +124,10 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String) {
-        if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            remove(oldPlugin)
+        guard let oldPlugin = plugin(atPluginPath: pluginPath) else {
+            return
         }
+        remove(oldPlugin)
     }
 
     // MARK: DuplicatePluginControllerDelegate

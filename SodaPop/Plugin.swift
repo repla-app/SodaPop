@@ -123,10 +123,9 @@ public class Plugin: POPPlugin {
     }
 
     public var commandPath: String? {
-        if let resourcePath = resourcePath {
-            if let command = command {
-                return resourcePath.appendingPathComponent(command)
-            }
+        if let resourcePath = resourcePath,
+            let command = command {
+            return resourcePath.appendingPathComponent(command)
         }
         return nil
     }

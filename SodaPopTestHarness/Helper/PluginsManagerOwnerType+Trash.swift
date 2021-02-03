@@ -9,9 +9,9 @@
 import Foundation
 import SodaPop
 
-extension PluginsManagerOwnerType {
-    public func moveToTrashAndCleanUpWithConfirmation(_ plugin: Plugin,
-                                                      handler: (() -> Void)?) {
+public extension PluginsManagerOwnerType {
+    func moveToTrashAndCleanUpWithConfirmation(_ plugin: Plugin,
+                                               handler: (() -> Void)?) {
         // Trash the plugin
         pluginsManager.moveToTrash(plugin) { url, error in
             assert(error == nil)

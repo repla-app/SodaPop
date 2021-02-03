@@ -39,7 +39,7 @@ extension Plugin {
         case invalidUsesEnvironmentError(infoDictionary: [AnyHashable: Any])
     }
 
-    struct InfoDictionaryKeys {
+    enum InfoDictionaryKeys {
         static let name = "WCName"
         static let identifier = "WCUUID"
         static let command = "WCCommand"
@@ -101,9 +101,9 @@ extension Plugin {
     class func validPlugin(path: String, pluginType: PluginType) throws -> Plugin? {
         do {
             if let bundle = try validBundle(path: path),
-                let infoDictionary = try validInfoDictionary(bundle: bundle),
-                let identifier = try validIdentifier(infoDictionary: infoDictionary),
-                let name = try validName(infoDictionary: infoDictionary) {
+               let infoDictionary = try validInfoDictionary(bundle: bundle),
+               let identifier = try validIdentifier(infoDictionary: infoDictionary),
+               let name = try validName(infoDictionary: infoDictionary) {
                 // Optional Keys
                 let command = try validCommand(infoDictionary: infoDictionary)
                 let suffixes = try validSuffixes(infoDictionary: infoDictionary)
@@ -141,20 +141,20 @@ extension Plugin {
     // MARK: Info Dictionary
 
     class func validBundle(path: String) throws -> Bundle? {
-        if let bundle = Bundle(path: path) as Bundle? {
-            return bundle
+        guard let bundle = Bundle(path: path) as Bundle? else {
+            throw PluginLoadError.invalidBundleError(path: path)
         }
 
-        throw PluginLoadError.invalidBundleError(path: path)
+        return bundle
     }
 
     class func validInfoDictionary(bundle: Bundle) throws -> [AnyHashable: Any]? {
         let URL = urlForInfoDictionary(forPluginAt: bundle.bundleURL)
-        if let infoDictionary = NSDictionary(contentsOf: URL) {
-            return infoDictionary as? [AnyHashable: Any]
+        guard let infoDictionary = NSDictionary(contentsOf: URL) else {
+            throw PluginLoadError.invalidInfoDictionaryError(URL: URL)
         }
 
-        throw PluginLoadError.invalidInfoDictionaryError(URL: URL)
+        return infoDictionary as? [AnyHashable: Any]
     }
 
     class func validSuffixes(infoDictionary: [AnyHashable: Any]) throws -> [String]? {
@@ -186,24 +186,21 @@ extension Plugin {
     }
 
     class func validName(infoDictionary: [AnyHashable: Any]) throws -> String? {
-        if let name = infoDictionary[InfoDictionaryKeys.name] as? String {
-            if name.count > 0 {
-                return name
-            }
+        guard let name = infoDictionary[InfoDictionaryKeys.name] as? String, name.count > 0 else {
+            throw PluginLoadError.invalidNameError(infoDictionary: infoDictionary)
         }
 
-        throw PluginLoadError.invalidNameError(infoDictionary: infoDictionary)
+        return name
     }
 
     class func validIdentifier(infoDictionary: [AnyHashable: Any]) throws -> String? {
-        if let uuidString = infoDictionary[InfoDictionaryKeys.identifier] as? String {
-            let uuid: UUID? = UUID(uuidString: uuidString)
-            if uuid != nil {
-                return uuidString
-            }
+        guard let uuidString = infoDictionary[InfoDictionaryKeys.identifier] as? String,
+              UUID(uuidString: uuidString) != nil
+        else {
+            throw PluginLoadError.invalidIdentifierError(infoDictionary: infoDictionary)
         }
 
-        throw PluginLoadError.invalidIdentifierError(infoDictionary: infoDictionary)
+        return uuidString
     }
 
     class func validHidden(infoDictionary: [AnyHashable: Any]) throws -> Bool {

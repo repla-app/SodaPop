@@ -55,14 +55,14 @@ public class MultiCollectionController: NSObject {
     }
 
     public func insertObject(_ object: AnyObject, inObjectsAtIndex index: Int) {
-        let replacedObject: AnyObject? = nameToObjectController.add(object) as AnyObject?
+        let replacedObject = nameToObjectController.add(object) as AnyObject
         mutableObjects.insert(object, at: index)
-        if let replacedObject: AnyObject = replacedObject {
-            let index = mutableObjects.index(of: replacedObject)
-            if index != NSNotFound {
-                removeObjectFromObjectsAtIndex(index)
-            }
+        let index = mutableObjects.index(of: replacedObject)
+        guard index != NSNotFound else {
+            return
         }
+
+        removeObjectFromObjectsAtIndex(index)
     }
 
     public func insertObjects(_ objects: [AnyObject], atIndexes indexes: IndexSet) {

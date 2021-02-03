@@ -36,7 +36,7 @@ class PluginsDirectoryEventHandler {
     var pluginPathToRemovedItemPaths: [String: [String]]
     weak var delegate: PluginsDirectoryEventHandlerDelegate?
 
-    struct ClassConstants {
+    enum ClassConstants {
         static let fileEventDelay = 0.3
     }
 
@@ -117,11 +117,12 @@ class PluginsDirectoryEventHandler {
     }
 
     func fireRemovedEvents(for pluginPath: String) {
-        if let itemPaths = pluginPathToRemovedItemPaths[pluginPath] {
-            delegate?.pluginsDirectoryEventHandler(self,
-                                                   handleRemovedEventsAtPluginPath: pluginPath,
-                                                   removedItemPaths: itemPaths)
-            pluginPathToRemovedItemPaths[pluginPath] = nil
+        guard let itemPaths = pluginPathToRemovedItemPaths[pluginPath] else {
+            return
         }
+        delegate?.pluginsDirectoryEventHandler(self,
+                                               handleRemovedEventsAtPluginPath: pluginPath,
+                                               removedItemPaths: itemPaths)
+        pluginPathToRemovedItemPaths[pluginPath] = nil
     }
 }

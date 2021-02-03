@@ -29,11 +29,11 @@ class PluginsDataControllerTests: PluginsManagerDependenciesTestCase {
         // Test plugins can be created from all paths
         var plugins = [Plugin]()
         for pluginPath in pluginPaths {
-            if let plugin = Plugin.makePlugin(path: pluginPath) {
-                plugins.append(plugin)
-            } else {
+            guard let plugin = Plugin.makePlugin(path: pluginPath) else {
                 XCTAssert(false, "The plugin should exist")
+                return
             }
+            plugins.append(plugin)
         }
 
         let defaultNewPluginManager = POPDefaultNewPluginManager(defaults: defaults,

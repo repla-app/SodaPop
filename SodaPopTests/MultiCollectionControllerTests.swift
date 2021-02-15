@@ -33,7 +33,6 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
             // `tempXMLPluginURL` actually has JSON and XML files, so force XML
             Plugin.forceXML = true
             let plugin = Plugin.makePlugin(url: tempPluginURL)!
-            Plugin.forceXML = defaultForceXML
             if tempPluginURL == tempXMLPluginURL {
                 XCTAssertTrue(XMLPlugin.self == type(of: plugin))
             } else {
@@ -81,14 +80,15 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
             XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
             XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
             
+            // Clean up
             for pluginURL: URL in newPluginURLs {
-                // Clean up
                 do {
                     try FileManager.default.removeItem(at: pluginURL)
                 } catch {
                     XCTAssertTrue(false, "The remove should succeed")
                 }
             }
+            Plugin.forceXML = defaultForceXML
         }
     }
 }

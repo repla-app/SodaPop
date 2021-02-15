@@ -24,7 +24,7 @@ struct PluginInfo: Codable {
     var editable: Bool?
     var hidden: Bool?
     var fileExtensions: [String]?
-    var debugEnabled: Bool?
+    var debugModeEnabled: Bool?
     var autoShowLog: Bool?
     var transparentBackground: Bool?
     var usesEnvironment: Bool?
@@ -104,7 +104,7 @@ class JSONPlugin: Plugin {
         let resourcePath = fileURL.path
         self.pluginInfo = pluginInfo
         super.init(autoShowLog: pluginInfo.autoShowLog,
-                   debugModeEnabled: pluginInfo.debugEnabled,
+                   debugModeEnabled: pluginInfo.debugModeEnabled,
                    hidden: pluginInfo.hidden ?? defaultPluginHidden,
                    promptInterrupt: pluginInfo.promptInterrupt ?? defaultPluginPromptInterrupt,
                    transparentBackground: pluginInfo.transparentBackground ?? defaultPluginTransparentBackground,

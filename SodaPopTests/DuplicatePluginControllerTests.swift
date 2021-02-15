@@ -18,6 +18,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     }()
 
     override func setUp() {
+        Plugin.forceXML = true
         super.setUp()
         duplicatePluginController = pluginsManager.pluginsDataController.duplicatePluginController
         plugin.editable = false
@@ -26,6 +27,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     override func tearDown() {
         duplicatePluginController = nil
         super.tearDown()
+        Plugin.forceXML = defaultForceXML
     }
 
     func testDuplicatePlugin() {

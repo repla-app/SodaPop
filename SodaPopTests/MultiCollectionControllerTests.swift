@@ -30,7 +30,10 @@ extension EasyDuplicateType {
 class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDuplicateType {
     func testInitPlugins() {
         for tempPluginURL in tempPluginURLs {
+            // `tempXMLPluginURL` actually has JSON and XML files, so force XML
+            Plugin.forceXML = true
             let plugin = Plugin.makePlugin(url: tempPluginURL)!
+            Plugin.forceXML = defaultForceXML
             if tempPluginURL == tempXMLPluginURL {
                 XCTAssertTrue(XMLPlugin.self == type(of: plugin))
             } else {

@@ -12,8 +12,8 @@ import Cocoa
 public class Plugin: POPPlugin {
     // MARK: Constants
 
-    public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user prefrence
-    public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user prefrence
+    public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user preference
+    public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user preference
     public let hidden: Bool
     public let kind: PluginKind
     public let path: String

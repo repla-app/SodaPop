@@ -38,8 +38,8 @@ extension Plugin {
                 return try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
             }
             return try JSONPlugin.validPlugin(path: path, pluginKind: pluginKind)
-        } catch let JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: error) {
-            print("Failed to load JSON plugin at path \(path), error \(error?.description ?? "nil").")
+        } catch let JSONPluginLoadError.loadPluginInfoFailed(path: pluginInfoPath, underlyingError: error) {
+            print("Failed to load JSON plugin at path \(pluginInfoPath), error \(error?.description ?? "nil").")
             return makeXMLPlugin(path: path, pluginKind: pluginKind)
         } catch let XMLPluginLoadError.invalidBundleError(path) {
             print("Bundle is invalid at path \(path).")

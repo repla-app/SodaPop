@@ -16,7 +16,54 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         return pluginsManager.plugins
     }
 
-    // MARK: File System Tests
+    func testMovePlugin() {
+        let startingPluginsCount = pluginsManager.plugins.count
+
+        // # Move One
+        // Move the plugin to a filename based on its identifier
+
+        let pluginPath = plugin.path
+        let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
+        let pluginParentDirectory = pluginPath.deletingLastPathComponent
+        let destinationPluginPath = pluginParentDirectory.appendingPathComponent(destinationPluginFilename)
+        var newPlugin: Plugin!
+
+        moveWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
+            newPlugin = plugin
+        })
+        XCTAssertNotNil(newPlugin, "The plugin should not be nil")
+        XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, newPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
+
+        // Move the plugin back
+        var originalPlugin: Plugin!
+        moveWithConfirmation(newPlugin, destinationPluginPath: pluginPath, handler: { (plugin) -> Void in
+            originalPlugin = plugin
+        })
+        XCTAssertNotNil(originalPlugin, "The plugin should not be nil")
+        XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
+        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, originalPlugin, "The plugins should be equal")
+        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount, "The plugins count should be one")
+    }
+
+    // TODO: Test making the plugin info dictionary invalid removes it
+    // TODO: Test that touching the plugin info dictionary does not cause it to
+    // reload (because the resulting plugin will still be equal) No way to test
+    // this now since there aren't any callbacks to wait for here
+}
+
+
+class XMLPluginsManagerFileSystemTests: PluginsManagerFileSystemTests {
+    override func setUp() {
+        Plugin.forceXML = true
+        super.setUp()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        Plugin.forceXML = defaultForceXML
+    }
 
     func testAddAndDeletePlugin() {
         let startingPluginsCount = pluginsManager.plugins.count
@@ -62,37 +109,6 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
     }
 
-    func testMovePlugin() {
-        let startingPluginsCount = pluginsManager.plugins.count
-
-        // # Move One
-        // Move the plugin to a filename based on its identifier
-
-        let pluginPath = plugin.path
-        let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
-        let pluginParentDirectory = pluginPath.deletingLastPathComponent
-        let destinationPluginPath = pluginParentDirectory.appendingPathComponent(destinationPluginFilename)
-        var newPlugin: Plugin!
-
-        moveWithConfirmation(plugin, destinationPluginPath: destinationPluginPath, handler: { (plugin) -> Void in
-            newPlugin = plugin
-        })
-        XCTAssertNotNil(newPlugin, "The plugin should not be nil")
-        XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, newPlugin, "The plugins should be equal")
-        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount)
-
-        // Move the plugin back
-        var originalPlugin: Plugin!
-        moveWithConfirmation(newPlugin, destinationPluginPath: pluginPath, handler: { (plugin) -> Void in
-            originalPlugin = plugin
-        })
-        XCTAssertNotNil(originalPlugin, "The plugin should not be nil")
-        XCTAssertTrue(plugins().contains(originalPlugin), "The plugins should contain the plugin")
-        XCTAssertEqual(pluginsManager.plugin(withName: testPluginName)!, originalPlugin, "The plugins should be equal")
-        XCTAssertEqual(pluginsManager.plugins.count, startingPluginsCount, "The plugins count should be one")
-    }
-
     func testEditPlugin() {
         // Move the plugin
         var newPlugin: Plugin!
@@ -103,9 +119,4 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
         XCTAssertFalse(plugins().contains(plugin), "The plugins should not contain the plugin")
         XCTAssertTrue(plugins().contains(newPlugin), "The plugins should contain the plugin")
     }
-
-    // TODO: Test making the plugin info dictionary invalid removes it
-    // TODO: Test that touching the plugin info dictionary does not cause it to
-    // reload (because the resulting plugin will still be equal) No way to test
-    // this now since there aren't any callbacks to wait for here
 }

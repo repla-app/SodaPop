@@ -46,9 +46,9 @@ extension XMLPlugin {
     class func validPlugin(path: String, pluginKind: PluginKind) throws -> XMLPlugin? {
         do {
             if let bundle = try validBundle(path: path),
-                let infoDictionary = try validInfoDictionary(bundle: bundle),
-                let identifier = try validIdentifier(infoDictionary: infoDictionary),
-                let name = try validName(infoDictionary: infoDictionary) {
+               let infoDictionary = try validInfoDictionary(bundle: bundle),
+               let identifier = try validIdentifier(infoDictionary: infoDictionary),
+               let name = try validName(infoDictionary: infoDictionary) {
                 // Optional Keys
                 let command = try validCommand(infoDictionary: infoDictionary)
                 let suffixes = try validSuffixes(infoDictionary: infoDictionary)

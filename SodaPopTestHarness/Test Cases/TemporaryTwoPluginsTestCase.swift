@@ -16,16 +16,17 @@ open class TemporaryTwoPluginsTestCase: TemporaryPluginsTestCase {
     public var tempPluginURLs: [URL] {
         return [tempXMLPluginURL, tempJSONPluginURL]
     }
+
     public var tempXMLPluginURL: URL!
     public var tempJSONPluginURL: URL!
-    
-    open override func setUp() {
+
+    override open func setUp() {
         super.setUp()
         tempXMLPluginURL = tempPluginURL
         tempJSONPluginURL = makeDuplicatePlugin(fromPluginNamed: testPluginNameJSON)
     }
-    
-    open override func tearDown() {
+
+    override open func tearDown() {
         tempXMLPluginURL = nil
         tempJSONPluginURL = nil
         super.tearDown()

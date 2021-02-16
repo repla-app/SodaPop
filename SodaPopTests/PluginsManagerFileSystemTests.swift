@@ -53,7 +53,6 @@ class PluginsManagerFileSystemTests: TemporaryArrayControllerTestCase {
     // this now since there aren't any callbacks to wait for here
 }
 
-
 class XMLPluginsManagerFileSystemTests: PluginsManagerFileSystemTests {
     override func setUp() {
         Plugin.forceXML = true

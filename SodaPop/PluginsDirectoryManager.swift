@@ -148,13 +148,11 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     func pluginsDirectoryEventHandler(_: PluginsDirectoryEventHandler,
                                       handleCreatedOrModifiedEventsAtPluginPath pluginPath: String,
                                       createdOrModifiedDirectoryPaths directoryPaths: [String]?,
-                                      createdOrModifiedFilePaths filePaths: [String]?)
-    {
+                                      createdOrModifiedFilePaths filePaths: [String]?) {
         if let filePaths = filePaths {
             for path in filePaths {
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
-                                                                forFileCreatedOrModifiedAtPath: path)
-                {
+                                                                forFileCreatedOrModifiedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self,
                                                       pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
@@ -165,8 +163,7 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         if let directoryPaths = directoryPaths {
             for path in directoryPaths {
                 if shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath: pluginPath,
-                                                                forDirectoryCreatedOrModifiedAtPath: path)
-                {
+                                                                forDirectoryCreatedOrModifiedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self,
                                                       pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath: pluginPath)
                     return
@@ -177,13 +174,11 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     func pluginsDirectoryEventHandler(_: PluginsDirectoryEventHandler,
                                       handleRemovedEventsAtPluginPath pluginPath: String,
-                                      removedItemPaths itemPaths: [String]?)
-    {
+                                      removedItemPaths itemPaths: [String]?) {
         if let itemPaths = itemPaths {
             for path in itemPaths {
                 if shouldFireInfoDictionaryWasRemoved(atPluginPath: pluginPath,
-                                                      forItemRemovedAtPath: path)
-                {
+                                                      forItemRemovedAtPath: path) {
                     delegate?.pluginsDirectoryManager(self, pluginInfoDictionaryWasRemovedAtPluginPath: pluginPath)
                     return
                 }
@@ -194,12 +189,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     // MARK: Evaluating Events
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
-                                                      forDirectoryCreatedOrModifiedAtPath path: String) -> Bool
-    {
+                                                      forDirectoryCreatedOrModifiedAtPath path: String) -> Bool {
         for pathComponent in infoPathComponents {
             if containsValidInfoDictionarySubpath(path, atPathComponent: pathComponent),
-               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent)
-            {
+               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }
@@ -207,12 +200,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
-                                                      forFileCreatedOrModifiedAtPath path: String) -> Bool
-    {
+                                                      forFileCreatedOrModifiedAtPath path: String) -> Bool {
         for pathComponent in infoPathComponents {
             if isValidInfoDictionary(atPath: path, atPathComponent: pathComponent),
-               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent)
-            {
+               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }
@@ -220,12 +211,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     }
 
     func shouldFireInfoDictionaryWasRemoved(atPluginPath pluginPath: String,
-                                            forItemRemovedAtPath path: String) -> Bool
-    {
+                                            forItemRemovedAtPath path: String) -> Bool {
         for pathComponent in infoPathComponents {
             if containsValidInfoDictionarySubpath(path, atPathComponent: pathComponent),
-               !doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent)
-            {
+               !doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }

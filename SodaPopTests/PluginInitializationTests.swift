@@ -80,7 +80,6 @@ class PluginManagerInitializationTests: PluginsManagerTestCase {
 }
 
 class MakePluginsManagerTests: PluginsManagerDependenciesTestCase {
-
     func testFileExtensionsPlugin() {
         let states = [true, false]
         for state in states {
@@ -103,7 +102,7 @@ class MakePluginsManagerTests: PluginsManagerDependenciesTestCase {
         // Clean Up
         Plugin.forceXML = defaultForceXML
     }
-    
+
     override open func tearDown() {
         // Making a `pluginsManager` will implicitly create the
         // `userPluginsURL`. So that needs to be cleaned up here.

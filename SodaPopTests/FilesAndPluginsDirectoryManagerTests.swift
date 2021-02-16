@@ -535,7 +535,7 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         // Remove info JSON info dictionary, this should cause a callback
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeFileWithConfirmation(atPath: testPluginInfoPath)
-        
+
         // Remove the directory in the plugins directory, this should cause a callback
         // because this could be the delete after move of a valid plugin
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)

@@ -79,7 +79,7 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
                            newPluginChangedNameTwo)
             XCTAssertTrue(multiCollectionController.objects().contains(newPluginChangedNameTwo))
             XCTAssertFalse(multiCollectionController.objects().contains(newPluginChangedName))
-            
+
             // Clean up
             for pluginURL: URL in newPluginURLs {
                 do {

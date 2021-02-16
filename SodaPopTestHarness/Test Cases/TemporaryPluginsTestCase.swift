@@ -37,7 +37,7 @@ open class TemporaryPluginsTestCase: TemporaryDirectoryTestCase {
         } catch let error as NSError {
             XCTAssertTrue(false, "Creating the directory should succeed \(error)")
         }
-        
+
         tempPluginURL = makeDuplicatePlugin(fromPluginNamed: testPluginName)
     }
 

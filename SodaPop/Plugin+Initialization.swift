@@ -53,7 +53,7 @@ extension Plugin {
         }
         return nil
     }
-    
+
     class func makeXMLPlugin(path: String, pluginKind: PluginKind = .other) -> XMLPlugin? {
         do {
             let plugin = try XMLPlugin.validPlugin(path: path, pluginKind: pluginKind)
@@ -85,7 +85,7 @@ extension Plugin {
         } catch {
             print("Failed to load XML plugin at path \(path).")
         }
-        
+
         return nil
     }
 }

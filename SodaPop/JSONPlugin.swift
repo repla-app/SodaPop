@@ -41,7 +41,7 @@ struct PluginInfo: Codable {
             throw JSONPluginLoadError.loadPluginInfoFailed(path: path, underlyingError: nil)
         }
     }
-    
+
     func write(to url: URL) throws {
         do {
             let encoder = JSONEncoder()
@@ -54,7 +54,7 @@ struct PluginInfo: Codable {
             throw JSONPluginWriteError.failedToWriteInfoError(url: url, underlyingError: nil)
         }
     }
-    
+
     static func load(from url: URL) throws -> PluginInfo {
         return try load(from: url.path)
     }
@@ -65,6 +65,7 @@ class JSONPlugin: Plugin {
     var infoPath: String {
         type(of: self).infoPath(fromPath: path)
     }
+
     var infoURL: URL {
         URL(fileURLWithPath: infoPath)
     }
@@ -88,7 +89,6 @@ class JSONPlugin: Plugin {
         self.init(pluginInfo: pluginInfo, pluginKind: pluginKind, fileURL: URL(fileURLWithPath: path))
     }
 
-
     // This is used to configure the resource URL if a plugin has both a
     // `repla.json` an `Contents/Info.plist`, it primarily exists so that test
     // plugins can be loaded as either `JSONPlugin` or `XMLPlugin` and just
@@ -98,12 +98,12 @@ class JSONPlugin: Plugin {
             return fileURL
         }
         var isDir: ObjCBool = false
-        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(resourcePathComponent), isDirectory: &isDir) && isDir.boolValue else {
+        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(resourcePathComponent), isDirectory: &isDir), isDir.boolValue else {
             return fileURL
         }
         return fileURL.appendingPathComponent(resourcePathComponent)
     }
-    
+
     init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
         let resourceURL = type(of: self).getResourceFileURL(for: fileURL)
         let resourcePath = resourceURL.path
@@ -168,6 +168,7 @@ class JSONPlugin: Plugin {
     }
 
     // MARK: Save
+
     private func save() {
         assert(Thread.isMainThread)
         do {

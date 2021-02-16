@@ -45,7 +45,8 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
             let newPlugin = Plugin.makePlugin(url: newPluginURL)!
 
             let newPluginTwoFilename = testDirectoryNameTwo
-            let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL, withFilenameForDuplicate: newPluginTwoFilename)
+            let newPluginTwoURL = urlByDuplicatingItem(at: tempPluginURL,
+                                                       withFilenameForDuplicate: newPluginTwoFilename)
             let newPluginTwo = Plugin.makePlugin(url: newPluginURL)!
 
             let newPluginChangedNameFilename = testDirectoryNameThree
@@ -57,7 +58,8 @@ class MultiCollectionControllerInitTests: TemporaryTwoPluginsTestCase, EasyDupli
 
             let newPluginChangedNameTwoFilename = testDirectoryNameFour
             let newPluginChangedNameTwoURL = urlByDuplicatingItem(at: tempPluginURL,
-                                                                  withFilenameForDuplicate: newPluginChangedNameTwoFilename)
+                                                                  withFilenameForDuplicate:
+                                                                  newPluginChangedNameTwoFilename)
             let newPluginChangedNameTwo = Plugin.makePlugin(url: newPluginURL)!
             newPluginChangedNameTwo.name = changedName
 

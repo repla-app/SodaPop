@@ -94,11 +94,14 @@ class JSONPlugin: Plugin {
     // plugins can be loaded as either `JSONPlugin` or `XMLPlugin` and just
     // have one set of resources at `Contents/Resources`
     static func getResourceFileURL(for fileURL: URL) -> URL {
-        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(infoDictionaryPathComponent)) else {
+        guard FileManager.default.fileExists(atPath:
+            fileURL.path.appendingPathComponent(infoDictionaryPathComponent)) else {
             return fileURL
         }
         var isDir: ObjCBool = false
-        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(resourcePathComponent), isDirectory: &isDir), isDir.boolValue else {
+        guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(resourcePathComponent),
+                                             isDirectory: &isDir),
+            isDir.boolValue else {
             return fileURL
         }
         return fileURL.appendingPathComponent(resourcePathComponent)

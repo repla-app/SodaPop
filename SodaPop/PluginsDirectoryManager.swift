@@ -224,14 +224,20 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
     // MARK: Helpers
 
     func isValidInfoDictionary(atPath path: String, atPathComponent pathComponent: String) -> Bool {
-        return hasValidInfoDictionarySubpath(path, requireExactInfoDictionaryMatch: true, atPathComponent: pathComponent)
+        return hasValidInfoDictionarySubpath(path,
+                                             requireExactInfoDictionaryMatch: true,
+                                             atPathComponent: pathComponent)
     }
 
     func containsValidInfoDictionarySubpath(_ path: String, atPathComponent pathComponent: String) -> Bool {
-        return hasValidInfoDictionarySubpath(path, requireExactInfoDictionaryMatch: false, atPathComponent: pathComponent)
+        return hasValidInfoDictionarySubpath(path,
+                                             requireExactInfoDictionaryMatch: false,
+                                             atPathComponent: pathComponent)
     }
 
-    func hasValidInfoDictionarySubpath(_ path: String, requireExactInfoDictionaryMatch: Bool, atPathComponent pathComponent: String) -> Bool {
+    func hasValidInfoDictionarySubpath(_ path: String,
+                                       requireExactInfoDictionaryMatch: Bool,
+                                       atPathComponent pathComponent: String) -> Bool {
         if let pluginPathComponents = pluginPathComponents(fromPath: path) {
             var pluginSubpathComponents = pluginPathComponents as? [String]
             if let firstPathComponent = pluginSubpathComponents?.remove(at: 0) {

@@ -88,6 +88,11 @@ class JSONPlugin: Plugin {
         self.init(pluginInfo: pluginInfo, pluginKind: pluginKind, fileURL: URL(fileURLWithPath: path))
     }
 
+
+    // This is used to configure the resource URL if a plugin has both a
+    // `repla.json` an `Contents/Info.plist`, it primarily exists so that test
+    // plugins can be loaded as either `JSONPlugin` or `XMLPlugin` and just
+    // have one set of resources at `Contents/Resources`
     static func getResourceFileURL(for fileURL: URL) -> URL {
         guard FileManager.default.fileExists(atPath: fileURL.path.appendingPathComponent(infoDictionaryPathComponent)) else {
             return fileURL
@@ -101,7 +106,7 @@ class JSONPlugin: Plugin {
     
     init(pluginInfo: PluginInfo, pluginKind: PluginKind, fileURL: URL) {
         let resourceURL = type(of: self).getResourceFileURL(for: fileURL)
-        let resourcePath = fileURL.path
+        let resourcePath = resourceURL.path
         self.pluginInfo = pluginInfo
         super.init(autoShowLog: pluginInfo.autoShowLog,
                    debugModeEnabled: pluginInfo.debugModeEnabled,

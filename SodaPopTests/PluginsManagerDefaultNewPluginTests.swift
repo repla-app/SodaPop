@@ -79,10 +79,7 @@ class PluginsManagerDefaultNewPluginTests: PluginsManagerTestCase {
 
         XCTAssertEqual(createdPlugin.suffixes, createdPluginTwo.suffixes)
 
-        guard let bundlePath = (createdPluginTwo as? XMLPlugin)?.path else {
-            XCTFail()
-            return
-        }
+        let bundlePath = createdPluginTwo.path
         let pluginFolderName = bundlePath.lastPathComponent
         let createdPluginTwoName = DuplicatePluginController.pluginFilename(fromName: createdPluginTwo.name)
 

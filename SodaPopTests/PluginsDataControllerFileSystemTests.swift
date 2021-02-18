@@ -30,7 +30,7 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
     }
 
     func testMovePlugin() {
-        let pluginPath = plugin.resourcePath!.deletingLastPathComponent.deletingLastPathComponent
+        let pluginPath = plugin.resourcePath.deletingLastPathComponent.deletingLastPathComponent
 
         let destinationPluginFilename = DuplicatePluginController.pluginFilename(fromName: plugin.identifier)
         let destinationPluginPath = pluginPath.deletingLastPathComponent
@@ -55,6 +55,20 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
         XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPluginTwo))
     }
 
+    // TODO: Test plugins made invalid are not loaded?
+}
+
+class XMLPluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventTestCase {
+    override func setUp() {
+        Plugin.forceXML = true
+        super.setUp()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        Plugin.forceXML = defaultForceXML
+    }
+
     func testEditPlugin() {
         var newPlugin: Plugin!
         modifyWithConfirmation(plugin, handler: { (modifiedPlugin) -> Void in
@@ -64,6 +78,4 @@ class PluginsDataControllerFileSystemTests: TemporaryPluginsDataControllerEventT
         XCTAssertFalse(pluginsManager.pluginsDataController.plugins.contains(plugin))
         XCTAssertTrue(pluginsManager.pluginsDataController.plugins.contains(newPlugin))
     }
-
-    // TODO: Test plugins made invalid are not loaded?
 }

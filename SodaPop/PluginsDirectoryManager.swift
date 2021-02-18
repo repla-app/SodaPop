@@ -76,6 +76,9 @@ class PluginsPathHelper {
     }
 
     class func does(pathComponent: String, matchPathComponent: String) -> Bool {
+        // Breaking the path components up into an array removes path
+        // separators like slashes from being part of the comparison.
+        // E.g., `Contents/` is equal to `Contents`
         let pathComponents = pathComponent.pathComponents
         let matchPathComponents = matchPathComponent.pathComponents
         if pathComponents.count != matchPathComponents.count {
@@ -100,10 +103,6 @@ class PluginsPathHelper {
 }
 
 class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDirectoryEventHandlerDelegate {
-    enum ClassConstants {
-        static let infoDictionaryPathComponent = "Contents/Info.plist"
-    }
-
     weak var delegate: PluginsDirectoryManagerDelegate?
     let pluginsDirectoryEventHandler: PluginsDirectoryEventHandler
     let directoryWatcher: BBUDirectoryWatcher
@@ -191,8 +190,9 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
                                                       forDirectoryCreatedOrModifiedAtPath path: String) -> Bool {
-        if containsValidInfoDictionarySubpath(path) {
-            if doesInfoDictionaryExist(atPluginPath: pluginPath) {
+        for pathComponent in infoPathComponents {
+            if containsValidInfoDictionarySubpath(path, atPathComponent: pathComponent),
+               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }
@@ -201,8 +201,9 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     func shouldFireInfoDictionaryWasCreatedOrModified(atPluginPath pluginPath: String,
                                                       forFileCreatedOrModifiedAtPath path: String) -> Bool {
-        if isValidInfoDictionary(atPath: path) {
-            if doesInfoDictionaryExist(atPluginPath: pluginPath) {
+        for pathComponent in infoPathComponents {
+            if isValidInfoDictionary(atPath: path, atPathComponent: pathComponent),
+               doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }
@@ -211,8 +212,9 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     func shouldFireInfoDictionaryWasRemoved(atPluginPath pluginPath: String,
                                             forItemRemovedAtPath path: String) -> Bool {
-        if containsValidInfoDictionarySubpath(path) {
-            if !doesInfoDictionaryExist(atPluginPath: pluginPath) {
+        for pathComponent in infoPathComponents {
+            if containsValidInfoDictionarySubpath(path, atPathComponent: pathComponent),
+               !doesInfoDictionaryExist(atPluginPath: pluginPath, atPathComponent: pathComponent) {
                 return true
             }
         }
@@ -221,15 +223,21 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
 
     // MARK: Helpers
 
-    func isValidInfoDictionary(atPath path: String) -> Bool {
-        return hasValidInfoDictionarySubpath(path, requireExactInfoDictionaryMatch: true)
+    func isValidInfoDictionary(atPath path: String, atPathComponent pathComponent: String) -> Bool {
+        return hasValidInfoDictionarySubpath(path,
+                                             requireExactInfoDictionaryMatch: true,
+                                             atPathComponent: pathComponent)
     }
 
-    func containsValidInfoDictionarySubpath(_ path: String) -> Bool {
-        return hasValidInfoDictionarySubpath(path, requireExactInfoDictionaryMatch: false)
+    func containsValidInfoDictionarySubpath(_ path: String, atPathComponent pathComponent: String) -> Bool {
+        return hasValidInfoDictionarySubpath(path,
+                                             requireExactInfoDictionaryMatch: false,
+                                             atPathComponent: pathComponent)
     }
 
-    func hasValidInfoDictionarySubpath(_ path: String, requireExactInfoDictionaryMatch: Bool) -> Bool {
+    func hasValidInfoDictionarySubpath(_ path: String,
+                                       requireExactInfoDictionaryMatch: Bool,
+                                       atPathComponent pathComponent: String) -> Bool {
         if let pluginPathComponents = pluginPathComponents(fromPath: path) {
             var pluginSubpathComponents = pluginPathComponents as? [String]
             if let firstPathComponent = pluginSubpathComponents?.remove(at: 0) {
@@ -241,10 +249,10 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
                     let pluginSubpath = NSString.path(withComponents: pluginSubpathComponents)
 
                     if requireExactInfoDictionaryMatch {
-                        return PluginsPathHelper.does(pathComponent: ClassConstants.infoDictionaryPathComponent,
+                        return PluginsPathHelper.does(pathComponent: pathComponent,
                                                       matchPathComponent: pluginSubpath)
                     } else {
-                        return PluginsPathHelper.contains(ClassConstants.infoDictionaryPathComponent,
+                        return PluginsPathHelper.contains(pathComponent,
                                                           subpathComponent: pluginSubpath)
                     }
                 }
@@ -253,8 +261,8 @@ class PluginsDirectoryManager: NSObject, BBUDirectoryWatcherDelegate, PluginsDir
         return false
     }
 
-    func doesInfoDictionaryExist(atPluginPath pluginPath: String) -> Bool {
-        let infoDictionaryPath = pluginPath.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
+    func doesInfoDictionaryExist(atPluginPath pluginPath: String, atPathComponent pathComponent: String) -> Bool {
+        let infoDictionaryPath = pluginPath.appendingPathComponent(pathComponent)
         var isDir: ObjCBool = false
         let fileExists = FileManager.default.fileExists(atPath: infoDictionaryPath, isDirectory: &isDir)
         return fileExists && !isDir.boolValue

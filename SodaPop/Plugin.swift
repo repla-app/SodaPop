@@ -10,95 +10,40 @@ import Cocoa
 
 @objcMembers
 public class Plugin: POPPlugin {
-    enum PluginWriteError: Error {
-        case failToWriteDictionaryError(URL: URL)
-    }
+    // MARK: Constants
 
-    enum ClassConstants {
-        static let infoDictionaryPathComponent = "Contents".appendingPathComponent("Info.plist")
-    }
-
-    let bundle: Bundle
-    let hidden: Bool
+    public let autoShowLog: Bool? // `autoShowLog` is three state, `nil` means use the user preference
+    public let debugModeEnabled: Bool? // `debugModeEnabled` is three state, `nil` means use the user preference
+    public let hidden: Bool
+    public let kind: PluginKind
+    public let path: String
     public let promptInterrupt: Bool
-    public let usesEnvironment: Bool
-    // `debugModeEnabled` is three state, `nil` means use the user prefrence
-    public let debugModeEnabled: Bool?
-    // `autoShowLog` is three state, `nil` means use the user prefrence
-    public let autoShowLog: Bool?
+    public let resourcePath: String
+    public let resourceURL: URL
     public let transparentBackground: Bool
-    let pluginType: PluginType
+    public let url: URL
+    public let usesEnvironment: Bool
 
-    init(bundle: Bundle,
-         infoDictionary: [AnyHashable: Any],
-         pluginType: PluginType,
-         identifier: String,
-         name: String,
-         command: String?,
-         suffixes: [String]?,
-         hidden: Bool,
-         editable: Bool,
-         debugModeEnabled: Bool?,
-         transparentBackground: Bool,
-         autoShowLog: Bool?,
-         promptInterrupt: Bool,
-         usesEnvironment: Bool) {
-        self.infoDictionary = infoDictionary
-        self.pluginType = pluginType
-        self.bundle = bundle
-        self.name = name
-        self.identifier = identifier
-        self.hidden = hidden
-        self.editable = editable
+    // MARK: Computed
 
-        // Optional
-        self.command = command
-        self.suffixes = [String]()
-        if let suffixes = suffixes {
-            self.suffixes += suffixes
-        }
-        self.debugModeEnabled = debugModeEnabled
-        self.transparentBackground = transparentBackground
-        self.autoShowLog = autoShowLog
-        self.promptInterrupt = promptInterrupt
-        self.usesEnvironment = usesEnvironment
-    }
-
-    // MARK: Paths
-
-    public var resourcePath: String? {
-        return bundle.resourcePath
-    }
-
-    public var resourceURL: URL? {
-        if let path = resourcePath {
-            return URL(fileURLWithPath: path)
+    public var commandPath: String? {
+        if let command = command {
+            return resourcePath.appendingPathComponent(command)
         }
         return nil
     }
 
-    internal var infoDictionary: [AnyHashable: Any]
-    internal var infoDictionaryURL: URL {
-        return Swift.type(of: self).urlForInfoDictionary(forPluginAt: bundle.bundleURL)
+    public dynamic var kindName: String {
+        return kind.name()
     }
 
-    class func urlForInfoDictionary(for plugin: Plugin) -> URL {
-        return urlForInfoDictionary(forPluginAt: plugin.bundle.bundleURL)
-    }
+    // MARK: Variables
 
-    class func urlForInfoDictionary(forPluginAt pluginURL: URL) -> URL {
-        return pluginURL.appendingPathComponent(ClassConstants.infoDictionaryPathComponent)
-    }
+    public var editable: Bool
 
-    // MARK: Properties
-
-    public dynamic var name: String {
+    public var command: String? {
         willSet {
             assert(editable, "The plugin should be editable")
-        }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.name] = name
-            save()
         }
     }
 
@@ -106,75 +51,89 @@ public class Plugin: POPPlugin {
         willSet {
             assert(editable, "The plugin should be editable")
         }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.identifier] = identifier
-            save()
-        }
     }
 
-    public dynamic var command: String? {
+    public var name: String {
         willSet {
             assert(editable, "The plugin should be editable")
         }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.command] = command
-            save()
-        }
     }
 
-    public var commandPath: String? {
-        guard let resourcePath = resourcePath,
-              let command = command
-        else {
-            return nil
-        }
-        return resourcePath.appendingPathComponent(command)
-    }
-
-    public dynamic var suffixes: [String] {
+    public var suffixes: [String]? {
         willSet {
             assert(editable, "The plugin should be editable")
         }
-        didSet {
-            infoDictionary[InfoDictionaryKeys.suffixes] = suffixes
-            save()
-        }
     }
 
-    public dynamic var type: String {
-        return pluginType.name()
+    init(autoShowLog: Bool?,
+         debugModeEnabled: Bool?,
+         hidden: Bool,
+         promptInterrupt: Bool,
+         transparentBackground: Bool,
+         usesEnvironment: Bool,
+         path: String,
+         url: URL,
+         resourcePath: String,
+         kind: PluginKind,
+         resourceURL: URL,
+         // Variable
+         editable: Bool,
+         command: String?,
+         identifier: String,
+         name: String,
+         suffixes: [String]?) {
+        self.autoShowLog = autoShowLog
+        self.debugModeEnabled = debugModeEnabled
+        self.hidden = hidden
+        self.promptInterrupt = promptInterrupt
+        self.transparentBackground = transparentBackground
+        self.usesEnvironment = usesEnvironment
+        self.path = path
+        self.url = url
+        self.resourcePath = resourcePath
+        self.kind = kind
+        self.resourceURL = resourceURL
+        self.editable = editable
+        self.command = command
+        self.identifier = identifier
+        self.name = name
+        self.suffixes = suffixes
     }
 
-    public dynamic var editable: Bool {
-        didSet {
-            if !editable {
-                infoDictionary[InfoDictionaryKeys.editable] = editable
-            } else {
-                infoDictionary[InfoDictionaryKeys.editable] = nil
-            }
-            save()
+    func isEqual(toOther plugin: Plugin) -> Bool {
+        if name != plugin.name {
+            return false
         }
-    }
 
-    // MARK: Save
-
-    private func save() {
-        let infoDictionaryURL = self.infoDictionaryURL
-        do {
-            try Swift.type(of: self).write(infoDictionary, toURL: infoDictionaryURL)
-        } catch let PluginWriteError.failToWriteDictionaryError(URL) {
-            print("Failed to write an info dictionary at URL \(URL)")
-        } catch let error as NSError {
-            print("Failed to write an info dictionary \(error)")
+        if identifier != plugin.identifier {
+            return false
         }
-    }
 
-    class func write(_ dictionary: [AnyHashable: Any], toURL URL: Foundation.URL) throws {
-        let writableDictionary = NSDictionary(dictionary: dictionary)
-        let success = writableDictionary.write(to: URL, atomically: true)
-        if !success {
-            throw PluginWriteError.failToWriteDictionaryError(URL: URL)
+        if editable != plugin.editable {
+            return false
         }
+
+        if kind != plugin.kind {
+            return false
+        }
+
+        if command != plugin.command {
+            return false
+        }
+
+        if commandPath != plugin.commandPath {
+            return false
+        }
+
+        if resourceURL != plugin.resourceURL {
+            return false
+        }
+
+        if type(of: plugin) != type(of: self) {
+            return false
+        }
+
+        return true
     }
 
     // MARK: Description
@@ -183,6 +142,7 @@ public class Plugin: POPPlugin {
         let description = super.description
         return """
         \(description),
+        url = \(url),
         Plugin name = \(name),
         identifier = \(identifier),
         defaultNewPlugin = \(isDefaultNewPlugin),

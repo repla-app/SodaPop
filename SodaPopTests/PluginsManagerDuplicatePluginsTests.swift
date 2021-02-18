@@ -72,15 +72,15 @@ class PluginsManagerDuplicatePluginsTests: ArrayControllerTestCase {
         var builtInPluginsTested = 0
 
         for plugin in plugins {
-            let testPluginPath = builtInPluginsPath.appendingPathComponent(plugin.bundle.bundlePath.lastPathComponent)
+            let testPluginPath = builtInPluginsPath.appendingPathComponent(plugin.path.lastPathComponent)
             let resolvedTestPluginPath = (testPluginPath as NSString).resolvingSymlinksInPath
-            let resolvedPluginPath = (plugin.bundle.bundlePath as NSString).resolvingSymlinksInPath
+            let resolvedPluginPath = (plugin.path as NSString).resolvingSymlinksInPath
             guard resolvedPluginPath == resolvedTestPluginPath else {
-                XCTAssertEqual(plugin.pluginType, .other)
+                XCTAssertEqual(plugin.kind, .other)
                 continue
             }
-            XCTAssertEqual(plugin.pluginType, .builtIn)
-            XCTAssertEqual(plugin.type, PluginType.builtIn.name())
+            XCTAssertEqual(plugin.kind, .builtIn)
+            XCTAssertEqual(plugin.kindName, PluginKind.builtIn.name())
             builtInPluginsTested += 1
         }
 

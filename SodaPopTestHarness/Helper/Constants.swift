@@ -30,6 +30,9 @@ public let testPluginFileExtension = "replaplugin"
 public let testPluginName = TestPlugins.testPluginName
 public let testPluginNameTwo = TestPlugins.testPluginNameTwo
 public let testPluginNameTestNode = TestPlugins.testPluginNameTestNode
+public let testPluginNameJSON = TestPlugins.testPluginNameJSON
+public let testPluginJSONURLJSON = TestPlugins.urlForPlugin(withName: testPluginNameJSON)!
+    .appendingPathComponent("repla.json")
 public let testPluginExtension = TestPlugins.testPluginFileExtension
 public let testPluginCommand = TestPlugins.testPluginCommand
 public let testPluginCommandTwo = TestPlugins.testPluginCommandTwo
@@ -49,6 +52,8 @@ public let testPluginNamePromptInterrupt = TestPlugins.testPluginNameTestPromptI
 public let testPluginOptionsDisabledName = TestPlugins.testPluginOptionsDisabledName
 public let testPluginOptionsEnabledName = TestPlugins.testPluginOptionsEnabledName
 public let testPluginOptionsNilName = TestPlugins.testPluginOptionsNilName
+public let testPluginNameFileExtension = TestPlugins.testPluginNameTestFileExtension
+public let testPluginFileExtensions = TestPlugins.testPluginFileExtensions
 
 // Special
 public let testPluginOutsideName = TestPlugins.testPluginNameOutside

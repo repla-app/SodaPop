@@ -142,8 +142,7 @@ public class PluginsManager: NSObject, PluginsDataControllerDelegate {
                                didRemovePlugin plugin: Plugin) {
         if
             let defaultNewPlugin = defaultNewPluginManager.defaultNewPlugin as? Plugin,
-            defaultNewPlugin == plugin
-        {
+            defaultNewPlugin == plugin {
             defaultNewPluginManager.defaultNewPlugin = nil
         }
         remove(plugin)

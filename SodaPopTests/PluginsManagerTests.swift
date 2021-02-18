@@ -19,4 +19,12 @@ class PluginsManagerTests: PluginsManagerTestCase {
         XCTAssertNotNil(plugin)
         XCTAssertEqual(testPluginCommandTestNode, plugin.command)
     }
+
+    func testJSONPlugin() {
+        guard let plugin = pluginsManager.plugin(withName: testPluginNameJSON) else {
+            XCTFail()
+            return
+        }
+        XCTAssertNotNil(plugin)
+    }
 }

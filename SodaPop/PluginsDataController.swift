@@ -95,7 +95,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
         for path in pathsSet {
             let plugins = self.plugins(atPath: path)
             for plugin in plugins {
-                pluginPathToPluginDictionary[plugin.bundle.bundlePath] = plugin
+                pluginPathToPluginDictionary[plugin.path] = plugin
             }
             let pluginsDirectoryURL = URL(fileURLWithPath: path)
             let pluginDirectoryManager = PluginsDirectoryManager(pluginsDirectoryURL: pluginsDirectoryURL)
@@ -108,15 +108,17 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String) {
-        guard let newPlugin = Plugin.makePlugin(path: pluginPath) else {
-            return
-        }
         if let oldPlugin = plugin(atPluginPath: pluginPath) {
-            if !oldPlugin.isEqual(to: newPlugin) {
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 // If there is an existing plugin and a new plugin, remove the old plugin and add the new plugin
-                remove(oldPlugin)
-                add(newPlugin)
-            } else {
+                if oldPlugin != newPlugin {
+                    remove(oldPlugin)
+                    add(newPlugin)
+                }
+            }
+        } else {
+            // If there is only a new plugin, add it
+            if let newPlugin = Plugin.makePlugin(path: pluginPath) {
                 add(newPlugin)
             }
         }
@@ -124,10 +126,9 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func pluginsDirectoryManager(_: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasRemovedAtPluginPath pluginPath: String) {
-        guard let oldPlugin = plugin(atPluginPath: pluginPath) else {
-            return
+        if let oldPlugin = plugin(atPluginPath: pluginPath) {
+            remove(oldPlugin)
         }
-        remove(oldPlugin)
     }
 
     // MARK: DuplicatePluginControllerDelegate
@@ -143,13 +144,13 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
     // MARK: Add & Remove Helpers
 
     func add(_ plugin: Plugin) {
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         pluginPathToPluginDictionary[pluginPath] = plugin
         delegate?.pluginsDataController(self, didAddPlugin: plugin)
     }
 
     func remove(_ plugin: Plugin) {
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         pluginPathToPluginDictionary.removeValue(forKey: pluginPath)
         delegate?.pluginsDataController(self, didRemovePlugin: plugin)
     }
@@ -162,7 +163,7 @@ class PluginsDataController: PluginsDirectoryManagerDelegate,
 
     func moveToTrash(_ plugin: Plugin, handler: ((_ url: URL?, _ error: Error?) -> Void)?) {
         assert(plugin.editable, "The plugin should be editable")
-        let bundeURL = plugin.bundle.bundleURL
+        let bundeURL = plugin.url
         NSWorkspace.shared.recycle([bundeURL]) { [weak self] dictionary, error in
             guard let strongSelf = self else {
                 return

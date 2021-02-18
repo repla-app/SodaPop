@@ -131,6 +131,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasCreatedOrModifiedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.createFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -142,6 +146,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasCreatedOrModifiedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.createDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -155,6 +163,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 fileWasRemovedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.removeFile(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -166,6 +178,10 @@ extension FilesAndPluginsDirectoryManagerTests {
                 directoryWasRemovedExpectation.fulfill()
             }
         })
+        guard isTemporaryItem(atPath: path) else {
+            XCTFail()
+            return
+        }
         OutOfTouch.removeDirectory(atPath: path, handler: nil)
         waitForExpectations(timeout: defaultTimeout, handler: nil)
     }
@@ -488,6 +504,37 @@ class FilesAndPluginsDirectoryManagerTests: TemporaryDirectoryTestCase {
         // because this could be the delete after move of a valid plugin's contents directory
         createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
         removeDirectoryWithConfirmation(atPath: testPluginContentsDirectoryPath)
+
+        // Remove the directory in the plugins directory, this should cause a callback
+        // because this could be the delete after move of a valid plugin
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
+    }
+
+    func testDirectoryForInfoJSON() {
+        // Create a directory in the plugins directory, this should not cause a callback
+        let testPluginDirectoryPath = baseDirectoryPath.appendingPathComponent(testPluginDirectoryName)
+        createDirectoryWithConfirmation(atPath: testPluginDirectoryPath)
+
+        // Create a directory for the info JSON, this should not cause a callback
+        let testPluginInfoPath =
+            testPluginDirectoryPath.appendingPathComponent(infoPathComponent)
+        createDirectoryWithConfirmation(atPath: testPluginInfoPath)
+
+        // Clean Up Directory
+        // Remove info JSON directory, this should cause a callback
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeDirectoryWithConfirmation(atPath: testPluginInfoPath)
+
+        // Create the file at the correct path
+        // Create a file for the info JSON, this should cause a callback
+        createPluginInfoDictionaryWasCreatedOrModifiedExpectation(forPluginPath: testPluginDirectoryPath)
+        createFileWithConfirmation(atPath: testPluginInfoPath)
+
+        // Clean up
+        // Remove info JSON info dictionary, this should cause a callback
+        createPluginInfoDictionaryWasRemovedExpectation(forPluginPath: testPluginDirectoryPath)
+        removeFileWithConfirmation(atPath: testPluginInfoPath)
 
         // Remove the directory in the plugins directory, this should cause a callback
         // because this could be the delete after move of a valid plugin

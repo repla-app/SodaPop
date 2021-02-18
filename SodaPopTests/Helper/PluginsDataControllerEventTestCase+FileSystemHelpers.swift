@@ -17,7 +17,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
     func moveWithConfirmation(_ plugin: Plugin,
                               destinationPluginPath: String,
                               handler: @escaping (_ plugin: Plugin?) -> Void) {
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         guard isTemporaryItem(atPath: pluginPath) else {
             XCTFail("Tried to move a plugin that is not in a temporary directory.")
             return
@@ -33,7 +33,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
         var newPlugin: Plugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
-            let path = addedPlugin.bundle.bundlePath
+            let path = addedPlugin.path
             if path == destinationPluginPath {
                 newPlugin = addedPlugin
                 handler(newPlugin)
@@ -63,7 +63,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
         var newPlugin: Plugin?
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
-            let path = addedPlugin.bundle.bundlePath
+            let path = addedPlugin.path
             if path.hasPrefix(destinationPluginPath) {
                 newPlugin = addedPlugin
                 pluginWasAdded = true
@@ -78,7 +78,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         OutOfTouch.copyDirectory(atPath: pluginPath,
                                  toPath: destinationPluginPath) { standardOutput, standardError, exitStatus in
             XCTAssertNil(standardOutput)
@@ -103,7 +103,7 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         let deleteExpectation = expectation(description: "Remove finished")
         OutOfTouch.removeDirectory(atPath: pluginPath) { standardOutput, standardError, exitStatus in
             XCTAssertNil(standardOutput)
@@ -118,15 +118,18 @@ extension TemporaryPluginsDataControllerEventTestCase {
 
     func modifyWithConfirmation(_ plugin: Plugin, handler: @escaping (_ plugin: Plugin?) -> Void) {
         // Get the old identifier
-        let infoDictionary = NSDictionary(contentsOf: plugin.infoDictionaryURL)! as Dictionary
-        let identifier: String = infoDictionary[Plugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
+        guard let xmlPlugin = plugin as? XMLPlugin else {
+            XCTFail()
+            return
+        }
+        let infoDictionary = NSDictionary(contentsOf: xmlPlugin.infoDictionaryURL)! as Dictionary
+        let identifier: String = infoDictionary[XMLPlugin.InfoDictionaryKeys.identifier as NSString] as? String ?? ""
+        // Get the info dictionary contents
+        let infoDictionaryPath = xmlPlugin.infoDictionaryURL.path
 
         // Make a new identifier
         let UUID = Foundation.UUID()
         let newIdentifier = UUID.uuidString
-
-        // Get the info dictionary contents
-        let infoDictionaryPath = plugin.infoDictionaryURL.path
 
         var infoDictionaryContents: String!
         do {
@@ -145,11 +148,11 @@ extension TemporaryPluginsDataControllerEventTestCase {
             }
         })
 
-        let pluginPath = plugin.bundle.bundlePath
+        let pluginPath = plugin.path
         var newPlugin: Plugin?
         let createExpectation = expectation(description: "Plugin was added")
         pluginDataEventManager.add(pluginWasAddedHandler: { (addedPlugin) -> Void in
-            let path = addedPlugin.bundle.bundlePath
+            let path = addedPlugin.path
             if path == pluginPath {
                 newPlugin = addedPlugin
                 handler(newPlugin)

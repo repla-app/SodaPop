@@ -11,3 +11,15 @@ public let pluginNameKey = kPluginNameKey
 let defaultNewPluginIdentifierKey = kDefaultNewPluginIdentifierKey
 let pluginFileExtension = "replaplugin"
 let duplicatePluginsWithCounterMax = kDuplicatePluginsWithCounterMax
+let defaultPluginPromptInterrupt = false
+let defaultPluginHidden = false
+let defaultPluginEditable = true
+let defaultPluginUsesEnvironment = false
+let defaultPluginTransparentBackground = false
+
+let resourcePathComponent = "Contents/Resources"
+let infoDictionaryPathComponent = "Contents/Info.plist"
+let infoPathComponent = "repla.json"
+let infoPathComponents = [infoDictionaryPathComponent, infoPathComponent]
+
+let defaultForceXML = false

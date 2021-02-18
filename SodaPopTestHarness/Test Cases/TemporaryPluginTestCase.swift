@@ -21,7 +21,7 @@ open class TemporaryPluginTestCase: TemporaryPluginsManagerTestCase, PluginOwner
         // Set the plugin
         tempPlugin = tempPluginsManager.plugin(withName: testPluginName)
         XCTAssertNotNil(plugin, "The temporary plugin should not be nil")
-        XCTAssertTrue(isTemporaryItem(at: plugin.resourceURL!))
+        XCTAssertTrue(isTemporaryItem(at: plugin.resourceURL))
         tempPlugin.editable = true
         tempPlugin.isDefaultNewPlugin = true
     }

@@ -27,7 +27,7 @@ extension XCTestCase {
             let contents = try NSString(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)
             return contents as String
         } catch {
-            XCTAssertTrue(false)
+            XCTFail()
         }
         return nil
     }

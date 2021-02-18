@@ -13,42 +13,96 @@ import XCTest
 class PluginTests: PluginTestCase {
     func testPlugin() {
         var isDir: ObjCBool = false
-        let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath!, isDirectory: &isDir)
+        let fileExists = FileManager.default.fileExists(atPath: plugin.resourcePath, isDirectory: &isDir)
         XCTAssertTrue(fileExists)
         XCTAssertTrue(isDir.boolValue)
-        XCTAssertEqual(plugin.resourcePath, plugin.resourceURL!.path)
+        XCTAssertEqual(plugin.resourcePath, plugin.resourceURL.path)
     }
 }
 
-class TemporaryPluginTests: TemporaryPluginTestCase {
-    func testEditPluginProperties() {
-        let contents = contentsOfInfoDictionaryWithConfirmation(for: plugin)
+extension PluginInfoContentsType {
+    static func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String {
+        let pluginInfoPath: String
+        if type(of: plugin) == XMLPlugin.self {
+            pluginInfoPath = XMLPlugin.urlForInfoDictionary(for: plugin).path
+        } else if let plugin = plugin as? JSONPlugin {
+            pluginInfoPath = plugin.infoPath
+        } else {
+            XCTFail()
+            pluginInfoPath = ""
+        }
 
-        plugin.name = testPluginNameTwo
-        let contentsTwo = contentsOfInfoDictionaryWithConfirmation(for: plugin)
-        XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
+        var infoDictionaryContents: String!
+        do {
+            infoDictionaryContents = try String(contentsOfFile: pluginInfoPath,
+                                                encoding: String.Encoding.utf8)
+        } catch {
+            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
+        }
 
-        plugin.command = testPluginCommandTwo
-        let contentsThree = contentsOfInfoDictionaryWithConfirmation(for: plugin)
-        XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
-
-        let uuid = UUID()
-        let uuidString = uuid.uuidString
-        plugin.identifier = uuidString
-        let contentsFour = contentsOfInfoDictionaryWithConfirmation(for: plugin)
-        XCTAssertNotEqual(contentsThree, contentsFour, "The contents should not be equal")
-
-        plugin.suffixes = testPluginSuffixesTwo
-        let contentsFive = contentsOfInfoDictionaryWithConfirmation(for: plugin)
-        XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
-        let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
-
-        XCTAssertEqual(plugin.name, newPlugin.name, "The names should be equal")
-        XCTAssertEqual(plugin.command!, newPlugin.command!, "The commands should be equal")
-        XCTAssertEqual(plugin.identifier, newPlugin.identifier, "The identifiers should be equal")
-        XCTAssertEqual(plugin.suffixes, newPlugin.suffixes, "The file extensions should be equal")
+        return infoDictionaryContents
     }
+}
 
+protocol PluginInfoContentsType {
+    static func contentsOfPluginInfoWithConfirmation(for plugin: Plugin) -> String
+}
+
+class MakeTemporaryPluginsManagerTests: TemporaryPluginsManagerDependenciesTestCase, PluginInfoContentsType {
+    func testEditPluginProperties() {
+        let states = [true, false]
+        for state in states {
+            Plugin.forceXML = state
+            let pluginsManager = makePluginsManager()
+            guard let plugin = pluginsManager.plugin(withName: testPluginName) else {
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(type(of: plugin) == XMLPlugin.self, state)
+            XCTAssertTrue(isTemporaryItem(at: plugin.resourceURL))
+            plugin.editable = true
+
+            let contents = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
+
+            plugin.name = testPluginNameTwo
+            let contentsTwo = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
+            XCTAssertNotEqual(contents, contentsTwo, "The contents should not be equal")
+
+            plugin.command = testPluginCommandTwo
+            let contentsThree = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
+            XCTAssertNotEqual(contentsTwo, contentsThree, "The contents should not be equal")
+
+            let uuid = UUID()
+            let uuidString = uuid.uuidString
+            plugin.identifier = uuidString
+            let contentsFour = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
+            XCTAssertNotEqual(contentsThree, contentsFour, "The contents should not be equal")
+
+            plugin.suffixes = testPluginSuffixesTwo
+            let contentsFive = type(of: self).contentsOfPluginInfoWithConfirmation(for: plugin)
+            XCTAssertNotEqual(contentsFour, contentsFive, "The contents should not be equal")
+            let newPlugin: Plugin! = Plugin.makePlugin(url: tempPluginURL)
+
+            XCTAssertEqual(plugin.name, newPlugin.name, "The names should be equal")
+            XCTAssertEqual(plugin.command!, newPlugin.command!, "The commands should be equal")
+            XCTAssertEqual(plugin.identifier, newPlugin.identifier, "The identifiers should be equal")
+            XCTAssertEqual(plugin.suffixes, newPlugin.suffixes, "The file extensions should be equal")
+
+            // Making a `pluginsManager` will implicitly create the
+            // `userPluginsURL`. So that needs to be cleaned up here.
+            do {
+                try removeTemporaryItem(at: temporaryApplicationSupportDirectoryURL)
+            } catch {
+                XCTFail()
+            }
+        }
+
+        // Clean Up
+        Plugin.forceXML = defaultForceXML
+    }
+}
+
+class TemporaryPluginTests: TemporaryPluginTestCase, PluginInfoContentsType {
     func testEquality() {
         let pluginMaker = pluginsManager.pluginsDataController.pluginMaker
         let samePlugin = pluginMaker.makePlugin(url: tempPluginURL)!
@@ -75,21 +129,6 @@ class TemporaryPluginTests: TemporaryPluginTestCase {
         // TODO: It would be nice to test modifying properties, but there isn't
         // a way to do that because with two separate plugin directories the
         // command paths and info dictionary URLs will be different
-    }
-
-    // MARK: Helper
-
-    func contentsOfInfoDictionaryWithConfirmation(for plugin: Plugin) -> String {
-        let pluginInfoDictionaryPath = Plugin.urlForInfoDictionary(for: plugin).path
-        var infoDictionaryContents: String!
-        do {
-            infoDictionaryContents = try String(contentsOfFile: pluginInfoDictionaryPath,
-                                                encoding: String.Encoding.utf8)
-        } catch {
-            XCTAssertTrue(false, "Getting the info dictionary contents should succeed")
-        }
-
-        return infoDictionaryContents
     }
 }
 

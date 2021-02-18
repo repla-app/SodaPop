@@ -11,8 +11,12 @@ import SodaPop
 import XCTest
 
 open class PluginsManagerTestCase: PluginsManagerDependenciesTestCase, PluginsManagerOwnerType {
-    private var privatePluginsManager: PluginsManager!
+    private var privatePluginsManager: PluginsManager?
     public var pluginsManager: PluginsManager {
+        guard let privatePluginsManager = privatePluginsManager else {
+            XCTFail()
+            return makePluginsManager()
+        }
         return privatePluginsManager
     }
 

@@ -18,6 +18,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     }()
 
     override func setUp() {
+        Plugin.forceXML = true
         super.setUp()
         duplicatePluginController = pluginsManager.pluginsDataController.duplicatePluginController
         plugin.editable = false
@@ -26,13 +27,14 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
     override func tearDown() {
         duplicatePluginController = nil
         super.tearDown()
+        Plugin.forceXML = defaultForceXML
     }
 
     func testDuplicatePlugin() {
         // Test that the plugin starts not editable
         XCTAssertFalse(plugin.editable, "The plugin should not be editable")
 
-        var pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(for: plugin)
+        var pluginInfoDictionaryURL = XMLPlugin.urlForInfoDictionary(for: plugin)
         var pluginInfoDictionaryContents: String!
         do {
             pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
@@ -42,7 +44,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         var pluginInfoDictionaryContentsAsNSString: NSString = pluginInfoDictionaryContents as NSString
-        var range = pluginInfoDictionaryContentsAsNSString.range(of: Plugin.InfoDictionaryKeys.editable)
+        var range = pluginInfoDictionaryContentsAsNSString.range(of: XMLPlugin.InfoDictionaryKeys.editable)
         XCTAssertFalse(range.location == NSNotFound, "The string should have been found")
 
         // Duplicate the plugin
@@ -57,7 +59,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Test the plugin's directory exists
-        let duplicatePluginURL = duplicatePlugin.bundle.bundleURL
+        let duplicatePluginURL = duplicatePlugin.url
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: duplicatePluginURL.path,
                                                     isDirectory: &isDir)
@@ -66,7 +68,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
 
         // Test that the new plugin is editable
         XCTAssertTrue(duplicatePlugin.editable, "The duplicated plugin should be editable")
-        pluginInfoDictionaryURL = Plugin.urlForInfoDictionary(forPluginAt: duplicatePlugin.bundle.bundleURL)
+        pluginInfoDictionaryURL = XMLPlugin.urlForInfoDictionary(forPluginAt: duplicatePlugin.url)
 
         do {
             pluginInfoDictionaryContents = try String(contentsOf: pluginInfoDictionaryURL,
@@ -76,11 +78,11 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         }
 
         pluginInfoDictionaryContentsAsNSString = pluginInfoDictionaryContents as NSString
-        range = pluginInfoDictionaryContentsAsNSString.range(of: Plugin.InfoDictionaryKeys.editable)
+        range = pluginInfoDictionaryContentsAsNSString.range(of: XMLPlugin.InfoDictionaryKeys.editable)
         XCTAssertTrue(range.location == NSNotFound, "The string should not have been found")
 
         // Test the plugins properties are accurate
-        XCTAssertNotEqual(plugin.bundle.bundleURL, duplicatePlugin.bundle.bundleURL, "The URLs should not be equal")
+        XCTAssertNotEqual(plugin.url, duplicatePlugin.url, "The URLs should not be equal")
         XCTAssertNotEqual(plugin.identifier, duplicatePlugin.identifier, "The identifiers should not be equal")
         XCTAssertNotEqual(plugin.name, duplicatePlugin.name, "The names should not be equal")
         XCTAssertEqual(plugin.hidden, duplicatePlugin.hidden, "The hidden should equal the plugin's hidden")
@@ -88,7 +90,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         XCTAssertTrue(longName.hasPrefix(plugin.name))
         XCTAssertNotEqual(plugin.commandPath!, duplicatePlugin.commandPath!, "The command paths should not be equal")
         XCTAssertEqual(plugin.command!, duplicatePlugin.command!, "The commands should be equal")
-        let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
+        let duplicatePluginFolderName = duplicatePlugin.path.lastPathComponent
         XCTAssertEqual(DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.name),
                        duplicatePluginFolderName,
                        "The folder name should equal the plugin's name")
@@ -158,7 +160,7 @@ class DuplicatePluginControllerTests: PluginsManagerTestCase {
         waitForExpectations(timeout: defaultTimeout, handler: nil)
 
         // Assert the folder name equals the plugin's identifier
-        let duplicatePluginFolderName = duplicatePlugin.bundle.bundlePath.lastPathComponent
+        let duplicatePluginFolderName = duplicatePlugin.path.lastPathComponent
         XCTAssertEqual(duplicatePluginFolderName,
                        DuplicatePluginController.pluginFilename(fromName: duplicatePlugin.identifier),
                        "The folder name should equal the identifier")

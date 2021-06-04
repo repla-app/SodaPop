@@ -1,4 +1,4 @@
-# `SodaPop` [![Build Status](https://travis-ci.org/repla-app/SodaPop.svg?branch=master)](https://travis-ci.org/repla-app/SodaPop)
+# `SodaPop` ![Status](https://github.com/robenkleene/sodapop/actions/workflows/ci.yml/badge.svg) ![Status](https://github.com/robenkleene/sodapop/actions/workflows/release.yml/badge.svg)
 
 `SodaPop` is the plugin manager for [Repla](https://repla.app/). `SodaPop` loads Repla [plugins](https://repla.app/plugins/) from disk and provides functionality for managing plugins.
 

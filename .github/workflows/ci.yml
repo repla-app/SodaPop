@@ -21,6 +21,7 @@ jobs:
       - run: make ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: IRC notification
         uses: Gottox/irc-message-action@v1
         continue-on-error: true

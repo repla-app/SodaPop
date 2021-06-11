@@ -24,7 +24,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: SevenHup.framework.zip
+          files: SodaPop.framework.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: IRC notification

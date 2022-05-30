@@ -9,7 +9,7 @@
 import BubbleUp
 import Foundation
 
-protocol PluginsDirectoryManagerDelegate: class {
+protocol PluginsDirectoryManagerDelegate: AnyObject {
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,
                                  pluginInfoDictionaryWasCreatedOrModifiedAtPluginPath pluginPath: String)
     func pluginsDirectoryManager(_ pluginsDirectoryManager: PluginsDirectoryManager,

@@ -12,7 +12,7 @@ enum FileSystemError: Error {
     case fileExistsForDirectoryError
 }
 
-protocol PluginsDataControllerDelegate: class {
+protocol PluginsDataControllerDelegate: AnyObject {
     func pluginsDataController(_ pluginsDataController: PluginsDataController,
                                didAddPlugin plugin: Plugin)
     func pluginsDataController(_ pluginsDataController: PluginsDataController,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DuplicatePluginControllerDelegate: class {
+protocol DuplicatePluginControllerDelegate: AnyObject {
     func duplicatePluginController(_ duplicatePluginController: DuplicatePluginController,
                                    uniquePluginNameFromName name: String,
                                    for plugin: Plugin) -> String?

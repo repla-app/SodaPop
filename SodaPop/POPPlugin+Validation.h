@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Roben Kleene. All rights reserved.
 //
 
-#import "POPPlugin.h"
+#import <SodaPop/POPPlugin.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface POPPlugin (Validation)

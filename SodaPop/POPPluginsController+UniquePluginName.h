@@ -6,8 +6,8 @@
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
-#import "POPPlugin.h"
-#import "POPPluginsController.h"
+#import <SodaPop/POPPlugin.h>
+#import <SodaPop/POPPluginsController.h>
 
 #define kDuplicatePluginsWithCounterMax 99
 

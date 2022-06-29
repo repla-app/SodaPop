@@ -14,7 +14,7 @@ import SodaPopTestHarness
 import XCTest
 import XCTestTemp
 
-protocol FilesAndPluginsDirectoryManagerFileDelegate: class {
+protocol FilesAndPluginsDirectoryManagerFileDelegate: AnyObject {
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager,
                                      fileWasCreatedOrModifiedAtPath path: String)
     func testPluginsDirectoryManager(_ filesAndPluginsDirectoryManager: FilesAndPluginsDirectoryManager,

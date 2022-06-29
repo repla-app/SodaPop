@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "POPPluginsSource.h"
+#import <SodaPop/POPPluginsSource.h>
 
 // The `POPPluginsController` manages the in memory `Plugin` objects. It
 // provides standard methods for operating on a collection of `Plugin` objects

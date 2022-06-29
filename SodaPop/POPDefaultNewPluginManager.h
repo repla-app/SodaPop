@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 Roben Kleene. All rights reserved.
 //
 
-#import "POPPlugin.h"
+#import <SodaPop/POPPlugin.h>
 #import <Foundation/Foundation.h>
 
 #define kDefaultNewPluginIdentifierKey @"POPDefaultNewPluginIdentifier"
